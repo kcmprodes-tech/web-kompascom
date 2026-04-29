@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kompas.com - Berita Terkini</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar__inner">
+        <a class="brand" href="#" aria-label="Kompas.com">
+          <img class="brand-logo" src="./assets/isolation_mode.png" alt="Kompas.com" />
+        </a>
+        <div class="topbar__actions">
+          <button class="header-icon" aria-label="Belanja">
+            <svg viewBox="0 0 256 256" aria-hidden="true">
+              <path d="M80 72a48 48 0 0 1 96 0" />
+              <path d="M48 72h160l-16 136a16 16 0 0 1-16 16H80a16 16 0 0 1-16-16Z" />
+            </svg>
+          </button>
+          <button class="header-icon" aria-label="Cari">
+            <svg viewBox="0 0 256 256" aria-hidden="true">
+              <circle cx="112" cy="112" r="72" />
+              <path d="m163 163 45 45" />
+            </svg>
+          </button>
+          <button class="header-icon" aria-label="Akun">
+            <svg viewBox="0 0 256 256" aria-hidden="true">
+              <circle cx="128" cy="128" r="96" />
+              <circle cx="128" cy="104" r="32" />
+              <path d="M72 198c14-33 43-46 56-46s42 13 56 46" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <nav class="channel-nav" aria-label="Kanal berita">
+        <a href="#">Terpopuler</a>
+        <a href="#">News</a>
+        <a href="#">Nusaraya</a>
+        <a href="#">Jagat Literasi</a>
+        <a href="#">Cek Fakta</a>
+        <a href="#">Tekno</a>
+        <a href="#">Otomotif</a>
+        <a href="#">Bola</a>
+        <a href="#">Lifestyle</a>
+        <a href="#">Tren</a>
+        <a href="#">Health</a>
+        <a href="#">Food</a>
+        <a href="#">Travel</a>
+        <a href="#">Money</a>
+      </nav>
+    </header>
+
+    <main class="page-shell">
+      <section class="service-strip" aria-label="Layanan Kompas">
+        <article class="service-card green">
+          <strong>Klasika</strong>
+          <span>Belanja & promo pilihan</span>
+        </article>
+        <article class="service-card amber">
+          <strong>Kompas.id</strong>
+          <span>Baca koran digital</span>
+        </article>
+        <article class="service-card coral">
+          <strong>KGNow!</strong>
+          <span>Video terbaru</span>
+        </article>
+      </section>
+
+      <section class="subscribe-card">
+        <div>
+          <span>Langganan Kompas.id</span>
+          <strong>Akses berita premium dan e-paper harian.</strong>
+        </div>
+        <button>Mulai</button>
+      </section>
+
+      <section class="quick-stats">
+        <article>
+          <b>24,3K</b>
+          <span>Dibaca hari ini</span>
+        </article>
+        <article>
+          <b>8</b>
+          <span>Topik hangat</span>
+        </article>
+        <article>
+          <b>15</b>
+          <span>Live update</span>
+        </article>
+      </section>
+
+      <section class="headline-section">
+        <div class="section-title">
+          <h1>Terbaru</h1>
+          <a href="#">Lihat semua</a>
+        </div>
+        <article class="hero-card">
+          <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=900&q=80" alt="Konferensi pers pemerintah" />
+          <div>
+            <span class="label">Nasional</span>
+            <h2>Menkeu Pastikan Program Fiskal Tetap Jalan di Tengah Dinamika Global</h2>
+            <p>Ringkasan kebijakan terbaru dan dampaknya untuk masyarakat.</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="grid-section">
+        <article class="news-tile">
+          <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=500&q=80" alt="Pejabat berjalan di gedung pemerintah" />
+          <h3>Wakil Ketua DPR Minta Pemerintah Perkuat Layanan Publik</h3>
+        </article>
+        <article class="news-tile">
+          <img src="https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=500&q=80" alt="Koran dan kopi" />
+          <h3>Fakta Baru Kasus Viral yang Ramai Dibahas Warganet</h3>
+        </article>
+        <article class="news-tile">
+          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=500&q=80" alt="Gedung perkotaan" />
+          <h3>Pengamat: Perubahan Harga Properti Perlu Dicermati</h3>
+        </article>
+        <article class="news-tile">
+          <img src="https://images.unsplash.com/photo-1515169067865-5387ec356754?auto=format&fit=crop&w=500&q=80" alt="Suasana malam kota" />
+          <h3>Rute Transportasi Malam Diperluas Mulai Pekan Ini</h3>
+        </article>
+      </section>
+
+      <aside class="ad-card ad-large">
+        <span>Advertisement</span>
+        <strong>Holiday Journey Starts Here</strong>
+        <button>Book now</button>
+      </aside>
+
+      <section class="list-section">
+        <div class="section-title">
+          <h2>Terpopuler</h2>
+          <a href="#">Selengkapnya</a>
+        </div>
+        <div id="popularList" class="story-list"></div>
+        <a class="more-link" href="#">Lihat semua terpopuler</a>
+      </section>
+
+      <section class="rail-section">
+        <div class="section-title">
+          <h2>Sorotan</h2>
+          <a href="#">Lainnya</a>
+        </div>
+        <div class="mini-grid">
+          <article>
+            <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=500&q=80" alt="Orang bekerja dengan laptop" />
+            <h3>Teknologi Baru Bantu UMKM Lebih Cepat Naik Kelas</h3>
+          </article>
+          <article>
+            <img src="https://images.unsplash.com/photo-1461354464878-ad92f492a5a0?auto=format&fit=crop&w=500&q=80" alt="Rapat komunitas" />
+            <h3>Komunitas Lokal Dorong Ruang Aman Anak Muda</h3>
+          </article>
+          <article>
+            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=500&q=80" alt="Pemandangan alam" />
+            <h3>Destinasi Alam yang Ramai Dicari Akhir Pekan</h3>
+          </article>
+          <article>
+            <img src="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?auto=format&fit=crop&w=500&q=80" alt="Jalan kota" />
+            <h3>Transportasi Publik Siapkan Rute Tambahan</h3>
+          </article>
+        </div>
+      </section>
+
+      <aside class="ad-card ad-large ad-second">
+        <span>Advertisement</span>
+        <strong>Every Journey Gets Easier</strong>
+        <button>Shop now</button>
+      </aside>
+
+      <section class="rail-section">
+        <div class="section-title">
+          <h2>News Update</h2>
+          <a href="#">Update</a>
+        </div>
+        <div id="newsRail" class="horizontal-rail"></div>
+      </section>
+
+      <section class="topic-section">
+        <div class="section-title">
+          <h2>Original</h2>
+          <a href="#">Semua</a>
+        </div>
+        <div class="topic-grid">
+          <article class="topic-red">
+            <span>Tokoh</span>
+            <strong>Figur nasional yang menjadi pusat perhatian publik</strong>
+          </article>
+          <article class="topic-green">
+            <span>Interaktif</span>
+            <strong>Peta isu yang bergerak sepanjang pekan</strong>
+          </article>
+        </div>
+      </section>
+
+      <section class="list-section feature-stack">
+        <div class="section-title">
+          <h2>Kolom</h2>
+          <a href="#">Lainnya</a>
+        </div>
+        <article class="wide-card">
+          <img src="https://images.unsplash.com/photo-1449157291145-7efd050a4d0e?auto=format&fit=crop&w=900&q=80" alt="Pemandangan kota dari atas" />
+          <h3>Arti Perubahan Pola Mobilitas di Kota Besar</h3>
+          <p>Oleh Redaksi Kompas.com</p>
+        </article>
+        <div id="columnList" class="story-list"></div>
+        <a class="more-link" href="#">Lihat artikel kolom lainnya</a>
+      </section>
+
+      <aside class="ad-card ad-soft">
+        <span>Sponsored</span>
+        <strong>Kelola spread rencana keuanganmu</strong>
+        <p>Simulasi cerdas untuk keputusan finansial yang lebih tenang.</p>
+      </aside>
+
+      <section class="list-section">
+        <div class="section-title">
+          <h2>Rekomendasi Berdasarkan Minat</h2>
+          <a href="#">Atur minat</a>
+        </div>
+        <div id="recommendationList" class="story-list compact"></div>
+      </section>
+
+      <section class="rail-section dark-rail">
+        <div class="section-title">
+          <h2>Short Trending</h2>
+          <a href="#">Lihat</a>
+        </div>
+        <div id="shortRail" class="horizontal-rail"></div>
+      </section>
+
+      <section class="list-section">
+        <div class="section-title">
+          <h2>Pengangkatan</h2>
+          <a href="#">Lainnya</a>
+        </div>
+        <article class="wide-card red-banner">
+          <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=900&q=80" alt="Rapat kerja" />
+          <h3>Governansi dan Jabatan Publik yang Menjadi Sorotan</h3>
+        </article>
+        <div id="appointmentList" class="story-list compact"></div>
+      </section>
+
+      <aside class="ad-card ad-soft">
+        <span>Sponsored</span>
+        <strong>Rencana finansial lebih mudah dipantau</strong>
+        <p>Pantau target, cicilan, dan kebutuhan masa depan dalam satu halaman.</p>
+      </aside>
+
+      <section class="rail-section">
+        <div class="section-title">
+          <h2>Money</h2>
+          <a href="#">Selengkapnya</a>
+        </div>
+        <div id="moneyRail" class="horizontal-rail"></div>
+        <div id="moneyList" class="story-list compact"></div>
+      </section>
+
+      <section class="rail-section">
+        <div class="section-title">
+          <h2>Banyak Dikomentari</h2>
+          <a href="#">Lihat</a>
+        </div>
+        <div id="commentedRail" class="horizontal-rail"></div>
+      </section>
+
+      <section class="rail-section">
+        <div class="section-title">
+          <h2>Berita Foto</h2>
+          <a href="#">Galeri</a>
+        </div>
+        <div id="photoRail" class="horizontal-rail"></div>
+      </section>
+
+      <section class="list-section">
+        <div class="section-title">
+          <h2>Gaya Keuangan Gen Z</h2>
+          <a href="#">Topik</a>
+        </div>
+        <article class="wide-card">
+          <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=900&q=80" alt="Menghitung keuangan" />
+          <h3>Budgeting Harian yang Lebih Realistis untuk Pekerja Muda</h3>
+        </article>
+        <div id="genzList" class="story-list compact"></div>
+        <a class="more-link" href="#">Lihat semua rekomendasi</a>
+      </section>
+
+      <section class="comment-section">
+        <div class="section-title">
+          <h2>Komentar Terbaru</h2>
+          <a href="#">Gabung</a>
+        </div>
+        <article>
+          <b>Jadi Ambarwati</b>
+          <p>“Semoga kebijakan ini benar-benar terasa di lapangan.”</p>
+        </article>
+        <article>
+          <b>Raka Putra</b>
+          <p>“Artikelnya membantu, tapi data daerah juga penting ditambahkan.”</p>
+        </article>
+        <article>
+          <b>Maya Sari</b>
+          <p>“Menarik melihat pembahasan ini dari sisi warga.”</p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <section class="footer-links">
+        <div>
+          <h2>Jelajahi</h2>
+          <a>News</a><a>Tren</a><a>Health</a><a>Food</a><a>Edukasi</a><a>Travel</a>
+        </div>
+        <div>
+          <h2>Produk</h2>
+          <a>Kompas.id</a><a>KGNow</a><a>Kompasiana</a><a>Gramedia</a><a>Grid</a>
+        </div>
+        <div>
+          <h2>Tentang</h2>
+          <a>About Us</a><a>Redaksi</a><a>Iklan</a><a>Karier</a><a>Kontak</a>
+        </div>
+      </section>
+      <section class="footer-bottom">
+        <strong>KOMPAS<span>.com</span></strong>
+        <p>Jernih Melihat Dunia</p>
+        <div class="socials" aria-label="Sosial media">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </section>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
