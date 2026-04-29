@@ -125,6 +125,22 @@ function createStory(story) {
   return article;
 }
 
+function createPopularStory(story, index) {
+  const article = document.createElement("article");
+  article.className = "story popular-story";
+  article.innerHTML = `
+    <div class="popular-media">
+      <img src="${story.image}" alt="" loading="lazy" />
+      <span>${index + 1}</span>
+    </div>
+    <div>
+      <h3>${story.title}</h3>
+      <p>${story.tag}</p>
+    </div>
+  `;
+  return article;
+}
+
 function createRailCard(story) {
   const article = document.createElement("article");
   article.innerHTML = `
@@ -140,12 +156,17 @@ function renderList(id, items) {
   items.forEach((item) => target.appendChild(createStory(item)));
 }
 
+function renderPopularList(id, items) {
+  const target = document.getElementById(id);
+  items.forEach((item, index) => target.appendChild(createPopularStory(item, index)));
+}
+
 function renderRail(id, items) {
   const target = document.getElementById(id);
   items.forEach((item) => target.appendChild(createRailCard(item)));
 }
 
-renderList("popularList", stories.slice(0, 6));
+renderPopularList("popularList", stories.slice(0, 5));
 renderList("columnList", stories.slice(2, 5));
 renderList("recommendationList", [...stories.slice(4), ...updates, ...stories.slice(0, 4)]);
 renderList("appointmentList", stories.slice(0, 5));
