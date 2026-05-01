@@ -153,16 +153,19 @@ function createRailCard(story) {
 
 function renderList(id, items) {
   const target = document.getElementById(id);
+  if (!target) return;
   items.forEach((item) => target.appendChild(createStory(item)));
 }
 
 function renderPopularList(id, items) {
   const target = document.getElementById(id);
+  if (!target) return;
   items.forEach((item, index) => target.appendChild(createPopularStory(item, index)));
 }
 
 function renderRail(id, items) {
   const target = document.getElementById(id);
+  if (!target) return;
   items.forEach((item) => target.appendChild(createRailCard(item)));
 }
 
