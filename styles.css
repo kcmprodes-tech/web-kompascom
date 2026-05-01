@@ -952,12 +952,12 @@ img {
 }
 
 .original-section {
-  padding: 32px 0 40px;
+  padding: 24px 0 40px;
   border-bottom: 8px solid var(--paper-elevation-2);
 }
 
 .original-section .section-title {
-  padding: 0 16px 24px;
+  padding: 0 16px 16px;
 }
 
 .original-grid {
@@ -995,9 +995,7 @@ img {
 }
 
 .original-card__media--red {
-  background:
-    linear-gradient(155deg, rgba(225, 29, 72, 0.95) 0%, rgba(225, 29, 72, 0.85) 48%, rgba(15, 118, 110, 0.9) 49%, rgba(15, 118, 110, 0.95) 100%),
-    url("https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&w=500&q=80") center / cover;
+  background: url("./assets/original-tato-dayak.png") center / cover;
 }
 
 .original-card__media--green {
@@ -1043,6 +1041,7 @@ img {
 }
 
 .original-card__media strong {
+  display: none;
   max-width: 240px;
   font-size: 34px;
   font-weight: 700;
@@ -1052,7 +1051,7 @@ img {
 
 .original-card h3 {
   width: 200px;
-  margin: 8px 0 2px;
+  margin: 8px 0 8px;
   color: var(--font-primary);
   font-size: 30px;
   font-weight: 600;
@@ -1064,7 +1063,7 @@ img {
 .original-card time {
   display: block;
   width: 200px;
-  margin: 0 0 2px;
+  margin: 0;
   color: var(--font-primary);
   font-size: 22px;
   font-weight: 600;
@@ -1073,6 +1072,7 @@ img {
 }
 
 .original-card time {
+  margin-bottom: 32px;
   color: var(--text-secondary);
   font-size: 24px;
   font-weight: 400;
@@ -1128,12 +1128,12 @@ img {
 }
 
 .column-card h3 {
-  margin: 12px 0 2px;
+  margin: 12px 0 8px;
   color: var(--font-primary);
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   letter-spacing: -0.2px;
-  line-height: 21px;
+  line-height: 23px;
 }
 
 .column-author {
@@ -1153,10 +1153,10 @@ img {
 .column-author strong {
   display: block;
   color: var(--font-primary);
-  font-size: 24px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 600;
   letter-spacing: -0.2px;
-  line-height: 31px;
+  line-height: 18px;
 }
 
 .column-author p {
@@ -1191,10 +1191,10 @@ img {
 .topic-choice-section h2 {
   margin: 0 0 16px;
   color: var(--font-primary);
-  font-size: 16px;
+  font-size: 22px;
   font-weight: 600;
   letter-spacing: -0.2px;
-  line-height: 21px;
+  line-height: 29px;
 }
 
 .topic-choice-card img {
@@ -1207,10 +1207,10 @@ img {
 .topic-choice-card h3 {
   margin: 0 0 8px;
   color: var(--font-primary);
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   letter-spacing: -0.2px;
-  line-height: 21px;
+  line-height: 23px;
 }
 
 .topic-choice-card p {
@@ -1463,40 +1463,46 @@ img {
 }
 
 .interest-recommendation {
-  margin-top: 24px;
+  margin: 40px 16px 0;
+  border-bottom: 0 !important;
 }
 
 .interest-recommendation h3 {
-  margin: 0 0 12px;
+  margin: 0 0 16px;
   color: var(--font-primary);
-  font-size: 16px;
+  font-size: 22px;
   font-weight: 600;
   letter-spacing: -0.2px;
-  line-height: 21px;
+  line-height: 29px;
 }
 
 .medium-card-list {
   display: grid;
-  gap: 12px;
 }
 
 .medium-article-card {
   display: grid;
   grid-template-columns: 104px minmax(0, 1fr);
-  gap: 12px;
+  gap: 20px;
   align-items: start;
+  padding: 0 0 24px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.medium-article-card + .medium-article-card {
+  padding-top: 24px;
 }
 
 .medium-article-card img {
   width: 104px;
-  height: 78px;
+  height: 104px;
   border-radius: 8px;
   object-fit: cover;
 }
 
 .medium-article-card h4 {
   display: -webkit-box;
-  margin: 0;
+  margin: 8px 0 0;
   overflow: hidden;
   color: var(--font-primary);
   font-size: 16px;
@@ -1504,16 +1510,30 @@ img {
   letter-spacing: -0.2px;
   line-height: 21px;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 4;
 }
 
 .medium-article-card p {
-  margin: 6px 0 0;
+  margin: 8px 0 0;
   color: var(--text-secondary);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 400;
   letter-spacing: -0.2px;
-  line-height: 18px;
+  line-height: 21px;
+}
+
+.medium-article-card__channel {
+  margin: 0 !important;
+  color: var(--text-secondary);
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  line-height: 18px !important;
+}
+
+.medium-article-card b {
+  margin: 0 8px;
+  color: var(--text-secondary);
+  font-weight: 400;
 }
 
 .finish-reading-section {
@@ -1658,8 +1678,8 @@ img {
   }
 
   .topic-choice-section h2 {
-    font-size: 16px;
-    line-height: 21px;
+    font-size: 22px;
+    line-height: 29px;
   }
 
   .column-header h2::after {
@@ -1675,13 +1695,13 @@ img {
   }
 
   .topic-choice-card h3 {
-    font-size: 16px;
-    line-height: 21px;
+    font-size: 18px;
+    line-height: 23px;
   }
 
   .column-card h3 {
-    font-size: 16px;
-    line-height: 21px;
+    font-size: 18px;
+    line-height: 23px;
   }
 
   .column-author > img {
@@ -1691,8 +1711,8 @@ img {
   }
 
   .column-author strong {
-    font-size: 16px;
-    line-height: 21px;
+    font-size: 14px;
+    line-height: 18px;
   }
 
   .column-author p,
