@@ -1041,6 +1041,171 @@ img {
   line-height: 36px;
 }
 
+.column-section {
+  padding: 32px 16px 0;
+  border-top: 8px solid var(--paper-elevation-2);
+}
+
+.column-header {
+  margin-bottom: 16px;
+}
+
+.column-header h2 {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  color: var(--font-primary);
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  line-height: 52px;
+}
+
+.column-header h2::after {
+  width: 32px;
+  height: 32px;
+  margin-left: 12px;
+  background: no-repeat center / 32px 32px url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 6L22 16L12 26' stroke='%232A2A2A' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  content: "";
+}
+
+.column-header p {
+  margin: 4px 0 0;
+  color: var(--text-secondary);
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: -0.2px;
+  line-height: 42px;
+}
+
+.column-list {
+  display: grid;
+  gap: 32px;
+}
+
+.column-card img {
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border-radius: 12px;
+}
+
+.column-card h3 {
+  margin: 16px 0 16px;
+  color: var(--font-primary);
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  line-height: 39px;
+}
+
+.column-author {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.column-author > span {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f9c5d1, #b779a7);
+  color: var(--font-primary);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.column-author strong {
+  display: block;
+  color: var(--font-primary);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  line-height: 31px;
+}
+
+.column-author p {
+  margin: 2px 0 0;
+  color: var(--text-secondary);
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: -0.2px;
+  line-height: 36px;
+}
+
+.topic-choice-section {
+  margin-top: 32px;
+  padding: 32px 16px 40px;
+  border-top: 8px solid var(--paper-elevation-2);
+}
+
+.topic-choice-section > span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 24px;
+  border-radius: 999px;
+  background: #e3f2ff;
+  color: #0879c8;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
+
+.topic-choice-section h2 {
+  margin: 16px 0 32px;
+  color: var(--font-primary);
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  line-height: 52px;
+}
+
+.topic-choice-card img {
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border-radius: 12px;
+}
+
+.topic-choice-card h3 {
+  margin: 18px 0 0;
+  color: var(--font-primary);
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  line-height: 39px;
+}
+
+.topic-choice-card p {
+  margin: 18px 0 0;
+  color: var(--text-secondary);
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: -0.2px;
+  line-height: 36px;
+}
+
+.topic-choice-card b {
+  margin: 0 8px;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.topic-choice-section > a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 84px;
+  margin-top: 40px;
+  border-radius: 18px;
+  background: var(--paper-elevation-2);
+  color: var(--font-primary);
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
+
 @media (max-width: 520px) {
   .news-update-section {
     padding-top: 32px;
@@ -1109,6 +1274,63 @@ img {
   .original-card p {
     font-size: 14px;
     line-height: 18px;
+  }
+
+  .column-header h2,
+  .topic-choice-section h2 {
+    font-size: 24px;
+    line-height: 31px;
+  }
+
+  .column-header h2::after {
+    width: 20px;
+    height: 20px;
+    margin-left: 8px;
+    background-size: 20px 20px;
+  }
+
+  .column-header p {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .column-card h3,
+  .topic-choice-card h3 {
+    font-size: 20px;
+    line-height: 26px;
+  }
+
+  .column-author > span {
+    width: 42px;
+    height: 42px;
+    font-size: 14px;
+  }
+
+  .column-author strong {
+    font-size: 16px;
+    line-height: 21px;
+  }
+
+  .column-author p,
+  .topic-choice-card p {
+    font-size: 14px;
+    line-height: 21px;
+  }
+
+  .topic-choice-section > span {
+    min-height: 38px;
+    padding: 0 18px;
+    font-size: 16px;
+  }
+
+  .topic-choice-section h2 {
+    margin-bottom: 24px;
+  }
+
+  .topic-choice-section > a {
+    height: 56px;
+    border-radius: 14px;
+    font-size: 18px;
   }
 }
 
@@ -1370,6 +1592,195 @@ img {
 
 .article-global-header {
   position: sticky;
+}
+
+.account-header {
+  position: sticky;
+}
+
+.account-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.account-close {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #2f2f2f;
+  color: #fff;
+}
+
+.account-close svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 18;
+}
+
+.account-page {
+  min-height: calc(100vh - 50px);
+  padding: 24px 20px 40px;
+  background: #fff;
+}
+
+.account-login {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.account-login__avatar {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--paper-elevation-1);
+  color: var(--font-primary);
+}
+
+.account-login__avatar svg {
+  width: 26px;
+  height: 26px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 12;
+}
+
+.account-login a {
+  display: inline-flex;
+  align-items: center;
+  color: var(--font-primary);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+
+.account-login a::after {
+  width: 16px;
+  height: 16px;
+  margin-left: 4px;
+  background: no-repeat center / 16px 16px url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 3L11 8L6 13' stroke='%232A2A2A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  content: "";
+}
+
+.membership-card {
+  position: relative;
+  margin-top: 18px;
+  padding: 18px 44px 18px 16px;
+  border-radius: 14px;
+  background: linear-gradient(120deg, #6f9cf4, #d57ad8 58%, #ffc082);
+  color: #fff;
+}
+
+.membership-card strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+
+.membership-card em {
+  font-style: italic;
+}
+
+.membership-card p {
+  margin: 4px 0 0;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+.membership-card span {
+  position: absolute;
+  top: 50%;
+  right: 18px;
+  width: 16px;
+  height: 16px;
+  background: no-repeat center / 16px 16px url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 3L11 8L6 13' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  transform: translateY(-50%);
+}
+
+.voucher-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.voucher-grid article {
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+}
+
+.voucher-grid span,
+.voucher-grid strong {
+  display: block;
+  letter-spacing: -0.2px;
+}
+
+.voucher-grid span {
+  color: var(--text-secondary);
+  font-size: 11px;
+}
+
+.voucher-grid strong {
+  margin-top: 4px;
+  color: var(--font-primary);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.account-menu h2 {
+  margin: 32px 0 16px;
+  color: var(--font-primary);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+
+.account-menu a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  border-bottom: 1px solid #e5e7eb;
+  color: var(--font-primary);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.2px;
+}
+
+.account-menu a::after {
+  position: absolute;
+  right: 0;
+  width: 14px;
+  height: 14px;
+  background: no-repeat center / 14px 14px url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 14 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.25 2.625L9.625 7L5.25 11.375' stroke='%235A5A5A' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  content: "";
+}
+
+.account-menu span {
+  width: 30px;
+  margin-right: 10px;
+  color: var(--text-secondary);
+  font-size: 22px;
+}
+
+.account-menu b {
+  margin-left: auto;
+  margin-right: 28px;
+  font-size: 15px;
 }
 
 .article-page {
