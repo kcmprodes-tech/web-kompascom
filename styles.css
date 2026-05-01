@@ -1194,7 +1194,7 @@ img {
 }
 
 .article-meta-row time {
-  margin-top: 4px;
+  margin-top: 2px;
   color: var(--text-secondary);
   font-size: 14px;
   font-weight: 400;
@@ -1216,25 +1216,16 @@ img {
   white-space: nowrap;
 }
 
-.read-app-btn span {
-  display: grid;
-  place-items: center;
-  width: 20px;
+.read-app-btn img {
+  width: 18px;
   height: 20px;
-  border-radius: 4px;
-  background: linear-gradient(135deg, #0a5388, #f58220);
-  color: #fff;
-  font-size: 13px;
-  font-style: italic;
-  font-weight: 800;
+  object-fit: contain;
 }
 
 .read-app-btn i {
   width: 12px;
   height: 12px;
-  border-top: 1.6px solid currentColor;
-  border-right: 1.6px solid currentColor;
-  transform: translateY(-1px) rotate(45deg);
+  background: no-repeat center / 12px 12px url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.5 2.25L8.25 6L4.5 9.75' stroke='%230A5388' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
 
 .author-row {
@@ -1293,8 +1284,9 @@ img {
 .author-row p {
   margin-top: 3px;
   color: var(--text-secondary);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 400;
+  line-height: 15.6px;
 }
 
 .article-actions {
@@ -1401,6 +1393,27 @@ img {
   height: auto;
   border-radius: 4px;
   object-fit: cover;
+}
+
+.article-body {
+  padding: 8px 16px 0;
+}
+
+.article-body p {
+  margin: 0 0 20px;
+  color: var(--font-primary);
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.2px;
+  line-height: 26px;
+}
+
+.article-body p:last-child {
+  margin-bottom: 0;
+}
+
+.article-body strong {
+  font-weight: 600;
 }
 
 @media (min-width: 900px) {
