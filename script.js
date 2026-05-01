@@ -145,8 +145,8 @@ function createRailCard(story) {
   const article = document.createElement("article");
   article.innerHTML = `
     <img src="${story.image}" alt="" loading="lazy" />
-    <span class="label">${story.tag}</span>
     <h3>${story.title}</h3>
+    <p>${story.tag} <span>•</span> ${story.meta || "1 Menit lalu"}</p>
   `;
   return article;
 }
@@ -189,6 +189,7 @@ function enableArticleLinks() {
     ".wide-card",
     ".horizontal-rail article",
     ".topic-grid article",
+    ".original-card",
   ].join(",");
 
   document.querySelectorAll(articleSelectors).forEach((card) => {
