@@ -952,7 +952,7 @@ img {
 }
 
 .original-section {
-  padding: 24px 0 40px;
+  padding: 24px 0 0;
   border-bottom: 8px solid var(--paper-elevation-2);
 }
 
@@ -1072,7 +1072,7 @@ img {
 }
 
 .original-card time {
-  margin-bottom: 32px;
+  margin-bottom: 16px;
   color: var(--text-secondary);
   font-size: 24px;
   font-weight: 400;
