@@ -182,6 +182,20 @@ renderRail("commentedRail", [stories[8], stories[1], updates[0]]);
 renderRail("photoRail", [stories[8], stories[4], updates[2]]);
 
 function enableArticleLinks() {
+  document.querySelectorAll(".original-card").forEach((card) => {
+    card.setAttribute("role", "link");
+    card.setAttribute("tabindex", "0");
+    card.addEventListener("click", () => {
+      window.location.href = "./original-detail.html";
+    });
+    card.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        window.location.href = "./original-detail.html";
+      }
+    });
+  });
+
   const articleSelectors = [
     ".hero-card",
     ".news-tile",
@@ -189,7 +203,6 @@ function enableArticleLinks() {
     ".wide-card",
     ".horizontal-rail article",
     ".topic-grid article",
-    ".original-card",
     ".column-card",
     ".topic-choice-card",
     ".medium-article-card",
