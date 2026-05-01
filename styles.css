@@ -1471,7 +1471,7 @@ img {
   margin: 0 0 16px;
   color: var(--font-primary);
   font-size: 22px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: -0.2px;
   line-height: 29px;
 }
@@ -1537,7 +1537,7 @@ img {
 }
 
 .finish-reading-section {
-  padding: 32px 0 40px;
+  padding: 32px 0 32px;
   border-top: 8px solid var(--paper-elevation-2);
 }
 
@@ -1600,6 +1600,122 @@ img {
   font-weight: 400;
   letter-spacing: -0.2px;
   line-height: 21px;
+}
+
+.short-video-section {
+  padding: 24px 0 40px;
+  border-bottom: 0 !important;
+  background: var(--paper-elevation-1);
+}
+
+.short-video-section .section-title {
+  padding: 0 16px 16px;
+}
+
+.short-video-section .section-title h2 {
+  display: inline-flex;
+  align-items: center;
+  color: var(--font-primary);
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  line-height: 52px;
+}
+
+.short-video-section .section-title h2::after {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  margin-left: 12px;
+  background: no-repeat center / 32px 32px url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 6L22 16L12 26' stroke='%232A2A2A' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  content: "";
+}
+
+.short-video-section .section-title a {
+  display: none;
+}
+
+.short-video-rail {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 0 16px;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+}
+
+.short-video-rail::-webkit-scrollbar {
+  display: none;
+}
+
+.short-video-rail article {
+  position: relative;
+  flex: 0 0 120px;
+  width: 120px;
+  height: 220px;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #111;
+  color: #fff;
+  scroll-snap-align: start;
+}
+
+.short-video-rail article::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 35%, rgba(0, 0, 0, 0.78) 100%);
+  content: "";
+}
+
+.short-video-rail img {
+  width: 100%;
+  height: 100%;
+}
+
+.short-video-rail button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.38);
+  transform: translate(-50%, -50%);
+}
+
+.short-video-rail button::before {
+  position: absolute;
+  top: 50%;
+  left: 52%;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 11px solid #fff;
+  transform: translate(-50%, -50%);
+  content: "";
+}
+
+.short-video-rail h3 {
+  position: absolute;
+  right: 10px;
+  bottom: 14px;
+  left: 10px;
+  z-index: 1;
+  margin: 0;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  line-height: 18px;
+}
+
+.post-short-recommendation {
+  padding: 24px 16px 0;
+  border-bottom: 0 !important;
+  background: #fff;
 }
 
 .original-detail-page {
@@ -1692,9 +1808,14 @@ img {
   line-height: 21px;
 }
 
-.original-hero-index__actions svg {
+.original-hero-index__actions svg,
+.original-hero-index__actions .share-icon-img {
   width: 24px;
   height: 24px;
+  object-fit: contain;
+}
+
+.original-hero-index__actions svg {
   fill: none;
   stroke: currentColor;
   stroke-linecap: round;
@@ -2070,9 +2191,14 @@ img {
   line-height: 13px;
 }
 
-.reel-actions svg {
+.reel-actions svg,
+.reel-actions .share-icon-img {
   width: 28px;
   height: 28px;
+  object-fit: contain;
+}
+
+.reel-actions svg {
   fill: none;
   stroke: currentColor;
   stroke-linecap: round;
@@ -2397,6 +2523,38 @@ img {
     margin-top: 20px;
     border-radius: 14px;
     font-size: 16px;
+  }
+
+  .short-video-section {
+    padding: 24px 0 40px;
+  }
+
+  .short-video-section .section-title h2 {
+    font-size: 24px;
+    line-height: 31px;
+  }
+
+  .short-video-section .section-title h2::after {
+    width: 20px;
+    height: 20px;
+    margin-left: 8px;
+    background-size: 20px 20px;
+  }
+
+  .short-video-rail {
+    gap: 16px;
+    padding: 0 16px;
+  }
+
+  .short-video-rail article {
+    flex-basis: 120px;
+    width: 120px;
+    height: 220px;
+  }
+
+  .short-video-rail h3 {
+    font-size: 14px;
+    line-height: 18px;
   }
 }
 
@@ -3077,9 +3235,14 @@ img {
   color: var(--font-primary);
 }
 
-.article-actions svg {
+.article-actions svg,
+.article-actions .share-icon-img {
   width: 22px;
   height: 22px;
+  object-fit: contain;
+}
+
+.article-actions svg {
   fill: none;
   stroke: currentColor;
   stroke-linecap: round;
