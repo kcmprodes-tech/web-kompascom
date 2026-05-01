@@ -177,3 +177,30 @@ renderRail("shortRail", railItems);
 renderRail("moneyRail", [railItems[3], ...updates.slice(1, 4)]);
 renderRail("commentedRail", [stories[8], stories[1], updates[0]]);
 renderRail("photoRail", [stories[8], stories[4], updates[2]]);
+
+function enableArticleLinks() {
+  const articleSelectors = [
+    ".hero-card",
+    ".news-tile",
+    ".story",
+    ".wide-card",
+    ".horizontal-rail article",
+    ".topic-grid article",
+  ].join(",");
+
+  document.querySelectorAll(articleSelectors).forEach((card) => {
+    card.setAttribute("role", "link");
+    card.setAttribute("tabindex", "0");
+    card.addEventListener("click", () => {
+      window.location.href = "./article-detail.html";
+    });
+    card.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        window.location.href = "./article-detail.html";
+      }
+    });
+  });
+}
+
+enableArticleLinks();
