@@ -1627,7 +1627,7 @@ img {
 .account-page {
   min-height: calc(100vh - 50px);
   padding: 24px 20px 40px;
-  background: #fff;
+  background: #fff url("./assets/bg-akun.png") top center / 100% auto no-repeat;
 }
 
 .account-login {
@@ -1718,9 +1718,24 @@ img {
 }
 
 .voucher-grid article {
+  position: relative;
   padding: 12px;
-  border: 1px solid #e5e7eb;
+  padding-right: 34px;
+  border: 0;
   border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgba(42, 42, 42, 0.06);
+}
+
+.voucher-grid article::after {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  width: 12px;
+  height: 12px;
+  background: no-repeat center / 12px 12px url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.5 2.25L8.25 6L4.5 9.75' stroke='%235A5A5A' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  transform: translateY(-50%);
+  content: "";
 }
 
 .voucher-grid span,
@@ -1771,10 +1786,23 @@ img {
 }
 
 .account-menu span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 30px;
   width: 30px;
   margin-right: 10px;
   color: var(--text-secondary);
-  font-size: 22px;
+}
+
+.account-menu span svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 14;
 }
 
 .account-menu b {

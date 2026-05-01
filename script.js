@@ -190,6 +190,8 @@ function enableArticleLinks() {
     ".horizontal-rail article",
     ".topic-grid article",
     ".original-card",
+    ".column-card",
+    ".topic-choice-card",
   ].join(",");
 
   document.querySelectorAll(articleSelectors).forEach((card) => {
