@@ -192,6 +192,8 @@ function enableArticleLinks() {
     ".original-card",
     ".column-card",
     ".topic-choice-card",
+    ".medium-article-card",
+    ".finish-reading-rail article",
   ].join(",");
 
   document.querySelectorAll(articleSelectors).forEach((card) => {
