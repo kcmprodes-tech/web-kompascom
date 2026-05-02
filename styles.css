@@ -2486,77 +2486,52 @@ img {
 
 .membership-nav {
   display: grid;
-  grid-template-columns: 82px minmax(0, 1fr) 64px;
+  grid-template-columns: 36px minmax(0, 1fr) 24px;
   align-items: center;
   gap: 12px;
   width: min(100%, 860px);
-  height: 112px;
+  height: 64px;
   margin: 0 auto;
-  padding: 0 42px;
+  padding: 0 20px;
 }
 
 .membership-k {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 50px;
-  height: 50px;
-  color: #111;
+  display: block;
+  width: 22px;
+  height: 24px;
 }
 
-.membership-k::before,
-.membership-k::after {
-  position: absolute;
-  inset: 8px;
-  border-radius: 6px;
-  background: #f5f5f5;
-  content: "";
-  transform: rotate(-10deg);
-}
-
-.membership-k::after {
-  background: #d9d9d9;
-  transform: rotate(10deg);
-}
-
-.membership-k span {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
-  background: #fff;
-  font-family: Georgia, serif;
-  font-size: 26px;
-  font-style: italic;
+.membership-k img {
+  width: 22px;
+  height: 24px;
+  object-fit: contain;
 }
 
 .membership-nav nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 38px;
+  gap: 24px;
 }
 
 .membership-nav nav a {
   color: #fff;
-  font-size: 28px;
-  font-weight: 700;
+  font-size: 12px;
+  font-weight: 600;
   letter-spacing: -0.2px;
-  line-height: 36px;
+  line-height: 16px;
 }
 
 .membership-avatar {
   display: grid;
   place-items: center;
-  width: 56px;
-  height: 56px;
-  border: 3px solid #fff;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #fff;
   border-radius: 50%;
   background: #20b7c9;
   color: #fff;
-  font-size: 24px;
+  font-size: 10px;
   font-weight: 800;
 }
 
@@ -2564,37 +2539,37 @@ img {
   position: relative;
   width: min(100%, 860px);
   margin: 0 auto;
-  padding: 56px 42px 0;
+  padding: 44px 20px 0;
   text-align: center;
 }
 
 .membership-hero h1 {
   margin: 0;
-  color: #fff;
-  font-family: Georgia, serif;
-  font-size: 78px;
-  font-style: italic;
-  font-weight: 700;
-  letter-spacing: -0.2px;
-  line-height: 1;
   animation: membershipFadeUp 620ms ease both;
 }
 
+.membership-hero h1 img {
+  width: auto;
+  height: 26px;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
 .membership-hero p {
-  margin: 18px 0 0;
+  margin: 12px 0 0;
   color: #fff;
-  font-size: 42px;
+  font-size: 18px;
   font-weight: 400;
   letter-spacing: -0.2px;
-  line-height: 54px;
+  line-height: 24px;
   animation: membershipFadeUp 620ms 90ms ease both;
 }
 
 .membership-cta {
   display: grid;
   grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.85fr);
-  gap: 28px;
-  margin-top: 52px;
+  gap: 12px;
+  margin-top: 28px;
   animation: membershipFadeUp 620ms 180ms ease both;
 }
 
@@ -2603,12 +2578,12 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 96px;
+  height: 48px;
   border: 0;
-  border-radius: 26px;
+  border-radius: 12px;
   font-family: inherit;
-  font-size: 32px;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 600;
   letter-spacing: -0.2px;
 }
 
@@ -2624,15 +2599,15 @@ img {
 
 .membership-device-wrap {
   position: relative;
-  height: 590px;
-  margin-top: 74px;
+  height: 430px;
+  margin-top: 42px;
   animation: membershipDeviceIn 760ms 280ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
 .membership-device {
   position: relative;
   z-index: 1;
-  width: 520px;
+  width: 330px;
   height: auto;
   margin: 0 auto;
   object-fit: contain;
@@ -2643,22 +2618,22 @@ img {
 .membership-orbit {
   position: absolute;
   z-index: 0;
-  width: 460px;
-  height: 130px;
+  width: 330px;
+  height: 88px;
   border: 2px solid rgba(255, 255, 255, 0.22);
   border-radius: 50%;
   animation: membershipOrbit 5s ease-in-out infinite alternate;
 }
 
 .membership-orbit--one {
-  right: -170px;
-  bottom: 110px;
+  right: -112px;
+  bottom: 82px;
   transform: rotate(-9deg);
 }
 
 .membership-orbit--two {
-  left: -190px;
-  bottom: 28px;
+  left: -130px;
+  bottom: 20px;
   transform: rotate(-4deg);
   animation-delay: 400ms;
 }
@@ -2698,24 +2673,18 @@ img {
 
 @media (max-width: 620px) {
   .membership-nav {
-    grid-template-columns: 46px minmax(0, 1fr) 46px;
-    height: 88px;
+    grid-template-columns: 30px minmax(0, 1fr) 24px;
+    height: 56px;
     padding: 0 16px;
   }
 
   .membership-k {
-    width: 42px;
-    height: 42px;
-  }
-
-  .membership-k span {
-    width: 30px;
-    height: 30px;
-    font-size: 22px;
+    width: 22px;
+    height: 24px;
   }
 
   .membership-nav nav {
-    gap: 16px;
+    gap: 18px;
     overflow-x: auto;
     justify-content: flex-start;
     scrollbar-width: none;
@@ -2727,45 +2696,45 @@ img {
 
   .membership-nav nav a {
     flex: 0 0 auto;
-    font-size: 15px;
-    line-height: 20px;
+    font-size: 12px;
+    line-height: 16px;
   }
 
   .membership-avatar {
-    width: 42px;
-    height: 42px;
-    font-size: 18px;
+    width: 24px;
+    height: 24px;
+    font-size: 10px;
   }
 
   .membership-hero {
-    padding: 46px 20px 0;
+    padding: 44px 20px 0;
   }
 
-  .membership-hero h1 {
-    font-size: 44px;
+  .membership-hero h1 img {
+    height: 26px;
   }
 
   .membership-hero p {
     margin-top: 12px;
-    font-size: 22px;
-    line-height: 30px;
+    font-size: 18px;
+    line-height: 24px;
   }
 
   .membership-cta {
-    gap: 16px;
-    margin-top: 36px;
+    gap: 12px;
+    margin-top: 28px;
   }
 
   .membership-cta a,
   .membership-cta button {
-    height: 64px;
-    border-radius: 18px;
+    height: 48px;
+    border-radius: 12px;
     font-size: 16px;
   }
 
   .membership-device-wrap {
-    height: 420px;
-    margin-top: 56px;
+    height: 430px;
+    margin-top: 42px;
   }
 
   .membership-device {
