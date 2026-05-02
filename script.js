@@ -64,19 +64,19 @@ const stories = [
 const updates = [
   {
     tag: "Megapolitan",
-    title: "Transportasi Umum Tambah Armada saat Jam Sibuk",
+    title: "Transportasi Umum Tambah Armada Saat Jam Sibuk, Penumpang Diminta Cek Jadwal Terbaru",
     meta: "18 menit lalu",
     image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=500&q=80",
   },
   {
     tag: "Sains",
-    title: "Peneliti Ungkap Fenomena Cuaca yang Perlu Diwaspadai",
+    title: "Peneliti Ungkap Fenomena Cuaca yang Perlu Diwaspadai Warga Perkotaan Pekan Ini",
     meta: "25 menit lalu",
     image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=500&q=80",
   },
   {
     tag: "Properti",
-    title: "Kawasan Baru Jadi Incaran Pembeli Rumah Pertama",
+    title: "Kawasan Baru Jadi Incaran Pembeli Rumah Pertama karena Akses Transportasi Makin Mudah",
     meta: "36 menit lalu",
     image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=500&q=80",
   },
