@@ -44,6 +44,7 @@
           </button>
         </div>
         <article class="reel-copy">
+          <button class="reel-sheet-handle" type="button" aria-label="Atur panel"></button>
           <h1>Profil Pak Ding</h1>
           <p>“Selamat datang di Mahakam Ulu,” sambut Pak Ding kepada tim Kompas.com, Adhyasta Dirgantara dan Pandawa Borniat.</p>
           <p>Kedua tangannya direntangkan seperti hendak memeluk kami, para tamu jauhnya itu.</p>
@@ -71,6 +72,7 @@
           </a>
         </div>
         <article class="reel-copy">
+          <button class="reel-sheet-handle" type="button" aria-label="Atur panel"></button>
           <h1>Bahasa Visual</h1>
           <p>Garis-garis di tubuh Pak Ding tidak hadir sebagai hiasan semata. Setiap bentuk menyimpan cerita tentang keluarga, sungai, dan perjalanan hidup.</p>
           <div class="reel-page-chip"><i aria-hidden="true"></i> Halaman 2/5</div>
@@ -92,6 +94,7 @@
           </a>
         </div>
         <article class="reel-copy">
+          <button class="reel-sheet-handle" type="button" aria-label="Atur panel"></button>
           <h1>Ritual dan Ingatan</h1>
           <p>Di kampungnya, tato menjadi penanda hubungan manusia dengan leluhur. Cerita itu terus hidup melalui percakapan, upacara, dan ingatan tubuh.</p>
           <div class="reel-page-chip"><i aria-hidden="true"></i> Halaman 3/5</div>
@@ -113,6 +116,7 @@
           </a>
         </div>
         <article class="reel-copy">
+          <button class="reel-sheet-handle" type="button" aria-label="Atur panel"></button>
           <h1>Penjaga Cerita</h1>
           <p>Pak Ding menyebut tato sebagai warisan yang tidak bisa dipindahkan begitu saja. Ia melekat, tumbuh bersama usia, dan berubah menjadi kesaksian.</p>
           <div class="reel-page-chip"><i aria-hidden="true"></i> Halaman 4/5</div>
@@ -134,6 +138,7 @@
           </a>
         </div>
         <article class="reel-copy">
+          <button class="reel-sheet-handle" type="button" aria-label="Atur panel"></button>
           <h1>Tato yang Terus Bicara</h1>
           <p>Ketika generasi berganti, pertanyaan tentang makna tato ikut berubah. Namun bagi Pak Ding, tanda itu tetap menjadi cara untuk mengingat asal-usul.</p>
           <div class="reel-page-chip"><i aria-hidden="true"></i> Halaman 5/5</div>
@@ -142,9 +147,9 @@
     </main>
     <script>
       document.querySelectorAll(".reel-copy").forEach((copy) => {
+        const handle = copy.querySelector(".reel-sheet-handle");
         let touchStartY = 0;
         let touchMoved = false;
-        let sheetStartScrollTop = 0;
 
         function openSheet(slide) {
           slide.classList.add("is-expanded");
@@ -162,17 +167,16 @@
           }
         });
 
-        copy.addEventListener(
+        handle.addEventListener(
           "touchstart",
           (event) => {
             touchStartY = event.touches[0].clientY;
             touchMoved = false;
-            sheetStartScrollTop = copy.scrollTop;
           },
           { passive: true },
         );
 
-        copy.addEventListener(
+        handle.addEventListener(
           "touchmove",
           (event) => {
             const deltaY = event.touches[0].clientY - touchStartY;
@@ -181,9 +185,7 @@
 
             if (
               event.cancelable &&
-              slide.classList.contains("is-expanded") &&
-              (slide.classList.contains("is-sheet-full") || deltaY > 0) &&
-              sheetStartScrollTop <= 0
+              slide.classList.contains("is-expanded")
             ) {
               event.preventDefault();
             }
@@ -191,7 +193,7 @@
           { passive: false },
         );
 
-        copy.addEventListener("touchend", (event) => {
+        handle.addEventListener("touchend", (event) => {
           if (!touchMoved) return;
           const slide = copy.closest(".reel-slide");
           const deltaY = event.changedTouches[0].clientY - touchStartY;
@@ -203,12 +205,12 @@
             return;
           }
 
-          if (deltaY > 48 && slide.classList.contains("is-sheet-full") && sheetStartScrollTop <= 0) {
+          if (deltaY > 48 && slide.classList.contains("is-sheet-full")) {
             slide.classList.remove("is-sheet-full");
             return;
           }
 
-          if (deltaY > 48 && sheetStartScrollTop <= 0) {
+          if (deltaY > 48) {
             closeSheet(slide);
           }
         });
