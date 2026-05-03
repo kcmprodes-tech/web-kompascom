@@ -2204,6 +2204,7 @@ img {
 
 .reels-body {
   overflow: hidden;
+  overscroll-behavior: none;
   background: #000;
 }
 
@@ -2213,6 +2214,7 @@ img {
   height: 100dvh;
   margin: 0 auto;
   overflow-y: auto;
+  overscroll-behavior: contain;
   background: #000;
   scroll-snap-type: y mandatory;
   scrollbar-width: none;
@@ -2464,6 +2466,7 @@ img {
   max-height: none;
   min-height: 0;
   overflow-y: auto;
+  overscroll-behavior: contain;
   padding: 0 20px 28px;
   border-radius: 20px 20px 0 0;
   background: #2a2a2a;

@@ -144,6 +144,7 @@
       document.querySelectorAll(".reel-copy").forEach((copy) => {
         let touchStartY = 0;
         let touchMoved = false;
+        let sheetStartScrollTop = 0;
 
         function openSheet(slide) {
           slide.classList.add("is-expanded");
@@ -166,6 +167,7 @@
           (event) => {
             touchStartY = event.touches[0].clientY;
             touchMoved = false;
+            sheetStartScrollTop = copy.scrollTop;
           },
           { passive: true },
         );
@@ -175,8 +177,18 @@
           (event) => {
             const deltaY = event.touches[0].clientY - touchStartY;
             if (Math.abs(deltaY) > 8) touchMoved = true;
+            const slide = copy.closest(".reel-slide");
+
+            if (
+              event.cancelable &&
+              slide.classList.contains("is-expanded") &&
+              (slide.classList.contains("is-sheet-full") || deltaY > 0) &&
+              sheetStartScrollTop <= 0
+            ) {
+              event.preventDefault();
+            }
           },
-          { passive: true },
+          { passive: false },
         );
 
         copy.addEventListener("touchend", (event) => {
@@ -191,12 +203,12 @@
             return;
           }
 
-          if (deltaY > 48 && slide.classList.contains("is-sheet-full")) {
+          if (deltaY > 48 && slide.classList.contains("is-sheet-full") && sheetStartScrollTop <= 0) {
             slide.classList.remove("is-sheet-full");
             return;
           }
 
-          if (deltaY > 48) {
+          if (deltaY > 48 && sheetStartScrollTop <= 0) {
             closeSheet(slide);
           }
         });
