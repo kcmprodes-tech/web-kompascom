@@ -142,8 +142,63 @@
     </main>
     <script>
       document.querySelectorAll(".reel-copy").forEach((copy) => {
+        let touchStartY = 0;
+        let touchMoved = false;
+
+        function openSheet(slide) {
+          slide.classList.add("is-expanded");
+          slide.classList.remove("is-sheet-full");
+        }
+
+        function closeSheet(slide) {
+          slide.classList.remove("is-expanded", "is-sheet-full");
+        }
+
         copy.addEventListener("click", () => {
-          copy.closest(".reel-slide").classList.toggle("is-expanded");
+          const slide = copy.closest(".reel-slide");
+          if (!slide.classList.contains("is-expanded")) {
+            openSheet(slide);
+          }
+        });
+
+        copy.addEventListener(
+          "touchstart",
+          (event) => {
+            touchStartY = event.touches[0].clientY;
+            touchMoved = false;
+          },
+          { passive: true },
+        );
+
+        copy.addEventListener(
+          "touchmove",
+          (event) => {
+            const deltaY = event.touches[0].clientY - touchStartY;
+            if (Math.abs(deltaY) > 8) touchMoved = true;
+          },
+          { passive: true },
+        );
+
+        copy.addEventListener("touchend", (event) => {
+          if (!touchMoved) return;
+          const slide = copy.closest(".reel-slide");
+          const deltaY = event.changedTouches[0].clientY - touchStartY;
+
+          if (!slide.classList.contains("is-expanded")) return;
+
+          if (deltaY < -48) {
+            slide.classList.add("is-sheet-full");
+            return;
+          }
+
+          if (deltaY > 48 && slide.classList.contains("is-sheet-full")) {
+            slide.classList.remove("is-sheet-full");
+            return;
+          }
+
+          if (deltaY > 48) {
+            closeSheet(slide);
+          }
         });
       });
     </script>
