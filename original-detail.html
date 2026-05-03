@@ -172,9 +172,27 @@
         </div>
       </section>
     </main>
+
+    <div class="premium-blocker" aria-hidden="true">
+      <button class="premium-blocker__backdrop" type="button" aria-label="Tutup"></button>
+      <section class="premium-blocker__sheet" role="dialog" aria-modal="true" aria-labelledby="premiumBlockerTitle">
+        <button class="premium-blocker__close" type="button" aria-label="Tutup">
+          <svg viewBox="0 0 256 256" aria-hidden="true"><path d="M72 72l112 112M184 72 72 184"/></svg>
+        </button>
+        <span>Khusus Member</span>
+        <h2 id="premiumBlockerTitle">Konten Premium</h2>
+        <p>Gabung Membership KOMPAS.com+ MAX untuk mengakses konten premium ini.</p>
+        <a href="./membership.html">Gabung KOMPAS.com+ MAX</a>
+        <strong>Rp69.000/bulan atau Rp599.000/tahun</strong>
+      </section>
+    </div>
+
     <script>
       const originalPage = document.querySelector(".original-detail-page");
       const originalTabs = document.querySelectorAll("[data-original-tab]");
+      const premiumBlocker = document.querySelector(".premium-blocker");
+      const premiumBlockerClose = document.querySelector(".premium-blocker__close");
+      const premiumBlockerBackdrop = document.querySelector(".premium-blocker__backdrop");
 
       originalTabs.forEach((tab) => {
         tab.addEventListener("click", (event) => {
@@ -183,6 +201,36 @@
           tab.classList.add("is-active");
           originalPage.classList.toggle("is-description-mode", tab.dataset.originalTab === "description");
         });
+      });
+
+      function openPremiumBlocker() {
+        premiumBlocker.classList.add("is-open");
+        premiumBlocker.setAttribute("aria-hidden", "false");
+      }
+
+      function closePremiumBlocker() {
+        premiumBlocker.classList.remove("is-open");
+        premiumBlocker.setAttribute("aria-hidden", "true");
+      }
+
+      document.querySelectorAll(".original-episode-list .is-locked").forEach((episode) => {
+        episode.setAttribute("role", "button");
+        episode.setAttribute("tabindex", "0");
+        episode.addEventListener("click", openPremiumBlocker);
+        episode.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            openPremiumBlocker();
+          }
+        });
+      });
+
+      premiumBlockerClose.addEventListener("click", closePremiumBlocker);
+      premiumBlockerBackdrop.addEventListener("click", closePremiumBlocker);
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && premiumBlocker.classList.contains("is-open")) {
+          closePremiumBlocker();
+        }
       });
     </script>
   </body>
