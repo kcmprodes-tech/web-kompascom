@@ -121,6 +121,8 @@ img {
   margin: 0 auto;
   padding: 0 16px;
   overflow-x: auto;
+  scroll-padding-left: 16px;
+  scroll-padding-right: 16px;
   background: #242424;
   color: #fff;
   font-family: "Inter", sans-serif;
@@ -202,8 +204,10 @@ img {
 .living-rail {
   display: flex;
   gap: 16px;
-  padding-right: 16px;
+  padding: 0 16px;
   overflow-x: auto;
+  scroll-padding-left: 16px;
+  scroll-padding-right: 16px;
   scroll-snap-type: x proximity;
   scrollbar-width: none;
 }
@@ -1694,6 +1698,8 @@ img {
   gap: 16px;
   overflow-x: auto;
   padding: 0 16px;
+  scroll-padding-left: 16px;
+  scroll-padding-right: 16px;
   scroll-snap-type: x proximity;
   scrollbar-width: none;
 }
@@ -1703,10 +1709,7 @@ img {
 }
 
 .short-video-rail::before {
-  display: block;
-  flex: 0 0 16px;
-  width: 16px;
-  content: "";
+  display: none;
 }
 
 .short-video-rail article {
@@ -1821,6 +1824,8 @@ img {
   gap: 16px;
   overflow-x: auto;
   padding: 0 16px;
+  scroll-padding-left: 16px;
+  scroll-padding-right: 16px;
   scroll-snap-type: x proximity;
   scrollbar-width: none;
 }
@@ -2000,6 +2005,8 @@ img {
   gap: 16px;
   overflow-x: auto;
   padding: 0 16px;
+  scroll-padding-left: 16px;
+  scroll-padding-right: 16px;
   scroll-snap-type: x proximity;
   scrollbar-width: none;
 }
@@ -2107,6 +2114,11 @@ img {
   line-height: 26px;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
+}
+
+.commented-rail h3 {
+  font-size: 18px;
+  line-height: 24px;
 }
 
 .commented-rail p,
@@ -2643,7 +2655,9 @@ img {
   display: flex;
   gap: 16px;
   overflow-x: auto;
-  padding: 0 20px;
+  padding: 0 16px;
+  scroll-padding-left: 16px;
+  scroll-padding-right: 16px;
   scroll-snap-type: x proximity;
   scrollbar-width: none;
 }
@@ -3257,6 +3271,8 @@ img {
     gap: 18px;
     overflow-x: auto;
     justify-content: flex-start;
+    scroll-padding-left: 16px;
+    scroll-padding-right: 16px;
     scrollbar-width: none;
   }
 
@@ -3579,8 +3595,10 @@ img {
 .horizontal-rail {
   display: flex;
   gap: 12px;
-  padding: 0 12px;
+  padding: 0 16px;
   overflow-x: auto;
+  scroll-padding-left: 16px;
+  scroll-padding-right: 16px;
   scroll-snap-type: x proximity;
   scrollbar-width: none;
 }
@@ -4214,6 +4232,8 @@ img {
   gap: 10px;
   padding: 24px 16px 24px;
   overflow-x: auto;
+  scroll-padding-left: 16px;
+  scroll-padding-right: 16px;
   scrollbar-width: none;
 }
 
