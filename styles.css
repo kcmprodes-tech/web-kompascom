@@ -177,7 +177,7 @@ img {
 
 .living-assistance {
   margin: 24px 0 24px;
-  padding: 0 0 0 16px;
+  padding: 0;
   overflow: hidden;
   background: #fff;
   border-bottom: 0 !important;
@@ -187,7 +187,7 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 15px;
+  margin: 0 16px 15px;
   color: var(--font-primary);
   font-size: 16px;
   font-weight: 700;
@@ -203,7 +203,7 @@ img {
 
 .living-rail {
   display: flex;
-  gap: 16px;
+  gap: 6px;
   padding: 0 16px;
   overflow-x: auto;
   scroll-padding-left: 16px;
@@ -219,35 +219,28 @@ img {
 .living-card {
   position: relative;
   flex: 0 0 auto;
-  min-width: 164px;
+  min-width: max-content;
   height: 72px;
-  padding: 10px 16px 8px 86px;
+  padding: 8px;
   border: 0;
-  border-radius: 18px;
+  border-radius: 8px;
   background: var(--paper-elevation-1);
   box-shadow: none;
   scroll-snap-align: start;
 }
 
 .living-card::before {
-  position: absolute;
-  left: 25px;
-  bottom: 18px;
-  width: 40px;
-  height: 24px;
-  border-radius: 20px 20px 3px 3px;
-  background: #fbbf24;
-  content: "";
+  display: none;
 }
 
 .living-card::after {
   position: absolute;
-  top: 23px;
-  right: 18px;
-  width: 8px;
-  height: 8px;
-  border-top: 1.8px solid #969696;
-  border-right: 1.8px solid #969696;
+  top: 11px;
+  right: 8px;
+  width: 6px;
+  height: 6px;
+  border-top: 1.4px solid #9a9a9a;
+  border-right: 1.4px solid #9a9a9a;
   transform: rotate(45deg);
   content: "";
 }
@@ -256,9 +249,9 @@ img {
   display: block;
   margin-bottom: 1px;
   color: var(--text-secondary);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 400;
-  line-height: 1.1;
+  line-height: 14px;
   white-space: nowrap;
 }
 
@@ -267,7 +260,7 @@ img {
   color: var(--font-primary);
   font-size: 14px;
   font-weight: 600;
-  line-height: 1;
+  line-height: 16px;
   white-space: nowrap;
 }
 
@@ -282,74 +275,92 @@ img {
 }
 
 .gold-card {
-  display: grid;
-  grid-template-columns: 62px minmax(0, 1fr);
-  grid-template-rows: 17px 1fr;
-  column-gap: 10px;
-  min-width: 268px;
-  padding: 7px 16px 8px 28px;
+  display: block;
+  flex-basis: auto;
+  width: auto;
+  min-width: max-content;
 }
 
 .gold-card::before {
-  left: 36px;
-  bottom: 13px;
-  width: 32px;
-  height: 18px;
-  border-radius: 18px 18px 3px 3px;
-  box-shadow:
-    -13px 13px 0 -5px #fbbf24,
-    13px 13px 0 -5px #fbbf24;
+  display: none;
 }
 
 .gold-card::after {
-  top: 15px;
-  right: 40px;
+  top: 11px;
+  right: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 .gold-card span {
-  grid-column: 1 / -1;
+  display: inline-flex;
+  align-items: center;
   margin: 0;
-  padding-left: 10px;
+  padding: 0 12px 0 0;
+  font-size: 11px;
+  line-height: 14px;
+}
+
+.gold-card > div {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  grid-template-areas:
+    "icon price"
+    "icon change";
+  column-gap: 4px;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.gold-card img {
+  grid-area: icon;
+  width: 40px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.gold-card strong {
+  grid-area: price;
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
   font-size: 16px;
   line-height: 18px;
 }
 
-.gold-card > div {
-  grid-column: 2;
-  align-self: start;
-}
-
-.gold-card strong {
-  display: flex;
-  align-items: baseline;
-  gap: 2px;
-  font-size: 24px;
-  line-height: 25px;
-}
-
 .gold-card small {
   color: var(--text-secondary);
-  font-size: 14px;
+  font-size: 11px;
   font-weight: 400;
 }
 
 .gold-card em {
+  grid-area: change;
   margin-top: 1px;
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 16px;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 12px;
 }
 
 .weather-card {
-  min-width: 158px;
-  padding-left: 62px;
+  width: 80px;
 }
 
-.weather-card::before {
-  left: 23px;
-  bottom: 25px;
-  width: 23px;
-  height: 23px;
+.weather-card::before,
+.air-card::before {
+  display: none;
+}
+
+.weather-card > div {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.weather-card i {
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   background: #fbbf24;
   box-shadow:
@@ -360,36 +371,143 @@ img {
 }
 
 .weather-card strong {
-  font-size: 14px;
+  font-size: 17px;
+  line-height: 20px;
 }
 
 .air-card {
-  min-width: 236px;
-  padding-left: 104px;
+  width: 180px;
 }
 
-.air-card::before {
-  left: 22px;
-  bottom: 16px;
-  width: 62px;
-  height: 62px;
-  border-radius: 50%;
-  background: #d08300;
+.air-card > div {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
 }
 
 .air-card b {
-  position: absolute;
-  left: 39px;
-  bottom: 29px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #d08300;
   color: #fff;
-  font-size: 21px;
+  font-size: 13px;
+  font-weight: 700;
   line-height: 1;
 }
 
 .air-card strong {
-  max-width: 102px;
+  max-width: 112px;
   font-size: 14px;
-  line-height: 1.05;
+  line-height: 16px;
+  white-space: normal;
+}
+
+.prayer-card {
+  width: 164px;
+}
+
+.prayer-card > div {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  grid-template-areas:
+    "icon time"
+    "icon city";
+  column-gap: 6px;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.prayer-card i {
+  grid-area: icon;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: #78a99a;
+}
+
+.prayer-card strong {
+  grid-area: time;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.prayer-card small {
+  margin-left: 4px;
+  color: var(--font-primary);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.prayer-card em {
+  grid-area: city;
+  margin-top: 2px;
+  color: var(--text-secondary);
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 12px;
+}
+
+.quick-card,
+.health-card,
+.all-card {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  padding: 8px 6px;
+  text-align: center;
+}
+
+.quick-card::after,
+.health-card::after,
+.all-card::after {
+  display: none;
+}
+
+.quick-card i,
+.health-card i,
+.all-card i {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+.quick-card i {
+  background: linear-gradient(135deg, #6e49ff, #ff5570);
+  clip-path: polygon(44% 0, 86% 0, 58% 43%, 92% 43%, 34% 100%, 43% 58%, 12% 58%);
+}
+
+.health-card i {
+  background: radial-gradient(circle at 50% 58%, #ff7a2f 0 40%, transparent 42%), radial-gradient(circle at 35% 35%, #f36b24 0 20%, transparent 22%), radial-gradient(circle at 65% 35%, #f36b24 0 20%, transparent 22%);
+}
+
+.all-card i {
+  display: grid;
+  place-items: center;
+  background: #fff;
+}
+
+.all-card i::before {
+  width: 7px;
+  height: 7px;
+  border-top: 1.4px solid #9a9a9a;
+  border-right: 1.4px solid #9a9a9a;
+  transform: rotate(45deg);
+  content: "";
+}
+
+.quick-card strong,
+.health-card strong,
+.all-card strong {
+  color: var(--text-secondary);
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 12px;
   white-space: normal;
 }
 
@@ -1868,7 +1986,7 @@ img {
 }
 
 .mobile-flow-section .medium-article-card {
-  padding-bottom: 16px;
+  padding-bottom: 24px;
 }
 
 .mobile-flow-section .medium-article-card + .medium-article-card {
