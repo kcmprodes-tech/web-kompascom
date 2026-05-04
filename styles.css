@@ -4624,6 +4624,117 @@ img {
   line-height: 18px;
 }
 
+.karin-widget {
+  margin: 0 16px 40px;
+  padding: 24px 0 24px;
+  overflow: hidden;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #eef1ff 0%, #fbf7ff 100%);
+}
+
+.karin-widget h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 0 24px 12px;
+  color: var(--font-primary);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  line-height: 26px;
+}
+
+.karin-widget h2 img {
+  flex: 0 0 22px;
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.karin-question-rail {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 0 24px;
+  scroll-padding-left: 24px;
+  scroll-padding-right: 24px;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+}
+
+.karin-question-rail::-webkit-scrollbar {
+  display: none;
+}
+
+.karin-question-rail button {
+  flex: 0 0 180px;
+  width: 180px;
+  height: 108px;
+  min-height: 108px;
+  padding: 16px;
+  border: 0;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--font-primary);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.2px;
+  line-height: 20px;
+  text-align: left;
+  scroll-snap-align: start;
+}
+
+.karin-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% - 48px);
+  height: 44px;
+  margin: 16px 24px 16px;
+  border: 0;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #7c8df0 0%, #c779d9 58%, #ffb28c 100%);
+  color: #fff;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
+
+.karin-profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 0 24px;
+}
+
+.karin-profile > img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.karin-profile strong {
+  display: block;
+  color: var(--font-primary);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  line-height: 23px;
+}
+
+.karin-profile p {
+  margin: 2px 0 0;
+  color: var(--text-tertiary);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: -0.2px;
+  line-height: 14px;
+}
+
 @media (min-width: 900px) {
   body {
     background: #dde3ea;
