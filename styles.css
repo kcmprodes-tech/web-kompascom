@@ -1878,6 +1878,10 @@ img {
   margin-top: 8px;
 }
 
+.mobile-flow-section .medium-article-card b {
+  margin: 0 8px;
+}
+
 .kg-video-section {
   padding: 24px 16px;
   background: #fff;
@@ -2064,13 +2068,26 @@ img {
   padding: 0 16px 16px;
 }
 
-.commented-rail article,
+.commented-rail article {
+  flex: 0 0 280px;
+  width: 280px;
+  scroll-snap-align: start;
+}
+
 .photo-news-rail article {
   flex: 0 0 280px;
   scroll-snap-align: start;
 }
 
-.commented-rail img,
+.commented-rail img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
 .photo-news-rail img {
   width: 100%;
   aspect-ratio: 16 / 9;
