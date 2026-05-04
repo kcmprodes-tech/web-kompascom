@@ -203,7 +203,7 @@ img {
 
 .living-rail {
   display: flex;
-  gap: 6px;
+  gap: 8px;
   padding: 0 16px;
   overflow-x: auto;
   scroll-padding-left: 16px;
@@ -223,7 +223,7 @@ img {
   height: 72px;
   padding: 8px;
   border: 0;
-  border-radius: 8px;
+  border-radius: 12px;
   background: var(--paper-elevation-1);
   box-shadow: none;
   scroll-snap-align: start;
@@ -234,11 +234,14 @@ img {
 }
 
 .living-card::after {
-  position: absolute;
-  top: 11px;
-  right: 8px;
+  display: none;
+}
+
+.living-card span::after {
+  display: inline-block;
   width: 6px;
   height: 6px;
+  margin-left: 4px;
   border-top: 1.4px solid #9a9a9a;
   border-right: 1.4px solid #9a9a9a;
   transform: rotate(45deg);
@@ -246,8 +249,9 @@ img {
 }
 
 .living-card span {
-  display: block;
-  margin-bottom: 1px;
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0 1px;
   color: var(--text-secondary);
   font-size: 11px;
   font-weight: 400;
@@ -285,18 +289,11 @@ img {
   display: none;
 }
 
-.gold-card::after {
-  top: 11px;
-  right: 8px;
-  width: 6px;
-  height: 6px;
-}
-
 .gold-card span {
   display: inline-flex;
   align-items: center;
   margin: 0;
-  padding: 0 12px 0 0;
+  padding: 0;
   font-size: 11px;
   line-height: 14px;
 }
@@ -309,7 +306,7 @@ img {
     "icon change";
   column-gap: 4px;
   align-items: center;
-  margin-top: 6px;
+  margin-top: 3px;
 }
 
 .gold-card img {
@@ -358,16 +355,10 @@ img {
   margin-top: 8px;
 }
 
-.weather-card i {
+.weather-card img {
   width: 28px;
   height: 28px;
-  border-radius: 50%;
-  background: #fbbf24;
-  box-shadow:
-    0 -11px 0 -8px #fbbf24,
-    0 11px 0 -8px #fbbf24,
-    11px 0 0 -8px #fbbf24,
-    -11px 0 0 -8px #fbbf24;
+  object-fit: contain;
 }
 
 .weather-card strong {
@@ -401,10 +392,14 @@ img {
 }
 
 .air-card strong {
+  display: -webkit-box;
   max-width: 112px;
+  overflow: hidden;
   font-size: 14px;
   line-height: 16px;
   white-space: normal;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .prayer-card {
@@ -422,12 +417,11 @@ img {
   margin-top: 6px;
 }
 
-.prayer-card i {
+.prayer-card img {
   grid-area: icon;
   width: 30px;
   height: 30px;
-  border-radius: 9px;
-  background: #78a99a;
+  object-fit: contain;
 }
 
 .prayer-card strong {
@@ -469,21 +463,18 @@ img {
   display: none;
 }
 
-.quick-card i,
-.health-card i,
+.quick-card span::after,
+.health-card span::after,
+.all-card span::after {
+  display: none;
+}
+
+.quick-card img,
+.health-card img,
 .all-card i {
   width: 28px;
   height: 28px;
-  border-radius: 50%;
-}
-
-.quick-card i {
-  background: linear-gradient(135deg, #6e49ff, #ff5570);
-  clip-path: polygon(44% 0, 86% 0, 58% 43%, 92% 43%, 34% 100%, 43% 58%, 12% 58%);
-}
-
-.health-card i {
-  background: radial-gradient(circle at 50% 58%, #ff7a2f 0 40%, transparent 42%), radial-gradient(circle at 35% 35%, #f36b24 0 20%, transparent 22%), radial-gradient(circle at 65% 35%, #f36b24 0 20%, transparent 22%);
+  object-fit: contain;
 }
 
 .all-card i {
