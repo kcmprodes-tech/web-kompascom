@@ -977,8 +977,8 @@ img {
 .popular-story {
   grid-template-columns: 100px minmax(0, 1fr);
   gap: 12px;
-  padding: 16px 0;
-  border-top: 1px solid var(--paper-elevation-2);
+  padding: 16px 0 24px;
+  border-top: 1px solid #e8e8e8;
 }
 
 .popular-story:first-child {
@@ -1693,12 +1693,12 @@ img {
   margin: 0 !important;
   color: var(--text-secondary);
   font-size: 14px !important;
-  font-weight: 600 !important;
+  font-weight: 400 !important;
   line-height: 18px !important;
 }
 
 .medium-article-card b {
-  margin: 0 8px;
+  margin: 0 4px;
   color: var(--text-secondary);
   font-weight: 400;
 }
@@ -1993,7 +1993,7 @@ img {
 }
 
 .mobile-flow-section .medium-article-card b {
-  margin: 0 8px;
+  margin: 0 4px;
 }
 
 .kg-video-section {
