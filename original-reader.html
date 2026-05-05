@@ -402,6 +402,8 @@
         const handle = copy.querySelector(".reel-sheet-handle");
         let touchStartY = 0;
         let touchMoved = false;
+        let contentTouchStartY = 0;
+        let contentTouchStartedAtBottom = false;
 
         function openSheet(slide) {
           slide.classList.add("is-expanded");
@@ -412,12 +414,60 @@
           slide.classList.remove("is-expanded", "is-sheet-full");
         }
 
+        function isCopyAtBottom() {
+          return copy.scrollTop + copy.clientHeight >= copy.scrollHeight - 4;
+        }
+
+        function goToNextSlide(slide) {
+          const nextSlide = slide.nextElementSibling;
+          if (!nextSlide || !nextSlide.classList.contains("reel-slide")) return;
+          closeSheet(slide);
+          nextSlide.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+
         copy.addEventListener("click", () => {
           const slide = copy.closest(".reel-slide");
           if (!slide.classList.contains("is-expanded")) {
             openSheet(slide);
           }
         });
+
+        copy.addEventListener(
+          "touchstart",
+          (event) => {
+            if (event.target === handle) return;
+            const slide = copy.closest(".reel-slide");
+            if (!slide.classList.contains("is-expanded")) return;
+            contentTouchStartY = event.touches[0].clientY;
+            contentTouchStartedAtBottom = isCopyAtBottom();
+          },
+          { passive: true },
+        );
+
+        copy.addEventListener("touchend", (event) => {
+          if (event.target === handle) return;
+          const slide = copy.closest(".reel-slide");
+          if (!slide.classList.contains("is-expanded")) return;
+          const deltaY = event.changedTouches[0].clientY - contentTouchStartY;
+
+          if (deltaY < -48 && contentTouchStartedAtBottom && isCopyAtBottom()) {
+            goToNextSlide(slide);
+          }
+        });
+
+        copy.addEventListener(
+          "wheel",
+          (event) => {
+            const slide = copy.closest(".reel-slide");
+            if (!slide.classList.contains("is-expanded")) return;
+
+            if (event.deltaY > 0 && isCopyAtBottom()) {
+              event.preventDefault();
+              goToNextSlide(slide);
+            }
+          },
+          { passive: false },
+        );
 
         handle.addEventListener(
           "touchstart",

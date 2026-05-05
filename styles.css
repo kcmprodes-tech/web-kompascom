@@ -3091,6 +3091,10 @@ img {
   display: none;
 }
 
+.reel-slide.is-expanded .reel-top a {
+  display: none;
+}
+
 .reel-slide.is-expanded .reel-actions {
   display: none;
 }
