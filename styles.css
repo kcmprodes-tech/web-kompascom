@@ -3111,7 +3111,7 @@ img {
   min-height: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
-  padding: 0 20px 28px;
+  padding: 0 20px 60px;
   border-radius: 20px 20px 0 0;
   background: #2a2a2a;
   scrollbar-width: none;
