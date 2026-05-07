@@ -5428,9 +5428,11 @@ img {
 }
 
 .karin-chat-suggestions button {
+  display: -webkit-box;
   flex: 0 0 180px;
   height: 108px;
   padding: 14px 16px;
+  overflow: hidden;
   border: 0;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.9);
@@ -5442,6 +5444,8 @@ img {
   line-height: 20px;
   text-align: left;
   scroll-snap-align: start;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
 }
 
 .karin-chat-composer {
@@ -5543,13 +5547,14 @@ img {
 
 .karin-chat-composer small {
   display: block;
-  padding: 12px 24px 0;
+  padding: 16px 24px 0;
   color: var(--text-tertiary);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 400;
   letter-spacing: -0.2px;
-  line-height: 14px;
-  transform: translateY(100%);
+  line-height: 16px;
+  text-align: center;
+  transform: none;
 }
 
 .karin-chat-page.is-answering .karin-chat-composer {
@@ -5590,9 +5595,9 @@ img {
 }
 
 .karin-chat-page.is-answering .karin-chat-composer small {
-  padding-top: 14px;
-  font-size: 14px;
-  line-height: 18px;
+  padding-top: 16px;
+  font-size: 12px;
+  line-height: 16px;
   text-align: center;
   transform: none;
 }
