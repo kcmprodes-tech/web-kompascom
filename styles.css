@@ -4732,7 +4732,7 @@ img {
 
 .karin-widget {
   margin: 0 16px 40px;
-  padding: 24px 0 24px;
+  padding: 24px 0 20px;
   overflow: hidden;
   border-radius: 18px;
   background: linear-gradient(135deg, #eef1ff 0%, #fbf7ff 100%);
@@ -4746,8 +4746,8 @@ img {
   padding: 0 24px 12px;
   color: var(--font-primary);
   font-size: 20px;
-  font-weight: 700;
-  letter-spacing: -0.2px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
   line-height: 26px;
 }
 
@@ -4774,14 +4774,20 @@ img {
 }
 
 .karin-question-rail button {
-  flex: 0 0 180px;
-  width: 180px;
-  height: 108px;
-  min-height: 108px;
+  flex: 0 0 252px;
+  width: 252px;
+  height: 86px;
+  min-height: 86px;
   padding: 16px;
-  border: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.58);
   border-radius: 12px;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.58);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.36),
+    0 12px 32px rgba(87, 93, 169, 0.1);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
   color: var(--font-primary);
   font-family: inherit;
   font-size: 14px;
@@ -4798,7 +4804,7 @@ img {
   justify-content: center;
   width: calc(100% - 48px);
   height: 44px;
-  margin: 16px 24px 16px;
+  margin: 24px 24px 16px;
   border: 0;
   border-radius: 12px;
   background: linear-gradient(90deg, #7c8df0 0%, #c779d9 58%, #ffb28c 100%);
@@ -4818,13 +4824,13 @@ img {
 }
 
 .karin-profile > img {
-  width: 48px;
-  height: 48px;
+  width: 34px;
+  height: 34px;
   object-fit: contain;
 }
 
 .karin-profile strong {
-  display: block;
+  display: inline;
   color: var(--font-primary);
   font-size: 18px;
   font-weight: 600;
@@ -4832,8 +4838,22 @@ img {
   line-height: 23px;
 }
 
+.karin-profile div {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.karin-profile span {
+  color: var(--text-tertiary);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: -0.2px;
+  line-height: 14px;
+}
+
 .karin-profile p {
-  margin: 2px 0 0;
+  margin: 0;
   color: var(--text-tertiary);
   font-size: 10px;
   font-weight: 400;
@@ -4864,7 +4884,7 @@ img {
   overflow: hidden;
   background:
     radial-gradient(circle at 48% 38%, rgba(203, 176, 255, 0.32), transparent 28%),
-    linear-gradient(180deg, #fff 0%, #f2f2ff 54%, #eef0ff 100%);
+    linear-gradient(180deg, #fbf6fb 0%, #f2f2ff 54%, #eef0ff 100%);
   animation: karinPageIn 420ms ease both;
 }
 
@@ -4880,12 +4900,45 @@ img {
   position: relative;
   z-index: 2;
   display: flex;
-  justify-content: flex-end;
-  gap: 10px;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
   padding: 24px 20px 0;
 }
 
-.karin-chat-top span,
+.karin-chat-brand {
+  display: grid;
+  justify-items: start;
+  text-align: left;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: karinFloatIn 420ms ease 120ms both;
+}
+
+.karin-chat-brand strong {
+  color: var(--font-primary);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  line-height: 23px;
+}
+
+.karin-chat-brand p {
+  margin: 0;
+  color: var(--text-tertiary);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: -0.2px;
+  line-height: 14px;
+}
+
+.karin-chat-top-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.karin-chat-top-actions span,
 .karin-chat-top a {
   display: inline-flex;
   align-items: center;
@@ -4895,7 +4948,7 @@ img {
   background: rgba(255, 255, 255, 0.92);
 }
 
-.karin-chat-top span {
+.karin-chat-top-actions span {
   gap: 4px;
   padding: 0 12px;
   color: var(--font-primary);
@@ -4904,7 +4957,7 @@ img {
   letter-spacing: -0.2px;
 }
 
-.karin-chat-top span i {
+.karin-chat-top-actions span i {
   width: 13px;
   height: 13px;
   border-radius: 50%;
@@ -5144,6 +5197,15 @@ img {
 
 .karin-answer-copy p {
   margin: 0 0 14px;
+}
+
+.karin-answer-copy p span {
+  display: inline-block;
+}
+
+.karin-chat-page.is-word-animating .karin-answer-copy p span {
+  opacity: 0;
+  animation: karinAnswerWordIn 420ms ease var(--word-delay) both;
 }
 
 .karin-answer-copy p:last-child {
@@ -5391,7 +5453,8 @@ img {
   line-height: 18px;
 }
 
-.karin-answer-result > p {
+.karin-answer-result > p,
+.karin-answer-ad-caption {
   width: 300px;
   max-width: calc(100% - 60px);
   margin: 6px auto 0;
@@ -5403,7 +5466,8 @@ img {
   text-align: left;
 }
 
-.karin-answer-result > p a {
+.karin-answer-result > p a,
+.karin-answer-ad-caption a {
   color: #0077c8;
   text-decoration: none;
 }
@@ -5743,39 +5807,19 @@ img {
 .karin-chat-hero {
   display: grid;
   justify-items: center;
-  padding: 120px 32px 0;
+  padding: 108px 32px 0;
   text-align: center;
 }
 
 .karin-chat-hero img {
-  width: 44px;
-  height: 44px;
+  width: 100px;
+  height: 100px;
   object-fit: contain;
   opacity: 0;
-  transform: translateY(10px) scale(0.92);
-  animation: karinFloatIn 420ms ease 160ms both;
-}
-
-.karin-chat-hero strong {
-  margin-top: 8px;
-  color: var(--font-primary);
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: -0.2px;
-  line-height: 23px;
-  opacity: 0;
-  animation: karinFloatIn 420ms ease 230ms both;
-}
-
-.karin-chat-hero p {
-  margin: 0;
-  color: var(--text-tertiary);
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: -0.2px;
-  line-height: 14px;
-  opacity: 0;
-  animation: karinFloatIn 420ms ease 280ms both;
+  transform: translateY(14px) scale(0.78) rotate(-8deg);
+  animation:
+    karinLogoIn 760ms cubic-bezier(0.18, 0.9, 0.2, 1.1) 160ms both,
+    karinLogoFloat 3.6s ease-in-out 1.05s infinite;
 }
 
 .karin-chat-hero h1 {
@@ -6024,11 +6068,47 @@ img {
   }
 }
 
+@keyframes karinLogoIn {
+  0% {
+    opacity: 0;
+    transform: translateY(14px) scale(0.78) rotate(-8deg);
+    filter: blur(8px);
+  }
+  72% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.04) rotate(2deg);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0deg);
+    filter: blur(0);
+  }
+}
+
+@keyframes karinLogoFloat {
+  0%,
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-6px) scale(1.015) rotate(1.2deg);
+  }
+}
+
 @keyframes karinLineIn {
   to {
     opacity: 1;
     transform: translateY(0);
     filter: blur(0);
+  }
+}
+
+@keyframes karinAnswerWordIn {
+  to {
+    opacity: 1;
   }
 }
 

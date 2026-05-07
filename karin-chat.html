@@ -12,10 +12,16 @@
   <body class="karin-chat-body">
     <main class="karin-chat-page" aria-label="Karin chat">
       <header class="karin-chat-top">
-        <span>Kuota 0/7 <i aria-hidden="true"></i></span>
-        <a href="./article-detail.html" aria-label="Tutup">
-          <svg viewBox="0 0 256 256" aria-hidden="true"><path d="M72 72l112 112M184 72 72 184"/></svg>
-        </a>
+        <div class="karin-chat-brand">
+          <strong>Karin</strong>
+          <p>KOMPAS.com AI</p>
+        </div>
+        <div class="karin-chat-top-actions">
+          <span>Kuota 0/7 <i aria-hidden="true"></i></span>
+          <a href="./article-detail.html" aria-label="Tutup">
+            <svg viewBox="0 0 256 256" aria-hidden="true"><path d="M72 72l112 112M184 72 72 184"/></svg>
+          </a>
+        </div>
       </header>
 
       <header class="karin-answer-top">
@@ -37,9 +43,7 @@
       </div>
 
       <section class="karin-chat-hero">
-        <img src="./assets/karin-kompas-icon.png" alt="" aria-hidden="true" />
-        <strong>Karin</strong>
-        <p>KOMPAS.com AI</p>
+        <img src="./assets/karinlogo.svg" alt="" aria-hidden="true" />
         <h1 class="karin-chat-title" aria-label="Mau update informasi apa hari ini?">
           <span>Mau update</span>
           <span>informasi apa hari ini?</span>
@@ -58,12 +62,18 @@
         <p class="karin-answer-question">Apa keunggulan radar AESA dibandingkan jenis radar PESA atau radar pesawat tempur lainnya?</p>
         <div class="karin-answer-loading" aria-label="Memuat jawaban">
           <div class="karin-answer-dots"><span></span><span></span><span></span></div>
-          <div class="karin-shimmer karin-shimmer--ad"></div>
-          <div class="karin-shimmer karin-shimmer--line"></div>
+          <div class="karin-answer-ad" role="img" aria-label="Iklan Pasang iklan UMKM mulai hanya Rp 50.000">
+            <i aria-hidden="true">i</i>
+            <span>Pasang iklan UMKM</span>
+            <strong>mulai hanya</strong>
+            <b>Rp 50.000</b>
+            <em>di Pasangiklan.com</em>
+          </div>
+          <p class="karin-answer-ad-caption">Dapatkan pengalaman AI tanpa iklan. <a href="#">Gabung KOMPAS.com+</a></p>
         </div>
         <div class="karin-answer-result">
           <article class="karin-answer-copy">
-            <h2>Berikut hasil dari pertanyaanmu</h2>
+            <h2>Berikut jawaban dari pertanyaanmu</h2>
             <p>Radar RBE-2 AESA memberikan Rafale keunggulan taktis signifikan, dengan teknologi pemindaian elektronik.</p>
             <p>Rafale dapat mendeteksi, melacak, dan menargetkan musuh lebih cepat dan pada jarak yang lebih jauh dibandingkan pesawat dengan radar konvensional.</p>
             <p>Pada radar AESA, pancaran gelombang radio dibentuk oleh banyak modul kecil yang bekerja secara elektronik, sehingga arah sapuan radar dapat berubah sangat cepat tanpa perlu menggerakkan antena secara mekanis.</p>
@@ -191,6 +201,25 @@
       const karinSend = document.querySelector(".karin-chat-composer button");
       const karinQuestionBubble = document.querySelector(".karin-answer-question");
       const fallbackQuestion = karinQuestionBubble.textContent;
+      let karinWordsPrepared = false;
+
+      function prepareKarinAnswerWords() {
+        if (karinWordsPrepared) return;
+        let wordIndex = 0;
+        document.querySelectorAll(".karin-answer-copy p").forEach((paragraph) => {
+          const words = paragraph.textContent.trim().split(/\s+/);
+          paragraph.textContent = "";
+          words.forEach((word, index) => {
+            const span = document.createElement("span");
+            span.textContent = word;
+            span.style.setProperty("--word-delay", `${wordIndex * 34}ms`);
+            paragraph.appendChild(span);
+            if (index < words.length - 1) paragraph.append(" ");
+            wordIndex += 1;
+          });
+        });
+        karinWordsPrepared = true;
+      }
 
       function syncKarinComposer() {
         karinComposer.classList.toggle("has-text", karinInput.value.trim().length > 0);
@@ -204,11 +233,12 @@
         syncKarinComposer();
         document.body.classList.add("is-karin-answering");
         karinPage.classList.add("is-answering", "is-answer-loading");
-        karinPage.classList.remove("is-answer-ready");
+        karinPage.classList.remove("is-answer-ready", "is-word-animating");
         window.setTimeout(() => {
+          prepareKarinAnswerWords();
           karinPage.classList.remove("is-answer-loading");
-          karinPage.classList.add("is-answer-ready");
-        }, 1100);
+          karinPage.classList.add("is-answer-ready", "is-word-animating");
+        }, 3000);
       }
 
       karinSend.addEventListener("click", () => openKarinAnswer(karinInput.value));
@@ -228,6 +258,11 @@
         });
       });
       syncKarinComposer();
+
+      const karinParams = new URLSearchParams(window.location.search);
+      if (karinParams.get("answer") === "1") {
+        openKarinAnswer(karinParams.get("q") || fallbackQuestion);
+      }
     </script>
   </body>
 </html>
