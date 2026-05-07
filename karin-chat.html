@@ -176,9 +176,9 @@
       <section class="karin-chat-composer" aria-label="Tulis pertanyaan">
         <p><i aria-hidden="true"></i>Kamu sedang dalam masa free trial selama 7 hari.</p>
         <div>
-          <input type="text" placeholder="Tanya apa saja" aria-label="Tanya apa saja" />
+          <textarea rows="1" placeholder="Tanya apa saja" aria-label="Tanya apa saja"></textarea>
           <button type="button" aria-label="Kirim">
-            <svg viewBox="0 0 256 256" aria-hidden="true"><path d="M32 216 224 32l-64 192-40-88z"/></svg>
+            <span aria-hidden="true"></span>
           </button>
         </div>
         <small>KARIN adalah AI dan dapat melakukan kesalahan.</small>
@@ -186,14 +186,22 @@
     </main>
     <script>
       const karinPage = document.querySelector(".karin-chat-page");
-      const karinInput = document.querySelector(".karin-chat-composer input");
+      const karinComposer = document.querySelector(".karin-chat-composer");
+      const karinInput = document.querySelector(".karin-chat-composer textarea");
       const karinSend = document.querySelector(".karin-chat-composer button");
       const karinQuestionBubble = document.querySelector(".karin-answer-question");
       const fallbackQuestion = karinQuestionBubble.textContent;
 
+      function syncKarinComposer() {
+        karinComposer.classList.toggle("has-text", karinInput.value.trim().length > 0);
+        karinInput.style.height = "auto";
+        karinInput.style.height = `${Math.min(132, karinInput.scrollHeight)}px`;
+      }
+
       function openKarinAnswer(question) {
         karinQuestionBubble.textContent = question.trim() || fallbackQuestion;
         karinInput.value = "";
+        syncKarinComposer();
         document.body.classList.add("is-karin-answering");
         karinPage.classList.add("is-answering", "is-answer-loading");
         karinPage.classList.remove("is-answer-ready");
@@ -205,18 +213,21 @@
 
       karinSend.addEventListener("click", () => openKarinAnswer(karinInput.value));
       karinInput.addEventListener("keydown", (event) => {
-        if (event.key === "Enter") {
+        if (event.key === "Enter" && !event.shiftKey) {
           event.preventDefault();
           openKarinAnswer(karinInput.value);
         }
       });
+      karinInput.addEventListener("input", syncKarinComposer);
 
       document.querySelectorAll(".karin-chat-suggestions button").forEach((button) => {
         button.addEventListener("click", () => {
           karinInput.value = button.textContent;
+          syncKarinComposer();
           openKarinAnswer(button.textContent);
         });
       });
+      syncKarinComposer();
     </script>
   </body>
 </html>

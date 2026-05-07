@@ -8,10 +8,12 @@
   --font-primary: #2a2a2a;
   --text-secondary: #5a5a5a;
   --text-tertiary: #888888;
+  --text-disable: #b8b8b8;
   --paper-elevation-1: #f7f7f7;
   --muted: #6b7280;
   --line: #e5e7eb;
   --paper-elevation-2: #f5f5f5;
+  --paper-elevation-3: #f0f0f0;
   --soft: #f5f7fa;
   --surface: #ffffff;
   --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
@@ -4932,7 +4934,7 @@ img {
 }
 
 .karin-chat-page.is-answering .karin-answer-plan {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: space-between;
   height: 32px;
@@ -4986,10 +4988,10 @@ img {
   border-radius: 16px;
   background: #f5f5f5;
   color: var(--font-primary);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
   letter-spacing: -0.2px;
-  line-height: 20px;
+  line-height: 22px;
   text-align: left;
 }
 
@@ -5062,10 +5064,10 @@ img {
   width: calc(100% - 32px);
   margin: 24px auto 0;
   color: var(--font-primary);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
   letter-spacing: -0.2px;
-  line-height: 21px;
+  line-height: 24px;
   text-align: left;
 }
 
@@ -5451,7 +5453,7 @@ img {
 }
 
 .karin-chat-composer > p {
-  display: flex;
+  display: none;
   align-items: center;
   gap: 6px;
   margin: 0;
@@ -5474,29 +5476,42 @@ img {
 
 .karin-chat-composer div {
   display: flex;
-  align-items: center;
-  height: 52px;
-  margin-top: -8px;
-  padding: 0 8px 0 16px;
+  align-items: flex-end;
+  min-height: 52px;
+  margin-top: 0;
+  padding: 8px 8px 8px 16px;
   border-radius: 12px;
   background: #fff;
   box-shadow: 0 14px 34px rgba(87, 93, 169, 0.18);
 }
 
-.karin-chat-composer input {
+.karin-chat-composer textarea {
   flex: 1;
   min-width: 0;
+  max-height: 132px;
+  padding: 8px 0;
   border: 0;
   outline: 0;
-  color: var(--font-primary);
+  color: var(--text-tertiary);
   font-family: inherit;
   font-size: 16px;
   font-weight: 400;
   letter-spacing: -0.2px;
+  line-height: 20px;
+  resize: none;
+  scrollbar-width: none;
 }
 
-.karin-chat-composer input::placeholder {
+.karin-chat-composer textarea::-webkit-scrollbar {
+  display: none;
+}
+
+.karin-chat-composer textarea::placeholder {
   color: var(--text-tertiary);
+}
+
+.karin-chat-composer.has-text textarea {
+  color: var(--font-primary);
 }
 
 .karin-chat-composer button {
@@ -5506,18 +5521,24 @@ img {
   height: 36px;
   border: 0;
   border-radius: 50%;
-  background: #fff;
-  color: #a974ff;
+  background: var(--paper-elevation-3);
+  color: var(--text-disable);
+  transition:
+    background-color 160ms ease,
+    color 160ms ease;
 }
 
-.karin-chat-composer svg {
-  width: 22px;
-  height: 22px;
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 14;
+.karin-chat-composer.has-text button {
+  background: var(--font-primary);
+  color: #fff;
+}
+
+.karin-chat-composer button span {
+  width: 20px;
+  height: 20px;
+  background: currentColor;
+  mask: url("./assets/right-icon.svg") center / contain no-repeat;
+  -webkit-mask: url("./assets/right-icon.svg") center / contain no-repeat;
 }
 
 .karin-chat-composer small {
@@ -5547,13 +5568,14 @@ img {
 }
 
 .karin-chat-page.is-answering .karin-chat-composer div {
-  height: 52px;
+  min-height: 52px;
   margin-top: 0;
   box-shadow: 0 12px 28px rgba(42, 42, 42, 0.1);
 }
 
-.karin-chat-page.is-answering .karin-chat-composer input {
+.karin-chat-page.is-answering .karin-chat-composer textarea {
   font-size: 14px;
+  line-height: 20px;
   letter-spacing: -0.2px;
 }
 
@@ -5562,8 +5584,15 @@ img {
   color: #d0d0d0;
 }
 
+.karin-chat-page.is-answering .karin-chat-composer.has-text button {
+  background: var(--font-primary);
+  color: #fff;
+}
+
 .karin-chat-page.is-answering .karin-chat-composer small {
   padding-top: 14px;
+  font-size: 14px;
+  line-height: 18px;
   text-align: center;
   transform: none;
 }
