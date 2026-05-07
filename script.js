@@ -227,6 +227,11 @@ function enableArticleLinks() {
 enableArticleLinks();
 
 const headlineAudioButton = document.querySelector(".headline-badge");
+const wpAioSection = document.querySelector(".wp-aio-section");
+const wpAioImage = document.querySelector(".wp-aio-section img");
+const wpAioExpand = document.querySelector(".wp-aio-expand");
+const wpAioClose = document.querySelector(".wp-aio-close");
+const wpAioPlay = document.querySelector(".wp-aio-play");
 const homeAudio = document.querySelector("[data-home-audio]");
 const audioPip = document.querySelector(".audio-pip");
 const audioPipPlay = document.querySelector(".audio-pip-play");
@@ -242,6 +247,11 @@ const audioFill = document.querySelector(".audio-progress b");
 const audioThumb = document.querySelector(".audio-progress i");
 const audioCurrent = document.querySelector(".audio-current");
 const audioRemaining = document.querySelector(".audio-remaining");
+let audioMode = "headline";
+let aioUtterance = null;
+let aioPlaying = false;
+const aioSpeechText =
+  "Update pilihan hari ini. Sejumlah isu publik menjadi perhatian, mulai dari dinamika kebijakan pemerintah, ekonomi rumah tangga, transportasi publik, kualitas udara, hingga layanan digital. Simak ringkasan utama agar kamu tetap mendapatkan konteks penting tanpa perlu membaca semua artikel satu per satu.";
 
 function formatAudioTime(value = 0) {
   if (!Number.isFinite(value) || value < 0) return "00:00";
@@ -252,6 +262,11 @@ function formatAudioTime(value = 0) {
 
 function updateHomeAudioPlayer() {
   if (!homeAudio) return;
+
+  if (audioMode === "aio") {
+    audioPlayButtons.forEach((button) => button.classList.toggle("is-audio-playing", aioPlaying));
+    return;
+  }
 
   const duration = Number.isFinite(homeAudio.duration) ? homeAudio.duration : 0;
   const current = Number.isFinite(homeAudio.currentTime) ? homeAudio.currentTime : 0;
@@ -269,6 +284,10 @@ function updateHomeAudioPlayer() {
 function showHomeAudioPip() {
   if (!audioPip) return;
   audioPip.hidden = false;
+  const pipTitle = audioPip.querySelector(".audio-pip-open span");
+  if (pipTitle) {
+    pipTitle.textContent = audioMode === "aio" ? "Update pilihan hari ini..." : "Menkeu Pastikan Program Fiskal...";
+  }
   updateHomeAudioPlayer();
 }
 
@@ -302,12 +321,48 @@ function minimizeHomeAudioPlayer(event) {
 function toggleHomeAudio(event) {
   event?.preventDefault();
   event?.stopPropagation();
+
+  if (audioMode === "aio") {
+    if (!("speechSynthesis" in window)) return;
+    if (aioPlaying) {
+      window.speechSynthesis.pause();
+      aioPlaying = false;
+    } else if (window.speechSynthesis.paused) {
+      window.speechSynthesis.resume();
+      aioPlaying = true;
+    } else {
+      playAioSpeech();
+    }
+    updateHomeAudioPlayer();
+    return;
+  }
+
   if (!homeAudio) return;
   if (homeAudio.paused) {
     homeAudio.play().catch(() => {});
   } else {
     homeAudio.pause();
   }
+  updateHomeAudioPlayer();
+}
+
+function playAioSpeech() {
+  if (!("speechSynthesis" in window)) return;
+  homeAudio?.pause();
+  window.speechSynthesis.cancel();
+  aioUtterance = new SpeechSynthesisUtterance(aioSpeechText);
+  aioUtterance.lang = "id-ID";
+  aioUtterance.rate = 1;
+  aioUtterance.onend = () => {
+    aioPlaying = false;
+    updateHomeAudioPlayer();
+  };
+  aioUtterance.onerror = () => {
+    aioPlaying = false;
+    updateHomeAudioPlayer();
+  };
+  aioPlaying = true;
+  window.speechSynthesis.speak(aioUtterance);
   updateHomeAudioPlayer();
 }
 
@@ -329,9 +384,32 @@ function seekHomeAudioFromProgress(event) {
 headlineAudioButton?.addEventListener("click", (event) => {
   event.preventDefault();
   event.stopPropagation();
+  audioMode = "headline";
+  aioPlaying = false;
+  window.speechSynthesis?.cancel();
   showHomeAudioPip();
   homeAudio?.play().catch(() => {});
   updateHomeAudioPlayer();
+});
+
+wpAioExpand?.addEventListener("click", () => {
+  if (!wpAioSection || !wpAioImage) return;
+  wpAioImage.src = "./assets/wp-aio-open.svg";
+  wpAioSection.classList.add("is-open");
+});
+
+wpAioClose?.addEventListener("click", () => {
+  if (!wpAioSection || !wpAioImage) return;
+  wpAioImage.src = "./assets/wp-aio.svg";
+  wpAioSection.classList.remove("is-open");
+});
+
+wpAioPlay?.addEventListener("click", (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+  audioMode = "aio";
+  showHomeAudioPip();
+  playAioSpeech();
 });
 
 audioPlayButtons.forEach((button) => button.addEventListener("click", toggleHomeAudio));
@@ -340,6 +418,8 @@ audioPipClose?.addEventListener("click", (event) => {
   event.preventDefault();
   event.stopPropagation();
   homeAudio?.pause();
+  window.speechSynthesis?.cancel();
+  aioPlaying = false;
   hideHomeAudioPip();
   updateHomeAudioPlayer();
 });
