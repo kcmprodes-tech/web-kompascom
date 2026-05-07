@@ -398,6 +398,23 @@
       </section>
     </main>
     <script>
+      document.querySelectorAll(".reel-slide").forEach((slide) => {
+        const video = slide.querySelector("video");
+        if (!video) return;
+        slide.classList.add("is-video-loading");
+
+        function markVideoReady() {
+          slide.classList.remove("is-video-loading");
+        }
+
+        if (video.readyState >= 3) {
+          markVideoReady();
+        } else {
+          video.addEventListener("loadeddata", markVideoReady, { once: true });
+          video.addEventListener("canplay", markVideoReady, { once: true });
+        }
+      });
+
       document.querySelectorAll(".reel-copy").forEach((copy) => {
         const handle = copy.querySelector(".reel-sheet-handle");
         let touchStartY = 0;

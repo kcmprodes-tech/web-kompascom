@@ -2394,7 +2394,7 @@ img {
   position: relative;
   min-height: 480px;
   overflow: hidden;
-  border-radius: 14px;
+  border-radius: 16px;
   background: #111;
   transition: min-height 220ms ease, border-radius 220ms ease;
 }
@@ -2437,6 +2437,8 @@ img {
   align-items: center;
   justify-content: center;
   height: 44px;
+  margin-right: 8px;
+  margin-left: 8px;
   border-radius: 10px;
   background: #fff;
   color: var(--font-primary);
@@ -2479,6 +2481,10 @@ img {
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 14;
+}
+
+.original-hero-index__actions .share-icon-img {
+  filter: brightness(0) invert(1);
 }
 
 .original-tabs {
@@ -2884,13 +2890,36 @@ img {
   content: "";
 }
 
+.reel-slide.is-video-loading {
+  background: #121212;
+}
+
+.reel-slide.is-video-loading::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 5;
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.28);
+  border-top-color: #fff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: reelLoaderSpin 800ms linear infinite;
+  content: "";
+}
+
+.reel-slide.is-video-loading > video {
+  opacity: 0;
+}
+
 .reel-slide > img,
 .reel-slide > video {
   flex: 1 1 auto;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: flex-basis 220ms ease, height 220ms ease;
+  transition: flex-basis 220ms ease, height 220ms ease, opacity 160ms ease;
 }
 
 .reel-slide--one > img,
@@ -3027,7 +3056,7 @@ img {
 .reel-copy {
   position: absolute;
   right: 64px;
-  bottom: 32px;
+  bottom: 72px;
   left: 20px;
   z-index: 2;
   max-height: 52vh;
@@ -3055,7 +3084,7 @@ img {
   -webkit-line-clamp: 3;
 }
 
-.reel-copy p + p,
+.reel-copy p:nth-of-type(n + 3),
 .reel-copy .reel-page-chip {
   display: none;
 }
@@ -3202,6 +3231,15 @@ img {
   height: 12px;
   background: no-repeat center / 16px 12px url("data:image/svg+xml,%3Csvg width='16' height='12' viewBox='0 0 16 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 3H10M2 6H14M2 9H8M11 1L15 4L11 7' stroke='%23FFFFFF' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   content: "";
+}
+
+@keyframes reelLoaderSpin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 }
 
 .membership-body {
@@ -4853,7 +4891,7 @@ img {
   margin: 22px 0 0;
   color: var(--font-primary);
   font-size: 28px;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: -0.2px;
   line-height: 36px;
 }
@@ -4879,7 +4917,7 @@ img {
   gap: 12px;
   margin-top: auto;
   overflow-x: auto;
-  padding: 0 20px 112px;
+  padding: 0 20px 152px;
   scroll-padding-left: 20px;
   scroll-padding-right: 20px;
   scroll-snap-type: x proximity;
@@ -4912,9 +4950,7 @@ img {
   right: 20px;
   bottom: 18px;
   left: 20px;
-  border-radius: 18px;
-  background: linear-gradient(90deg, #7c8df0 0%, #c779d9 58%, #ffb28c 100%);
-  box-shadow: 0 14px 34px rgba(87, 93, 169, 0.18);
+  background: transparent;
 }
 
 .karin-chat-composer > p {
@@ -4922,7 +4958,9 @@ img {
   align-items: center;
   gap: 6px;
   margin: 0;
-  padding: 10px 12px 6px;
+  padding: 10px 12px 14px;
+  border-radius: 18px 18px 0 0;
+  background: linear-gradient(90deg, #7c8df0 0%, #c779d9 58%, #ffb28c 100%);
   color: #fff;
   font-size: 12px;
   font-weight: 400;
@@ -4941,9 +4979,11 @@ img {
   display: flex;
   align-items: center;
   height: 52px;
+  margin-top: -8px;
   padding: 0 8px 0 16px;
-  border-radius: 999px;
+  border-radius: 12px;
   background: #fff;
+  box-shadow: 0 14px 34px rgba(87, 93, 169, 0.18);
 }
 
 .karin-chat-composer input {
