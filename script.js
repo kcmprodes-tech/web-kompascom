@@ -231,7 +231,9 @@ const wpAioSection = document.querySelector(".wp-aio-section");
 const wpAioImage = document.querySelector(".wp-aio-section img");
 const wpAioExpand = document.querySelector(".wp-aio-expand");
 const wpAioClose = document.querySelector(".wp-aio-close");
+const wpAioHide = document.querySelector(".wp-aio-hide");
 const wpAioPlay = document.querySelector(".wp-aio-play");
+const wpAioSources = document.querySelectorAll(".wp-aio-source");
 const homeAudio = document.querySelector("[data-home-audio]");
 const audioPip = document.querySelector(".audio-pip");
 const audioPipPlay = document.querySelector(".audio-pip-play");
@@ -396,13 +398,19 @@ wpAioExpand?.addEventListener("click", () => {
   if (!wpAioSection || !wpAioImage) return;
   wpAioImage.src = "./assets/wp-aio-open.svg";
   wpAioSection.classList.add("is-open");
+  wpAioExpand.setAttribute("aria-expanded", "true");
 });
 
-wpAioClose?.addEventListener("click", () => {
+function collapseWpAio() {
   if (!wpAioSection || !wpAioImage) return;
   wpAioImage.src = "./assets/wp-aio.svg";
   wpAioSection.classList.remove("is-open");
-});
+  wpAioExpand?.setAttribute("aria-expanded", "false");
+}
+
+wpAioClose?.addEventListener("click", collapseWpAio);
+wpAioHide?.addEventListener("click", collapseWpAio);
+wpAioSources.forEach((source) => source.addEventListener("click", (event) => event.preventDefault()));
 
 wpAioPlay?.addEventListener("click", (event) => {
   event.preventDefault();

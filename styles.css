@@ -690,6 +690,10 @@ img {
   position: relative;
   width: calc(100% - 32px);
   margin: 16px 16px;
+  overflow: hidden;
+  border-bottom: 0 !important;
+  border-radius: 12px;
+  line-height: 0;
 }
 
 .wp-aio-section img {
@@ -705,6 +709,30 @@ img {
   aspect-ratio: 328 / 780;
 }
 
+.wp-aio-section.is-open .wp-aio-credit {
+  display: block;
+  top: 4.87%;
+}
+
+.wp-aio-credit {
+  display: none;
+  position: absolute;
+  left: 11.89%;
+  top: 24.36%;
+  z-index: 1;
+  margin: 0;
+  color: #6d7077;
+  font: 400 10px/1.3 Inter, sans-serif;
+  letter-spacing: -0.2px;
+  line-height: 13px;
+  pointer-events: none;
+}
+
+.wp-aio-credit strong {
+  color: #2a2a2a;
+  font-weight: 600;
+}
+
 .wp-aio-section button {
   position: absolute;
   z-index: 2;
@@ -715,9 +743,9 @@ img {
 }
 
 .wp-aio-expand {
-  left: 72.56%;
+  left: 3.96%;
   top: 69.23%;
-  width: 22.56%;
+  width: 65.85%;
   height: 23.08%;
 }
 
@@ -729,12 +757,20 @@ img {
   height: 4.1%;
 }
 
-.wp-aio-play {
+.wp-aio-hide {
   display: none;
-  left: 72.56%;
+  left: 3.96%;
   top: 93.46%;
-  width: 22.56%;
+  width: 65.85%;
   height: 4.62%;
+}
+
+.wp-aio-play {
+  display: block;
+  left: 72.56%;
+  top: 69.23%;
+  width: 22.56%;
+  height: 23.08%;
 }
 
 .wp-aio-section.is-open .wp-aio-expand {
@@ -742,8 +778,98 @@ img {
 }
 
 .wp-aio-section.is-open .wp-aio-close,
+.wp-aio-section.is-open .wp-aio-hide,
 .wp-aio-section.is-open .wp-aio-play {
   display: block;
+}
+
+.wp-aio-section.is-open .wp-aio-play {
+  top: 93.46%;
+  height: 4.62%;
+}
+
+.wp-aio-stories {
+  position: absolute;
+  display: none;
+  left: 4.88%;
+  right: 4.88%;
+  top: 7.56%;
+  z-index: 1;
+  color: #2a2a2a;
+  font: 400 16px/24px Inter, sans-serif;
+  letter-spacing: -0.2px;
+}
+
+.wp-aio-section.is-open .wp-aio-stories {
+  display: block;
+}
+
+.wp-aio-stories p {
+  margin: 0 0 20px;
+}
+
+.wp-aio-stories p:nth-child(1) {
+  margin-bottom: 20px;
+}
+
+.wp-aio-stories p:nth-child(3) {
+  margin-bottom: 20px;
+}
+
+.wp-aio-stories p:nth-child(5) {
+  margin-bottom: 0;
+}
+
+.wp-aio-stories a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+.wp-aio-source {
+  position: absolute;
+  display: none;
+  z-index: 2;
+  width: auto;
+  height: 20px;
+  padding: 0;
+  color: #2a2a2a;
+  background: transparent;
+  font: 400 14px/20px Inter, sans-serif;
+  letter-spacing: -0.2px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+.wp-aio-section.is-open .wp-aio-source {
+  display: none;
+}
+
+.wp-aio-source-1 {
+  left: 4.88%;
+  top: 20.9%;
+}
+
+.wp-aio-source-2 {
+  left: 38.72%;
+  top: 30.38%;
+}
+
+.wp-aio-source-3 {
+  left: 26.22%;
+  top: 49.36%;
+}
+
+.wp-aio-source-4 {
+  left: 51.22%;
+  top: 63.72%;
+}
+
+.wp-aio-source-5 {
+  left: 4.88%;
+  top: 83.08%;
 }
 
 .headline-section {
