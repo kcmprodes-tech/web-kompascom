@@ -143,7 +143,7 @@
             <button type="button" aria-label="Suka">
               <svg viewBox="0 0 256 256" aria-hidden="true"><path d="M80 216H40a8 8 0 0 1-8-8v-88a8 8 0 0 1 8-8h40"/><path d="M80 112 120 32a24 24 0 0 1 24 24v40h56a16 16 0 0 1 15.8 18.6l-16 88A16 16 0 0 1 184 216H80z"/></svg>
             </button>
-            <button type="button" aria-label="Tidak suka">
+            <button class="karin-feedback-trigger" type="button" aria-label="Tidak suka">
               <svg viewBox="0 0 256 256" aria-hidden="true"><path d="M176 40h40a8 8 0 0 1 8 8v88a8 8 0 0 1-8 8h-40"/><path d="M176 144 136 224a24 24 0 0 1-24-24v-40H56a16 16 0 0 1-15.8-18.6l16-88A16 16 0 0 1 72 40h104z"/></svg>
             </button>
           </div>
@@ -194,12 +194,28 @@
         <small>KARIN adalah AI dan dapat melakukan kesalahan.</small>
       </section>
     </main>
+    <div class="karin-feedback-modal" hidden>
+      <div class="karin-feedback-card" role="dialog" aria-modal="true" aria-label="Beri umpan balik">
+        <img src="./assets/feedback-mobile.svg" alt="" aria-hidden="true" />
+        <button class="karin-feedback-close" type="button" aria-label="Tutup umpan balik"></button>
+        <button class="karin-feedback-option karin-feedback-option--first" type="button" aria-label="Tidak akurat"></button>
+        <button class="karin-feedback-submit" type="button" aria-label="Kirim masukan"></button>
+        <button class="karin-feedback-cancel" type="button" aria-label="Batal"></button>
+      </div>
+    </div>
     <script>
       const karinPage = document.querySelector(".karin-chat-page");
       const karinComposer = document.querySelector(".karin-chat-composer");
       const karinInput = document.querySelector(".karin-chat-composer textarea");
       const karinSend = document.querySelector(".karin-chat-composer button");
       const karinQuestionBubble = document.querySelector(".karin-answer-question");
+      const karinFeedbackTrigger = document.querySelector(".karin-feedback-trigger");
+      const karinFeedbackModal = document.querySelector(".karin-feedback-modal");
+      const karinFeedbackImage = document.querySelector(".karin-feedback-card img");
+      const karinFeedbackClose = document.querySelector(".karin-feedback-close");
+      const karinFeedbackOption = document.querySelector(".karin-feedback-option");
+      const karinFeedbackSubmit = document.querySelector(".karin-feedback-submit");
+      const karinFeedbackCancel = document.querySelector(".karin-feedback-cancel");
       const fallbackQuestion = karinQuestionBubble.textContent;
       let karinWordsPrepared = false;
 
@@ -241,6 +257,23 @@
         }, 3000);
       }
 
+      function openKarinFeedback() {
+        karinFeedbackImage.src = "./assets/feedback-mobile.svg";
+        karinFeedbackTrigger.classList.remove("is-active");
+        karinFeedbackModal.hidden = false;
+        document.body.classList.add("is-karin-feedback-open");
+      }
+
+      function closeKarinFeedback() {
+        karinFeedbackModal.hidden = true;
+        document.body.classList.remove("is-karin-feedback-open");
+      }
+
+      function activateKarinFeedback() {
+        karinFeedbackImage.src = "./assets/feedback-mobile-aktif.svg";
+        karinFeedbackTrigger.classList.add("is-active");
+      }
+
       karinSend.addEventListener("click", () => openKarinAnswer(karinInput.value));
       karinInput.addEventListener("keydown", (event) => {
         if (event.key === "Enter" && !event.shiftKey) {
@@ -256,6 +289,14 @@
           syncKarinComposer();
           openKarinAnswer(button.textContent);
         });
+      });
+      karinFeedbackTrigger?.addEventListener("click", openKarinFeedback);
+      karinFeedbackClose?.addEventListener("click", closeKarinFeedback);
+      karinFeedbackCancel?.addEventListener("click", closeKarinFeedback);
+      karinFeedbackSubmit?.addEventListener("click", closeKarinFeedback);
+      karinFeedbackOption?.addEventListener("click", activateKarinFeedback);
+      karinFeedbackModal?.addEventListener("click", (event) => {
+        if (event.target === karinFeedbackModal) closeKarinFeedback();
       });
       syncKarinComposer();
 
