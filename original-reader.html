@@ -425,6 +425,8 @@
         let touchMoved = false;
         let contentTouchStartY = 0;
         let contentTouchStartedAtBottom = false;
+        let contentTouchMoved = false;
+        let contentTouchIsSheetGesture = false;
 
         function hideHelper() {
           if (helper) helper.classList.add("is-hidden");
@@ -432,12 +434,35 @@
 
         function openSheet(slide) {
           hideHelper();
+          resetSheetDrag(slide);
           slide.classList.add("is-expanded");
-          slide.classList.remove("is-sheet-full");
+          slide.classList.remove("is-sheet-full", "is-closing");
         }
 
-        function closeSheet(slide) {
-          slide.classList.remove("is-expanded", "is-sheet-full");
+        function closeSheet(slide, animated = false) {
+          resetSheetDrag(slide);
+          if (animated && slide.classList.contains("is-expanded")) {
+            slide.classList.add("is-closing");
+            window.setTimeout(() => {
+              slide.classList.remove("is-expanded", "is-sheet-full", "is-closing");
+            }, 220);
+            return;
+          }
+          slide.classList.remove("is-expanded", "is-sheet-full", "is-closing");
+        }
+
+        function resetSheetDrag(slide) {
+          slide.classList.remove("is-dragging");
+          slide.style.removeProperty("--reel-sheet-up");
+          slide.style.removeProperty("--reel-sheet-down");
+        }
+
+        function syncSheetDrag(slide, deltaY) {
+          const dragUp = Math.min(Math.max(-deltaY / 220, 0), 1);
+          const dragDown = Math.min(Math.max(deltaY / 220, 0), 1);
+          slide.classList.add("is-dragging");
+          slide.style.setProperty("--reel-sheet-up", dragUp.toFixed(3));
+          slide.style.setProperty("--reel-sheet-down", dragDown.toFixed(3));
         }
 
         function isCopyAtBottom() {
@@ -466,8 +491,27 @@
             if (!slide.classList.contains("is-expanded")) return;
             contentTouchStartY = event.touches[0].clientY;
             contentTouchStartedAtBottom = isCopyAtBottom();
+            contentTouchMoved = false;
+            contentTouchIsSheetGesture = false;
           },
           { passive: true },
+        );
+
+        copy.addEventListener(
+          "touchmove",
+          (event) => {
+            if (event.target === handle) return;
+            const slide = copy.closest(".reel-slide");
+            if (!slide.classList.contains("is-expanded") || slide.classList.contains("is-sheet-full")) return;
+            const deltaY = event.touches[0].clientY - contentTouchStartY;
+
+            if (Math.abs(deltaY) <= 8 && !contentTouchMoved) return;
+            contentTouchMoved = true;
+            contentTouchIsSheetGesture = true;
+            syncSheetDrag(slide, deltaY);
+            if (event.cancelable) event.preventDefault();
+          },
+          { passive: false },
         );
 
         copy.addEventListener("touchend", (event) => {
@@ -475,6 +519,19 @@
           const slide = copy.closest(".reel-slide");
           if (!slide.classList.contains("is-expanded")) return;
           const deltaY = event.changedTouches[0].clientY - contentTouchStartY;
+
+          if (contentTouchIsSheetGesture && !slide.classList.contains("is-sheet-full")) {
+            resetSheetDrag(slide);
+            if (deltaY < -48) {
+              slide.classList.add("is-sheet-full");
+              return;
+            }
+
+            if (deltaY > 48) {
+              closeSheet(slide, true);
+            }
+            return;
+          }
 
           if (deltaY < -48 && contentTouchStartedAtBottom && isCopyAtBottom()) {
             goToNextSlide(slide);

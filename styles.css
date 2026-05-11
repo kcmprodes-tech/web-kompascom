@@ -3385,6 +3385,14 @@ img {
   border-radius: 12px;
   object-fit: contain;
   background: #000;
+  transform: scale(calc(1 - (var(--reel-sheet-up, 0) * 0.12) + (var(--reel-sheet-down, 0) * 0.2)));
+  transform-origin: top center;
+}
+
+.reel-slide.is-dragging > img,
+.reel-slide.is-dragging > video,
+.reel-slide.is-dragging .reel-copy {
+  transition: none;
 }
 
 .reel-slide.is-expanded .reel-top {
@@ -3412,7 +3420,6 @@ img {
   left: 0;
   z-index: 3;
   width: 100%;
-  height: calc(100% - 304px);
   max-height: none;
   min-height: 0;
   overflow-y: auto;
@@ -3421,7 +3428,9 @@ img {
   border-radius: 20px 20px 0 0;
   background: #2a2a2a;
   scrollbar-width: none;
-  transition: height 220ms ease;
+  transform: translateY(calc(var(--reel-sheet-down, 0) * 42vh));
+  transition: height 220ms ease, transform 220ms ease;
+  height: calc((100% - 304px) + (var(--reel-sheet-up, 0) * 280px));
 }
 
 .reel-slide.is-expanded .reel-copy::before {
@@ -3449,6 +3458,10 @@ img {
 
 .reel-slide.is-expanded.is-sheet-full .reel-copy {
   height: calc(100% - 24px);
+}
+
+.reel-slide.is-expanded.is-closing .reel-copy {
+  transform: translateY(110%);
 }
 
 .reel-slide.is-expanded .reel-copy::-webkit-scrollbar {
