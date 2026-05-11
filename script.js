@@ -61,6 +61,21 @@ const stories = [
   },
 ];
 
+const articleImages = [
+  "./assets/artikel/69aa8b28a8d41.jpg",
+  "./assets/artikel/69e2ee654c9fe.jpg",
+  "./assets/artikel/69f07cf452b05.jpg",
+  "./assets/artikel/69f9df10ecc49.jpeg",
+  "./assets/artikel/69f9f62da8c5e.jpeg",
+  "./assets/artikel/69fd3040d1921.png",
+  "./assets/artikel/69fdc103851c9.jpeg",
+  "./assets/artikel/69fef674cd45a.jpg",
+  "./assets/artikel/69ff045686fdc.jpeg",
+  "./assets/artikel/674f456bd4a46.jpg",
+  "./assets/artikel/6721b39dbc909.jpg",
+  "./assets/artikel/6723b39a05e45.jpg",
+];
+
 const updates = [
   {
     tag: "Megapolitan",
@@ -180,6 +195,18 @@ renderRail("shortRail", railItems);
 renderRail("moneyRail", [railItems[3], ...updates.slice(1, 4)]);
 renderRail("commentedRail", [stories[8], stories[1], updates[0]]);
 renderRail("photoRail", [stories[8], stories[4], updates[2]]);
+
+function randomizeArticleImages() {
+  const shuffledImages = [...articleImages].sort(() => Math.random() - 0.5);
+  const images = document.querySelectorAll(".page-shell article img, .kg-video-section > img");
+  images.forEach((image, index) => {
+    if (image.closest(".column-author")) return;
+    image.src = shuffledImages[index % shuffledImages.length];
+    image.loading = "lazy";
+  });
+}
+
+randomizeArticleImages();
 
 function enableArticleLinks() {
   document.querySelectorAll(".original-card").forEach((card) => {

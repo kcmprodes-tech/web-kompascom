@@ -55,6 +55,9 @@
             Halaman 1/9
           </div>
         </article>
+        <div class="reel-reader-helper" aria-hidden="true">
+          <span>Klik area paragraf untuk membaca semua paragraf artikel ini</span>
+        </div>
       </section>
 
       <section class="reel-slide reel-slide--two" aria-label="Halaman 2 dari 9">
@@ -417,12 +420,18 @@
 
       document.querySelectorAll(".reel-copy").forEach((copy) => {
         const handle = copy.querySelector(".reel-sheet-handle");
+        const helper = copy.closest(".reel-slide").querySelector(".reel-reader-helper");
         let touchStartY = 0;
         let touchMoved = false;
         let contentTouchStartY = 0;
         let contentTouchStartedAtBottom = false;
 
+        function hideHelper() {
+          if (helper) helper.classList.add("is-hidden");
+        }
+
         function openSheet(slide) {
+          hideHelper();
           slide.classList.add("is-expanded");
           slide.classList.remove("is-sheet-full");
         }
