@@ -425,6 +425,7 @@
         let touchMoved = false;
         let contentTouchStartY = 0;
         let contentTouchStartedAtBottom = false;
+        let contentTouchStartedAtTop = false;
         let contentTouchMoved = false;
         let contentTouchIsSheetGesture = false;
 
@@ -455,14 +456,29 @@
           slide.classList.remove("is-dragging");
           slide.style.removeProperty("--reel-sheet-up");
           slide.style.removeProperty("--reel-sheet-down");
+          slide.style.removeProperty("--reel-sheet-full-down");
+          slide.style.removeProperty("--reel-video-extra");
+        }
+
+        function settleHalfSheet(slide) {
+          slide.classList.remove("is-dragging", "is-sheet-full");
+          window.requestAnimationFrame(() => resetSheetDrag(slide));
+        }
+
+        function settleFullSheet(slide) {
+          slide.classList.remove("is-dragging");
+          slide.classList.add("is-sheet-full");
+          window.requestAnimationFrame(() => resetSheetDrag(slide));
         }
 
         function syncSheetDrag(slide, deltaY) {
           const dragUp = Math.min(Math.max(-deltaY / 220, 0), 1);
           const dragDown = Math.min(Math.max(deltaY / 220, 0), 1);
           slide.classList.add("is-dragging");
-          slide.style.setProperty("--reel-sheet-up", dragUp.toFixed(3));
-          slide.style.setProperty("--reel-sheet-down", dragDown.toFixed(3));
+          slide.style.setProperty("--reel-sheet-up", `${Math.round(dragUp * 280)}px`);
+          slide.style.setProperty("--reel-sheet-down", `${Math.round(dragDown * 84)}px`);
+          slide.style.setProperty("--reel-sheet-full-down", `${Math.round(dragDown * 280)}px`);
+          slide.style.setProperty("--reel-video-extra", `${Math.round(dragDown * 84)}px`);
         }
 
         function isCopyAtBottom() {
@@ -491,6 +507,7 @@
             if (!slide.classList.contains("is-expanded")) return;
             contentTouchStartY = event.touches[0].clientY;
             contentTouchStartedAtBottom = isCopyAtBottom();
+            contentTouchStartedAtTop = copy.scrollTop <= 4;
             contentTouchMoved = false;
             contentTouchIsSheetGesture = false;
           },
@@ -502,10 +519,12 @@
           (event) => {
             if (event.target === handle) return;
             const slide = copy.closest(".reel-slide");
-            if (!slide.classList.contains("is-expanded") || slide.classList.contains("is-sheet-full")) return;
+            if (!slide.classList.contains("is-expanded")) return;
             const deltaY = event.touches[0].clientY - contentTouchStartY;
 
             if (Math.abs(deltaY) <= 8 && !contentTouchMoved) return;
+            if (slide.classList.contains("is-sheet-full") && (deltaY <= 0 || (!contentTouchStartedAtTop && !contentTouchIsSheetGesture))) return;
+
             contentTouchMoved = true;
             contentTouchIsSheetGesture = true;
             syncSheetDrag(slide, deltaY);
@@ -520,16 +539,26 @@
           if (!slide.classList.contains("is-expanded")) return;
           const deltaY = event.changedTouches[0].clientY - contentTouchStartY;
 
-          if (contentTouchIsSheetGesture && !slide.classList.contains("is-sheet-full")) {
+          if (contentTouchIsSheetGesture && slide.classList.contains("is-sheet-full")) {
+            if (deltaY > 48) {
+              settleHalfSheet(slide);
+              return;
+            }
             resetSheetDrag(slide);
+            return;
+          }
+
+          if (contentTouchIsSheetGesture && !slide.classList.contains("is-sheet-full")) {
             if (deltaY < -48) {
-              slide.classList.add("is-sheet-full");
+              settleFullSheet(slide);
               return;
             }
 
             if (deltaY > 48) {
               closeSheet(slide, true);
+              return;
             }
+            resetSheetDrag(slide);
             return;
           }
 
@@ -586,12 +615,12 @@
           if (!slide.classList.contains("is-expanded")) return;
 
           if (deltaY < -48) {
-            slide.classList.add("is-sheet-full");
+            settleFullSheet(slide);
             return;
           }
 
           if (deltaY > 48 && slide.classList.contains("is-sheet-full")) {
-            slide.classList.remove("is-sheet-full");
+            settleHalfSheet(slide);
             return;
           }
 
