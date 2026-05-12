@@ -437,6 +437,8 @@
         let contentTouchStartedAtTop = false;
         let contentTouchMoved = false;
         let contentTouchIsSheetGesture = false;
+        let contentTouchShouldAdvance = false;
+        let contentPointerActive = false;
         let nextHelperTouchStartY = 0;
         let nextHelperWasShown = false;
 
@@ -541,11 +543,11 @@
         }
 
         function isCopyAtBottom() {
-          return copy.scrollTop + copy.clientHeight >= copy.scrollHeight - 4;
+          return copy.scrollHeight - copy.scrollTop - copy.clientHeight <= 72;
         }
 
         function isCopyScrollable() {
-          return copy.scrollHeight > copy.clientHeight + 4;
+          return copy.scrollHeight > copy.clientHeight + 72;
         }
 
         function shouldGoNextOnSwipeUp() {
@@ -616,11 +618,7 @@
             if (event.target === handle) return;
             const slide = copy.closest(".reel-slide");
             if (!slide.classList.contains("is-expanded")) return;
-            contentTouchStartY = event.touches[0].clientY;
-            contentTouchStartedAtBottom = isCopyAtBottom();
-            contentTouchStartedAtTop = copy.scrollTop <= 4;
-            contentTouchMoved = false;
-            contentTouchIsSheetGesture = false;
+            startContentGesture(event.touches[0].clientY);
           },
           { passive: true },
         );
@@ -629,35 +627,79 @@
           "touchmove",
           (event) => {
             if (event.target === handle) return;
-            const slide = copy.closest(".reel-slide");
-            if (!slide.classList.contains("is-expanded")) return;
-            const deltaY = event.touches[0].clientY - contentTouchStartY;
-
-            if (Math.abs(deltaY) <= 8 && !contentTouchMoved) return;
-            if (deltaY < 0 && shouldGoNextOnSwipeUp()) {
-              contentTouchStartedAtBottom = true;
-              contentTouchMoved = true;
-              contentTouchIsSheetGesture = true;
-              if (event.cancelable) event.preventDefault();
-              return;
-            }
-            if (slide.classList.contains("is-sheet-full") && (deltaY <= 0 || (!contentTouchStartedAtTop && !contentTouchIsSheetGesture))) return;
-
-            contentTouchMoved = true;
-            contentTouchIsSheetGesture = true;
-            syncSheetDrag(slide, deltaY);
-            if (event.cancelable) event.preventDefault();
+            moveContentGesture(event.touches[0].clientY, event);
           },
           { passive: false },
         );
 
         copy.addEventListener("touchend", (event) => {
           if (event.target === handle) return;
+          endContentGesture(event.changedTouches[0].clientY);
+        });
+
+        copy.addEventListener("pointerdown", (event) => {
+          if (event.pointerType === "touch" || event.target === handle) return;
           const slide = copy.closest(".reel-slide");
           if (!slide.classList.contains("is-expanded")) return;
-          const deltaY = event.changedTouches[0].clientY - contentTouchStartY;
+          contentPointerActive = true;
+          copy.setPointerCapture?.(event.pointerId);
+          startContentGesture(event.clientY);
+        });
 
-          if (deltaY < -48 && shouldGoNextOnSwipeUp()) {
+        copy.addEventListener("pointermove", (event) => {
+          if (!contentPointerActive || event.pointerType === "touch") return;
+          moveContentGesture(event.clientY, event);
+        });
+
+        copy.addEventListener("pointerup", (event) => {
+          if (!contentPointerActive || event.pointerType === "touch") return;
+          contentPointerActive = false;
+          copy.releasePointerCapture?.(event.pointerId);
+          endContentGesture(event.clientY);
+        });
+
+        copy.addEventListener("pointercancel", (event) => {
+          if (event.pointerType === "touch") return;
+          contentPointerActive = false;
+          resetSheetDrag(copy.closest(".reel-slide"));
+        });
+
+        function startContentGesture(clientY) {
+          contentTouchStartY = clientY;
+          contentTouchStartedAtBottom = isCopyAtBottom();
+          contentTouchStartedAtTop = copy.scrollTop <= 4;
+          contentTouchShouldAdvance = shouldGoNextOnSwipeUp();
+          contentTouchMoved = false;
+          contentTouchIsSheetGesture = false;
+        }
+
+        function moveContentGesture(clientY, event) {
+          const slide = copy.closest(".reel-slide");
+          if (!slide.classList.contains("is-expanded")) return;
+          const deltaY = clientY - contentTouchStartY;
+
+          if (Math.abs(deltaY) <= 8 && !contentTouchMoved) return;
+          if (deltaY < 0 && contentTouchShouldAdvance) {
+            contentTouchStartedAtBottom = true;
+            contentTouchMoved = true;
+            contentTouchIsSheetGesture = true;
+            if (event.cancelable) event.preventDefault();
+            return;
+          }
+          if (slide.classList.contains("is-sheet-full") && (deltaY <= 0 || (!contentTouchStartedAtTop && !contentTouchIsSheetGesture))) return;
+
+          contentTouchMoved = true;
+          contentTouchIsSheetGesture = true;
+          syncSheetDrag(slide, deltaY);
+          if (event.cancelable) event.preventDefault();
+        }
+
+        function endContentGesture(clientY) {
+          const slide = copy.closest(".reel-slide");
+          if (!slide.classList.contains("is-expanded")) return;
+          const deltaY = clientY - contentTouchStartY;
+
+          if (deltaY < -48 && contentTouchShouldAdvance) {
             goToNextSlide(slide);
             return;
           }
@@ -685,10 +727,10 @@
             return;
           }
 
-          if (deltaY < -48 && shouldGoNextOnSwipeUp()) {
+          if (deltaY < -48 && contentTouchShouldAdvance) {
             showNextHelper(slide);
           }
-        });
+        }
 
         copy.addEventListener("scroll", syncNextHelper, { passive: true });
 
