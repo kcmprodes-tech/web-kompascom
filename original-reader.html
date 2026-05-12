@@ -643,6 +643,11 @@
           const deltaY = event.changedTouches[0].clientY - contentTouchStartY;
 
           if (contentTouchIsSheetGesture && slide.classList.contains("is-sheet-full")) {
+            if (deltaY < -48 && contentTouchStartedAtBottom && isCopyAtBottom()) {
+              goToNextSlide(slide);
+              return;
+            }
+
             if (deltaY > 48) {
               settleHalfSheet(slide);
               return;
