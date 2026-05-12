@@ -544,6 +544,14 @@
           return copy.scrollTop + copy.clientHeight >= copy.scrollHeight - 4;
         }
 
+        function isCopyScrollable() {
+          return copy.scrollHeight > copy.clientHeight + 4;
+        }
+
+        function shouldGoNextOnSwipeUp() {
+          return !isCopyScrollable() || isCopyAtBottom();
+        }
+
         function goToNextSlide(slide) {
           const nextSlide = slide.nextElementSibling;
           if (!nextSlide || !nextSlide.classList.contains("reel-slide")) return;
@@ -626,6 +634,13 @@
             const deltaY = event.touches[0].clientY - contentTouchStartY;
 
             if (Math.abs(deltaY) <= 8 && !contentTouchMoved) return;
+            if (deltaY < 0 && shouldGoNextOnSwipeUp()) {
+              contentTouchStartedAtBottom = true;
+              contentTouchMoved = true;
+              contentTouchIsSheetGesture = true;
+              if (event.cancelable) event.preventDefault();
+              return;
+            }
             if (slide.classList.contains("is-sheet-full") && (deltaY <= 0 || (!contentTouchStartedAtTop && !contentTouchIsSheetGesture))) return;
 
             contentTouchMoved = true;
@@ -642,12 +657,12 @@
           if (!slide.classList.contains("is-expanded")) return;
           const deltaY = event.changedTouches[0].clientY - contentTouchStartY;
 
-          if (contentTouchIsSheetGesture && slide.classList.contains("is-sheet-full")) {
-            if (deltaY < -48 && contentTouchStartedAtBottom && isCopyAtBottom()) {
-              goToNextSlide(slide);
-              return;
-            }
+          if (deltaY < -48 && shouldGoNextOnSwipeUp()) {
+            goToNextSlide(slide);
+            return;
+          }
 
+          if (contentTouchIsSheetGesture && slide.classList.contains("is-sheet-full")) {
             if (deltaY > 48) {
               settleHalfSheet(slide);
               return;
@@ -670,7 +685,7 @@
             return;
           }
 
-          if (deltaY < -48 && contentTouchStartedAtBottom && isCopyAtBottom()) {
+          if (deltaY < -48 && shouldGoNextOnSwipeUp()) {
             showNextHelper(slide);
           }
         });
@@ -683,8 +698,12 @@
             const slide = copy.closest(".reel-slide");
             if (!slide.classList.contains("is-expanded")) return;
 
-            if (event.deltaY > 0 && isCopyAtBottom()) {
+            if (event.deltaY > 0 && shouldGoNextOnSwipeUp()) {
               event.preventDefault();
+              if (slide.classList.contains("is-sheet-full") || !isFirstSlide || nextHelperWasShown) {
+                goToNextSlide(slide);
+                return;
+              }
               showNextHelper(slide);
             }
           },
