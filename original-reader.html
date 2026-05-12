@@ -429,6 +429,7 @@
         const handle = copy.querySelector(".reel-sheet-handle");
         const helper = slideRoot.querySelector(".reel-reader-helper");
         const nextHelper = document.createElement("div");
+        const isFirstSlide = slideRoot === document.querySelector(".reel-slide");
         let touchStartY = 0;
         let touchMoved = false;
         let contentTouchStartY = 0;
@@ -437,6 +438,7 @@
         let contentTouchMoved = false;
         let contentTouchIsSheetGesture = false;
         let nextHelperTouchStartY = 0;
+        let nextHelperWasShown = false;
 
         nextHelper.className = "reel-next-helper";
         nextHelper.setAttribute("role", "button");
@@ -453,26 +455,16 @@
         function hideHelper() {
           if (!helper) return;
           helper.classList.add("is-hidden");
-          try {
-            sessionStorage.setItem("originalReaderHelperSeen", "1");
-          } catch (error) {
-            // Ignore storage limits in private browsing.
-          }
-        }
-
-        try {
-          if (sessionStorage.getItem("originalReaderHelperSeen") === "1") {
-            helper?.classList.add("is-hidden");
-          }
-        } catch (error) {
-          // Ignore storage limits in private browsing.
         }
 
         function showNextHelper(slide) {
           if (
+            isFirstSlide &&
+            !nextHelperWasShown &&
             slide.classList.contains("is-expanded") &&
             slide.nextElementSibling?.classList.contains("reel-slide")
           ) {
+            nextHelperWasShown = true;
             slide.classList.add("is-next-helper-visible");
           }
         }
@@ -495,6 +487,11 @@
           resetSheetDrag(slide);
           slide.classList.add("is-expanded");
           slide.classList.remove("is-sheet-full", "is-closing");
+          window.setTimeout(() => {
+            if (slide.classList.contains("is-expanded") && isCopyAtBottom()) {
+              showNextHelper(slide);
+            }
+          }, 360);
         }
 
         function closeSheet(slide, animated = false) {
@@ -555,11 +552,12 @@
 
         function syncNextHelper() {
           const slide = copy.closest(".reel-slide");
+          if (slide.classList.contains("is-next-helper-visible")) return;
+          if (!isFirstSlide || nextHelperWasShown) return;
           if (slide.classList.contains("is-expanded") && isCopyAtBottom()) {
             showNextHelper(slide);
             return;
           }
-          hideNextHelper(slide);
         }
 
         nextHelper.addEventListener("click", () => hideNextHelper(slideRoot));
