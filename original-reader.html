@@ -55,8 +55,11 @@
             Halaman 1/9
           </div>
         </article>
-        <div class="reel-reader-helper" aria-hidden="true">
-          <span>Klik area paragraf untuk membaca semua paragraf artikel ini</span>
+        <div class="reel-reader-helper" role="button" tabindex="0" aria-label="Tutup bantuan membaca">
+          <div>
+            <img src="./assets/click-1.svg" alt="" aria-hidden="true" />
+            <span>Klik area text untuk melihat semua paragraf</span>
+          </div>
         </div>
       </section>
 
@@ -432,6 +435,14 @@
         function hideHelper() {
           if (helper) helper.classList.add("is-hidden");
         }
+
+        helper?.addEventListener("click", hideHelper);
+        helper?.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            hideHelper();
+          }
+        });
 
         function openSheet(slide) {
           hideHelper();

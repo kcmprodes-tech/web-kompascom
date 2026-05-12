@@ -3309,56 +3309,44 @@ img {
 
 .reel-reader-helper {
   position: absolute;
-  right: 84px;
-  bottom: 196px;
-  left: 20px;
-  z-index: 4;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 44px;
-  padding: 10px 12px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 12px;
-  background: rgba(18, 18, 18, 0.78);
+  inset: 0;
+  z-index: 8;
+  display: grid;
+  place-items: center;
+  padding: 0 56px;
+  border: 0;
+  background: rgba(0, 0, 0, 0.7);
   color: #fff;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
   opacity: 0;
+  cursor: pointer;
+  animation: reelHelperIn 320ms ease 500ms both;
+}
+
+.reel-reader-helper > div {
+  display: grid;
+  justify-items: center;
+  margin-top: 186px;
+  text-align: center;
   pointer-events: none;
-  transform: translateY(6px);
-  animation: reelHelperIn 420ms ease 650ms both, reelHelperPulse 1.8s ease-in-out 1.2s infinite;
 }
 
-.reel-reader-helper::before {
-  flex: 0 0 20px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background:
-    no-repeat center / 12px 12px url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 1.5V10.5M6 10.5L2.5 7M6 10.5L9.5 7' stroke='white' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"),
-    rgba(255, 255, 255, 0.18);
-  content: "";
-}
-
-.reel-reader-helper::after {
-  position: absolute;
-  bottom: -7px;
-  left: 26px;
-  width: 14px;
-  height: 14px;
-  background: rgba(18, 18, 18, 0.78);
-  border-right: 1px solid rgba(255, 255, 255, 0.16);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
-  transform: rotate(45deg);
-  content: "";
+.reel-reader-helper img {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+  transform-origin: 50% 78%;
+  animation: reelHelperTap 1.35s ease-in-out 800ms infinite;
 }
 
 .reel-reader-helper span {
+  display: block;
+  width: 238px;
+  margin-top: 14px;
   color: #fff;
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 400;
   letter-spacing: -0.2px;
-  line-height: 17px;
+  line-height: 20px;
 }
 
 .reel-reader-helper.is-hidden,
@@ -3378,9 +3366,9 @@ img {
 
 .reel-slide.is-expanded > img,
 .reel-slide.is-expanded > video {
-  flex: 0 0 calc(280px + (var(--reel-sheet-down, 0) * 84px));
+  flex: 0 0 calc(280px + var(--reel-video-extra, 0px));
   width: 162px;
-  height: calc(280px + (var(--reel-sheet-down, 0) * 84px));
+  height: calc(280px + var(--reel-video-extra, 0px));
   margin: 0 auto;
   border-radius: 12px;
   object-fit: contain;
@@ -3433,7 +3421,7 @@ img {
   background: #2a2a2a;
   scrollbar-width: none;
   transition: height 220ms ease, transform 220ms ease;
-  height: calc((100% - 304px) + (var(--reel-sheet-up, 0) * 280px) - (var(--reel-sheet-down, 0) * 84px));
+  height: calc((100% - 304px) + var(--reel-sheet-up, 0px) - var(--reel-sheet-down, 0px));
 }
 
 .reel-slide.is-expanded .reel-copy::before {
@@ -3464,7 +3452,7 @@ img {
 }
 
 .reel-slide.is-expanded.is-sheet-full.is-dragging .reel-copy {
-  height: calc((100% - 24px) - (var(--reel-sheet-down, 0) * 280px));
+  height: calc((100% - 24px) - var(--reel-sheet-full-down, 0px));
 }
 
 .reel-slide.is-expanded.is-closing .reel-copy {
@@ -3540,20 +3528,30 @@ img {
 }
 
 @keyframes reelHelperIn {
+  from {
+    opacity: 0;
+  }
+
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
-@keyframes reelHelperPulse {
+@keyframes reelHelperTap {
   0%,
   100% {
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
+    transform: translateY(0) scale(1);
+    opacity: 1;
   }
 
-  50% {
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28), 0 0 0 5px rgba(255, 255, 255, 0.08);
+  42% {
+    transform: translateY(8px) scale(0.88);
+    opacity: 0.82;
+  }
+
+  68% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
   }
 }
 
