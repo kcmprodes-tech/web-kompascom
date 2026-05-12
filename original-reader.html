@@ -405,25 +405,30 @@
     </main>
     <script>
       document.querySelectorAll(".reel-slide").forEach((slide) => {
-        const video = slide.querySelector("video");
-        if (!video) return;
+        const media = slide.querySelector("video, img");
+        if (!media) return;
         slide.classList.add("is-video-loading");
 
-        function markVideoReady() {
+        function markMediaReady() {
           slide.classList.remove("is-video-loading");
         }
 
-        if (video.readyState >= 3) {
-          markVideoReady();
+        if (media.tagName === "VIDEO" && media.readyState >= 3) {
+          markMediaReady();
+        } else if (media.tagName === "IMG" && media.complete) {
+          markMediaReady();
         } else {
-          video.addEventListener("loadeddata", markVideoReady, { once: true });
-          video.addEventListener("canplay", markVideoReady, { once: true });
+          media.addEventListener("loadeddata", markMediaReady, { once: true });
+          media.addEventListener("canplay", markMediaReady, { once: true });
+          media.addEventListener("load", markMediaReady, { once: true });
         }
       });
 
       document.querySelectorAll(".reel-copy").forEach((copy) => {
+        const slideRoot = copy.closest(".reel-slide");
         const handle = copy.querySelector(".reel-sheet-handle");
-        const helper = copy.closest(".reel-slide").querySelector(".reel-reader-helper");
+        const helper = slideRoot.querySelector(".reel-reader-helper");
+        const nextHelper = document.createElement("div");
         let touchStartY = 0;
         let touchMoved = false;
         let contentTouchStartY = 0;
@@ -431,9 +436,49 @@
         let contentTouchStartedAtTop = false;
         let contentTouchMoved = false;
         let contentTouchIsSheetGesture = false;
+        let nextHelperTouchStartY = 0;
+
+        nextHelper.className = "reel-next-helper";
+        nextHelper.setAttribute("role", "button");
+        nextHelper.setAttribute("tabindex", "0");
+        nextHelper.setAttribute("aria-label", "Lanjut ke halaman berikutnya");
+        nextHelper.innerHTML = `
+          <div>
+            <img src="./assets/scroll-up.svg" alt="" aria-hidden="true" />
+            <span>Geser ke atas untuk melihat halaman selanjutnya</span>
+          </div>
+        `;
+        slideRoot.appendChild(nextHelper);
 
         function hideHelper() {
-          if (helper) helper.classList.add("is-hidden");
+          if (!helper) return;
+          helper.classList.add("is-hidden");
+          try {
+            sessionStorage.setItem("originalReaderHelperSeen", "1");
+          } catch (error) {
+            // Ignore storage limits in private browsing.
+          }
+        }
+
+        try {
+          if (sessionStorage.getItem("originalReaderHelperSeen") === "1") {
+            helper?.classList.add("is-hidden");
+          }
+        } catch (error) {
+          // Ignore storage limits in private browsing.
+        }
+
+        function showNextHelper(slide) {
+          if (
+            slide.classList.contains("is-expanded") &&
+            slide.nextElementSibling?.classList.contains("reel-slide")
+          ) {
+            slide.classList.add("is-next-helper-visible");
+          }
+        }
+
+        function hideNextHelper(slide) {
+          slide.classList.remove("is-next-helper-visible");
         }
 
         helper?.addEventListener("click", hideHelper);
@@ -446,12 +491,14 @@
 
         function openSheet(slide) {
           hideHelper();
+          hideNextHelper(slide);
           resetSheetDrag(slide);
           slide.classList.add("is-expanded");
           slide.classList.remove("is-sheet-full", "is-closing");
         }
 
         function closeSheet(slide, animated = false) {
+          hideNextHelper(slide);
           resetSheetDrag(slide);
           if (animated && slide.classList.contains("is-expanded")) {
             slide.classList.add("is-closing");
@@ -472,11 +519,13 @@
         }
 
         function settleHalfSheet(slide) {
+          hideNextHelper(slide);
           slide.classList.remove("is-dragging", "is-sheet-full");
           window.requestAnimationFrame(() => resetSheetDrag(slide));
         }
 
         function settleFullSheet(slide) {
+          hideNextHelper(slide);
           slide.classList.remove("is-dragging");
           slide.classList.add("is-sheet-full");
           window.requestAnimationFrame(() => resetSheetDrag(slide));
@@ -499,9 +548,42 @@
         function goToNextSlide(slide) {
           const nextSlide = slide.nextElementSibling;
           if (!nextSlide || !nextSlide.classList.contains("reel-slide")) return;
+          hideNextHelper(slide);
           closeSheet(slide);
           nextSlide.scrollIntoView({ behavior: "smooth", block: "start" });
         }
+
+        function syncNextHelper() {
+          const slide = copy.closest(".reel-slide");
+          if (slide.classList.contains("is-expanded") && isCopyAtBottom()) {
+            showNextHelper(slide);
+            return;
+          }
+          hideNextHelper(slide);
+        }
+
+        nextHelper.addEventListener("click", () => hideNextHelper(slideRoot));
+        nextHelper.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            hideNextHelper(slideRoot);
+          }
+        });
+        nextHelper.addEventListener(
+          "touchstart",
+          (event) => {
+            nextHelperTouchStartY = event.touches[0].clientY;
+          },
+          { passive: true },
+        );
+        nextHelper.addEventListener("touchend", (event) => {
+          const deltaY = event.changedTouches[0].clientY - nextHelperTouchStartY;
+          if (deltaY < -42) {
+            hideNextHelper(slideRoot);
+            goToNextSlide(slideRoot);
+            return;
+          }
+        });
 
         copy.addEventListener("click", () => {
           const slide = copy.closest(".reel-slide");
@@ -574,9 +656,11 @@
           }
 
           if (deltaY < -48 && contentTouchStartedAtBottom && isCopyAtBottom()) {
-            goToNextSlide(slide);
+            showNextHelper(slide);
           }
         });
+
+        copy.addEventListener("scroll", syncNextHelper, { passive: true });
 
         copy.addEventListener(
           "wheel",
@@ -586,7 +670,7 @@
 
             if (event.deltaY > 0 && isCopyAtBottom()) {
               event.preventDefault();
-              goToNextSlide(slide);
+              showNextHelper(slide);
             }
           },
           { passive: false },
