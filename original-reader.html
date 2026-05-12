@@ -428,8 +428,8 @@
         const slideRoot = copy.closest(".reel-slide");
         const handle = copy.querySelector(".reel-sheet-handle");
         const helper = slideRoot.querySelector(".reel-reader-helper");
-        const nextHelper = document.createElement("div");
         const isFirstSlide = slideRoot === document.querySelector(".reel-slide");
+        const nextHelper = isFirstSlide ? document.createElement("div") : null;
         let touchStartY = 0;
         let touchMoved = false;
         let contentTouchStartY = 0;
@@ -440,17 +440,19 @@
         let nextHelperTouchStartY = 0;
         let nextHelperWasShown = false;
 
-        nextHelper.className = "reel-next-helper";
-        nextHelper.setAttribute("role", "button");
-        nextHelper.setAttribute("tabindex", "0");
-        nextHelper.setAttribute("aria-label", "Lanjut ke halaman berikutnya");
-        nextHelper.innerHTML = `
-          <div>
-            <img src="./assets/scroll-up.svg" alt="" aria-hidden="true" />
-            <span>Geser ke atas untuk melihat halaman selanjutnya</span>
-          </div>
-        `;
-        slideRoot.appendChild(nextHelper);
+        if (nextHelper) {
+          nextHelper.className = "reel-next-helper";
+          nextHelper.setAttribute("role", "button");
+          nextHelper.setAttribute("tabindex", "0");
+          nextHelper.setAttribute("aria-label", "Lanjut ke halaman berikutnya");
+          nextHelper.innerHTML = `
+            <div>
+              <img src="./assets/scroll-up.svg" alt="" aria-hidden="true" />
+              <span>Geser ke atas untuk melihat halaman selanjutnya</span>
+            </div>
+          `;
+          slideRoot.appendChild(nextHelper);
+        }
 
         function hideHelper() {
           if (!helper) return;
@@ -560,21 +562,31 @@
           }
         }
 
-        nextHelper.addEventListener("click", () => hideNextHelper(slideRoot));
-        nextHelper.addEventListener("keydown", (event) => {
+        nextHelper?.addEventListener("click", () => hideNextHelper(slideRoot));
+        nextHelper?.addEventListener("keydown", (event) => {
           if (event.key === "Enter" || event.key === " ") {
             event.preventDefault();
             hideNextHelper(slideRoot);
           }
         });
-        nextHelper.addEventListener(
+        nextHelper?.addEventListener(
           "touchstart",
           (event) => {
             nextHelperTouchStartY = event.touches[0].clientY;
           },
           { passive: true },
         );
-        nextHelper.addEventListener("touchend", (event) => {
+        nextHelper?.addEventListener(
+          "touchmove",
+          (event) => {
+            const deltaY = event.touches[0].clientY - nextHelperTouchStartY;
+            if (Math.abs(deltaY) > 8) {
+              hideNextHelper(slideRoot);
+            }
+          },
+          { passive: true },
+        );
+        nextHelper?.addEventListener("touchend", (event) => {
           const deltaY = event.changedTouches[0].clientY - nextHelperTouchStartY;
           if (deltaY < -42) {
             hideNextHelper(slideRoot);

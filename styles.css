@@ -3433,28 +3433,25 @@ img {
   left: 20px;
   z-index: 3;
   max-height: 52vh;
-  overflow: hidden;
+  overflow: visible;
   cursor: pointer;
 }
 
 .reel-copy::after {
-  position: fixed;
-  right: 50%;
-  bottom: 0;
-  left: auto;
+  position: absolute;
+  right: -64px;
+  bottom: -72px;
+  left: -20px;
   z-index: 2;
-  width: min(100%, 430px);
-  height: 126px;
+  height: 108px;
   background: linear-gradient(
     180deg,
     rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.12) 22%,
-    rgba(0, 0, 0, 0.34) 46%,
-    rgba(0, 0, 0, 0.62) 72%,
-    rgba(0, 0, 0, 0.82) 100%
+    rgba(0, 0, 0, 0.1) 28%,
+    rgba(0, 0, 0, 0.32) 56%,
+    rgba(0, 0, 0, 0.7) 100%
   );
   pointer-events: none;
-  transform: translateX(50%);
   content: "";
 }
 
