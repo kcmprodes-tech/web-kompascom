@@ -210,15 +210,17 @@ randomizeArticleImages();
 
 function enableArticleLinks() {
   document.querySelectorAll(".original-card").forEach((card) => {
+    const originalPart = card.dataset.originalPart;
+    const originalHref = originalPart ? `./original-detail.html?part=${originalPart}` : "./original-detail.html";
     card.setAttribute("role", "link");
     card.setAttribute("tabindex", "0");
     card.addEventListener("click", () => {
-      window.location.href = "./original-detail.html";
+      window.location.href = originalHref;
     });
     card.addEventListener("keydown", (event) => {
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
-        window.location.href = "./original-detail.html";
+        window.location.href = originalHref;
       }
     });
   });

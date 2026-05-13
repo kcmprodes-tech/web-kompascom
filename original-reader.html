@@ -404,6 +404,13 @@
       </section>
     </main>
     <script>
+      const readerParams = new URLSearchParams(window.location.search);
+      const isReaderExperiment = readerParams.get("part") === "3";
+
+      if (isReaderExperiment) {
+        document.body.classList.add("reader-experiment-b");
+      }
+
       document.querySelectorAll(".reel-slide").forEach((slide) => {
         const media = slide.querySelector("video, img");
         if (!media) return;
@@ -429,12 +436,17 @@
         const handle = copy.querySelector(".reel-sheet-handle");
         const helper = slideRoot.querySelector(".reel-reader-helper");
         const isFirstSlide = slideRoot === document.querySelector(".reel-slide");
+
+        if (isReaderExperiment) {
+          setupExperimentReader(copy, slideRoot, helper);
+          return;
+        }
+
         const nextHelper = isFirstSlide ? document.createElement("div") : null;
         let touchStartY = 0;
         let touchMoved = false;
         let contentTouchStartY = 0;
         let contentTouchStartedAtBottom = false;
-        let contentTouchStartedAtTop = false;
         let contentTouchMoved = false;
         let contentTouchIsSheetGesture = false;
         let contentTouchShouldAdvance = false;
@@ -513,9 +525,7 @@
 
         function resetSheetDrag(slide) {
           slide.classList.remove("is-dragging");
-          slide.style.removeProperty("--reel-sheet-up");
           slide.style.removeProperty("--reel-sheet-down");
-          slide.style.removeProperty("--reel-sheet-full-down");
           slide.style.removeProperty("--reel-video-extra");
         }
 
@@ -525,20 +535,10 @@
           window.requestAnimationFrame(() => resetSheetDrag(slide));
         }
 
-        function settleFullSheet(slide) {
-          hideNextHelper(slide);
-          slide.classList.remove("is-dragging");
-          slide.classList.add("is-sheet-full");
-          window.requestAnimationFrame(() => resetSheetDrag(slide));
-        }
-
         function syncSheetDrag(slide, deltaY) {
-          const dragUp = Math.min(Math.max(-deltaY / 220, 0), 1);
           const dragDown = Math.min(Math.max(deltaY / 220, 0), 1);
           slide.classList.add("is-dragging");
-          slide.style.setProperty("--reel-sheet-up", `${Math.round(dragUp * 280)}px`);
           slide.style.setProperty("--reel-sheet-down", `${Math.round(dragDown * 84)}px`);
-          slide.style.setProperty("--reel-sheet-full-down", `${Math.round(dragDown * 280)}px`);
           slide.style.setProperty("--reel-video-extra", `${Math.round(dragDown * 84)}px`);
         }
 
@@ -667,7 +667,6 @@
         function startContentGesture(clientY) {
           contentTouchStartY = clientY;
           contentTouchStartedAtBottom = isCopyAtBottom();
-          contentTouchStartedAtTop = copy.scrollTop <= 4;
           contentTouchShouldAdvance = shouldGoNextOnSwipeUp();
           contentTouchMoved = false;
           contentTouchIsSheetGesture = false;
@@ -686,7 +685,7 @@
             if (event.cancelable) event.preventDefault();
             return;
           }
-          if (slide.classList.contains("is-sheet-full") && (deltaY <= 0 || (!contentTouchStartedAtTop && !contentTouchIsSheetGesture))) return;
+          if (deltaY < 0) return;
 
           contentTouchMoved = true;
           contentTouchIsSheetGesture = true;
@@ -704,21 +703,7 @@
             return;
           }
 
-          if (contentTouchIsSheetGesture && slide.classList.contains("is-sheet-full")) {
-            if (deltaY > 48) {
-              settleHalfSheet(slide);
-              return;
-            }
-            resetSheetDrag(slide);
-            return;
-          }
-
-          if (contentTouchIsSheetGesture && !slide.classList.contains("is-sheet-full")) {
-            if (deltaY < -48) {
-              settleFullSheet(slide);
-              return;
-            }
-
+          if (contentTouchIsSheetGesture) {
             if (deltaY > 48) {
               closeSheet(slide, true);
               return;
@@ -740,9 +725,9 @@
             const slide = copy.closest(".reel-slide");
             if (!slide.classList.contains("is-expanded")) return;
 
-            if (event.deltaY > 0 && shouldGoNextOnSwipeUp()) {
-              event.preventDefault();
-              if (slide.classList.contains("is-sheet-full") || !isFirstSlide || nextHelperWasShown) {
+          if (event.deltaY > 0 && shouldGoNextOnSwipeUp()) {
+            event.preventDefault();
+              if (!isFirstSlide || nextHelperWasShown) {
                 goToNextSlide(slide);
                 return;
               }
@@ -785,21 +770,123 @@
 
           if (!slide.classList.contains("is-expanded")) return;
 
-          if (deltaY < -48) {
-            settleFullSheet(slide);
-            return;
-          }
-
-          if (deltaY > 48 && slide.classList.contains("is-sheet-full")) {
-            settleHalfSheet(slide);
-            return;
-          }
-
           if (deltaY > 48) {
-            closeSheet(slide);
+            closeSheet(slide, true);
           }
         });
       });
+
+      function setupExperimentReader(copy, slide, helper) {
+        let startY = 0;
+        let pointerActive = false;
+        let shouldAdvanceOnSwipe = false;
+
+        helper?.classList.add("is-hidden");
+
+        function isCopyAtEnd() {
+          return copy.scrollHeight - copy.scrollTop - copy.clientHeight <= 48;
+        }
+
+        function isCopyScrollable() {
+          return copy.scrollHeight > copy.clientHeight + 48;
+        }
+
+        function goToNextExperimentSlide() {
+          const nextSlide = slide.nextElementSibling;
+          if (!nextSlide || !nextSlide.classList.contains("reel-slide")) return;
+          slide.classList.remove("is-copy-foreground-expanded");
+          const nextCopy = nextSlide.querySelector(".reel-copy");
+          if (nextCopy) nextCopy.scrollTop = 0;
+          nextSlide.scrollIntoView({ behavior: "smooth", block: "start" });
+          window.setTimeout(() => {
+            nextSlide.classList.add("is-copy-foreground-expanded");
+          }, 260);
+        }
+
+        function expandCopy() {
+          slide.classList.add("is-copy-foreground-expanded");
+        }
+
+        function collapseCopy() {
+          slide.classList.remove("is-copy-foreground-expanded");
+        }
+
+        function startGesture(clientY) {
+          startY = clientY;
+          shouldAdvanceOnSwipe = slide.classList.contains("is-copy-foreground-expanded") && (!isCopyScrollable() || isCopyAtEnd());
+        }
+
+        function moveGesture(clientY, event) {
+          const deltaY = clientY - startY;
+          if (Math.abs(deltaY) < 12) return;
+
+          if (deltaY < -48 && shouldAdvanceOnSwipe) {
+            goToNextExperimentSlide();
+            if (event.cancelable) event.preventDefault();
+            return;
+          }
+
+          if (deltaY < -32 && !slide.classList.contains("is-copy-foreground-expanded")) {
+            expandCopy();
+            if (event.cancelable) event.preventDefault();
+            return;
+          }
+
+          if (deltaY > 32 && slide.classList.contains("is-copy-foreground-expanded") && copy.scrollTop <= 4) {
+            collapseCopy();
+            if (event.cancelable) event.preventDefault();
+          }
+        }
+
+        copy.addEventListener(
+          "touchstart",
+          (event) => {
+            startGesture(event.touches[0].clientY);
+          },
+          { passive: true },
+        );
+
+        copy.addEventListener(
+          "touchmove",
+          (event) => {
+            moveGesture(event.touches[0].clientY, event);
+          },
+          { passive: false },
+        );
+
+        copy.addEventListener("pointerdown", (event) => {
+          if (event.pointerType === "touch") return;
+          pointerActive = true;
+          copy.setPointerCapture?.(event.pointerId);
+          startGesture(event.clientY);
+        });
+
+        copy.addEventListener("pointermove", (event) => {
+          if (!pointerActive || event.pointerType === "touch") return;
+          moveGesture(event.clientY, event);
+        });
+
+        copy.addEventListener("pointerup", (event) => {
+          if (event.pointerType === "touch") return;
+          pointerActive = false;
+          copy.releasePointerCapture?.(event.pointerId);
+        });
+
+        copy.addEventListener("pointercancel", () => {
+          pointerActive = false;
+        });
+
+        copy.addEventListener(
+          "wheel",
+          (event) => {
+            if (event.deltaY > 0 && slide.classList.contains("is-copy-foreground-expanded") && (!isCopyScrollable() || isCopyAtEnd())) {
+              event.preventDefault();
+              goToNextExperimentSlide();
+            }
+          },
+          { passive: false },
+        );
+      }
     </script>
   </body>
 </html>

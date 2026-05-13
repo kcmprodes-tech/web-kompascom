@@ -1521,13 +1521,11 @@ img {
 }
 
 .original-card__media--red {
-  background: url("./assets/original-tato-dayak.png") center / cover;
+  background: url("./assets/tato-dayak1.png") center / cover;
 }
 
 .original-card__media--green {
-  background:
-    linear-gradient(135deg, rgba(187, 247, 208, 0.9), rgba(191, 219, 254, 0.9)),
-    url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=500&q=80") center / cover;
+  background: url("./assets/tato-dayak2.png") center / cover;
 }
 
 .original-card__media--blue {
@@ -1552,17 +1550,17 @@ img {
   position: absolute;
   top: 16px;
   left: 16px;
-  min-width: 74px;
-  height: 36px;
+  min-width: 0;
+  height: 28px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0 16px;
+  padding: 0 6px;
   border-radius: 999px;
   background: #fff;
   color: var(--font-primary);
-  font-size: 22px;
-  font-weight: 800;
+  font-size: 14px;
+  font-weight: 600;
   letter-spacing: -0.2px;
 }
 
@@ -3403,6 +3401,10 @@ img {
   line-height: 13px;
 }
 
+.reel-actions {
+  display: none;
+}
+
 .reel-actions button:first-child {
   display: none;
 }
@@ -3486,6 +3488,45 @@ img {
 
 .reel-copy p:nth-of-type(n + 3),
 .reel-copy .reel-page-chip {
+  display: none;
+}
+
+.reader-experiment-b .reel-copy {
+  right: 20px;
+  bottom: 34px;
+  left: 20px;
+  z-index: 4;
+  max-height: 30vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0 0 72px;
+  scrollbar-width: none;
+  transition: max-height 260ms ease, bottom 260ms ease;
+  cursor: grab;
+}
+
+.reader-experiment-b .reel-copy::-webkit-scrollbar {
+  display: none;
+}
+
+.reader-experiment-b .reel-slide.is-copy-foreground-expanded .reel-copy {
+  bottom: 32px;
+  max-height: 50vh;
+}
+
+.reader-experiment-b .reel-copy p {
+  display: block;
+  margin: 0 0 14px;
+  overflow: visible;
+  -webkit-line-clamp: unset;
+}
+
+.reader-experiment-b .reel-copy .reel-page-chip {
+  display: none;
+}
+
+.reader-experiment-b .reel-sheet-handle,
+.reader-experiment-b .reel-reader-helper {
   display: none;
 }
 
@@ -3609,12 +3650,6 @@ img {
   transition: none;
 }
 
-.reel-slide.is-expanded.is-sheet-full.is-dragging > img,
-.reel-slide.is-expanded.is-sheet-full.is-dragging > video {
-  flex-basis: 280px;
-  height: 280px;
-}
-
 .reel-slide.is-expanded .reel-top {
   top: 16px;
   right: 16px;
@@ -3649,7 +3684,7 @@ img {
   background: #2a2a2a;
   scrollbar-width: none;
   transition: height 220ms ease, transform 220ms ease;
-  height: calc((100% - 304px) + var(--reel-sheet-up, 0px) - var(--reel-sheet-down, 0px));
+  height: calc((100% - 304px) - var(--reel-sheet-down, 0px));
 }
 
 .reel-slide.is-expanded .reel-copy::before {
@@ -3677,14 +3712,6 @@ img {
     url("data:image/svg+xml,%3Csvg width='80' height='4' viewBox='0 0 80 4' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='80' height='4' rx='2' fill='%23D8D8D8'/%3E%3C/svg%3E") center 8px / 80px 4px no-repeat,
     #2a2a2a;
   touch-action: none;
-}
-
-.reel-slide.is-expanded.is-sheet-full .reel-copy {
-  height: calc(100% - 24px);
-}
-
-.reel-slide.is-expanded.is-sheet-full.is-dragging .reel-copy {
-  height: calc((100% - 24px) - var(--reel-sheet-full-down, 0px));
 }
 
 .reel-slide.is-expanded.is-closing .reel-copy {
@@ -4146,10 +4173,11 @@ img {
   .original-card__media span {
     top: 10px;
     left: 10px;
-    min-width: 54px;
-    height: 26px;
-    padding: 0 10px;
-    font-size: 15px;
+    min-width: 0;
+    height: 28px;
+    padding: 0 6px;
+    font-size: 14px;
+    font-weight: 600;
   }
 
   .original-card__media strong {

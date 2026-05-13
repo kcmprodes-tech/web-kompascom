@@ -46,11 +46,11 @@
     <main class="page-shell original-detail-page">
       <section class="original-hero-index">
         <div class="original-hero-index__media">
-          <img src="./assets/original-detail-main-banner.png" alt="Tato Dayak Terakhir" />
+          <img id="originalHeroImage" src="./assets/tato-dayak1.png" alt="Tato Dayak Terakhir" />
           <div class="original-hero-index__content">
             <h1>Tato Dayak Terakhir</h1>
-            <p>Bagian 1, Mengenal Pak Ding</p>
-            <a href="./original-reader.html">Mulai membaca</a>
+            <p id="originalHeroPart">Bagian 4, Tato Dayak Terakhir</p>
+            <a id="originalReaderLink" href="./original-reader.html?part=4">Mulai membaca</a>
             <div class="original-hero-index__actions" aria-label="Aksi Orisinal">
               <button type="button">
                 <svg viewBox="0 0 256 256" aria-hidden="true"><path d="M80 112v104M80 112l40-72c10-18 36-9 33 12l-7 44h58c18 0 31 17 27 35l-16 64c-3 13-15 21-28 21H80M40 112h40v104H40z"/></svg>
@@ -193,6 +193,26 @@
       const premiumBlocker = document.querySelector(".premium-blocker");
       const premiumBlockerClose = document.querySelector(".premium-blocker__close");
       const premiumBlockerBackdrop = document.querySelector(".premium-blocker__backdrop");
+      const originalHeroImage = document.querySelector("#originalHeroImage");
+      const originalHeroPart = document.querySelector("#originalHeroPart");
+      const originalReaderLink = document.querySelector("#originalReaderLink");
+      const originalParams = new URLSearchParams(window.location.search);
+      const originalPart = originalParams.get("part") === "3" ? "3" : "4";
+      const originalPartData = {
+        3: {
+          image: "./assets/tato-dayak2.png",
+          part: "Bagian 3, Tato Dayak Terakhir",
+        },
+        4: {
+          image: "./assets/tato-dayak1.png",
+          part: "Bagian 4, Tato Dayak Terakhir",
+        },
+      };
+      const activeOriginal = originalPartData[originalPart];
+
+      originalHeroImage.src = activeOriginal.image;
+      originalHeroPart.textContent = activeOriginal.part;
+      originalReaderLink.href = `./original-reader.html?part=${originalPart}`;
 
       originalTabs.forEach((tab) => {
         tab.addEventListener("click", (event) => {
