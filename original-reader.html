@@ -437,14 +437,12 @@
         const helper = slideRoot.querySelector(".reel-reader-helper");
         const isFirstSlide = slideRoot === document.querySelector(".reel-slide");
 
-        if (isReaderExperiment) {
-          setupExperimentReader(copy, slideRoot, helper);
-          return;
-        }
-
-        const nextHelper = isFirstSlide ? document.createElement("div") : null;
+        const nextHelper = isFirstSlide && !isReaderExperiment ? document.createElement("div") : null;
         let touchStartY = 0;
         let touchMoved = false;
+        let normalTouchStartY = 0;
+        let normalTouchShouldAdvance = false;
+        let normalTouchMoved = false;
         let contentTouchStartY = 0;
         let contentTouchStartedAtBottom = false;
         let contentTouchMoved = false;
@@ -476,6 +474,7 @@
         function showNextHelper(slide) {
           if (
             isFirstSlide &&
+            !isReaderExperiment &&
             !nextHelperWasShown &&
             slide.classList.contains("is-expanded") &&
             slide.nextElementSibling?.classList.contains("reel-slide")
@@ -617,6 +616,12 @@
           (event) => {
             if (event.target === handle) return;
             const slide = copy.closest(".reel-slide");
+            if (isReaderExperiment && !slide.classList.contains("is-expanded")) {
+              normalTouchStartY = event.touches[0].clientY;
+              normalTouchShouldAdvance = shouldGoNextOnSwipeUp();
+              normalTouchMoved = false;
+              return;
+            }
             if (!slide.classList.contains("is-expanded")) return;
             startContentGesture(event.touches[0].clientY);
           },
@@ -627,6 +632,15 @@
           "touchmove",
           (event) => {
             if (event.target === handle) return;
+            const slide = copy.closest(".reel-slide");
+            if (isReaderExperiment && !slide.classList.contains("is-expanded")) {
+              const deltaY = event.touches[0].clientY - normalTouchStartY;
+              if (Math.abs(deltaY) > 8) normalTouchMoved = true;
+              if (deltaY < -48 && (normalTouchShouldAdvance || shouldGoNextOnSwipeUp())) {
+                if (event.cancelable) event.preventDefault();
+              }
+              return;
+            }
             moveContentGesture(event.touches[0].clientY, event);
           },
           { passive: false },
@@ -634,12 +648,28 @@
 
         copy.addEventListener("touchend", (event) => {
           if (event.target === handle) return;
+          const slide = copy.closest(".reel-slide");
+          if (isReaderExperiment && !slide.classList.contains("is-expanded")) {
+            const deltaY = event.changedTouches[0].clientY - normalTouchStartY;
+            if (deltaY < -48 && (normalTouchShouldAdvance || shouldGoNextOnSwipeUp())) {
+              goToNextSlide(slide);
+            }
+            return;
+          }
           endContentGesture(event.changedTouches[0].clientY);
         });
 
         copy.addEventListener("pointerdown", (event) => {
           if (event.pointerType === "touch" || event.target === handle) return;
           const slide = copy.closest(".reel-slide");
+          if (isReaderExperiment && !slide.classList.contains("is-expanded")) {
+            contentPointerActive = true;
+            normalTouchStartY = event.clientY;
+            normalTouchShouldAdvance = shouldGoNextOnSwipeUp();
+            normalTouchMoved = false;
+            copy.setPointerCapture?.(event.pointerId);
+            return;
+          }
           if (!slide.classList.contains("is-expanded")) return;
           contentPointerActive = true;
           copy.setPointerCapture?.(event.pointerId);
@@ -648,11 +678,30 @@
 
         copy.addEventListener("pointermove", (event) => {
           if (!contentPointerActive || event.pointerType === "touch") return;
+          const slide = copy.closest(".reel-slide");
+          if (isReaderExperiment && !slide.classList.contains("is-expanded")) {
+            const deltaY = event.clientY - normalTouchStartY;
+            if (Math.abs(deltaY) > 8) normalTouchMoved = true;
+            if (deltaY < -48 && (normalTouchShouldAdvance || shouldGoNextOnSwipeUp())) {
+              if (event.cancelable) event.preventDefault();
+            }
+            return;
+          }
           moveContentGesture(event.clientY, event);
         });
 
         copy.addEventListener("pointerup", (event) => {
           if (!contentPointerActive || event.pointerType === "touch") return;
+          const slide = copy.closest(".reel-slide");
+          if (isReaderExperiment && !slide.classList.contains("is-expanded")) {
+            const deltaY = event.clientY - normalTouchStartY;
+            contentPointerActive = false;
+            copy.releasePointerCapture?.(event.pointerId);
+            if (deltaY < -48 && (normalTouchShouldAdvance || shouldGoNextOnSwipeUp())) {
+              goToNextSlide(slide);
+            }
+            return;
+          }
           contentPointerActive = false;
           copy.releasePointerCapture?.(event.pointerId);
           endContentGesture(event.clientY);
@@ -723,11 +772,18 @@
           "wheel",
           (event) => {
             const slide = copy.closest(".reel-slide");
+            if (isReaderExperiment && !slide.classList.contains("is-expanded")) {
+              if (event.deltaY > 0 && shouldGoNextOnSwipeUp()) {
+                event.preventDefault();
+                goToNextSlide(slide);
+              }
+              return;
+            }
             if (!slide.classList.contains("is-expanded")) return;
 
-          if (event.deltaY > 0 && shouldGoNextOnSwipeUp()) {
+            if (event.deltaY > 0 && shouldGoNextOnSwipeUp()) {
             event.preventDefault();
-              if (!isFirstSlide || nextHelperWasShown) {
+              if (isReaderExperiment || !isFirstSlide || nextHelperWasShown) {
                 goToNextSlide(slide);
                 return;
               }
