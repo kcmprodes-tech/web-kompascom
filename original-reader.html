@@ -795,12 +795,10 @@
           const nextSlide = slide.nextElementSibling;
           if (!nextSlide || !nextSlide.classList.contains("reel-slide")) return;
           slide.classList.remove("is-copy-foreground-expanded");
+          nextSlide.classList.remove("is-copy-foreground-expanded");
           const nextCopy = nextSlide.querySelector(".reel-copy");
           if (nextCopy) nextCopy.scrollTop = 0;
           nextSlide.scrollIntoView({ behavior: "smooth", block: "start" });
-          window.setTimeout(() => {
-            nextSlide.classList.add("is-copy-foreground-expanded");
-          }, 260);
         }
 
         function expandCopy() {
