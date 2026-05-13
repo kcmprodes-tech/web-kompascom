@@ -727,6 +727,13 @@
           const deltaY = clientY - contentTouchStartY;
 
           if (Math.abs(deltaY) <= 8 && !contentTouchMoved) return;
+          if (isReaderExperiment) {
+            contentTouchMoved = true;
+            if (deltaY < -48 && (contentTouchShouldAdvance || shouldGoNextOnSwipeUp())) {
+              if (event.cancelable) event.preventDefault();
+            }
+            return;
+          }
           if (deltaY < 0 && contentTouchShouldAdvance) {
             contentTouchStartedAtBottom = true;
             contentTouchMoved = true;
@@ -746,6 +753,13 @@
           const slide = copy.closest(".reel-slide");
           if (!slide.classList.contains("is-expanded")) return;
           const deltaY = clientY - contentTouchStartY;
+
+          if (isReaderExperiment) {
+            if (deltaY < -48 && (contentTouchShouldAdvance || shouldGoNextOnSwipeUp())) {
+              goToNextSlide(slide);
+            }
+            return;
+          }
 
           if (deltaY < -48 && contentTouchShouldAdvance) {
             goToNextSlide(slide);
