@@ -449,6 +449,7 @@
         let contentTouchIsSheetGesture = false;
         let contentTouchShouldAdvance = false;
         let contentPointerActive = false;
+        let experimentSheetNextReady = false;
         let nextHelperTouchStartY = 0;
         let nextHelperWasShown = false;
 
@@ -558,6 +559,7 @@
           if (!nextSlide || !nextSlide.classList.contains("reel-slide")) return;
           hideNextHelper(slide);
           closeSheet(slide);
+          experimentSheetNextReady = false;
           nextSlide.scrollIntoView({ behavior: "smooth", block: "start" });
         }
 
@@ -729,6 +731,9 @@
           if (Math.abs(deltaY) <= 8 && !contentTouchMoved) return;
           if (isReaderExperiment) {
             contentTouchMoved = true;
+            if (!shouldGoNextOnSwipeUp()) {
+              experimentSheetNextReady = false;
+            }
             if (deltaY < -48 && (contentTouchShouldAdvance || shouldGoNextOnSwipeUp())) {
               if (event.cancelable) event.preventDefault();
             }
@@ -756,6 +761,10 @@
 
           if (isReaderExperiment) {
             if (deltaY < -48 && (contentTouchShouldAdvance || shouldGoNextOnSwipeUp())) {
+              if (!experimentSheetNextReady) {
+                experimentSheetNextReady = true;
+                return;
+              }
               goToNextSlide(slide);
             }
             return;
@@ -797,11 +806,17 @@
 
             if (event.deltaY > 0 && shouldGoNextOnSwipeUp()) {
             event.preventDefault();
+              if (isReaderExperiment && !experimentSheetNextReady) {
+                experimentSheetNextReady = true;
+                return;
+              }
               if (isReaderExperiment || !isFirstSlide || nextHelperWasShown) {
                 goToNextSlide(slide);
                 return;
               }
               showNextHelper(slide);
+            } else if (isReaderExperiment) {
+              experimentSheetNextReady = false;
             }
           },
           { passive: false },
