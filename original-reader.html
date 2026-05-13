@@ -780,6 +780,7 @@
         let startY = 0;
         let pointerActive = false;
         let shouldAdvanceOnSwipe = false;
+        let suppressClick = false;
 
         helper?.classList.add("is-hidden");
 
@@ -801,8 +802,8 @@
           nextSlide.scrollIntoView({ behavior: "smooth", block: "start" });
         }
 
-        function expandCopy() {
-          slide.classList.add("is-copy-foreground-expanded");
+        function toggleCopy() {
+          slide.classList.toggle("is-copy-foreground-expanded");
         }
 
         function startGesture(clientY) {
@@ -813,23 +814,27 @@
         function moveGesture(clientY, event) {
           const deltaY = clientY - startY;
           if (Math.abs(deltaY) < 12) return;
+          suppressClick = true;
 
-          if (deltaY < -48 && shouldAdvanceOnSwipe) {
+          if (deltaY < -48 && (shouldAdvanceOnSwipe || isCopyAtEnd())) {
             goToNextExperimentSlide();
-            if (event.cancelable) event.preventDefault();
-            return;
-          }
-
-          if (deltaY < -32 && !slide.classList.contains("is-copy-foreground-expanded")) {
-            expandCopy();
             if (event.cancelable) event.preventDefault();
             return;
           }
         }
 
+        copy.addEventListener("click", () => {
+          if (suppressClick) {
+            suppressClick = false;
+            return;
+          }
+          toggleCopy();
+        });
+
         copy.addEventListener(
           "touchstart",
           (event) => {
+            suppressClick = false;
             startGesture(event.touches[0].clientY);
           },
           { passive: true },
@@ -846,6 +851,7 @@
         copy.addEventListener("pointerdown", (event) => {
           if (event.pointerType === "touch") return;
           pointerActive = true;
+          suppressClick = false;
           copy.setPointerCapture?.(event.pointerId);
           startGesture(event.clientY);
         });
