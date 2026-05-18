@@ -469,3 +469,10 @@ homeAudio?.addEventListener("timeupdate", updateHomeAudioPlayer);
 homeAudio?.addEventListener("play", updateHomeAudioPlayer);
 homeAudio?.addEventListener("pause", updateHomeAudioPlayer);
 homeAudio?.addEventListener("ended", updateHomeAudioPlayer);
+
+const stickyBottomAd = document.querySelector("[data-sticky-bottom-ad]");
+const stickyBottomAdClose = document.querySelector("[data-sticky-bottom-ad-close]");
+
+stickyBottomAdClose?.addEventListener("click", () => {
+  stickyBottomAd?.classList.add("is-hidden");
+});

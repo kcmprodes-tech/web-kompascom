@@ -513,6 +513,7 @@
         function closeSheet(slide, animated = false) {
           hideNextHelper(slide);
           resetSheetDrag(slide);
+          experimentSheetNextReady = false;
           if (animated && slide.classList.contains("is-expanded")) {
             slide.classList.add("is-closing");
             window.setTimeout(() => {
@@ -522,6 +523,13 @@
           }
           slide.classList.remove("is-expanded", "is-sheet-full", "is-closing");
         }
+
+        slideRoot.addEventListener("click", (event) => {
+          if (!isReaderExperiment) return;
+          if (!slideRoot.classList.contains("is-expanded")) return;
+          if (copy.contains(event.target)) return;
+          closeSheet(slideRoot, true);
+        });
 
         function resetSheetDrag(slide) {
           slide.classList.remove("is-dragging");
