@@ -860,10 +860,10 @@ img {
 
 .wp-aio-heading {
   position: absolute;
-  left: 11.89%;
+  left: 7.5%;
   top: 9.62%;
   z-index: 1;
-  width: 78%;
+  width: 84%;
   padding: 0 0 5px;
   background: linear-gradient(105deg, #eef1fe 0%, #f5f3fd 54%, #fbf6fb 100%);
   pointer-events: none;
@@ -876,13 +876,13 @@ img {
 .wp-aio-heading__title {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 7px;
 }
 
 .wp-aio-heading__title img {
-  flex: 0 0 20px;
-  width: 20px;
-  height: 20px;
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
   object-fit: contain;
 }
 
@@ -894,7 +894,7 @@ img {
 }
 
 .wp-aio-heading p {
-  margin: 1px 0 0;
+  margin: 1px 0 0 25px;
   color: #6d7077;
   font: 400 10px/13px Inter, sans-serif;
   letter-spacing: 0;
