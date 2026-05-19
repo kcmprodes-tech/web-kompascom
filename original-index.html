@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orisinal - Kompas.com</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="original-index-topbar" aria-label="Header Orisinal">
+      <a class="brand" href="./index.html" aria-label="Kompas.com">
+        <img class="brand-logo" src="./assets/isolation_mode.png" alt="Kompas.com" />
+      </a>
+      <div class="original-index-topbar__actions">
+        <a class="original-index-topbar__k" href="./index.html" aria-label="Kompas">
+          <span>K</span>
+        </a>
+        <a class="original-index-topbar__dm" href="./account.html" aria-label="Akun">DM</a>
+        <a class="header-icon header-icon--image" href="./membership.html" aria-label="Kompas Plus">
+          <img src="./assets/icon-subs.png" alt="" aria-hidden="true" />
+        </a>
+        <button class="original-index-topbar__menu" type="button" aria-label="Cari">
+          <i></i>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <main class="original-index-page">
+      <section class="original-index-heading">
+        <img src="./assets/kompas-triangle.png" alt="" aria-hidden="true" />
+        <h1>Orisinal</h1>
+      </section>
+
+      <section class="original-index-hero">
+        <img src="./assets/tato-dayak1.png" alt="Tato Dayak: Suara Penjaga Tradisi" />
+        <div class="original-index-hero__content">
+          <p>Laya <span>Langkah Budaya Merawat Indonesia</span></p>
+          <h2>Tato Dayak:<br />Suara Penjaga Tradisi</h2>
+          <p>
+            Dalam budaya Dayak, setiap tato menyimpan cerita tentang keberanian, status sosial, hingga hubungan manusia
+            dengan alam dan roh
+          </p>
+          <a href="./original-detail.html?part=4">Baca sekarang</a>
+        </div>
+      </section>
+
+      <section class="original-index-latest">
+        <h2>Terbaru</h2>
+        <div class="original-grid">
+          <article class="original-card" data-original-part="4">
+            <div class="original-card__media original-card__media--red">
+              <span>Laya</span>
+              <strong>Tato Dayak Terakhir</strong>
+            </div>
+            <h3>Bagian 4: Tato Dayak Terakhir</h3>
+            <p>Tato Dayak Series</p>
+            <time>2 jam lalu</time>
+          </article>
+          <article class="original-card" data-original-part="3">
+            <div class="original-card__media original-card__media--green">
+              <span>Laya</span>
+              <strong>Tato Dayak Terakhir</strong>
+            </div>
+            <h3>Bagian 3: Tato Dayak Terakhir</h3>
+            <p>Tato Dayak Series</p>
+            <time>2 jam lalu</time>
+          </article>
+          <article class="original-card">
+            <div class="original-card__media original-card__media--blue">
+              <span>JEO</span>
+              <strong>Kota Masa Depan</strong>
+            </div>
+            <h3>Kota Masa Depan dan Transportasi Publik</h3>
+            <p>JEO Series</p>
+            <time>3 jam lalu</time>
+          </article>
+          <article class="original-card">
+            <div class="original-card__media original-card__media--amber">
+              <span>VIK</span>
+              <strong>Jejak Rempah</strong>
+            </div>
+            <h3>Jejak Rempah yang Mengubah Jalur Dagang</h3>
+            <p>Visual Interaktif</p>
+            <time>5 jam lalu</time>
+          </article>
+          <article class="original-card">
+            <div class="original-card__media original-card__media--purple">
+              <span>Laya</span>
+              <strong>Hutan Terakhir</strong>
+            </div>
+            <h3>Hutan Terakhir dan Cerita Masyarakat Adat</h3>
+            <p>Laya Series</p>
+            <time>7 jam lalu</time>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      document.querySelectorAll(".original-card").forEach((card) => {
+        const originalPart = card.dataset.originalPart;
+        const originalHref = originalPart ? `./original-detail.html?part=${originalPart}` : "./original-detail.html";
+        card.setAttribute("role", "link");
+        card.setAttribute("tabindex", "0");
+        card.addEventListener("click", () => {
+          window.location.href = originalHref;
+        });
+        card.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            window.location.href = originalHref;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

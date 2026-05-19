@@ -163,10 +163,11 @@
         },
       };
       const activeOriginal = originalPartData[originalPart];
+      const readerPart = originalPart === "4" ? "3" : originalPart;
 
       originalHeroImage.src = activeOriginal.image;
       originalHeroPart.textContent = activeOriginal.part;
-      originalReaderLink.href = `./original-reader.html?part=${originalPart}`;
+      originalReaderLink.href = `./original-reader.html?part=${readerPart}`;
 
       originalTabs.forEach((tab) => {
         tab.addEventListener("click", (event) => {
