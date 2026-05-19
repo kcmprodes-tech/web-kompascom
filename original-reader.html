@@ -12,7 +12,13 @@
   <body class="reels-body">
     <main class="reels-reader" aria-label="Tato Dayak reader">
       <section class="reel-slide reel-slide--one" aria-label="Halaman 1 dari 9">
-        <video src="./assets/tato-dayak-eps-1.mp4" poster="./assets/original-tato-dayak-banner.png" autoplay muted loop playsinline></video>
+        <iframe
+          class="reel-youtube"
+          src="https://www.youtube-nocookie.com/embed/Ggq0E3DzPLk?autoplay=1&mute=1&playsinline=1&loop=1&playlist=Ggq0E3DzPLk&controls=0&disablekb=1&fs=0&iv_load_policy=3&modestbranding=1&rel=0"
+          title="Tato Dayak - Slide 1"
+          allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+          allowfullscreen
+        ></iframe>
         <div class="reel-top">
           <div>
             <img src="./assets/kompas-triangle.png" alt="" aria-hidden="true" />
@@ -412,7 +418,7 @@
       }
 
       document.querySelectorAll(".reel-slide").forEach((slide) => {
-        const media = slide.querySelector("video, img");
+        const media = slide.querySelector("video, iframe, img");
         if (!media) return;
         slide.classList.add("is-video-loading");
 
@@ -420,7 +426,10 @@
           slide.classList.remove("is-video-loading");
         }
 
-        if (media.tagName === "VIDEO" && media.readyState >= 3) {
+        if (media.tagName === "IFRAME") {
+          media.addEventListener("load", markMediaReady, { once: true });
+          window.setTimeout(markMediaReady, 1200);
+        } else if (media.tagName === "VIDEO" && media.readyState >= 3) {
           markMediaReady();
         } else if (media.tagName === "IMG" && media.complete) {
           markMediaReady();
