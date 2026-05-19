@@ -142,11 +142,11 @@
       <section class="wp-aio-section" aria-label="Update pilihan">
         <img class="wp-aio-artwork" src="./assets/wp-aio.svg" alt="" aria-hidden="true" />
         <div class="wp-aio-heading" aria-hidden="true">
-          <div class="wp-aio-heading__title">
-            <img src="./assets/karinlogo.svg" alt="" aria-hidden="true" />
+          <img class="wp-aio-heading__logo" src="./assets/karinlogo.svg" alt="" aria-hidden="true" />
+          <div class="wp-aio-heading__copy">
             <h2>Ringkasan Berita</h2>
+            <p>oleh <strong>Karin</strong>, Kompas.com Artificial Intelligence</p>
           </div>
-          <p>oleh <strong>Karin</strong>, Kompas.com Artificial Intelligence</p>
         </div>
         <button class="wp-aio-expand" type="button" aria-label="Baca semua update pilihan"></button>
         <button class="wp-aio-close" type="button" aria-label="Tutup update pilihan"></button>
@@ -940,6 +940,54 @@
         </svg>
       </button>
     </aside>
+
+    <button class="plus-floating-button" type="button" data-plus-floating-button aria-label="Gabung Plus">
+      <img src="./assets/icon-subs.png" alt="" aria-hidden="true" />
+      <span>Gabung Plus</span>
+    </button>
+
+    <section class="plus-plan-sheet" data-plus-plan-sheet aria-label="Pilihan paket Kompas.com Plus" aria-hidden="true">
+      <div class="plus-plan-sheet__panel" role="dialog" aria-modal="true" aria-labelledby="plusPlanTitle">
+        <button class="plus-plan-sheet__close" type="button" data-plus-plan-close aria-label="Tutup">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 6l12 12M18 6 6 18" />
+          </svg>
+        </button>
+        <div class="plus-plan-sheet__content">
+          <img class="plus-plan-logo" src="./assets/logo-max.png" alt="KOMPAS.com+ MAX" />
+          <h2 id="plusPlanTitle">Tanpa Iklan. Lebih Lengkap. Penuh Insight.</h2>
+          <p class="plus-plan-intro">Dengan bergabung Membership, Kamu juga memberikan dukungan untuk jurnalisme jernih.</p>
+
+          <ul class="plus-benefit-list">
+            <li>Tanpa iklan, load lebih cepat</li>
+            <li>Artikel utuh dalam 1 halaman</li>
+            <li>Akses konten Orisinal tanpa batasan</li>
+            <li>Podcast eksklusif MorningBrief</li>
+            <li>Newsletter eksklusif penuh insight</li>
+            <li>Akses game Croz/Word tanpa batasan</li>
+          </ul>
+
+          <h3>Pilih Paket</h3>
+          <label class="plus-package-card plus-package-card--selected">
+            <span>Best value</span>
+            <input type="radio" name="plus-package" checked />
+            <strong>KOMPAS.com PLUS Tahunan</strong>
+            <del>Rp99.000</del>
+            <b>Rp59.000/tahun</b>
+            <em>atau hanya Rp5.000/bulan</em>
+          </label>
+          <label class="plus-package-card">
+            <input type="radio" name="plus-package" />
+            <strong>KOMPAS.com+ MAX Bulanan</strong>
+            <del>Rp39.000</del>
+            <b>Rp19.000/bulan</b>
+          </label>
+        </div>
+        <div class="plus-plan-cta">
+          <button type="button">Gabung Sekarang</button>
+        </div>
+      </div>
+    </section>
 
     <script src="./script.js"></script>
   </body>
