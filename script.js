@@ -445,7 +445,7 @@ wpAioPlay?.addEventListener("click", (event) => {
   event.preventDefault();
   event.stopPropagation();
   audioMode = "aio";
-  showHomeAudioPip();
+  openHomeAudioPlayer(event);
   playAioSpeech();
 });
 
