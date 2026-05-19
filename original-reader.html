@@ -14,6 +14,8 @@
       <section class="reel-slide reel-slide--one" aria-label="Halaman 1 dari 9">
         <iframe
           class="reel-youtube"
+          data-local-fallback="./assets/tato-dayak-eps-1.mp4"
+          data-local-poster="./assets/original-tato-dayak-banner.png"
           src="https://www.youtube-nocookie.com/embed/Ggq0E3DzPLk?autoplay=1&mute=1&playsinline=1&loop=1&playlist=Ggq0E3DzPLk&controls=0&disablekb=1&fs=0&iv_load_policy=3&modestbranding=1&rel=0"
           title="Tato Dayak - Slide 1"
           allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
@@ -415,6 +417,19 @@
 
       if (isReaderExperiment) {
         document.body.classList.add("reader-experiment-b");
+      }
+
+      if (window.location.protocol === "file:") {
+        document.querySelectorAll(".reel-youtube[data-local-fallback]").forEach((iframe) => {
+          const fallback = document.createElement("video");
+          fallback.src = iframe.dataset.localFallback;
+          fallback.poster = iframe.dataset.localPoster || "";
+          fallback.autoplay = true;
+          fallback.muted = true;
+          fallback.loop = true;
+          fallback.playsInline = true;
+          iframe.replaceWith(fallback);
+        });
       }
 
       document.querySelectorAll(".reel-slide").forEach((slide) => {
