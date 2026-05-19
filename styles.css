@@ -1751,8 +1751,8 @@ img {
   display: flex;
   align-items: center;
   gap: 4px;
-  height: 68px;
-  padding: 0 16px;
+  height: 74px;
+  padding: 32px 16px 10px;
   background: #fff;
 }
 
