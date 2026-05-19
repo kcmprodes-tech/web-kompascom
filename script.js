@@ -257,7 +257,7 @@ enableArticleLinks();
 
 const headlineAudioButton = document.querySelector(".headline-badge");
 const wpAioSection = document.querySelector(".wp-aio-section");
-const wpAioImage = document.querySelector(".wp-aio-section img");
+const wpAioImage = document.querySelector(".wp-aio-artwork");
 const wpAioExpand = document.querySelector(".wp-aio-expand");
 const wpAioClose = document.querySelector(".wp-aio-close");
 const wpAioHide = document.querySelector(".wp-aio-hide");

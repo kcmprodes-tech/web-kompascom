@@ -845,7 +845,7 @@ img {
   line-height: 0;
 }
 
-.wp-aio-section img {
+.wp-aio-artwork {
   display: block;
   width: 100%;
   height: auto;
@@ -854,7 +854,7 @@ img {
   border-radius: 12px;
 }
 
-.wp-aio-section.is-open img {
+.wp-aio-section.is-open .wp-aio-artwork {
   aspect-ratio: 328 / 780;
 }
 
@@ -871,6 +871,19 @@ img {
 
 .wp-aio-section.is-open .wp-aio-heading {
   top: 1.92%;
+}
+
+.wp-aio-heading__title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.wp-aio-heading__title img {
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
 }
 
 .wp-aio-heading h2 {
@@ -1618,8 +1631,9 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  width: min(100%, 430px);
   height: 80px;
+  margin: 0 auto;
   padding: 30px 16px 10px;
   background: #000;
 }
@@ -1727,8 +1741,9 @@ img {
 }
 
 .original-index-page {
-  width: 100%;
+  width: min(100%, 430px);
   min-height: 100vh;
+  margin: 0 auto;
   background: #fff;
 }
 
@@ -1758,13 +1773,14 @@ img {
 
 .original-index-hero {
   position: relative;
-  min-height: 450px;
+  aspect-ratio: 4 / 5;
+  min-height: 0;
   overflow: hidden;
   background: #000;
   color: #fff;
 }
 
-.original-index-hero img {
+.original-index-hero__image {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -1794,42 +1810,26 @@ img {
   text-align: center;
 }
 
-.original-index-hero__content p:first-child {
-  align-self: flex-start;
-  margin: 0 0 184px;
-  color: #fff;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 20px;
-  font-style: italic;
-  font-weight: 700;
-  letter-spacing: -0.2px;
-  line-height: 18px;
-  text-align: left;
-}
-
-.original-index-hero__content p:first-child span {
-  display: inline-block;
-  max-width: 132px;
-  margin-left: 4px;
-  font-family: Inter, sans-serif;
-  font-size: 8px;
-  font-style: normal;
-  font-weight: 800;
-  line-height: 10px;
-  text-transform: uppercase;
-  vertical-align: middle;
+.original-index-hero__logo {
+  position: absolute;
+  top: 18px;
+  left: 24px;
+  z-index: 1;
+  width: 156px;
+  height: auto;
+  object-fit: contain;
 }
 
 .original-index-hero__content h2 {
   margin: 0;
   color: #fff;
   font-size: 26px;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: -0.4px;
   line-height: 31px;
 }
 
-.original-index-hero__content p:nth-of-type(2) {
+.original-index-hero__content > p {
   max-width: 310px;
   margin: 12px 0 20px;
   color: #fff;
