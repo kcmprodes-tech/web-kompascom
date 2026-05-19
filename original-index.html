@@ -84,7 +84,7 @@
     <script>
       document.querySelectorAll(".original-card").forEach((card) => {
         const originalPart = card.dataset.originalPart;
-        const originalHref = originalPart ? `./original-detail.html?part=${originalPart}` : "./original-detail.html";
+        const originalHref = originalPart ? `./laya-read.html?part=${originalPart}` : "./original-detail.html";
         card.setAttribute("role", "link");
         card.setAttribute("tabindex", "0");
         card.addEventListener("click", () => {
