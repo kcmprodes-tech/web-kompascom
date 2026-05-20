@@ -139,19 +139,20 @@
         </div>
       </section>
 
-      <section class="wp-aio-section" aria-label="Update pilihan">
-        <img class="wp-aio-artwork" src="./assets/wp-aio.svg" alt="" aria-hidden="true" />
-        <div class="wp-aio-heading" aria-hidden="true">
+      <section class="wp-aio-section" aria-label="Ringkasan Berita">
+        <div class="wp-aio-heading">
           <img class="wp-aio-heading__logo" src="./assets/karinlogo.svg" alt="" aria-hidden="true" />
           <div class="wp-aio-heading__copy">
-            <h2>Ringkasan Berita</h2>
-            <p>oleh <strong>Karin</strong>, Kompas.com Artificial Intelligence</p>
+            <h2>Ringkasan berita</h2>
+            <p>Kompas.com Artificial Intellegence</p>
           </div>
         </div>
-        <button class="wp-aio-expand" type="button" aria-label="Baca semua update pilihan"></button>
-        <button class="wp-aio-close" type="button" aria-label="Tutup update pilihan"></button>
-        <button class="wp-aio-hide" type="button" aria-label="Sembunyikan update pilihan"></button>
-        <button class="wp-aio-play" type="button" aria-label="Dengarkan update pilihan"></button>
+        <button class="wp-aio-close" type="button" aria-label="Tutup ringkasan berita">
+          <span aria-hidden="true"></span>
+        </button>
+        <p class="wp-aio-preview">
+          Pemulihan Bencana Aceh &amp; Sumatera: DPR menggelar rapat bersama Menteri Keuangan dan Gubernur Aceh (Mualem) untuk membahas anggaran pemulihan pascabencana Sumatera.
+        </p>
         <div class="wp-aio-stories" aria-hidden="true">
           <p>Pemulihan Bencana Aceh &amp; Sumatera: DPR menggelar rapat bersama Menteri Keuangan dan Gubernur Aceh (Mualem) untuk membahas anggaran pemulihan pascabencana Sumatera. <a href="#">Sumber berita</a></p>
           <p>Peringatan Hari Satpam: Bangsa Indonesia memperingati Hari Satpam setiap tanggal 30 Desember. <a href="#">Sumber berita</a></p>
@@ -159,11 +160,18 @@
           <p>Mutasi Polri: Kapolri merotasi sejumlah pejabat utama menjelang akhir tahun, termasuk mutasi 36 Komisaris Besar (Kombes) Polisi. <a href="#">Sumber berita</a></p>
           <p>Kecelakaan Kapal di Labuan Bajo: Proses pencarian korban hilang warga negara Spanyol dalam insiden tenggelamnya kapal di Labuan Bajo masih terus dilakukan. <a href="#">Sumber berita</a></p>
         </div>
-        <a class="wp-aio-source wp-aio-source-1" href="#" aria-label="Sumber berita pertama">Sumber berita</a>
-        <a class="wp-aio-source wp-aio-source-2" href="#" aria-label="Sumber berita kedua">Sumber berita</a>
-        <a class="wp-aio-source wp-aio-source-3" href="#" aria-label="Sumber berita ketiga">Sumber berita</a>
-        <a class="wp-aio-source wp-aio-source-4" href="#" aria-label="Sumber berita keempat">Sumber berita</a>
-        <a class="wp-aio-source wp-aio-source-5" href="#" aria-label="Sumber berita kelima">Sumber berita</a>
+        <div class="wp-aio-actions">
+          <button class="wp-aio-expand" type="button" aria-label="Baca semua ringkasan berita" aria-expanded="false">Selengkapnya</button>
+          <button class="wp-aio-hide" type="button" aria-label="Sembunyikan ringkasan berita">Sembunyikan</button>
+          <button class="wp-aio-play" type="button" aria-label="Dengarkan ringkasan berita">
+            <span aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                <path d="M4 13a8 8 0 0 1 16 0v5a2 2 0 0 1-2 2h-2v-7h4m-16 0h4v7H6a2 2 0 0 1-2-2v-5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <strong>Dengarkan</strong>
+          </button>
+        </div>
       </section>
 
       <section class="headline-section">

@@ -257,7 +257,6 @@ enableArticleLinks();
 
 const headlineAudioButton = document.querySelector(".headline-badge");
 const wpAioSection = document.querySelector(".wp-aio-section");
-const wpAioImage = document.querySelector(".wp-aio-artwork");
 const wpAioExpand = document.querySelector(".wp-aio-expand");
 const wpAioClose = document.querySelector(".wp-aio-close");
 const wpAioHide = document.querySelector(".wp-aio-hide");
@@ -424,15 +423,13 @@ headlineAudioButton?.addEventListener("click", (event) => {
 });
 
 wpAioExpand?.addEventListener("click", () => {
-  if (!wpAioSection || !wpAioImage) return;
-  wpAioImage.src = "./assets/wp-aio-open.svg";
+  if (!wpAioSection) return;
   wpAioSection.classList.add("is-open");
   wpAioExpand.setAttribute("aria-expanded", "true");
 });
 
 function collapseWpAio() {
-  if (!wpAioSection || !wpAioImage) return;
-  wpAioImage.src = "./assets/wp-aio.svg";
+  if (!wpAioSection) return;
   wpAioSection.classList.remove("is-open");
   wpAioExpand?.setAttribute("aria-expanded", "false");
 }
