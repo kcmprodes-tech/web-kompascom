@@ -478,9 +478,14 @@ const plusPlanClose = document.querySelector("[data-plus-plan-close]");
 const homeWpAioSection = document.querySelector(".wp-aio-section");
 const homeOriginalSection = document.querySelector(".original-section");
 let plusFloatingHasShined = false;
+let plusFloatingDismissed = false;
 
 function updatePlusFloatingButton() {
   if (!plusFloatingButton || !homeWpAioSection || !homeOriginalSection) return;
+  if (plusFloatingDismissed) {
+    plusFloatingButton.classList.remove("is-visible");
+    return;
+  }
   const wpAioBottom = homeWpAioSection.getBoundingClientRect().bottom;
   const originalTop = homeOriginalSection.getBoundingClientRect().top;
   const shouldShow = wpAioBottom < 0 && originalTop > window.innerHeight * 0.36;
@@ -503,6 +508,8 @@ function closePlusPlanSheet() {
   plusPlanSheet.classList.remove("is-open");
   plusPlanSheet.setAttribute("aria-hidden", "true");
   document.body.classList.remove("is-plus-plan-open");
+  plusFloatingDismissed = true;
+  plusFloatingButton?.classList.remove("is-visible");
 }
 
 stickyBottomAdClose?.addEventListener("click", () => {
