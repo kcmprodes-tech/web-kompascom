@@ -4256,32 +4256,30 @@ img {
 .reader-next-page {
   width: 100%;
   min-height: 100%;
-  padding: 52px 16px 60px;
+  padding: 16px 16px 60px;
   color: #fff;
 }
 
 .reader-next-logo {
   display: block;
-  width: 80px;
+  width: 60px;
   height: auto;
-  margin: 0 auto 26px;
+  margin: 0 0 24px;
   object-fit: contain;
 }
 
 .reader-next-divider {
-  height: 1px;
-  margin-bottom: 26px;
-  background: rgba(255, 255, 255, 0.18);
+  display: none;
 }
 
 .reader-next-page > h1 {
   margin: 0 0 18px;
   color: #fff;
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: -0.2px;
   line-height: 24px;
-  text-align: center;
+  text-align: left;
 }
 
 .reader-next-card {
@@ -4356,10 +4354,10 @@ img {
 .reader-next-more h2 {
   margin: 0 0 18px;
   color: #fff;
-  font-size: 22px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 600;
   letter-spacing: -0.2px;
-  line-height: 29px;
+  line-height: 24px;
 }
 
 .reader-next-rail {
@@ -4368,7 +4366,7 @@ img {
   width: calc(100% + 16px);
   margin-right: -16px;
   overflow-x: auto;
-  padding: 0 16px 4px 0;
+  padding: 0 16px 0 0;
   scroll-snap-type: x proximity;
   scrollbar-width: none;
 }
@@ -4400,7 +4398,7 @@ img {
 }
 
 .reader-next-rail p {
-  margin: 0;
+  margin: 0 0 60px;
   color: rgba(255, 255, 255, 0.78);
   font-size: 12px;
   font-weight: 400;
