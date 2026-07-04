@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="/src/js/original-index.js"></script>
   </head>
   <body>
     <main class="original-index-page">
@@ -81,22 +81,5 @@
       </section>
     </main>
 
-    <script>
-      document.querySelectorAll(".original-card").forEach((card) => {
-        const originalPart = card.dataset.originalPart;
-        const originalHref = originalPart ? `./laya-read.html?part=${originalPart}` : "./original-detail.html";
-        card.setAttribute("role", "link");
-        card.setAttribute("tabindex", "0");
-        card.addEventListener("click", () => {
-          window.location.href = originalHref;
-        });
-        card.addEventListener("keydown", (event) => {
-          if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault();
-            window.location.href = originalHref;
-          }
-        });
-      });
-    </script>
   </body>
 </html>

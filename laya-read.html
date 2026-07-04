@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="/src/js/laya-read.js"></script>
   </head>
   <body class="laya-read-body">
     <header class="topbar laya-read-topbar">
@@ -70,11 +70,5 @@
       </section>
     </main>
 
-    <script>
-      const params = new URLSearchParams(window.location.search);
-      if (params.get("part") === "3") {
-        document.querySelector(".laya-read-hero__image").src = "/assets/tato-dayak2.png";
-      }
-    </script>
   </body>
 </html>

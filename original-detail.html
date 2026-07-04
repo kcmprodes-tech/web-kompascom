@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="preconnect" href="https://images.unsplash.com" />
-    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="/src/js/original-detail.js"></script>
   </head>
   <body>
     <main class="page-shell original-detail-page">
@@ -141,72 +141,5 @@
       </section>
     </div>
 
-    <script>
-      const originalPage = document.querySelector(".original-detail-page");
-      const originalTabs = document.querySelectorAll("[data-original-tab]");
-      const premiumBlocker = document.querySelector(".premium-blocker");
-      const premiumBlockerClose = document.querySelector(".premium-blocker__close");
-      const premiumBlockerBackdrop = document.querySelector(".premium-blocker__backdrop");
-      const originalHeroImage = document.querySelector("#originalHeroImage");
-      const originalHeroPart = document.querySelector("#originalHeroPart");
-      const originalReaderLink = document.querySelector("#originalReaderLink");
-      const originalParams = new URLSearchParams(window.location.search);
-      const originalPart = originalParams.get("part") === "3" ? "3" : "4";
-      const originalPartData = {
-        3: {
-          image: "/assets/tato-dayak2.png",
-          part: "Bagian 3, Tato Dayak Terakhir",
-        },
-        4: {
-          image: "/assets/tato-dayak1.png",
-          part: "Bagian 4, Tato Dayak Terakhir",
-        },
-      };
-      const activeOriginal = originalPartData[originalPart];
-      const readerPart = originalPart === "4" ? "3" : originalPart;
-
-      originalHeroImage.src = activeOriginal.image;
-      originalHeroPart.textContent = activeOriginal.part;
-      originalReaderLink.href = `./original-reader.html?part=${readerPart}`;
-
-      originalTabs.forEach((tab) => {
-        tab.addEventListener("click", (event) => {
-          event.preventDefault();
-          originalTabs.forEach((item) => item.classList.remove("is-active"));
-          tab.classList.add("is-active");
-          originalPage.classList.toggle("is-description-mode", tab.dataset.originalTab === "description");
-        });
-      });
-
-      function openPremiumBlocker() {
-        premiumBlocker.classList.add("is-open");
-        premiumBlocker.setAttribute("aria-hidden", "false");
-      }
-
-      function closePremiumBlocker() {
-        premiumBlocker.classList.remove("is-open");
-        premiumBlocker.setAttribute("aria-hidden", "true");
-      }
-
-      document.querySelectorAll(".original-episode-list .is-locked").forEach((episode) => {
-        episode.setAttribute("role", "button");
-        episode.setAttribute("tabindex", "0");
-        episode.addEventListener("click", openPremiumBlocker);
-        episode.addEventListener("keydown", (event) => {
-          if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault();
-            openPremiumBlocker();
-          }
-        });
-      });
-
-      premiumBlockerClose.addEventListener("click", closePremiumBlocker);
-      premiumBlockerBackdrop.addEventListener("click", closePremiumBlocker);
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape" && premiumBlocker.classList.contains("is-open")) {
-          closePremiumBlocker();
-        }
-      });
-    </script>
   </body>
 </html>
