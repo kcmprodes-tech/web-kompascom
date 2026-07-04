@@ -1574,11 +1574,11 @@ img {
 }
 
 .original-card__media--red {
-  background: url("./assets/tato-dayak1.png") center / cover;
+  background: url("/assets/tato-dayak1.png") center / cover;
 }
 
 .original-card__media--green {
-  background: url("./assets/tato-dayak2.png") center / cover;
+  background: url("/assets/tato-dayak2.png") center / cover;
 }
 
 .original-card__media--blue {
@@ -5679,7 +5679,7 @@ body.is-plus-plan-open {
 .account-page {
   min-height: calc(100vh - 50px);
   padding: 24px 20px 40px;
-  background: #fff url("./assets/bg-akun.png") top center / 100% auto no-repeat;
+  background: #fff url("/assets/bg-akun.png") top center / 100% auto no-repeat;
 }
 
 .account-page > section,

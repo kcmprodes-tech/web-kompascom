@@ -25,7 +25,7 @@
 
       <header class="karin-answer-top">
         <div>
-          <img src="./assets/karinlogo.svg" alt="" aria-hidden="true" />
+          <img src="/assets/karinlogo.svg" alt="" aria-hidden="true" />
           <div>
             <strong>Karin</strong>
             <p>KOMPAS.com AI</p>
@@ -42,7 +42,7 @@
       </div>
 
       <section class="karin-chat-hero">
-        <img src="./assets/karinlogo.svg" alt="" aria-hidden="true" />
+        <img src="/assets/karinlogo.svg" alt="" aria-hidden="true" />
         <h1 class="karin-chat-title" aria-label="Halo, saya Karin. Mau bahas topik apa hari ini?">
           <span>Halo, saya Karin</span>
           <span>Mau bahas topik apa hari ini?</span>
@@ -198,7 +198,7 @@
     </main>
     <div class="karin-feedback-modal" hidden>
       <div class="karin-feedback-card" role="dialog" aria-modal="true" aria-label="Beri umpan balik">
-        <img src="./assets/feedback-mobile.svg" alt="" aria-hidden="true" />
+        <img src="/assets/feedback-mobile.svg" alt="" aria-hidden="true" />
         <button class="karin-feedback-close" type="button" aria-label="Tutup umpan balik"></button>
         <button class="karin-feedback-option karin-feedback-option--first" type="button" aria-label="Tidak akurat"></button>
         <button class="karin-feedback-submit" type="button" aria-label="Kirim masukan"></button>
@@ -260,7 +260,7 @@
       }
 
       function openKarinFeedback() {
-        karinFeedbackImage.src = "./assets/feedback-mobile.svg";
+        karinFeedbackImage.src = "/assets/feedback-mobile.svg";
         karinFeedbackTrigger.classList.remove("is-active");
         karinFeedbackModal.hidden = false;
         document.body.classList.add("is-karin-feedback-open");
@@ -272,7 +272,7 @@
       }
 
       function activateKarinFeedback() {
-        karinFeedbackImage.src = "./assets/feedback-mobile-aktif.svg";
+        karinFeedbackImage.src = "/assets/feedback-mobile-aktif.svg";
         karinFeedbackTrigger.classList.add("is-active");
       }
 
