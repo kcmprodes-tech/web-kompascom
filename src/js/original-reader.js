@@ -2,7 +2,8 @@
  * Original reader: vertical episode reader with video playback,
  * progress tracking, chapter navigation and the premium paywall.
  */
-import "../styles/main.css";
+import "../styles/common.css";
+import "../styles/pages/original-reader.css";
 
 const readerParams = new URLSearchParams(window.location.search);
 const isReaderExperiment = readerParams.get("part") === "3";

@@ -2,7 +2,8 @@
  * Original detail: hero part switching, description/episode tabs, and the
  * premium blocker shown when tapping a locked episode.
  */
-import "../styles/main.css";
+import "../styles/common.css";
+import "../styles/pages/original-detail.css";
 import { makeClickable } from "./utils/dom.js";
 
 const PART_DATA = {

@@ -1,7 +1,8 @@
 /**
  * Original index: make each original card open its reader (or the detail page).
  */
-import "../styles/main.css";
+import "../styles/common.css";
+import "../styles/pages/original-index.css";
 import { makeClickable, goTo } from "./utils/dom.js";
 
 document.querySelectorAll(".original-card").forEach((card) => {

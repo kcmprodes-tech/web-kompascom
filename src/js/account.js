@@ -1,4 +1,5 @@
 /**
  * account page — static, styles only.
  */
-import "../styles/main.css";
+import "../styles/common.css";
+import "../styles/pages/account.css";

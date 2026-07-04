@@ -2,7 +2,8 @@
  * Karin chat: composer sizing, the word-by-word answer reveal, and the
  * feedback modal. Opens straight into an answer when arriving with ?answer=1.
  */
-import "../styles/main.css";
+import "../styles/common.css";
+import "../styles/pages/karin.css";
 
 const karinPage = document.querySelector(".karin-chat-page");
 const karinComposer = document.querySelector(".karin-chat-composer");

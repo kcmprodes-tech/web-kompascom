@@ -1,7 +1,8 @@
 /**
  * Article detail page: route Karin suggestion chips into the Karin chat.
  */
-import "../styles/main.css";
+import "../styles/common.css";
+import "../styles/pages/article.css";
 
 document.querySelectorAll(".karin-question-rail button").forEach((button) => {
   button.addEventListener("click", () => {

@@ -1,7 +1,8 @@
 /**
  * Laya reader: swap the hero image for the alternate story part.
  */
-import "../styles/main.css";
+import "../styles/common.css";
+import "../styles/pages/laya.css";
 
 const params = new URLSearchParams(window.location.search);
 if (params.get("part") === "3") {

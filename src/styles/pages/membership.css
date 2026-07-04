@@ -1,0 +1,246 @@
+/* membership page-specific styles. */
+
+
+.membership-body {
+  min-height: 100vh;
+  background: #000;
+}
+
+.membership-page {
+  min-height: 100vh;
+  overflow: hidden;
+  background: #000;
+  color: #fff;
+}
+
+.membership-nav {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr) 24px;
+  align-items: center;
+  gap: 12px;
+  width: min(100%, 860px);
+  height: 64px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.membership-k {
+  display: block;
+  width: 22px;
+  height: 24px;
+}
+
+.membership-k img {
+  width: 22px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.membership-nav nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.membership-nav nav a {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  line-height: 16px;
+}
+
+.membership-avatar {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: #20b7c9;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.membership-hero {
+  position: relative;
+  width: min(100%, 860px);
+  margin: 0 auto;
+  padding: 44px 20px 0;
+  text-align: center;
+}
+
+.membership-hero h1 {
+  margin: 0;
+  animation: membershipFadeUp 620ms ease both;
+}
+
+.membership-hero h1 img {
+  width: auto;
+  height: 26px;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+.membership-hero p {
+  margin: 12px 0 0;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: -0.2px;
+  line-height: 24px;
+  animation: membershipFadeUp 620ms 90ms ease both;
+}
+
+.membership-cta {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.85fr);
+  gap: 12px;
+  margin-top: 28px;
+  animation: membershipFadeUp 620ms 180ms ease both;
+}
+
+.membership-cta a,
+.membership-cta button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  border: 0;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
+
+.membership-cta a {
+  background: #fff;
+  color: var(--font-primary);
+}
+
+.membership-cta button {
+  background: #292929;
+  color: #fff;
+}
+
+.membership-device-wrap {
+  position: relative;
+  height: 430px;
+  margin-top: 42px;
+  animation: membershipDeviceIn 760ms 280ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.membership-device {
+  position: relative;
+  z-index: 1;
+  width: 330px;
+  height: auto;
+  margin: 0 auto;
+  object-fit: contain;
+  transform: rotate(-4deg);
+  filter: drop-shadow(0 24px 40px rgba(111, 206, 255, 0.28));
+}
+
+.membership-orbit {
+  position: absolute;
+  z-index: 0;
+  width: 330px;
+  height: 88px;
+  border: 2px solid rgba(255, 255, 255, 0.22);
+  border-radius: 50%;
+  animation: membershipOrbit 5s ease-in-out infinite alternate;
+}
+
+.membership-orbit--one {
+  right: -112px;
+  bottom: 82px;
+  transform: rotate(-9deg);
+}
+
+.membership-orbit--two {
+  left: -130px;
+  bottom: 20px;
+  transform: rotate(-4deg);
+  animation-delay: 400ms;
+}
+
+@media (max-width: 620px) {
+  .membership-nav {
+    grid-template-columns: 30px minmax(0, 1fr) 24px;
+    height: 56px;
+    padding: 0 16px;
+  }
+
+  .membership-k {
+    width: 22px;
+    height: 24px;
+  }
+
+  .membership-nav nav {
+    gap: 18px;
+    overflow-x: auto;
+    justify-content: flex-start;
+    scroll-padding-left: 16px;
+    scroll-padding-right: 16px;
+    scrollbar-width: none;
+  }
+
+  .membership-nav nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .membership-nav nav a {
+    flex: 0 0 auto;
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .membership-avatar {
+    width: 24px;
+    height: 24px;
+    font-size: 10px;
+  }
+
+  .membership-hero {
+    padding: 44px 20px 0;
+  }
+
+  .membership-hero h1 img {
+    height: 26px;
+  }
+
+  .membership-hero p {
+    margin-top: 12px;
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .membership-cta {
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .membership-cta a,
+  .membership-cta button {
+    height: 48px;
+    border-radius: 12px;
+    font-size: 16px;
+  }
+
+  .membership-device-wrap {
+    height: 430px;
+    margin-top: 42px;
+  }
+
+  .membership-device {
+    width: 330px;
+  }
+
+  .membership-orbit {
+    width: 330px;
+    height: 88px;
+  }
+}

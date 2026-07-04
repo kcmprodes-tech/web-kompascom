@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "postcss": "^8.5.16",
     "vite": "^6.0.0"
   }
 }

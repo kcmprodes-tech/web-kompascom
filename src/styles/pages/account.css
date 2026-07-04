@@ -1,0 +1,239 @@
+/* account page-specific styles. */
+
+
+.account-header {
+  position: sticky;
+}
+
+.account-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.account-close {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #2f2f2f;
+  color: #fff;
+}
+
+.account-close svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 18;
+}
+
+.account-page {
+  min-height: calc(100vh - 50px);
+  padding: 24px 20px 40px;
+  background: #fff url("/assets/bg-akun.png") top center / 100% auto no-repeat;
+}
+
+.account-page > section,
+.account-page > aside {
+  border-bottom: 0 !important;
+}
+
+.account-login {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.account-login__avatar {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--paper-elevation-1);
+  color: var(--font-primary);
+}
+
+.account-login__avatar svg {
+  width: 26px;
+  height: 26px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 12;
+}
+
+.account-login a {
+  display: inline-flex;
+  align-items: center;
+  color: var(--font-primary);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+
+.account-login a::after {
+  width: 16px;
+  height: 16px;
+  margin-left: 4px;
+  background: no-repeat center / 16px 16px url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 3L11 8L6 13' stroke='%232A2A2A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  content: "";
+}
+
+.membership-card {
+  position: relative;
+  margin-top: 18px;
+  margin-bottom: 16px;
+  padding: 18px 44px 18px 16px;
+  border: 0;
+  border-radius: 14px;
+  background: linear-gradient(120deg, #6f9cf4, #d57ad8 58%, #ffc082);
+  color: #fff;
+  outline: 0;
+  box-shadow: none;
+  filter: none;
+}
+
+.membership-card strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+
+.membership-card em {
+  font-style: italic;
+}
+
+.membership-card p {
+  margin: 4px 0 0;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+.membership-card span {
+  position: absolute;
+  top: 50%;
+  right: 18px;
+  width: 16px;
+  height: 16px;
+  background: no-repeat center / 16px 16px url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 3L11 8L6 13' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  transform: translateY(-50%);
+}
+
+.voucher-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 0;
+}
+
+.voucher-grid article {
+  position: relative;
+  padding: 12px;
+  padding-right: 34px;
+  border: 0;
+  border-radius: 14px;
+  background: #fff;
+  outline: 0;
+  box-shadow: none;
+  filter: none;
+}
+
+.voucher-grid article::after {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  width: 12px;
+  height: 12px;
+  background: no-repeat center / 12px 12px url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.5 2.25L8.25 6L4.5 9.75' stroke='%235A5A5A' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  transform: translateY(-50%);
+  content: "";
+}
+
+.voucher-grid span,
+.voucher-grid strong {
+  display: block;
+  letter-spacing: -0.2px;
+}
+
+.voucher-grid span {
+  color: var(--text-secondary);
+  font-size: 11px;
+}
+
+.voucher-grid strong {
+  margin-top: 4px;
+  color: var(--font-primary);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.account-menu h2 {
+  margin: 32px 0 16px;
+  color: var(--font-primary);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+
+.account-menu a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  border-bottom: 1px solid #e5e7eb;
+  color: var(--font-primary);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.2px;
+}
+
+.account-menu a:last-child {
+  border-bottom: 0;
+}
+
+.account-menu a:last-of-type {
+  border-bottom: 0 !important;
+}
+
+.account-menu a::after {
+  position: absolute;
+  right: 0;
+  width: 14px;
+  height: 14px;
+  background: no-repeat center / 14px 14px url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 14 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.25 2.625L9.625 7L5.25 11.375' stroke='%235A5A5A' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  content: "";
+}
+
+.account-menu span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 30px;
+  width: 30px;
+  margin-right: 10px;
+  color: var(--text-secondary);
+}
+
+.account-menu span svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 14;
+}
+
+.account-menu b {
+  margin-left: auto;
+  margin-right: 28px;
+  font-size: 15px;
+}
