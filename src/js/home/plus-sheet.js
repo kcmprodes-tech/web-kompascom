@@ -25,9 +25,6 @@ export function initPlusSheet() {
     document.body.classList.remove("is-plus-plan-open");
   }
 
-  // Play the shine sweep once, then mark it done so it doesn't repeat.
-  window.setTimeout(() => plusFloatingButton?.classList.add("has-shined"), 1100);
-
   stickyBottomAdClose?.addEventListener("click", () => {
     stickyBottomAd?.classList.add("is-hidden");
     document.body.classList.add("is-sticky-ad-hidden");

@@ -734,6 +734,19 @@ img {
   }
 }
 
+/* Sweep quickly across the button, then rest until the next 10s cycle. */
+@keyframes plusButtonShineLoop {
+  0% {
+    left: -55%;
+  }
+  8% {
+    left: 115%;
+  }
+  100% {
+    left: 115%;
+  }
+}
+
 @keyframes reelHelperIn {
   from {
     opacity: 0;
