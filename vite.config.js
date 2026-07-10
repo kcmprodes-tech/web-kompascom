@@ -5,6 +5,11 @@ const root = import.meta.dirname;
 
 // Multi-page app: every top-level .html file is a build entry.
 export default defineConfig({
+  // Expose the dev server on the LAN so it can be opened on a phone
+  // (same Wi-Fi). Vite prints a "Network:" URL to use on the device.
+  server: {
+    host: true,
+  },
   build: {
     rollupOptions: {
       input: {
