@@ -1,246 +1,301 @@
-/* membership page-specific styles. */
+/* KOMPAS.com+ membership landing page — rebuilt to match Figma "LP Mobile". */
 
-
-.membership-body {
-  min-height: 100vh;
-  background: #000;
+.mp-body {
+  margin: 0;
+  background: #fff;
+  color: #36383a;
+  font-family: "Inter", sans-serif;
 }
 
-.membership-page {
-  min-height: 100vh;
-  overflow: hidden;
+/* ---------- Header ---------- */
+.mp-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 56px;
+  padding: 0 16px;
   background: #000;
   color: #fff;
 }
 
-.membership-nav {
-  display: grid;
-  grid-template-columns: 36px minmax(0, 1fr) 24px;
-  align-items: center;
-  gap: 12px;
-  width: min(100%, 860px);
-  height: 64px;
-  margin: 0 auto;
-  padding: 0 20px;
+.mp-header__logo {
+  display: inline-flex;
+  flex: 0 0 auto;
 }
 
-.membership-k {
+.mp-header__logo img {
+  height: 26px;
+  width: auto;
   display: block;
-  width: 22px;
-  height: 24px;
 }
 
-.membership-k img {
-  width: 22px;
-  height: 24px;
-  object-fit: contain;
-}
-
-.membership-nav nav {
+.mp-header__nav {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 24px;
+  gap: 18px;
+  flex: 1 1 auto;
 }
 
-.membership-nav nav a {
+.mp-header__nav a {
   color: #fff;
   font-size: 12px;
   font-weight: 600;
-  letter-spacing: -0.2px;
-  line-height: 16px;
+  line-height: 15px;
+  opacity: 0.8;
 }
 
-.membership-avatar {
-  display: grid;
-  place-items: center;
-  width: 24px;
-  height: 24px;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  background: #20b7c9;
+.mp-header__nav a.is-active {
+  opacity: 1;
+}
+
+.mp-header__account {
+  flex: 0 0 auto;
+  display: inline-flex;
   color: #fff;
-  font-size: 10px;
-  font-weight: 800;
 }
 
-.membership-hero {
-  position: relative;
-  width: min(100%, 860px);
-  margin: 0 auto;
-  padding: 44px 20px 0;
+/* ---------- Promo banner ---------- */
+.mp-promo {
+  background: #181818;
+  color: #fff;
   text-align: center;
+  padding: 12px 16px 14px;
+  font-size: 14px;
+  line-height: 18px;
 }
 
-.membership-hero h1 {
+.mp-promo p {
   margin: 0;
-  animation: membershipFadeUp 620ms ease both;
 }
 
-.membership-hero h1 img {
-  width: auto;
-  height: 26px;
-  margin: 0 auto;
-  object-fit: contain;
+.mp-promo p + p {
+  margin-top: 4px;
 }
 
-.membership-hero p {
-  margin: 12px 0 0;
+.mp-promo strong {
+  font-weight: 700;
+}
+
+.mp-promo b {
+  font-weight: 700;
+}
+
+.mp-promo s {
+  color: #8b8d92;
+}
+
+.mp-promo__link {
+  color: #3d8bdf;
+  font-weight: 600;
+}
+
+/* ---------- Hero ---------- */
+.mp-page {
+  overflow: hidden;
+}
+
+.mp-hero {
+  position: relative;
+  background: #050505 url("/assets/membership/hero-bg.png") center top / cover no-repeat;
   color: #fff;
-  font-size: 18px;
-  font-weight: 400;
-  letter-spacing: -0.2px;
-  line-height: 24px;
-  animation: membershipFadeUp 620ms 90ms ease both;
+  text-align: center;
+  padding: 40px 24px 48px;
 }
 
-.membership-cta {
-  display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.85fr);
-  gap: 12px;
-  margin-top: 28px;
-  animation: membershipFadeUp 620ms 180ms ease both;
-}
-
-.membership-cta a,
-.membership-cta button {
+.mp-hero__logo {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 48px;
+  gap: 12px;
+}
+
+.mp-hero__mark {
+  height: 34px;
+  width: auto;
+  display: block;
+}
+
+.mp-hero__variant {
+  font-style: italic;
+  font-weight: 800;
+  font-size: 32px;
+  line-height: 1;
+  letter-spacing: 0.5px;
+  color: #d0913f;
+}
+
+.mp-hero__tagline {
+  margin: 16px 0 0;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.mp-hero__device {
+  margin: 28px auto 0;
+  max-width: 210px;
+}
+
+.mp-hero__device img {
+  width: 100%;
+  display: block;
+}
+
+.mp-hero__sub {
+  margin: 24px 0 0;
+  font-size: 16px;
+}
+
+.mp-hero__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin: 18px auto 0;
+  padding: 9px 9px 9px 22px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.mp-switch {
+  position: relative;
+  flex: 0 0 auto;
+  width: 46px;
+  height: 27px;
+  border-radius: 999px;
+  background: #2f80ed;
+  transition: background 200ms ease;
+}
+
+.mp-switch i {
+  position: absolute;
+  top: 3px;
+  left: 22px;
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  background: #fff;
+  transition: left 200ms ease;
+}
+
+.mp-hero__toggle[aria-pressed="false"] .mp-switch {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.mp-hero__toggle[aria-pressed="false"] .mp-switch i {
+  left: 3px;
+}
+
+.mp-hero__join {
+  display: block;
+  width: 100%;
+  margin: 28px auto 0;
+  height: 56px;
   border: 0;
   border-radius: 12px;
-  font-family: inherit;
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: -0.2px;
-}
-
-.membership-cta a {
   background: #fff;
-  color: var(--font-primary);
+  color: #36383a;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
 }
 
-.membership-cta button {
-  background: #292929;
-  color: #fff;
+.mp-hero__price {
+  margin: 24px 0 0;
+  font-size: 16px;
+  line-height: 24px;
 }
 
-.membership-device-wrap {
-  position: relative;
-  height: 430px;
-  margin-top: 42px;
-  animation: membershipDeviceIn 760ms 280ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+.mp-hero__price s {
+  color: #9a9a9a;
 }
 
-.membership-device {
-  position: relative;
-  z-index: 1;
-  width: 330px;
-  height: auto;
-  margin: 0 auto;
-  object-fit: contain;
-  transform: rotate(-4deg);
-  filter: drop-shadow(0 24px 40px rgba(111, 206, 255, 0.28));
+.mp-hero__price b {
+  font-weight: 700;
 }
 
-.membership-orbit {
-  position: absolute;
-  z-index: 0;
-  width: 330px;
-  height: 88px;
-  border: 2px solid rgba(255, 255, 255, 0.22);
-  border-radius: 50%;
-  animation: membershipOrbit 5s ease-in-out infinite alternate;
+/* ---------- Shared section ---------- */
+.mp-section {
+  padding: 44px 24px;
+  background: #fff;
+  text-align: center;
 }
 
-.membership-orbit--one {
-  right: -112px;
-  bottom: 82px;
-  transform: rotate(-9deg);
+.mp-h2 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 36px;
+  color: #36383a;
 }
 
-.membership-orbit--two {
-  left: -130px;
-  bottom: 20px;
-  transform: rotate(-4deg);
-  animation-delay: 400ms;
+.mp-lead {
+  margin: 14px auto 0;
+  max-width: 330px;
+  font-size: 16px;
+  line-height: 22px;
+  color: #515358;
 }
 
-@media (max-width: 620px) {
-  .membership-nav {
-    grid-template-columns: 30px minmax(0, 1fr) 24px;
-    height: 56px;
-    padding: 0 16px;
-  }
+/* ---------- Dukung jurnalisme jernih ---------- */
+.mp-jurnalisme__collage {
+  display: block;
+  width: calc(100% + 48px);
+  margin: 30px -24px -44px;
+}
 
-  .membership-k {
-    width: 22px;
-    height: 24px;
-  }
+/* ---------- Lebih nyaman ---------- */
+.mp-nyaman .mp-h2 {
+  color: #232426;
+}
 
-  .membership-nav nav {
-    gap: 18px;
-    overflow-x: auto;
-    justify-content: flex-start;
-    scroll-padding-left: 16px;
-    scroll-padding-right: 16px;
-    scrollbar-width: none;
-  }
+.mp-stats {
+  display: flex;
+  margin: 28px 0 0;
+  border: 1px solid #ededed;
+  border-radius: 14px;
+  background: #f7f7f7;
+  overflow: hidden;
+}
 
-  .membership-nav nav::-webkit-scrollbar {
-    display: none;
-  }
+.mp-stat {
+  flex: 1;
+  padding: 18px 14px;
+  text-align: center;
+}
 
-  .membership-nav nav a {
-    flex: 0 0 auto;
-    font-size: 12px;
-    line-height: 16px;
-  }
+.mp-stat + .mp-stat {
+  border-left: 1px solid #e6e6e6;
+}
 
-  .membership-avatar {
-    width: 24px;
-    height: 24px;
-    font-size: 10px;
-  }
+.mp-stat__label,
+.mp-stat__desc {
+  display: block;
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  line-height: 17px;
+  color: #515358;
+}
 
-  .membership-hero {
-    padding: 44px 20px 0;
-  }
+.mp-stat__big {
+  display: block;
+  margin: 5px 0;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 22px;
+  color: #232426;
+}
 
-  .membership-hero h1 img {
-    height: 26px;
-  }
-
-  .membership-hero p {
-    margin-top: 12px;
-    font-size: 18px;
-    line-height: 24px;
-  }
-
-  .membership-cta {
-    gap: 12px;
-    margin-top: 28px;
-  }
-
-  .membership-cta a,
-  .membership-cta button {
-    height: 48px;
-    border-radius: 12px;
-    font-size: 16px;
-  }
-
-  .membership-device-wrap {
-    height: 430px;
-    margin-top: 42px;
-  }
-
-  .membership-device {
-    width: 330px;
-  }
-
-  .membership-orbit {
-    width: 330px;
-    height: 88px;
-  }
+.mp-nyaman__phone {
+  display: block;
+  width: 100%;
+  max-width: 284px;
+  margin: 30px auto 0;
 }

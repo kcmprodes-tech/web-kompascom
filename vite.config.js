@@ -7,8 +7,10 @@ const root = import.meta.dirname;
 export default defineConfig({
   // Expose the dev server on the LAN so it can be opened on a phone
   // (same Wi-Fi). Vite prints a "Network:" URL to use on the device.
+  // Honor a PORT env var when the host assigns one; fall back to Vite default.
   server: {
     host: true,
+    port: process.env.PORT ? Number(process.env.PORT) : undefined,
   },
   build: {
     rollupOptions: {
