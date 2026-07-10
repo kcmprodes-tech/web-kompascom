@@ -2,7 +2,7 @@
 
 
 .original-index-page {
-  width: min(100%, 430px);
+  width: 100%;
   min-height: 100vh;
   margin: 0 auto;
   background: #fff;

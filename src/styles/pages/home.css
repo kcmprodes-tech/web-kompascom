@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   gap: 20px;
-  width: min(100%, 430px);
+  width: 100%;
   height: 40px;
   margin: 0 auto;
   padding: 0 16px;
@@ -2322,7 +2322,7 @@
 }
 
 .site-footer {
-  width: min(100%, 430px);
+  width: 100%;
   margin: 0 auto;
   background: #050505;
   color: #fff;
@@ -2425,34 +2425,31 @@
 .plus-floating-button {
   position: fixed;
   left: 50%;
-  bottom: 138px;
+  bottom: 60px;
   z-index: 1190;
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  height: 28px;
+  justify-content: center;
+  gap: 8px;
+  width: 298px;
+  height: 48px;
   overflow: hidden;
-  padding: 4px 12px 4px 8px;
-  border: 0;
-  border-radius: 999px;
-  background: #2a2a2a;
-  color: #fff;
-  font-size: 14px;
+  padding: 0 32px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.55);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(24px) saturate(180%);
+  color: var(--font-primary);
+  font-size: 16px;
   font-weight: 600;
   letter-spacing: -0.2px;
-  line-height: 18px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.28);
-  transform: translate(-50%, 14px);
-  opacity: 0;
-  pointer-events: none;
-  transition:
-    opacity 220ms ease,
-    transform 220ms ease,
-    bottom 220ms ease;
-}
-
-.plus-floating-button.is-visible {
-  transform: translate(-50%, 0);
+  line-height: 1;
+  white-space: nowrap;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transform: translateX(-50%);
   opacity: 1;
   pointer-events: auto;
 }
@@ -2468,18 +2465,15 @@
   content: "";
 }
 
-.plus-floating-button.is-visible:not(.has-shined)::after {
+.plus-floating-button:not(.has-shined)::after {
   animation: plusButtonShine 820ms ease 180ms both;
 }
 
-body.is-sticky-ad-hidden .plus-floating-button {
-  bottom: 16px;
-}
-
 .plus-floating-button img {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   object-fit: contain;
+  filter: brightness(0);
 }
 
 .plus-plan-sheet {
@@ -2501,7 +2495,7 @@ body.is-sticky-ad-hidden .plus-floating-button {
 
 .plus-plan-sheet__panel {
   position: relative;
-  width: min(100%, 430px);
+  width: 100%;
   max-height: 100vh;
   max-height: 100dvh;
   overflow: hidden;
@@ -2702,7 +2696,7 @@ body.is-sticky-ad-hidden .plus-floating-button {
   left: 0;
   display: flex;
   justify-content: center;
-  width: min(100%, 430px);
+  width: 100%;
   margin: 0 auto;
   padding: 20px 20px 24px;
   background: #fff;
@@ -2818,7 +2812,7 @@ body.is-sticky-ad-hidden .plus-floating-button {
   position: fixed;
   inset: 0;
   z-index: 60;
-  width: min(100%, 430px);
+  width: 100%;
   margin: 0 auto;
   overflow-y: auto;
   background:

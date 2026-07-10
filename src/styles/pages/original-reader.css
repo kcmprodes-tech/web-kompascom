@@ -8,7 +8,7 @@
 }
 
 .reels-reader {
-  width: min(100%, 430px);
+  width: 100%;
   height: 100vh;
   height: 100dvh;
   margin: 0 auto;

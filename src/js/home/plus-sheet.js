@@ -1,6 +1,7 @@
 /**
- * Sticky bottom ad dismissal + the floating Kompas+ button that reveals the
- * subscription plan sheet as the reader scrolls past the AI summary.
+ * Sticky bottom ad dismissal + the floating Kompas+ button that opens the
+ * subscription plan sheet. The CTA is always present but sits behind the
+ * sticky bottom ad, so it becomes visible once the ad is dismissed.
  */
 
 export function initPlusSheet() {
@@ -9,27 +10,6 @@ export function initPlusSheet() {
   const plusFloatingButton = document.querySelector("[data-plus-floating-button]");
   const plusPlanSheet = document.querySelector("[data-plus-plan-sheet]");
   const plusPlanClose = document.querySelector("[data-plus-plan-close]");
-  const wpAioSection = document.querySelector(".wp-aio-section");
-  const originalSection = document.querySelector(".original-section");
-
-  let plusFloatingHasShined = false;
-  let plusFloatingDismissed = false;
-
-  function updatePlusFloatingButton() {
-    if (!plusFloatingButton || !wpAioSection || !originalSection) return;
-    if (plusFloatingDismissed) {
-      plusFloatingButton.classList.remove("is-visible");
-      return;
-    }
-    const wpAioBottom = wpAioSection.getBoundingClientRect().bottom;
-    const originalTop = originalSection.getBoundingClientRect().top;
-    const shouldShow = wpAioBottom < 0 && originalTop > window.innerHeight * 0.36;
-    plusFloatingButton.classList.toggle("is-visible", shouldShow);
-    if (shouldShow && !plusFloatingHasShined) {
-      plusFloatingHasShined = true;
-      window.setTimeout(() => plusFloatingButton.classList.add("has-shined"), 1100);
-    }
-  }
 
   function openPlusPlanSheet() {
     if (!plusPlanSheet) return;
@@ -43,14 +23,14 @@ export function initPlusSheet() {
     plusPlanSheet.classList.remove("is-open");
     plusPlanSheet.setAttribute("aria-hidden", "true");
     document.body.classList.remove("is-plus-plan-open");
-    plusFloatingDismissed = true;
-    plusFloatingButton?.classList.remove("is-visible");
   }
+
+  // Play the shine sweep once, then mark it done so it doesn't repeat.
+  window.setTimeout(() => plusFloatingButton?.classList.add("has-shined"), 1100);
 
   stickyBottomAdClose?.addEventListener("click", () => {
     stickyBottomAd?.classList.add("is-hidden");
     document.body.classList.add("is-sticky-ad-hidden");
-    updatePlusFloatingButton();
   });
 
   plusFloatingButton?.addEventListener("click", openPlusPlanSheet);
@@ -58,7 +38,4 @@ export function initPlusSheet() {
   plusPlanSheet?.addEventListener("click", (event) => {
     if (event.target === plusPlanSheet) closePlusPlanSheet();
   });
-  window.addEventListener("scroll", updatePlusFloatingButton, { passive: true });
-  window.addEventListener("resize", updatePlusFloatingButton);
-  updatePlusFloatingButton();
 }

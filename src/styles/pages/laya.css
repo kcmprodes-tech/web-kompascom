@@ -10,7 +10,7 @@
 }
 
 .laya-read-page {
-  width: min(100%, 430px);
+  width: 100%;
   min-height: calc(100vh - 50px);
   margin: 0 auto;
   padding: 0 16px 40px;
