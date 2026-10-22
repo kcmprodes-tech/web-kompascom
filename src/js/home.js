@@ -4,6 +4,7 @@
  */
 import "../styles/components/site-header.css";
 import "../styles/pages/home.css";
+import { initHeaderAvatar } from "./site-header.js";
 
 /* ---------- "Pilih topik" interest picker ---------- */
 function initMinat() {
@@ -37,4 +38,5 @@ function initMinat() {
   });
 }
 
+initHeaderAvatar();
 initMinat();

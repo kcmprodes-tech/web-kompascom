@@ -62,3 +62,14 @@
   width: 15px;
   height: 15px;
 }
+
+/* logged in: profile avatar (gradient + initials) replaces the outline icon */
+.hm-user-ring--avatar {
+  border: 0;
+  background: linear-gradient(140deg, #35d6c6, #28a6d8);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+}

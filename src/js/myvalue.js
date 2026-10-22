@@ -5,27 +5,21 @@
  */
 import "../styles/components/site-header.css";
 import "../styles/pages/myvalue.css";
-
-const SESSION_KEY = "kompas-account-session";
+import { readSession, initials } from "./utils/session.js";
+import { initHeaderAvatar } from "./site-header.js";
 
 /* ---------- Logged-in user (same session the account page writes) ---------- */
-let session = null;
-try {
-  session = JSON.parse(localStorage.getItem(SESSION_KEY));
-} catch {
-  session = null;
-}
+const session = readSession();
 if (!session && !new URLSearchParams(window.location.search).has("demo")) {
   // Points are only for logged-in readers; send guests back to log in.
   window.location.replace("./account.html");
 }
 if (session) {
-  const parts = session.name.trim().split(/\s+/);
   document.querySelector("[data-user-name]").textContent = session.name;
   document.querySelector("[data-user-email]").textContent = session.id;
-  document.querySelector("[data-user-initials]").textContent =
-    ((parts[0]?.[0] || "") + (parts[1]?.[0] || "")).toUpperCase() || "K";
+  document.querySelector("[data-user-initials]").textContent = initials(session.name);
 }
+initHeaderAvatar();
 
 /* ---------- Info card ---------- */
 document.querySelector("[data-mv-info-close]")?.addEventListener("click", () => {

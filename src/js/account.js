@@ -11,39 +11,15 @@
  */
 import "../styles/common.css";
 import "../styles/pages/account.css";
+import { readSession, saveSession, clearSession, initials } from "./utils/session.js";
 
 const body = document.body;
 const params = new URLSearchParams(window.location.search);
 
-/* ---------- Session (prototype login, kept in localStorage) ---------- */
-const SESSION_KEY = "kompas-account-session";
-
-function readSession() {
-  try {
-    return JSON.parse(localStorage.getItem(SESSION_KEY));
-  } catch {
-    return null;
-  }
-}
-
-function saveSession(user) {
-  try {
-    localStorage.setItem(SESSION_KEY, JSON.stringify(user));
-  } catch {
-    /* ignore */
-  }
-}
-
 /* ---------- State ---------- */
 const STATES = ["guest", "free", "member1", "memberN"];
 const paramState = params.get("state");
-if (paramState === "guest") {
-  try {
-    localStorage.removeItem(SESSION_KEY);
-  } catch {
-    /* ignore */
-  }
-}
+if (paramState === "guest") clearSession();
 let session = readSession();
 let state = STATES.includes(paramState) ? paramState : session ? "free" : "guest";
 
@@ -58,11 +34,6 @@ const MEMBER_CARD = {
   member1: { title: "KOMPAS.com+ MAX Tahunan", sub: "Diperpanjang pada 12 Juni 2024" },
   memberN: { title: "KOMPAS.com+ MAX Tahunan", sub: "Diperpanjang pada 27 Oktober 2026" },
 };
-
-function initials(name) {
-  const parts = name.trim().split(/\s+/);
-  return ((parts[0]?.[0] || "") + (parts[1]?.[0] || "")).toUpperCase() || "K";
-}
 
 function render() {
   body.dataset.state = state;
