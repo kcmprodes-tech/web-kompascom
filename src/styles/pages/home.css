@@ -1466,3 +1466,8 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* ================= Lanjutan daftar berita ================= */
+.lmore {
+  padding: 24px 0 32px;
+}
