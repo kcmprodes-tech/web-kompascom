@@ -1,0 +1,206 @@
+{
+ "title": "Celah yang Ancam Jutaan Situs Terungkap, PHP Foundation Buka-bukaan Proses Perbaikannya",
+ "date": "22 Oktober 2026, 10:03 WIB",
+ "editors": [
+  "Galuh Putri Riyanto",
+  "Yudha Pratomo"
+ ],
+ "photo": {
+  "src": "/assets/kompas/10030037.jpg",
+  "alt": "Ilustrasi hacker yang mengerahkan agen AI untuk meretas berbagai situs web",
+  "credit": "Dibuat dengan AI I Kompas.com/LNM",
+  "caption": "Ilustrasi hacker yang mengerahkan agen AI untuk meretas berbagai situs web"
+ },
+ "blocks": [
+  {
+   "type": "p",
+   "html": "<strong>KOMPAS.com</strong> - PHP Foundation mengungkap proses penemuan dan perbaikan dua celah keamanan kritis di bahasa pemrograman PHP."
+  },
+  {
+   "type": "p",
+   "html": "Kedua celah ini menjadi sangat berbahaya karena memungkinkan peretas menjalankan kode di server yang menjadi sasaran tanpa perlu login terlebih dahulu."
+  },
+  {
+   "type": "p",
+   "html": "Dalam blog resminya pada Rabu (21/10/2026), PHP Foundation juga menjelaskan alasan pihaknya merilis tambalan keamanan sehari lebih cepat dari jadwal semula."
+  },
+  {
+   "type": "p",
+   "html": "Keputusan itu diambil setelah nomor identitas kedua celah, yakni CVE-2026-109618 dan CVE-2026-109619, lebih dulu beredar di internet."
+  },
+  {
+   "type": "p",
+   "html": "Untuk mengatasi masalah tersebut, PHP Foundation merilis pembaruan keamanan melalui PHP versi 8.5.12, 8.4.27, 8.3.36, dan 8.2.35. Pengguna PHP disarankan segera memperbarui perangkat lunaknya agar server mereka terlindungi dari kedua celah tersebut."
+  },
+  {
+   "type": "p",
+   "html": "PHP sendiri merupakan bahasa pemrograman yang banyak digunakan untuk membangun situs web."
+  },
+  {
+   "type": "p",
+   "html": "Kode PHP dijalankan di server untuk mengolah permintaan pengunjung dan menyiapkan halaman yang kemudian ditampilkan melalui <em>browser</em>. Salah satu platform yang mengandalkan PHP adalah WordPress."
+  },
+  {
+   "type": "baca",
+   "title": "Celah Kritis PHP Picu Situasi Darurat, Website Pemerintah hingga Rumah Sakit Ditutup",
+   "url": "https://tekno.kompas.com/read/2026/10/22/08010027/celah-kritis-php-picu-situasi-darurat-website-pemerintah-hingga-rumah-sakit",
+   "id": "08010027"
+  },
+  {
+   "type": "p",
+   "html": "Menurut data <em>W3Techs</em>, PHP digunakan oleh 69,3 persen situs web yang bahasa pemrograman sisi server-nya diketahui. Dengan penggunaan yang luas tersebut, celah keamanan di PHP berpotensi menjadi ancaman bagi banyak situs web."
+  },
+  {
+   "type": "p",
+   "html": "Celah pertama, CVE-2026-109618, berkaitan dengan pengelolaan memori saat PHP memproses permintaan dari pengunjung."
+  },
+  {
+   "type": "p",
+   "html": "Dalam kondisi normal, PHP menggunakan memori dengan kapasitas tertentu untuk mengolah data. Namun, celah ini muncul ketika kapasitas memori habis tepat saat PHP sedang menyiapkan data."
+  },
+  {
+   "type": "p",
+   "html": "Akibatnya, sebagian data bisa tertinggal dalam kondisi belum selesai diproses. Masalahnya, PHP dapat memperlakukan data tersebut seolah-olah sudah valid."
+  },
+  {
+   "type": "p",
+   "html": "Kondisi ini berpotensi merusak memori dan membuka peluang bagi penyerang untuk menjalankan kode berbahaya di server."
+  },
+  {
+   "type": "p",
+   "html": "Sementara itu, celah kedua, CVE-2026-109619, berkaitan dengan kesalahan fatal (<em>fatal error</em>) yang membuat PHP berhenti memproses permintaan secara mendadak. Dalam situasi tertentu, PHP tidak sempat membersihkan catatan internal yang digunakan untuk mengelola memori."
+  },
+  {
+   "type": "p",
+   "html": "Catatan tersebut akhirnya masih menunjuk ke memori yang sebelumnya digunakan oleh permintaan lain, meskipun memori itu seharusnya sudah dilepaskan."
+  },
+  {
+   "type": "p",
+   "html": "Kondisi ini dikenal sebagai <em>use-after-free</em>, yakni ketika program kembali menggunakan memori yang sudah tidak lagi menjadi miliknya."
+  },
+  {
+   "type": "p",
+   "html": "Ibarat kunci kamar hotel yang masih bisa digunakan meski tamunya sudah <em>check-out</em>, program masih mengakses ruang memori yang seharusnya sudah tidak tersedia."
+  },
+  {
+   "type": "p",
+   "html": "PHP Foundation menyebut serangan remote code execution (RCE) melalui kedua celah tersebut telah berhasil didemonstrasikan pada server web Apache yang menggunakan modul mod_php."
+  },
+  {
+   "type": "p",
+   "html": "RCE merupakan jenis serangan yang memungkinkan penyerang menjalankan kode di komputer atau server target dari jarak jauh."
+  },
+  {
+   "type": "p",
+   "html": "Khusus untuk celah CVE-2026-109618, serangan juga dikonfirmasi dapat dilakukan pada PHP-FPM melalui jalur kode tertentu di aplikasi. PHP-FPM merupakan mekanisme lain yang digunakan server untuk menjalankan kode PHP."
+  },
+  {
+   "type": "p",
+   "html": "PHP Foundation menyebut, jejak masalah ini sebenarnya sudah terlihat sejak 2024. Saat itu, PHP menjalani audit keamanan eksternal pertamanya dalam beberapa tahun."
+  },
+  {
+   "type": "p",
+   "html": "Seorang <em>developer </em>kemudian melihat tanda-tanda masalah kehabisan memori (<em>out of memory</em>/OOM)."
+  },
+  {
+   "type": "p",
+   "html": "Tanda itu muncul saat ia memperbaiki salah satu temuan audit. Namun, saat itu belum ditemukan cara untuk mengeksploitasinya sehingga prioritas perbaikannya diturunkan."
+  },
+  {
+   "type": "p",
+   "html": "Perbaikan kemudian tertunda berbulan-bulan. Tim keamanan punya beberapa solusi yang saling bersaing."
+  },
+  {
+   "type": "p",
+   "html": "Setiap pilihan membawa konsekuensi, mulai dari merusak kompatibilitas, membuka risiko serangan penolakan layanan (denial of service/DoS) baru, hingga mengubah banyak ekstensi pihak ketiga."
+  },
+  {
+   "type": "p",
+   "html": "\"Kami tidak akan menutup-nutupinya. Keterlambatan ini adalah kegagalan struktural. Penyebabnya proses pengambilan keputusan tim keamanan sekaligus kurangnya sumber daya,\" tulis PHP Foundation."
+  },
+  {
+   "type": "p",
+   "html": "Pada Juli 2026, perusahaan keamanan siber Calif mulai mengaudit PHP lewat program Patch the Planet milik OpenAI."
+  },
+  {
+   "type": "p",
+   "html": "Pada 11 Agustus, Calif melaporkan celah RCE dengan akar masalah yang sama. OpenAI melaporkan temuan serupa di hari yang sama. Wiz dan pihak lain juga melaporkan jalur serangan tambahan."
+  },
+  {
+   "type": "p",
+   "html": "Sejak 11 Agustus, perbaikan masalah ini menjadi prioritas utama tim keamanan. Kemudian pada 1 Juli, tim keamanan juga telah memublikasikan 15 CVE dan menangani lebih dari 100 laporan yang tidak valid, duplikat, atau tidak bisa direproduksi."
+  },
+  {
+   "type": "p",
+   "html": "Menurut PHP Foundation, nomor identitas kedua celah, yang disebut ID CVE, mulai beredar di internet pada Selasa (20/10/2026) sekitar pukul 22.00 WIB."
+  },
+  {
+   "type": "p",
+   "html": "ID CVE adalah nomor resmi yang dipakai untuk mencatat sebuah celah keamanan. Biasanya, nomor ini baru diumumkan bersamaan dengan patch-nya."
+  },
+  {
+   "type": "p",
+   "html": "Informasi yang beredar itu ternyata keliru. Jadwal rilisnya salah, dan tingkat bahayanya tertulis 10,0, angka tertinggi di skala penilaian keparahan celah keamanan (CVSS) yang berkisar 0-10. Padahal, skor sebenarnya 9,2."
+  },
+  {
+   "type": "p",
+   "html": "PHP Foundation menegaskan, cara kerja celah itu tidak ikut bocor. Yang beredar hanya nomor dan skornya."
+  },
+  {
+   "type": "p",
+   "html": "Meski begitu, tim PHP memutuskan bergerak lebih cepat. Pengumuman awal soal rilis patch dimajukan ke Rabu (21/10/2026) dini hari pukul 02.30 WIB. Tambalannya sendiri dirilis Rabu pukul 21.00 WIB, sehari lebih cepat dari jadwal semula pada Kamis (22/10/2026)."
+  },
+  {
+   "type": "baca",
+   "title": "Hacker Cuma Beri Perintah Singkat, Agen AI Bobol Situs 100 Perusahaan",
+   "url": "https://tekno.kompas.com/read/2026/10/20/15030077/hacker-cuma-beri-perintah-singkat-agen-ai-bobol-situs-100-perusahaan",
+   "id": "15030077"
+  },
+  {
+   "type": "p",
+   "html": "Meski begitu, tambalan tidak langsung dirilis malam itu. Pengelola distribusi Linux, seperti Ubuntu dan Debian, masih menyiapkan paket pembaruannya. Menurut PHP Foundation, kalau tambalan dirilis lebih dulu, banyak pengguna belum bisa memperbarui PHP dengan mudah."
+  },
+  {
+   "type": "p",
+   "html": "Masalah lain menyusul setelah Calif tidak sengaja memublikasikan video bukti konsep (<em>proof of concept</em>/PoC) serangan. Video itu sudah dihapus, tetapi telanjur menyebar."
+  },
+  {
+   "type": "p",
+   "html": "Penyedia image kontainer Chainguard juga merilis paket perangkat lunak siap pakai berisi perbaikan pada Rabu pukul 14.41 WIB. Rilis itu lebih dari enam jam lebih awal dari jadwal rilis terkoordinasi."
+  },
+  {
+   "type": "p",
+   "html": "Firma keamanan siber Tenable mencatat eksploitasi kedua celah ini dijuluki \"php2shell\", sebagaimana dihimpun <em>KompasTekno</em> dari <em>Tenable</em>."
+  },
+  {
+   "type": "p",
+   "html": "CTO Cloudflare Dane Knecht mengatakan perusahaannya mulai melihat serangan awal."
+  },
+  {
+   "type": "p",
+   "html": "Namun, PHP Foundation menyebut tim keamanan sudah memeriksa kode serangan yang beredar setelah kebocoran. Hingga saat rilis, mereka belum menemukan eksploit yang benar-benar berfungsi."
+  },
+  {
+   "type": "p",
+   "html": "PHP Foundation meminta siapa pun yang menjalankan PHP untuk segera memperbaruinya. Versi 7.4 hingga 8.1 tidak mendapat rilis resmi, hanya tambalan kode sumber minimal yang disesuaikan ke versi lama (<em>backport</em>) dari tim keamanan PHP."
+  },
+  {
+   "type": "p",
+   "html": "Versi 5.4 hingga 7.3 bahkan sudah tidak didukung dan tidak menerima perbaikan."
+  },
+  {
+   "type": "p",
+   "html": "<i>Bayangkan seorang anak Indonesia bercita-cita menjadi dokter tetapi hanya memiliki satu buku lusuh untuk belajar. Bersama Ekspedisi Kata ke Nyata Kompas.com, Anda bisa membantu mengubah kisah itu. Mari hadirkan akses literasi bagi anak-anak di berbagai pelosok Indonesia melalui donasi lewat tautan https://bit.ly/JagatLiterasi2026. Setiap kebaikan yang Anda berikan bukan hanya membuka jendela pengetahuan, tetapi juga membuka masa depan mereka.</i>"
+  }
+ ],
+ "tags": [
+  "php2shell",
+  "celah keamanan php",
+  "update php"
+ ],
+ "id": "10030037",
+ "url": "https://tekno.kompas.com/read/2026/10/22/10030037/celah-yang-ancam-jutaan-situs-terungkap-php-foundation-buka-bukaan-proses",
+ "kanal": "Tekno",
+ "published": "2026-10-22T10:03:00+07:00",
+ "readTime": ""
+}

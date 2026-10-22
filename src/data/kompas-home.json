@@ -1,0 +1,581 @@
+{
+ "fetchedAt": "2026-10-22T12:43+07:00",
+ "trending": [
+  "Prabowo Subianto",
+  "Gibran Rakabuming",
+  "Karhutla",
+  "KMP Batu Mandi Terbakar",
+  "IHSG",
+  "Houthi",
+  "Greenpeace",
+  "Kopdes Merah Putih",
+  "Arab Saudi",
+  "pendidikan jakarta"
+ ],
+ "sponsoredHeadline": {
+  "title": "Dari Serabi hingga Omikuji, Wisatawan Indonesia Kini Bisa Bayar Pakai QRIS di Jepang",
+  "photo": "/assets/kompas/sponsored.jpg"
+ },
+ "headline": [
+  "113407778",
+  "11324641",
+  "11323261",
+  "113143678",
+  "101000678"
+ ],
+ "terpopuler": [
+  "10020061",
+  "10360831",
+  "11323261",
+  "10030037"
+ ],
+ "sorotan": [
+  "112630878",
+  "11142961",
+  "111200515",
+  "11200017"
+ ],
+ "kolom": [
+  {
+   "id": "12420081",
+   "author": "Dr.-phil. Ir. Arinafril",
+   "role": "Dosen dan Peneliti",
+   "photo": "/assets/kompas/a-1.jpg"
+  },
+  {
+   "id": "11570001",
+   "author": "Charles Paulinus Marulitua Sitanggang",
+   "role": "Profesional Transportasi dan Logistik",
+   "photo": "/assets/kompas/a-2.jpg"
+  },
+  {
+   "id": "11210021",
+   "author": "Eben E. Siadari",
+   "role": "Associate Editor Penerbitan",
+   "photo": "/assets/kompas/a-3.jpg"
+  },
+  {
+   "id": "104000326",
+   "author": "Muhammad Ikmal",
+   "role": "Praktisi Perpajakan",
+   "photo": "/assets/kompas/a-4.jpg"
+  }
+ ],
+ "topik": [
+  {
+   "name": "Karhutla Kalimantan 2026: Kepungan Api di Tanah Borneo",
+   "ids": [
+    "101000678"
+   ]
+  },
+  {
+   "name": "Dua Tahun Prabowo-Gibran",
+   "ids": [
+    "094100826"
+   ]
+  },
+  {
+   "name": "Sumatera Pulih",
+   "ids": [
+    "212858978"
+   ]
+  }
+ ],
+ "terkini": [
+  "12420081",
+  "123929626",
+  "123500978",
+  "12350027",
+  "12293881",
+  "12284521",
+  "122657678",
+  "122347326",
+  "121641926",
+  "121533678",
+  "121349378",
+  "121016778",
+  "12090701",
+  "12050097",
+  "120500520",
+  "120200915",
+  "11570001",
+  "11501761",
+  "114500670",
+  "114428970",
+  "11405481",
+  "113854328",
+  "11385148",
+  "113713626"
+ ],
+ "indeks": [
+  "124001778",
+  "123929626",
+  "123824826",
+  "123500978",
+  "12350027",
+  "123442526",
+  "123417278",
+  "12333841",
+  "12333138",
+  "12293881",
+  "122915078",
+  "122847078",
+  "12284521",
+  "122817678",
+  "122657678",
+  "122347326",
+  "122308478"
+ ],
+ "articles": {
+  "113407778": {
+   "id": "113407778",
+   "url": "https://regional.kompas.com/read/2026/10/22/113407778/riau-kembali-diselimuti-kabut-asap-warga-baru-sehari-bernapas-lega",
+   "title": "Riau Kembali Diselimuti Kabut Asap, Warga: Baru Sehari Bernapas Lega",
+   "kanal": "Regional",
+   "published": "2026-10-22T11:34:00+07:00",
+   "readTime": "",
+   "img": "/assets/kompas/113407778.jpg"
+  },
+  "11324641": {
+   "id": "11324641",
+   "url": "https://nasional.kompas.com/read/2026/10/22/11324641/pemerintah-kirim-bantuan-rp-12-triliun-untuk-pemda-terdampak-karhutla",
+   "title": "Pemerintah Kirim Bantuan Rp 1,2 Triliun untuk Pemda Terdampak Karhutla",
+   "kanal": "News",
+   "published": "2026-10-22T11:32:00+07:00",
+   "readTime": "",
+   "img": "/assets/kompas/11324641.jpg"
+  },
+  "11323261": {
+   "id": "11323261",
+   "url": "https://megapolitan.kompas.com/read/2026/10/22/11323261/antrean-panjang-di-job-fair-jakarta-pencari-kerja-syarat-makin-berat",
+   "title": "Antrean Panjang di Job Fair Jakarta, Pencari Kerja: Syarat Makin Berat, Loker Makin Sedikit",
+   "kanal": "Megapolitan",
+   "published": "2026-10-22T11:32:00+07:00",
+   "readTime": "",
+   "img": "/assets/kompas/11323261.jpg"
+  },
+  "113143678": {
+   "id": "113143678",
+   "url": "https://yogyakarta.kompas.com/read/2026/10/22/113143678/viral-video-api-keluar-dari-tanah-di-bantul-diy-diduga-bekas-timbunan",
+   "title": "Viral, Video Api Keluar dari Tanah di Bantul DIY, Diduga Bekas Timbunan Sampah",
+   "kanal": "Regional",
+   "published": "2026-10-22T11:31:00+07:00",
+   "readTime": "",
+   "img": "/assets/kompas/113143678.jpg"
+  },
+  "101000678": {
+   "id": "101000678",
+   "url": "https://regional.kompas.com/read/2026/10/22/101000678/relawan-damkar-meninggal-saat-padamkan-karhutla-di-kalsel-sempat-mengeluh",
+   "title": "Relawan Damkar Meninggal Saat Padamkan Karhutla di Kalsel, Sempat Mengeluh Nyeri Dada",
+   "kanal": "Regional",
+   "published": "2026-10-22T10:10:00+07:00",
+   "readTime": "",
+   "img": "/assets/kompas/101000678.jpg"
+  },
+  "10020061": {
+   "id": "10020061",
+   "url": "https://nasional.kompas.com/read/2026/10/22/10020061/bila-kerugian-negara-dianggap-bukan-korupsi-",
+   "title": "Bila Kerugian Negara Dianggap \"Bukan Korupsi\"",
+   "kanal": "News",
+   "published": "2026-10-22T10:02:00+07:00",
+   "readTime": "",
+   "img": "/assets/kompas/10020061.jpg"
+  },
+  "10360831": {
+   "id": "10360831",
+   "url": "https://nasional.kompas.com/read/2026/10/22/10360831/anggota-wantimpres-ignasius-jonan-kepada-singapura-malaysia-kenapa-kritik",
+   "title": "Anggota Wantimpres Ignasius Jonan kepada Singapura-Malaysia: Kenapa Kritik Karhutla Sekarang?",
+   "kanal": "News",
+   "published": "2026-10-22T10:36:00+07:00",
+   "readTime": "",
+   "img": "/assets/kompas/10360831.jpg"
+  },
+  "10030037": {
+   "id": "10030037",
+   "url": "https://tekno.kompas.com/read/2026/10/22/10030037/celah-yang-ancam-jutaan-situs-terungkap-php-foundation-buka-bukaan-proses",
+   "title": "Celah yang Ancam Jutaan Situs Terungkap, PHP Foundation Buka-bukaan Proses Perbaikannya",
+   "kanal": "Tekno",
+   "published": "2026-10-22T10:03:00+07:00",
+   "readTime": "",
+   "img": "/assets/kompas/10030037.jpg"
+  },
+  "112630878": {
+   "id": "112630878",
+   "url": "https://regional.kompas.com/read/2026/10/22/112630878/pabrik-obat-ilegal-di-kartasura-sukoharjo-digerebek-polda-metro-jaya-bayan",
+   "title": "Pabrik Obat Ilegal di Kartasura Sukoharjo Digerebek Polda Metro Jaya, Bayan: Izinnya Pabrik Kardus dan Botol",
+   "kanal": "Regional",
+   "published": "2026-10-22T11:26:00+07:00",
+   "readTime": "",
+   "img": "/assets/kompas/112630878.jpg"
+  },
+  "11142961": {
+   "id": "11142961",
+   "url": "https://nasional.kompas.com/read/2026/10/22/11142961/bakom-ri-prabowo-tidak-pernah-membungkam-demokrasi-buka-pintu-kritik-lebar",
+   "title": "Bakom RI: Prabowo Tidak Pernah Membungkam Demokrasi, Buka Pintu Kritik Lebar",
+   "kanal": "News",
+   "published": "2026-10-22T11:14:00+07:00",
+   "readTime": "",
+   "img": "/assets/kompas/11142961.jpg"
+  },
+  "111200515": {
+   "id": "111200515",
+   "url": "https://otomotif.kompas.com/read/2026/10/22/111200515/3-pilar-utama-hemat-bbm-motor--beban-kondisi-gaya-berkendara",
+   "title": "3 Pilar Utama Hemat BBM Motor: Beban, Kondisi, Gaya Berkendara",
+   "kanal": "Otomotif",
+   "published": "2026-10-22T11:12:00+07:00",
+   "readTime": "",
+   "img": "/assets/kompas/111200515.jpg"
+  },
+  "11200017": {
+   "id": "11200017",
+   "url": "https://tekno.kompas.com/read/2026/10/22/11200017/bocoran-kamera-samsung-galaxy-s27-ultra-berkurang-tapi-tambah-besar",
+   "title": "Bocoran Kamera Samsung Galaxy S27 Ultra, Berkurang tapi Tambah Besar",
+   "kanal": "Tekno",
+   "published": "2026-10-22T11:20:00+07:00",
+   "readTime": "",
+   "img": "/assets/kompas/11200017.jpg"
+  },
+  "12420081": {
+   "id": "12420081",
+   "url": "https://nasional.kompas.com/read/2026/10/22/12420081/biofuel-b100-di-atas-lahan-terluka",
+   "title": "Biofuel B100 di Atas Lahan Terluka",
+   "kanal": "News",
+   "published": "2026-10-22T12:42:00+07:00",
+   "readTime": "Waktu baca 7 menit",
+   "img": "/assets/kompas/12420081.jpg"
+  },
+  "11570001": {
+   "id": "11570001",
+   "url": "https://nasional.kompas.com/read/2026/10/22/11570001/tujuh-bulan-tiga-kebakaran-satu-pertanyaan-yang-belum-dijawab",
+   "title": "Tujuh Bulan, Tiga Kebakaran, Satu Pertanyaan yang Belum Dijawab",
+   "kanal": "News",
+   "published": "2026-10-22T11:57:00+07:00",
+   "readTime": "Waktu baca 6 menit",
+   "img": "/assets/kompas/11570001.jpg"
+  },
+  "11210021": {
+   "id": "11210021",
+   "url": "https://nasional.kompas.com/read/2026/10/22/11210021/anne-carson-nobel-sastra-2026-dan-ketidakberdayaan-penulis-melawan-algoritma",
+   "title": "Anne Carson, Nobel Sastra 2026, dan Ketidakberdayaan Penulis Melawan Algoritma",
+   "kanal": "News",
+   "published": "2026-10-22T11:21:00+07:00",
+   "readTime": "",
+   "img": "/assets/kompas/11210021.jpg"
+  },
+  "104000326": {
+   "id": "104000326",
+   "url": "https://money.kompas.com/read/2026/10/22/104000326/naik-sebelum-terpaksa",
+   "title": "Naik Sebelum Terpaksa",
+   "kanal": "Money",
+   "published": "2026-10-22T10:40:00+07:00",
+   "readTime": "",
+   "img": "/assets/kompas/104000326.jpg"
+  },
+  "094100826": {
+   "id": "094100826",
+   "url": "https://money.kompas.com/read/2026/10/22/094100826/2-tahun-pemerintahan-prabowo-ekonomi-indonesia-tumbuh-di-atas-5-persen",
+   "title": "2 Tahun Pemerintahan Prabowo, Ekonomi Indonesia Tumbuh di Atas 5 Persen",
+   "kanal": "Money",
+   "published": "2026-10-22T09:41:00+07:00",
+   "readTime": "",
+   "img": "/assets/kompas/094100826.jpg"
+  },
+  "212858978": {
+   "id": "212858978",
+   "url": "https://regional.kompas.com/read/2026/10/21/212858978/jadi-jalur-vital-logistik-pascabencana-jalan-simpang-panta-bukittinggi",
+   "title": "Jadi Jalur Vital Logistik Pascabencana, Jalan Simpang Panta-Bukittinggi Diperlebar dengan TKD Tambahan Rp 10,8 Miliar",
+   "kanal": "Regional",
+   "published": "2026-10-21T21:28:00+07:00",
+   "readTime": "",
+   "img": "/assets/kompas/212858978.jpg"
+  },
+  "123929626": {
+   "id": "123929626",
+   "url": "https://money.kompas.com/read/2026/10/22/123929626/genjiot-kredit-bi-perpanjang-dp-nol-persen-kendaraan-dan-ltv-properti-hingga",
+   "title": "Genjiot Kredit, BI Perpanjang DP Nol Persen Kendaraan dan LTV Properti hingga 2027",
+   "kanal": "Money",
+   "published": "2026-10-22T12:39:00+07:00",
+   "readTime": "Waktu baca 7 menit",
+   "img": "/assets/kompas/123929626.jpg"
+  },
+  "123500978": {
+   "id": "123500978",
+   "url": "https://makassar.kompas.com/read/2026/10/22/123500978/tawuran-maut-di-makassar-dipicu-dendam-rp-1-juta-berawal-dari-penjualan",
+   "title": "Tawuran Maut di Makassar Dipicu Dendam Rp 1 Juta, Berawal dari Penjualan Anjing Liar",
+   "kanal": "Regional",
+   "published": "2026-10-22T12:35:00+07:00",
+   "readTime": "Waktu baca 3 menit",
+   "img": "/assets/kompas/123500978.jpg"
+  },
+  "12350027": {
+   "id": "12350027",
+   "url": "https://tekno.kompas.com/read/2026/10/22/12350027/baru-download-whatsapp-di-android-ada-aplikasi-palsu-segera-cek",
+   "title": "Baru Download WhatsApp di Android? Ada Aplikasi Palsu, Segera Cek",
+   "kanal": "Tekno",
+   "published": "2026-10-22T12:35:00+07:00",
+   "readTime": "Waktu baca 5 menit",
+   "img": "/assets/kompas/12350027.jpg"
+  },
+  "12293881": {
+   "id": "12293881",
+   "url": "https://nasional.kompas.com/read/2026/10/22/12293881/kubu-eks-ketua-ombudsman-tepis-rp-195-m-dan-rumah-rp-22-m-adalah-hasil-suap",
+   "title": "Kubu Eks Ketua Ombudsman Tepis Rp 1,95 M dan Rumah Rp 2,2 M adalah Hasil Suap",
+   "kanal": "News",
+   "published": "2026-10-22T12:29:00+07:00",
+   "readTime": "Waktu baca 4 menit",
+   "img": "/assets/kompas/12293881.jpg"
+  },
+  "12284521": {
+   "id": "12284521",
+   "url": "https://nasional.kompas.com/read/2026/10/22/12284521/mengenal-skadik-103-tempat-calon-penerbang-drone-tni-au-digembleng",
+   "title": "Mengenal Skadik 103, Tempat Calon Penerbang Drone TNI AU Digembleng",
+   "kanal": "News",
+   "published": "2026-10-22T12:28:00+07:00",
+   "readTime": "Waktu baca 4 menit",
+   "img": "/assets/kompas/12284521.jpg"
+  },
+  "122657678": {
+   "id": "122657678",
+   "url": "https://bandung.kompas.com/read/2026/10/22/122657678/dedi-mulyadi-dorong-investasi-di-jabar-untuk-buka-lapangan-kerja",
+   "title": "Dedi Mulyadi Dorong Investasi di Jabar untuk Buka Lapangan Kerja",
+   "kanal": "Regional",
+   "published": "2026-10-22T12:26:00+07:00",
+   "readTime": "Waktu baca 4 menit",
+   "img": "/assets/kompas/122657678.jpg"
+  },
+  "122347326": {
+   "id": "122347326",
+   "url": "https://money.kompas.com/read/2026/10/22/122347326/daftar-ka-go-show-dari-solo-oktober-2026-terbaru-cek-rutenya",
+   "title": "Daftar KA Go Show dari Solo Oktober 2026 Terbaru, Cek Rutenya",
+   "kanal": "Money",
+   "published": "2026-10-22T12:23:00+07:00",
+   "readTime": "Waktu baca 3 menit",
+   "img": "/assets/kompas/122347326.jpg"
+  },
+  "121641926": {
+   "id": "121641926",
+   "url": "https://money.kompas.com/read/2026/10/22/121641926/pln-beri-diskon-tambah-daya-listrik-50-persen-berlaku-sampai-4-november-2026",
+   "title": "PLN Beri Diskon Tambah Daya Listrik 50 Persen, Berlaku Sampai 4 November 2026",
+   "kanal": "Money",
+   "published": "2026-10-22T12:16:00+07:00",
+   "readTime": "Waktu baca 3 menit",
+   "img": "/assets/kompas/121641926.jpg"
+  },
+  "121533678": {
+   "id": "121533678",
+   "url": "https://surabaya.kompas.com/read/2026/10/22/121533678/3-siswa-sekolah-rakyat-di-jember-diduga-dianiaya-mahasiswa-keluarga-lapor",
+   "title": "3 Siswa Sekolah Rakyat di Jember Diduga Dianiaya Mahasiswa, Keluarga Lapor Polisi",
+   "kanal": "Regional",
+   "published": "2026-10-22T12:15:00+07:00",
+   "readTime": "Waktu baca 3 menit",
+   "img": "/assets/kompas/121533678.jpg"
+  },
+  "121349378": {
+   "id": "121349378",
+   "url": "https://bandung.kompas.com/read/2026/10/22/121349378/atlet-boccia-pangandaran-berusia-14-tahun-menanti-kesempatan-tampil-di",
+   "title": "Atlet Boccia Pangandaran Berusia 14 Tahun Menanti Kesempatan Tampil di Peparda 2026",
+   "kanal": "Regional",
+   "published": "2026-10-22T12:13:00+07:00",
+   "readTime": "Waktu baca 3 menit",
+   "img": "/assets/kompas/121349378.jpg"
+  },
+  "121016778": {
+   "id": "121016778",
+   "url": "https://regional.kompas.com/read/2026/10/22/121016778/dry-ice-tak-mempan-palembang-masih-dikepung-asap-warga-tak-bisa-tutupi",
+   "title": "Dry Ice Tak Mempan, Palembang Masih Dikepung Asap, Warga Tak Bisa Tutupi Kekecewaan",
+   "kanal": "Regional",
+   "published": "2026-10-22T12:10:00+07:00",
+   "readTime": "Waktu baca 4 menit",
+   "img": "/assets/kompas/121016778.jpg"
+  },
+  "12090701": {
+   "id": "12090701",
+   "url": "https://nasional.kompas.com/read/2026/10/22/12090701/den-pimpinan-luhut-rekomendasikan-penyempurnaan-uu-tipikor",
+   "title": "DEN Pimpinan Luhut Rekomendasikan Penyempurnaan UU Tipikor",
+   "kanal": "News",
+   "published": "2026-10-22T12:09:00+07:00",
+   "readTime": "Waktu baca 4 menit",
+   "img": "/assets/kompas/12090701.jpg"
+  },
+  "12050097": {
+   "id": "12050097",
+   "url": "https://tekno.kompas.com/read/2026/10/22/12050097/adopsi-agen-ai-mulai-masif-trendai-dan-nvidia-perkuat-sistem-keamanan",
+   "title": "Adopsi Agen AI Mulai Masif, TrendAI dan Nvidia Perkuat Sistem Keamanan",
+   "kanal": "Tekno",
+   "published": "2026-10-22T12:05:00+07:00",
+   "readTime": "Waktu baca 5 menit",
+   "img": "/assets/kompas/12050097.jpg"
+  },
+  "120500520": {
+   "id": "120500520",
+   "url": "https://lifestyle.kompas.com/read/2026/10/22/120500520/tak-harus-selalu-menyenangkan-orang-lain-berani-berkata-tidak-demi",
+   "title": "Tak Harus Selalu Menyenangkan Orang Lain, Berani Berkata Tidak demi Kesehatan Mental",
+   "kanal": "Lifestyle",
+   "published": "2026-10-22T12:05:00+07:00",
+   "readTime": "Waktu baca 3 menit",
+   "img": "/assets/kompas/120500520.jpg"
+  },
+  "120200915": {
+   "id": "120200915",
+   "url": "https://otomotif.kompas.com/read/2026/10/22/120200915/sewa-mobil-listrik-vs-konvensional--untung-rugi-dan-harga-sewa-ev",
+   "title": "Sewa Mobil Listrik vs Konvensional: Untung Rugi dan Harga Sewa EV",
+   "kanal": "Otomotif",
+   "published": "2026-10-22T12:02:00+07:00",
+   "readTime": "Waktu baca 3 menit",
+   "img": "/assets/kompas/120200915.jpg"
+  },
+  "11501761": {
+   "id": "11501761",
+   "url": "https://megapolitan.kompas.com/read/2026/10/22/11501761/pengaspalan-jalan-raya-rawa-buntu-tangsel-dikeluhkan-beda-tinggi-aspal",
+   "title": "Pengaspalan Jalan Raya Rawa Buntu Tangsel Dikeluhkan, Beda Tinggi Aspal Bikin Pemotor Waswas",
+   "kanal": "Megapolitan",
+   "published": "2026-10-22T11:50:00+07:00",
+   "readTime": "Waktu baca 4 menit",
+   "img": "/assets/kompas/11501761.jpg"
+  },
+  "114500670": {
+   "id": "114500670",
+   "url": "https://internasional.kompas.com/read/2026/10/22/114500670/kabar-terbaru-paus-leo-xiv-setelah-operasi-kanker-paru-paru-vatikan",
+   "title": "Kabar Terbaru Paus Leo XIV Setelah Operasi Kanker Paru-paru, Vatikan Ungkap Kondisinya",
+   "kanal": "Global",
+   "published": "2026-10-22T11:45:00+07:00",
+   "readTime": "Waktu baca 4 menit",
+   "img": "/assets/kompas/114500670.jpg"
+  },
+  "114428970": {
+   "id": "114428970",
+   "url": "https://internasional.kompas.com/read/2026/10/22/114428970/bicara-bahasa-jawa-anggota-parlemen-malaysia-desak-prabowo-padamkan",
+   "title": "Bicara Bahasa Jawa, Anggota Parlemen Malaysia Desak Prabowo Padamkan Karhutla",
+   "kanal": "Global",
+   "published": "2026-10-22T11:44:00+07:00",
+   "readTime": "Waktu baca 3 menit",
+   "img": "/assets/kompas/114428970.jpg"
+  },
+  "11405481": {
+   "id": "11405481",
+   "url": "https://nasional.kompas.com/read/2026/10/22/11405481/eks-ketua-ombudsman-hery-susanto-minta-hakim-tinjau-ulang-tuntutan-55-tahun",
+   "title": "Eks Ketua Ombudsman Hery Susanto Minta Hakim Tinjau Ulang Tuntutan 5,5 Tahun Penjara",
+   "kanal": "News",
+   "published": "2026-10-22T11:40:00+07:00",
+   "readTime": "Waktu baca 3 menit",
+   "img": "/assets/kompas/11405481.jpg"
+  },
+  "113854328": {
+   "id": "113854328",
+   "url": "https://biz.kompas.com/read/2026/10/22/113854328/ekspor-jabar-ke-pakistan-tumbuh-2281-persen-nilainya-tembus-24218-juta-dollar-as",
+   "title": "Ekspor Jabar ke Pakistan Tumbuh 22,81 Persen, Nilainya Tembus 242,18 Juta Dollar AS",
+   "kanal": "Biz",
+   "published": "2026-10-22T11:38:00+07:00",
+   "readTime": "Waktu baca 4 menit",
+   "img": "/assets/kompas/113854328.jpg"
+  },
+  "11385148": {
+   "id": "11385148",
+   "url": "https://bola.kompas.com/read/2026/10/22/11385148/cristiano-ronaldo-minta-hukuman-dikurangi-ini-3-alasan-yang-diajukan",
+   "title": "Cristiano Ronaldo Minta Hukuman Dikurangi, Ini 3 Alasan yang Diajukan",
+   "kanal": "Bola",
+   "published": "2026-10-22T11:38:00+07:00",
+   "readTime": "Waktu baca 3 menit",
+   "img": "/assets/kompas/11385148.jpg"
+  },
+  "113713626": {
+   "id": "113713626",
+   "url": "https://money.kompas.com/read/2026/10/22/113713626/konsumen-makin-selektif-maskapai-tawarkan-pilihan-tarif-beragam",
+   "title": "Konsumen Makin Selektif, Maskapai Tawarkan Pilihan Tarif Beragam",
+   "kanal": "Money",
+   "published": "2026-10-22T11:37:00+07:00",
+   "readTime": "Waktu baca 6 menit",
+   "img": "/assets/kompas/113713626.jpg"
+  },
+  "124001778": {
+   "id": "124001778",
+   "url": "https://surabaya.kompas.com/read/2026/10/22/124001778/3-bulan-krisis-air-bersih-warga-gucialit-lumajang-dapat-bantuan-hanya",
+   "title": "3 Bulan Krisis Air Bersih, Warga Gucialit Lumajang Dapat Bantuan Hanya Seminggu Sekali",
+   "kanal": "Regional",
+   "published": "2026-10-22T12:40:00+07:00",
+   "readTime": "",
+   "img": "/assets/kompas/124001778.jpg"
+  },
+  "123824826": {
+   "id": "123824826",
+   "url": "https://money.kompas.com/read/2026/10/22/123824826/ihsg-ditutup-naik-170-persen-pada-sesi-i-ditopang-saham-perbankan-bumn",
+   "title": "IHSG Ditutup Naik 1,70 Persen pada Sesi I, Ditopang Saham Perbankan BUMN",
+   "kanal": "Money",
+   "published": "2026-10-22T12:38:00+07:00",
+   "readTime": "",
+   "img": "/assets/kompas/123824826.jpg"
+  },
+  "123442526": {
+   "id": "123442526",
+   "url": "https://money.kompas.com/read/2026/10/22/123442526/lpei-catat-potensi-ekspor-73-juta-dollar-as-di-tei-2026-kopi-jadi-andalan",
+   "title": "LPEI Catat Potensi Ekspor 7,3 Juta Dollar AS di TEI 2026, Kopi Jadi Andalan",
+   "kanal": "Money",
+   "published": "2026-10-22T12:34:00+07:00",
+   "readTime": "",
+   "img": "/assets/kompas/123442526.jpg"
+  },
+  "123417278": {
+   "id": "123417278",
+   "url": "https://regional.kompas.com/read/2026/10/22/123417278/jadi-bandar-sabu-ke-nelayan-anggota-polisi-di-majene-dipecat",
+   "title": "Jadi Bandar Sabu ke Nelayan, Anggota Polisi di Majene Dipecat",
+   "kanal": "Regional",
+   "published": "2026-10-22T12:34:00+07:00",
+   "readTime": "",
+   "img": "/assets/kompas/123417278.jpg"
+  },
+  "12333841": {
+   "id": "12333841",
+   "url": "https://megapolitan.kompas.com/read/2026/10/22/12333841/pikap-terguling-ditabrak-minibus-di-rasuna-said-jaksel-1-penumpang-tewas",
+   "title": "Pikap Terguling Ditabrak Minibus di Rasuna Said Jaksel, 1 Penumpang Tewas",
+   "kanal": "Megapolitan",
+   "published": "2026-10-22T12:33:00+07:00",
+   "readTime": "",
+   "img": "/assets/kompas/12333841.jpg"
+  },
+  "12333138": {
+   "id": "12333138",
+   "url": "https://bola.kompas.com/read/2026/10/22/12333138/tampilkan-spanduk-gergaji-mesin-psg-dilaporkan-barcelona-ke-uefa",
+   "title": "Tampilkan Spanduk 'Gergaji Mesin', PSG Dilaporkan Barcelona ke UEFA",
+   "kanal": "Bola",
+   "published": "2026-10-22T12:33:00+07:00",
+   "readTime": "",
+   "img": "/assets/kompas/12333138.jpg"
+  },
+  "122915078": {
+   "id": "122915078",
+   "url": "https://bandung.kompas.com/read/2026/10/22/122915078/bpbd-jabar-ungkap-15-hektare-lahan-bambu-di-gunung-ciremai-terbakar",
+   "title": "BPBD Jabar Ungkap 1,5 Hektare Lahan Bambu di Gunung Ciremai Terbakar",
+   "kanal": "Regional",
+   "published": "2026-10-22T12:29:00+07:00",
+   "readTime": "",
+   "img": "/assets/kompas/122915078.jpg"
+  },
+  "122847078": {
+   "id": "122847078",
+   "url": "https://surabaya.kompas.com/read/2026/10/22/122847078/ratusan-warga-probolinggo-saksikan-uji-coba-pesawat-tempur-tni-au-di-tol",
+   "title": "Ratusan Warga Probolinggo Saksikan Uji Coba Pesawat Tempur TNI AU di Tol Paspro",
+   "kanal": "Regional",
+   "published": "2026-10-22T12:28:00+07:00",
+   "readTime": "",
+   "img": "/assets/kompas/122847078.jpg"
+  },
+  "122817678": {
+   "id": "122817678",
+   "url": "https://regional.kompas.com/read/2026/10/22/122817678/penutupan-jembatan-3-palu-sulteng-dan-rekayasa-lalu-lintasnya",
+   "title": "Penutupan Jembatan 3 Palu Sulteng dan Rekayasa Lalu Lintasnya",
+   "kanal": "Regional",
+   "published": "2026-10-22T12:28:00+07:00",
+   "readTime": "",
+   "img": "/assets/kompas/122817678.jpg"
+  },
+  "122308478": {
+   "id": "122308478",
+   "url": "https://regional.kompas.com/read/2026/10/22/122308478/bukit-mongkrang-karanganyar-ditutup-mulai-besok-sampai-kapan",
+   "title": "Bukit Mongkrang Karanganyar Ditutup Mulai Besok, sampai Kapan?",
+   "kanal": "Regional",
+   "published": "2026-10-22T12:23:00+07:00",
+   "readTime": "",
+   "img": "/assets/kompas/122308478.jpg"
+  }
+ }
+}

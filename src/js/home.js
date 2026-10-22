@@ -5,6 +5,7 @@
 import "../styles/components/site-header.css";
 import "../styles/pages/home.css";
 import { initHeaderAvatar } from "./site-header.js";
+import { refreshTimes } from "./utils/time.js";
 
 /* ---------- "Pilih topik" interest picker ---------- */
 function initMinat() {
@@ -39,4 +40,5 @@ function initMinat() {
 }
 
 initHeaderAvatar();
+refreshTimes(); // article times are snapshot-relative in the HTML
 initMinat();

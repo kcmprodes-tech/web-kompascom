@@ -390,11 +390,18 @@
   display: none;
 }
 .hl-card {
+  position: relative;
   flex: 0 0 100%;
   scroll-snap-align: center;
   border-radius: 12px;
   background: #f7f7f7;
   overflow: hidden;
+}
+/* whole headline card is the link */
+.hl-card__link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
 }
 .hl-card__media {
   position: relative;

@@ -1,0 +1,199 @@
+{
+ "title": "Adopsi Agen AI Mulai Masif, TrendAI dan Nvidia Perkuat Sistem Keamanan",
+ "date": "22 Oktober 2026, 12:05 WIB",
+ "editors": [
+  "Wahyunanda Kusuma Pertiwi"
+ ],
+ "photo": {
+  "src": "/assets/kompas/12050097.jpg",
+  "alt": "Ilustrasi AI.",
+  "credit": "cyberriskalliance.com",
+  "caption": "Ilustrasi AI."
+ },
+ "blocks": [
+  {
+   "type": "p",
+   "html": "<strong>KOMPAS.com</strong> - Pemanfaatan kecerdasan buatan (<em>artificial intelligence</em>/AI) di perusahaan mulai berkembang dari sekadar alat untuk menjawab pertanyaan menjadi sistem yang dapat menjalankan serangkaian tugas secara mandiri."
+  },
+  {
+   "type": "p",
+   "html": "Teknologi otonom itu kini disebut dengan istilah \"agentic AI\" atau agen AI."
+  },
+  {
+   "type": "p",
+   "html": "Berdasarkan laporan Google Cloud \"AI Agent Trends 2026\", dari seluruh eksekutif di organisasi yang menggunakan generative AI, 52 persen di antaranya mengatakan bahwa organisasinya sudah mengadopsi agen AI dalam produksi."
+  },
+  {
+   "type": "p",
+   "html": "Perkembangan ini turut menghadirkan tantangan baru, terutama dalam memastikan agen AI tidak menyalahgunakan akses ke data dan sistem perusahaan."
+  },
+  {
+   "type": "p",
+   "html": "Untuk mengatasi pesoalan tersebut, TrendAI, unit bisnis keamanan siber dari Trend Micro, mengumumkan dukungannya terhadap Nvidia Agent Safety Platform."
+  },
+  {
+   "type": "p",
+   "html": "Nvidia Agent Safety Platform diklaim sebagai&nbsp;infrastruktur yang dirancang untuk membantu perusahaan menjalankan agen AI otonom secara aman dalam skala besar."
+  },
+  {
+   "type": "baca",
+   "title": "Hacker Cuma Beri Perintah Singkat, Agen AI Bobol Situs 100 Perusahaan",
+   "url": "https://tekno.kompas.com/read/2026/10/20/15030077/hacker-cuma-beri-perintah-singkat-agen-ai-bobol-situs-100-perusahaan",
+   "id": "15030077"
+  },
+  {
+   "type": "p",
+   "html": "Kolaborasi ini menggabungkan infrastruktur pengamanan dari Nvidia dengan teknologi TrendAI untuk memantau aktivitas agen AI, mendeteksi ancaman, dan merespons perilaku yang mencurigakan."
+  },
+  {
+   "type": "p",
+   "html": "\"<em>Agentic AI</em> merupakan pergeseran terpenting dalam teknologi enterprise dalam satu generasi terakhir, sehingga kebutuhan keamanan dan <em>guardrail</em> sangat krusial untuk memastikan agen AI tetap selaras dengan tujuan organisasi,\" ujar Rachel Jin, Chief Platform and Business Officer, Head of TrendAI dalam keterangan resmi yang diterima <em>KompasTekno.</em>"
+  },
+  {
+   "type": "p",
+   "html": "Agen AI memiliki kemampuan yang berbeda dari chatbot konvensional. Selain memproses informasi dan menghasilkan jawaban, agen AI dapat menggunakan berbagai perangkat lunak, mengakses sumber data, menyimpan kredensial, serta mengingat konteks dari sesi sebelumnya."
+  },
+  {
+   "type": "p",
+   "html": "Sebagai gambaran, agen AI terdiri atas tiga komponen inti. Pertama, model yang berfungsi untuk bernalar. Kedua, harness yang mengorkestrasi agen beserta sub-agennya, dan ketiga adalah tool dan data yang dapat diakses oleh agen tersebut."
+  },
+  {
+   "type": "p",
+   "html": "Kombinasi ketiga komponen ini memungkinkan agen AI menyimpan kredensial, mengingat konteks lintas sesi, serta mengeksekusi tindakan pada sistem produksi tanpa perlu persetujuan manusia di setiap langkahnya."
+  },
+  {
+   "type": "p",
+   "html": "Kemampuan tersebut memungkinkan agen AI menjalankan tugas di sistem produksi tanpa memerlukan persetujuan manusia pada setiap langkah. Artinya, intervensi manusia secara manual sangan minim."
+  },
+  {
+   "type": "p",
+   "html": "Oleh karena itu, akses dan otonomi yang lebih luas juga membuat pengawasan menjadi semakin penting."
+  },
+  {
+   "type": "p",
+   "html": "TrendAI dan Nvidia menyoroti risiko ketika perusahaan memperluas penggunaan agen AI dari proyek uji coba menjadi penerapan operasional di berbagai tim dan unit bisnis."
+  },
+  {
+   "type": "p",
+   "html": "Dalam situasi tersebut, perusahaan perlu memastikan agen hanya dapat mengakses sumber daya yang sesuai dengan kewenangannya dan tidak menjalankan tindakan yang menyimpang dari tujuan organisasi."
+  },
+  {
+   "type": "p",
+   "html": "Salah satu ancaman yang diantisipasi adalah <em>prompt injection,</em> yakni upaya memanipulasi perilaku AI melalui instruksi tertentu."
+  },
+  {
+   "type": "p",
+   "html": "Ancaman lainnya berupa <em>jailbreak,</em> yang berusaha mengakali batasan atau pengamanan model AI."
+  },
+  {
+   "type": "baca",
+   "title": "Terjadi Lagi, Agen AI Bobol Sistem Keamanan di India dan Akses Data Rahasia",
+   "url": "https://tekno.kompas.com/read/2026/10/20/08340097/terjadi-lagi-agen-ai-bobol-sistem-keamanan-di-india-dan-akses-data-rahasia",
+   "id": "08340097"
+  },
+  {
+   "type": "p",
+   "html": "TrendAI dan Nvidia menilai keamanan agen AI tidak cukup mengandalkan satu mekanisme perlindungan."
+  },
+  {
+   "type": "p",
+   "html": "Pengamanan perlu mencakup seluruh komponen yang menopang operasional agen AI, mulai dari model AI hingga perangkat, data, dan sistem yang dapat diaksesnya."
+  },
+  {
+   "type": "p",
+   "html": "Adapun&nbsp;Nvidia Agent Safety Platform&nbsp;menempatkan sistem keamanan di luar lingkungan tempat agen AI bekerja."
+  },
+  {
+   "type": "p",
+   "html": "Dengan begitu,&nbsp;agen AI tidak hanya diminta untuk mematuhi aturan, tetapi juga dicegah oleh sistem agar tidak sembarangan mengakses data atau menjalankan perintah di luar izin yang diberikan."
+  },
+  {
+   "type": "p",
+   "html": "\"Nvidia membangun batasan yang menentukan apa yang dapat dilakukan oleh agen, sementara TrendAI menghadirkan <em>threat intelligence</em> dan pengawasan untuk membantu tim keamanan menentukan batasan tersebut serta memantau aktivitas di dalamnya,\" ujar&nbsp;Rachel Jin."
+  },
+  {
+   "type": "p",
+   "html": "Salah satu komponennya adalah OpenShell, yang menurut Nvidia menerapkan kebijakan keamanan di luar lingkungan tempat agen AI berjalan sehingga kebijakan tersebut tidak mudah dimanipulasi melalui instruksi."
+  },
+  {
+   "type": "p",
+   "html": "Nvidia juga menyediakan BlueField-4 Data Processing Unit (DPU) dan Nvidia Doca untuk menambahkan lapisan keamanan berbasis perangkat keras."
+  },
+  {
+   "type": "p",
+   "html": "Sementara itu, TrendAI melengkapi sistem tersebut melalui TrendAI Vision One. Platform ini dirancang untuk memberikan visibilitas terhadap aktivitas agen AI, menyediakan intelijen ancaman sebagai dasar penetapan kebijakan, serta membantu mendeteksi dan menangani ancaman."
+  },
+  {
+   "type": "baca",
+   "title": "TrendAI Resmikan Data Center Pertama di Indonesia, Sasar Bank dan Pemerintah",
+   "url": "https://tekno.kompas.com/read/2026/08/04/15210047/trendai-resmikan-data-center-pertama-di-indonesia-sasar-bank-dan-pemerintah",
+   "id": "15210047"
+  },
+  {
+   "type": "p",
+   "html": "Dalam perlindungan model, TrendAI Vision One diklaim dapat memeriksa prompt dan respons AI untuk memblokir prompt injection dan<em> jailbreak</em>. Sistem tersebut juga dapat menyamarkan informasi sensitif sebelum data terpapar."
+  },
+  {
+   "type": "p",
+   "html": "Pada lapisan penggunaan perangkat dan data, tim keamanan dapat mengatur alat serta server Model Context Protocol (MCP) yang boleh diakses agen. MCP merupakan protokol yang memungkinkan model AI terhubung dengan berbagai alat dan sistem perangkat lunak."
+  },
+  {
+   "type": "p",
+   "html": "Platform tersebut juga dapat mengidentifikasi data sensitif, mencegah akses di luar kewenangan, serta menerapkan pencegahan kebocoran data pada berkas yang dibaca maupun ditulis agen."
+  },
+  {
+   "type": "p",
+   "html": "Selain itu, perusahaan dapat mengurangi hak akses berlebih yang dimiliki agen AI dan identitas non-manusia lainnya."
+  },
+  {
+   "type": "p",
+   "html": "Perlindungan yang ditawarkan tidak hanya mencakup model dan akses data, tetapi juga deteksi aktivitas mencurigakan pada infrastruktur."
+  },
+  {
+   "type": "p",
+   "html": "TrendAI Vision One memanfaatkan telemetri dari Nvidia BlueField DPU dan Doca untuk mendukung deteksi ancaman, termasuk ketika sistem operasi utama <em>(host operating system)</em> telah disusupi."
+  },
+  {
+   "type": "p",
+   "html": "Sistem tersebut juga dapat menghubungkan sinyal aktivitas AI dengan informasi dari perangkat pengguna, jaringan, dan identitas."
+  },
+  {
+   "type": "p",
+   "html": "Pendekatan ini ditujukan untuk membantu mendeteksi agen yang telah dibajak sebelum aktivitasnya meluas ke sistem lain dalam jaringan perusahaan."
+  },
+  {
+   "type": "baca",
+   "title": "Trend Micro Rebranding Jadi Trend AI, Respons Maraknya AI di Industri Siber",
+   "url": "https://tekno.kompas.com/read/2026/05/21/17280037/trend-micro-rebranding-jadi-trend-ai-respons-maraknya-ai-di-industri-siber",
+   "id": "17280037"
+  },
+  {
+   "type": "p",
+   "html": "Country Manager TrendAI Indonesia Fetra Syahbana mengatakan perusahaan di Indonesia juga membutuhkan perlindungan yang memungkinkan penerapan agen AI dalam skala lebih luas."
+  },
+  {
+   "type": "p",
+   "html": "Ia menyebut TrendAI Vision One memiliki <em>local instance</em> di Indonesia untuk mendukung kebutuhan penempatan data di dalam negeri atau <em>data residency.</em>"
+  },
+  {
+   "type": "p",
+   "html": "\"Enterprise di Indonesia kini dapat mengimplementasikan sistem perlindungan berbasis hardware ini dengan jaminan data residency di dalam negeri secara penuh, membantu tim manajemen risiko dan kepatuhan berinovasi tanpa ragu sembari tetap memenuhi ekspektasi regulasi lokal,\" kata&nbsp;Fetra."
+  },
+  {
+   "type": "p",
+   "html": "<i>Bayangkan seorang anak Indonesia bercita-cita menjadi dokter tetapi hanya memiliki satu buku lusuh untuk belajar. Bersama Ekspedisi Kata ke Nyata Kompas.com, Anda bisa membantu mengubah kisah itu. Mari hadirkan akses literasi bagi anak-anak di berbagai pelosok Indonesia melalui donasi lewat tautan https://bit.ly/JagatLiterasi2026. Setiap kebaikan yang Anda berikan bukan hanya membuka jendela pengetahuan, tetapi juga membuka masa depan mereka.</i>"
+  }
+ ],
+ "tags": [
+  "Nvidia",
+  "agen AI",
+  "TrendAI",
+  "Nvidia Agent Safety Platform",
+  "TrendAI Vision One"
+ ],
+ "id": "12050097",
+ "url": "https://tekno.kompas.com/read/2026/10/22/12050097/adopsi-agen-ai-mulai-masif-trendai-dan-nvidia-perkuat-sistem-keamanan",
+ "kanal": "Tekno",
+ "published": "2026-10-22T12:05:00+07:00",
+ "readTime": "Waktu baca 5 menit"
+}
