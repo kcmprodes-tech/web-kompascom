@@ -1,29 +1,34 @@
-/* Account page — rebuilt to match Figma "WB. KOMPAS.com Improvement".
+/* Account page — built from Figma "WB. KOMPAS.com Improvement" (node 11561:20216).
+   Exact Phosphor icons (as CSS masks → themeable), Figma type scale & tokens.
    States via [data-state]: guest | free | member1 | memberN.
    Theme via [data-theme] on .ac-body: light (default) | dark. */
 
 .ac-body {
-  /* light tokens */
+  /* light tokens (from Figma variables) */
   --s: #ffffff;
-  --t1: #2a2a2a;
-  --t2: #5a5a5a;
-  --t3: #888888;
-  --line: #e7e8e9;
+  --t1: #2a2a2a; /* text/primary */
+  --t2: #5a5a5a; /* text/secondary */
+  --t3: #888888; /* text/tertiary */
+  --ink: #36383a; /* neutral/80 */
+  --line: #e7e8e9; /* neutral/20 */
   --e1: #f7f7f7;
   --e2: #f0f0f0;
-  --ic: #2f3133;
-  --chev: #bfc1c6;
-  --card-brd: #ededed;
-  --top1: #eef0fe;
-  --top2: #fbf7fb;
+  --ic: #5a5a5a; /* icon stroke */
+  --chev: #666666; /* caret */
+  --card-brd: #f0f0f0;
+  --top1: #e9edfe;
+  --top2: #f5f3fd;
+  --top3: #fcf7fb;
   --member-grad: linear-gradient(118deg, #dee2f8 0%, #eadcf5 52%, #f8e9e8 100%);
   --pkg-bg: rgba(255, 255, 255, 0.72);
+  --avatar-chip: rgba(255, 255, 255, 0.5);
+  --avatar-brd: #ffffff;
 
   margin: 0;
   background: var(--s);
   color: var(--t1);
   font-family: "Inter", sans-serif;
-  letter-spacing: -0.2px;
+  letter-spacing: -0.02em;
 }
 
 .ac-body[data-theme="dark"] {
@@ -31,77 +36,128 @@
   --t1: #e0e0e0;
   --t2: #b7b7b7;
   --t3: #898989;
+  --ink: #e0e0e0;
   --line: #2a2a2a;
   --e1: #1f1f1f;
   --e2: #262626;
-  --ic: #c8c8c8;
-  --chev: #6b6b6b;
+  --ic: #b7b7b7;
+  --chev: #898989;
   --card-brd: #2c2c2c;
-  --top1: #1a1b23;
-  --top2: #121212;
+  --top1: #1b1c24;
+  --top2: #161620;
+  --top3: #121212;
   --member-grad: linear-gradient(118deg, #23242f 0%, #2a2633 52%, #332b2b 100%);
   --pkg-bg: rgba(255, 255, 255, 0.05);
+  --avatar-chip: rgba(255, 255, 255, 0.08);
+  --avatar-brd: rgba(255, 255, 255, 0.16);
+}
+
+/* ---------- Icon primitives (exact Figma SVGs via mask) ---------- */
+.ac-ic {
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  background-color: var(--ic);
+  -webkit-mask: var(--m) center / contain no-repeat;
+  mask: var(--m) center / contain no-repeat;
+}
+.ac-chev {
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  background-color: var(--chev);
+  -webkit-mask: url("/assets/account/icons/caret-right.svg") center / contain no-repeat;
+  mask: url("/assets/account/icons/caret-right.svg") center / contain no-repeat;
+}
+.ac-ic--user {
+  --m: url("/assets/account/icons/user.svg");
+}
+.ac-ic--riwayat {
+  --m: url("/assets/account/icons/riwayat.svg");
+}
+.ac-ic--bookmark {
+  --m: url("/assets/account/icons/bookmark.svg");
+}
+.ac-ic--thumbs-up {
+  --m: url("/assets/account/icons/thumbs-up.svg");
+}
+.ac-ic--chat {
+  --m: url("/assets/account/icons/chat.svg");
+}
+.ac-ic--credit-card {
+  --m: url("/assets/account/icons/credit-card.svg");
+}
+.ac-ic--ticket {
+  --m: url("/assets/account/icons/ticket.svg");
+}
+.ac-ic--handbag {
+  --m: url("/assets/account/icons/handbag.svg");
+}
+.ac-ic--sun {
+  --m: url("/assets/account/icons/sun.svg");
+}
+.ac-ic--sparkle {
+  --m: url("/assets/account/icons/sparkle.svg");
+}
+.ac-ic--bell {
+  --m: url("/assets/account/icons/bell.svg");
+}
+.ac-ic--envelope {
+  --m: url("/assets/account/icons/envelope.svg");
+}
+.ac-ic--pencil {
+  --m: url("/assets/account/icons/pencil.svg");
+}
+.ac-ic--question {
+  --m: url("/assets/account/icons/question.svg");
+}
+.ac-ic--lock {
+  --m: url("/assets/account/icons/lock.svg");
+}
+.ac-ic--note {
+  --m: url("/assets/account/icons/note.svg");
 }
 
 /* ---------- Screen ---------- */
 .ac-screen {
   position: relative;
   min-height: 100vh;
-  padding: 44px 16px 40px;
-  background: linear-gradient(180deg, var(--top1) 0%, var(--top2) 240px, var(--s) 440px);
-}
-
-.ac-ic,
-.ac-chev {
-  flex: 0 0 auto;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.ac-ic {
-  width: 22px;
-  height: 22px;
-  color: var(--ic);
-}
-
-.ac-chev {
-  width: 20px;
-  height: 20px;
-  color: var(--chev);
+  padding: 44px 20px 40px;
+  background: linear-gradient(180deg, var(--top1) 0%, var(--top2) 32%, var(--top3) 63%, var(--s) 97%);
+  background-repeat: no-repeat;
+  background-size: 100% 443px;
+  background-color: var(--s);
 }
 
 .ac-close {
   position: absolute;
-  top: 14px;
-  right: 16px;
+  top: 12px;
+  right: 20px;
   display: grid;
   place-items: center;
-  width: 32px;
-  height: 32px;
+  width: 44px;
+  height: 44px;
   padding: 0;
-  border: 0;
+  border: 1px solid var(--avatar-brd);
   border-radius: 50%;
-  background: var(--e2);
-  color: var(--t1);
+  background: var(--avatar-chip);
   cursor: pointer;
 }
-
-.ac-close .ac-ic {
-  width: 18px;
-  height: 18px;
-  color: var(--t1);
+.ac-close::before {
+  content: "";
+  width: 22px;
+  height: 22px;
+  background-color: var(--ink);
+  -webkit-mask: url("/assets/account/icons/close.svg") center / contain no-repeat;
+  mask: url("/assets/account/icons/close.svg") center / contain no-repeat;
 }
 
 /* ---------- Header ---------- */
 .ac-head {
   align-items: center;
-  gap: 12px;
-  margin: 18px 0 20px;
+  gap: 8px;
+  margin: 18px 0 16px;
 }
-
 .ac-head--guest {
   display: flex;
 }
@@ -112,14 +168,15 @@
 .ac-head__avatar {
   display: grid;
   place-items: center;
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--avatar-brd);
   border-radius: 50%;
-  background: var(--e2);
+  background: var(--avatar-chip);
 }
 .ac-head__avatar .ac-ic {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
 }
 
 .ac-head__login {
@@ -129,15 +186,16 @@
   color: var(--t1);
   font-size: 22px;
   font-weight: 700;
+  line-height: 1.3;
 }
 .ac-head__login .ac-chev {
-  width: 22px;
-  height: 22px;
-  color: var(--t1);
-  stroke-width: 2;
+  width: 16px;
+  height: 16px;
+  background-color: var(--t1);
 }
 
 .ac-avatar {
+  flex: 0 0 auto;
   display: grid;
   place-items: center;
   width: 44px;
@@ -155,11 +213,13 @@
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 1px;
+  margin-left: 4px;
 }
 .ac-head__id strong {
   font-size: 18px;
   font-weight: 700;
+  line-height: 1.3;
   color: var(--t1);
 }
 .ac-head__id span {
@@ -172,7 +232,7 @@
   display: inline-flex;
   align-items: center;
   gap: 2px;
-  padding: 7px 10px 7px 14px;
+  padding: 8px 10px 8px 14px;
   border: 1px solid var(--card-brd);
   border-radius: 999px;
   background: var(--s);
@@ -181,25 +241,32 @@
   font-weight: 600;
 }
 .ac-profil .ac-chev {
-  width: 16px;
-  height: 16px;
-  color: var(--t1);
+  width: 14px;
+  height: 14px;
+  background-color: var(--t1);
 }
 
 /* ---------- Gabung Membership banner ---------- */
 .ac-join {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 14px 14px;
-  border-radius: 14px;
-  background: linear-gradient(100deg, #7396e3 0%, #d6baea 52%, #f8b596 100%);
+  gap: 8px;
+  padding: 16px;
+  border-radius: 16px;
+  background: linear-gradient(
+    -81deg,
+    #fdc185 0.5%,
+    #ee9cb8 13.3%,
+    #d886cd 27.4%,
+    #9069db 64.1%,
+    #7397e3 95.4%
+  );
   color: #fff;
 }
 .ac-join__text strong {
   display: block;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 600;
 }
 .ac-join__text i {
   font-style: italic;
@@ -207,11 +274,11 @@
 .ac-join__text p {
   margin: 4px 0 0;
   font-size: 12px;
-  line-height: 1.4;
-  opacity: 0.92;
+  line-height: 1.3;
+  color: #fff;
 }
 .ac-join__chev {
-  color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.95);
 }
 
 /* ---------- Membership aktif card ---------- */
@@ -221,7 +288,6 @@
   background: var(--member-grad);
   overflow: hidden;
 }
-
 .ac-member__summary {
   display: flex;
   align-items: center;
@@ -232,6 +298,7 @@
   background: transparent;
   text-align: left;
   font: inherit;
+  letter-spacing: inherit;
   cursor: pointer;
 }
 .ac-member__info {
@@ -247,7 +314,7 @@
 }
 .ac-member__title {
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--t1);
 }
 .ac-member__sub {
@@ -255,18 +322,19 @@
   color: var(--t2);
 }
 .ac-member__chev {
-  color: var(--t2);
+  width: 20px;
+  height: 20px;
+  background-color: var(--t2);
 }
-
 .ac-member__drawer {
   display: none;
-  padding: 0 12px 10px;
+  padding: 0 12px 12px;
 }
 .ac-member__pkg {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 14px 14px;
+  padding: 14px;
   margin-top: 8px;
   border-radius: 12px;
   background: var(--pkg-bg);
@@ -280,7 +348,7 @@
 }
 .ac-member__pkg strong {
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--t1);
 }
 .ac-member__pkg span span {
@@ -288,7 +356,7 @@
   color: var(--t2);
 }
 .ac-member__pkg .ac-chev {
-  color: var(--t2);
+  background-color: var(--t2);
 }
 .ac-member__toggle {
   display: flex;
@@ -297,26 +365,30 @@
   gap: 6px;
   width: 100%;
   margin-top: 10px;
-  padding: 6px;
+  padding: 8px;
   border: 0;
   background: transparent;
   color: var(--t1);
   font: inherit;
-  font-size: 14px;
+  letter-spacing: inherit;
   font-weight: 600;
   cursor: pointer;
 }
 .ac-member__toggle .ac-chev {
-  width: 18px;
-  height: 18px;
-  color: var(--t1);
+  width: 16px;
+  height: 16px;
+  background-color: var(--t1);
+  -webkit-mask-image: url("/assets/account/icons/caret-right.svg");
+  mask-image: url("/assets/account/icons/caret-right.svg");
+  transform: rotate(-90deg);
 }
 
 /* ---------- Poin / Voucher / Reward cards ---------- */
 .ac-cards {
   display: flex;
-  gap: 10px;
-  margin: 16px 0 8px;
+  gap: 8px;
+  margin: 12px -20px 8px;
+  padding: 0 20px;
   overflow-x: auto;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
@@ -326,20 +398,19 @@
 }
 .ac-card {
   flex: 0 0 auto;
-  width: 46%;
-  min-width: 150px;
+  width: 154px;
   display: flex;
   flex-direction: column;
   gap: 6px;
-  padding: 12px 14px;
+  padding: 12px;
   border: 1px solid var(--card-brd);
-  border-radius: 12px;
+  border-radius: 16px;
   background: var(--s);
 }
 .ac-card__title {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
   font-size: 12px;
   color: var(--t2);
 }
@@ -356,18 +427,20 @@
 }
 .ac-card__val {
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--t1);
+  white-space: nowrap;
 }
 
 /* ---------- Sections / lists ---------- */
 .ac-sec {
-  margin-top: 26px;
+  margin-top: 32px;
 }
 .ac-sec__title {
-  margin: 0 0 4px;
+  margin: 0 0 8px;
   font-size: 20px;
-  font-weight: 700;
+  font-weight: 600;
+  line-height: 1.3;
   color: var(--t1);
 }
 .ac-list {
@@ -378,14 +451,15 @@
 .ac-row {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
   width: 100%;
-  padding: 15px 0;
+  padding: 11.5px 0;
   border: 0;
   border-bottom: 1px solid var(--line);
   background: transparent;
   color: var(--t1);
   font: inherit;
+  letter-spacing: inherit;
   text-align: left;
   cursor: pointer;
 }
@@ -395,12 +469,14 @@
 .ac-row__label {
   flex: 1 1 auto;
   font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
   color: var(--t1);
 }
 .ac-row__mode {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--t1);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
 }
 
 /* ---------- State visibility ---------- */
@@ -413,7 +489,6 @@
 .ac-body:not([data-state="guest"]) .ac-head--user {
   display: flex;
 }
-
 .ac-body[data-state="member1"] .ac-join,
 .ac-body[data-state="memberN"] .ac-join {
   display: none;
@@ -422,18 +497,12 @@
 .ac-body[data-state="memberN"] .ac-member {
   display: block;
 }
-
-/* member1: simple card, chevron navigates, no drawer */
-.ac-body[data-state="member1"] .ac-member__chev {
-  transform: none;
-}
-/* memberN: expandable */
 .ac-body[data-state="memberN"] .ac-member[data-expanded="true"] .ac-member__drawer {
   display: block;
 }
-.ac-body[data-state="memberN"] .ac-member[data-expanded="true"] .ac-member__chev {
+.ac-body[data-state="memberN"] .ac-member[data-expanded="true"] .ac-member__summary .ac-member__chev {
   display: none;
 }
-.ac-body[data-state="memberN"] .ac-member[data-expanded="false"] .ac-member__chev {
+.ac-body[data-state="memberN"] .ac-member[data-expanded="false"] .ac-member__summary .ac-member__chev {
   transform: rotate(90deg);
 }
