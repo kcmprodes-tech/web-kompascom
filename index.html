@@ -62,8 +62,68 @@
 
     <!-- ================= Main (sections built top-down) ================= -->
     <main class="hm-main">
-      <!-- TODO: top ad, Living Assistance, Trending, Headline carousel,
-           news grid, Baca Cepat, and the remaining home sections -->
+      <!-- Top ad -->
+      <aside class="hm-topad" aria-label="Iklan">
+        <img src="/assets/ad-hit-cashback.png" alt="Iklan" />
+      </aside>
+
+      <!-- Living Assistance -->
+      <section class="la">
+        <a class="la__head" href="#">
+          <span>Living Assistance</span>
+          <img class="la__caret" src="/assets/home/living/caret.svg" alt="" aria-hidden="true" />
+        </a>
+        <div class="la__row">
+          <a class="la-card la-card--emas" href="#">
+            <span class="la-card__label la-card__label--emas">Harga Beli Emas<img class="la-caret" src="/assets/home/living/caret.svg" alt="" aria-hidden="true" /></span>
+            <span class="la-emas">
+              <img class="la-emas__ic" src="/assets/home/living/emas.png" alt="" aria-hidden="true" />
+              <span class="la-emas__info">
+                <span class="la-emas__val"><b>2,33 jt</b><i>/gr</i></span>
+                <span class="la-emas__chg"><img src="/assets/home/living/arrow-up.svg" alt="" aria-hidden="true" />(+1,65%)</span>
+              </span>
+            </span>
+          </a>
+
+          <a class="la-card la-card--cuaca" href="#">
+            <span class="la-card__label la-card__label--cuaca">Jakarta<img class="la-caret" src="/assets/home/living/caret.svg" alt="" aria-hidden="true" /></span>
+            <span class="la-cuaca"><img src="/assets/home/living/weather.svg" alt="" aria-hidden="true" />22°</span>
+          </a>
+
+          <a class="la-card" href="#">
+            <span class="la-card__label">Kualitas Udara<img class="la-caret" src="/assets/home/living/caret.svg" alt="" aria-hidden="true" /></span>
+            <span class="la-aqi">
+              <span class="la-aqi__num">150</span>
+              <span class="la-aqi__txt">Tdk sehat bagi kelompok sensitif</span>
+            </span>
+          </a>
+
+          <a class="la-card la-card--pray" href="#">
+            <span class="la-card__label">Jadwal Shalat<img class="la-caret" src="/assets/home/living/caret.svg" alt="" aria-hidden="true" /></span>
+            <span class="la-pray">
+              <img class="la-pray__ic" src="/assets/home/living/pray.svg" alt="" aria-hidden="true" />
+              <span class="la-pray__name">Maghrib</span>
+              <span class="la-pray__time">12:59</span>
+            </span>
+            <span class="la-pray__loc"><img src="/assets/home/living/mappin.svg" alt="" aria-hidden="true" />Jakarta</span>
+          </a>
+
+          <a class="la-more" href="#">
+            <img class="la-more__ic" src="/assets/home/living/bacacepat.svg" alt="" aria-hidden="true" />
+            <span>Baca Cepat</span>
+          </a>
+          <a class="la-more" href="#">
+            <img class="la-more__ic" src="/assets/home/living/cek-kesehatan.svg" alt="" aria-hidden="true" />
+            <span>Cek kesehatan</span>
+          </a>
+          <a class="la-more" href="#">
+            <span class="la-more__caret"><img src="/assets/home/living/caret.svg" alt="" aria-hidden="true" /></span>
+            <span>Lihat Semua</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- TODO next: Trending, Headline carousel, news grid, Baca Cepat, … -->
     </main>
   </body>
 </html>

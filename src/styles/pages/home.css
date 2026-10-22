@@ -122,3 +122,243 @@
 .hm-main {
   background: #fff;
 }
+
+/* ---- Top ad ---- */
+.hm-topad {
+  display: flex;
+  justify-content: center;
+  padding: 10px 16px;
+  background: #fff;
+}
+.hm-topad img {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+}
+
+/* ================= Living Assistance ================= */
+.la__head {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 24px 16px 8px;
+}
+.la__head span {
+  font-size: 16px;
+  font-weight: 700;
+  color: #2a2a2a;
+  letter-spacing: -0.32px;
+}
+.la__caret {
+  width: 12px;
+  height: 12px;
+}
+
+.la__row {
+  display: flex;
+  gap: 8px;
+  padding: 0 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.la__row::-webkit-scrollbar {
+  display: none;
+}
+
+.la-card {
+  flex: 0 0 auto;
+  height: 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px 12px;
+  background: #f7f7f7;
+  border: 1px solid #e7e7e7;
+  border-radius: 12px;
+}
+.la-card--emas {
+  padding: 8px 16px;
+}
+.la-card--cuaca {
+  width: 80px;
+  align-items: center;
+}
+
+.la-card__label {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 10px;
+  color: #5a5a5a;
+  white-space: nowrap;
+}
+.la-card__label--emas {
+  font-size: 11px;
+}
+.la-card__label--cuaca {
+  font-size: 12px;
+}
+.la-caret {
+  width: 12px;
+  height: 12px;
+}
+
+/* Emas */
+.la-emas {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.la-emas__ic {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+.la-emas__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.la-emas__val {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2a2a2a;
+  line-height: 1.1;
+}
+.la-emas__val i {
+  font-size: 12px;
+  font-weight: 400;
+  font-style: normal;
+}
+.la-emas__chg {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 10px;
+  color: #0e9f6e;
+  line-height: 1.1;
+}
+.la-emas__chg img {
+  width: 8px;
+  height: 8px;
+}
+
+/* Cuaca */
+.la-cuaca {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #5a5a5a;
+  letter-spacing: -0.48px;
+}
+.la-cuaca img {
+  width: 20px;
+  height: 20px;
+}
+
+/* Kualitas Udara */
+.la-aqi {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.la-aqi__num {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 12px;
+  background: #c27803;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: -0.36px;
+}
+.la-aqi__txt {
+  width: 116px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #5a5a5a;
+  letter-spacing: -0.42px;
+}
+
+/* Jadwal Shalat */
+.la-card--pray {
+  gap: 2px;
+}
+.la-pray {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.la-pray__ic {
+  width: 20px;
+  height: 20px;
+}
+.la-pray__name {
+  font-size: 15px;
+  color: #5a5a5a;
+}
+.la-pray__time {
+  font-size: 14px;
+  font-weight: 700;
+  color: #5a5a5a;
+}
+.la-pray__loc {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  align-self: flex-start;
+  padding: 2px 8px;
+  background: #f3f3f3;
+  border-radius: 8px;
+  font-size: 10px;
+  color: #5a5a5a;
+}
+.la-pray__loc img {
+  width: 12px;
+  height: 12px;
+}
+
+/* More widgets */
+.la-more {
+  flex: 0 0 auto;
+  width: 72px;
+  height: 72px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 10px 6px;
+  background: #f7f7f7;
+  border: 1px solid #e7e7e7;
+  border-radius: 12px;
+  text-align: center;
+}
+.la-more__ic {
+  width: 28px;
+  height: 28px;
+}
+.la-more span {
+  font-size: 10px;
+  line-height: 1.1;
+  color: #5a5a5a;
+}
+.la-more__caret {
+  display: grid;
+  place-items: center;
+  padding: 8px;
+  background: #f3f3f3;
+  border-radius: 50px;
+}
+.la-more__caret img {
+  width: 12px;
+  height: 12px;
+}
