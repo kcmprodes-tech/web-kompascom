@@ -1481,3 +1481,6 @@
   aspect-ratio: 650 / 454;
   object-fit: cover;
 }
+.lmore--even {
+  padding-bottom: 24px;
+}
