@@ -1966,3 +1966,152 @@
   border: 0;
   background: #e7e7e7;
 }
+
+/* ================= Kaki Web (footer) — positions mirror the 603px Figma frame ================= */
+.ft {
+  min-height: 603px;
+  padding-top: 6px;
+  background: #000000;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: 0;
+  text-align: center;
+}
+.ft img {
+  display: block;
+}
+.ft .ft__top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 57px; /* divider sits at 63px (6 + 57) */
+  padding-top: 5px;
+  border-bottom: 1px solid #2c2c2c;
+  font-size: 12px;
+  line-height: 16.9px;
+  color: #aaaaaa;
+  text-transform: uppercase;
+}
+.ft__top img {
+  width: 24px;
+  height: 24px;
+}
+.ft__logo {
+  width: 148px;
+  height: 35px;
+  margin: 19px auto 0;
+  object-fit: contain;
+}
+.ft__news {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  height: 54px;
+  margin-top: 10px;
+  padding: 0 24px;
+  text-align: left;
+}
+.ft__news p {
+  width: 172px;
+  margin: 0;
+  font-size: 12px;
+  line-height: 15.6px;
+  color: #ffffff;
+}
+.ft .ft__news-btn {
+  flex: 0 0 127px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 33px;
+  padding: 0 8px 0 9px;
+  border-radius: 5px;
+  background: #1b63d4;
+  font-size: 11px;
+  line-height: 15.6px;
+  color: #ffffff;
+  white-space: nowrap;
+}
+.ft__news-btn img {
+  width: 13px;
+  height: 11px;
+}
+.ft__awards {
+  height: 95px;
+  padding-top: 13.89px;
+}
+.ft__awards p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 15.6px;
+  color: #f0f0f0;
+}
+.ft__awards div {
+  display: flex;
+  justify-content: center;
+  gap: 13px;
+  margin-top: 10.4px;
+}
+.ft__awards img {
+  height: 50px;
+  object-fit: contain;
+}
+.ft__links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9.4px;
+  height: 70px;
+  padding-top: 23.89px;
+  font-size: 12px;
+  line-height: 15.6px;
+}
+.ft__links div {
+  display: flex;
+  justify-content: center;
+  gap: 13px;
+}
+.ft__links a {
+  color: #999999;
+  white-space: nowrap;
+}
+.ft__links .ft__career {
+  font-size: 11px;
+}
+.ft__apps {
+  display: flex;
+  justify-content: center;
+  gap: 13px;
+  height: 86px;
+  padding-top: 23.89px;
+}
+.ft__apps img {
+  height: 38px;
+  width: auto;
+}
+.ft__social {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  height: 65px;
+  padding-top: 19.89px;
+}
+.ft__social a {
+  display: grid;
+  place-items: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 30px;
+  background: #181818;
+}
+.ft__social img {
+  width: 19px;
+  height: 19px;
+  object-fit: contain;
+}
+.ft__copy {
+  margin: 13.89px 0 0;
+  font-size: 12px;
+  line-height: 15.6px;
+  color: #999999;
+}
