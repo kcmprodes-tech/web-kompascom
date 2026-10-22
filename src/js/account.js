@@ -94,8 +94,13 @@ document.querySelector("[data-mode-toggle]")?.addEventListener("click", () => {
   }
 });
 
-/* ---------- Close ---------- */
-document.querySelector(".ac-close")?.addEventListener("click", () => {
-  if (window.history.length > 1) window.history.back();
-  else window.location.href = "./index.html";
+/* ---------- Close: go back to the previous page ---------- */
+document.querySelector(".ac-close")?.addEventListener("click", (event) => {
+  event.preventDefault();
+  const cameFromApp = document.referrer && new URL(document.referrer).origin === window.location.origin;
+  if (cameFromApp || window.history.length > 1) {
+    window.history.back();
+  } else {
+    window.location.href = "./index.html";
+  }
 });
