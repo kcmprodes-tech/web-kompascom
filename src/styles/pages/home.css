@@ -1665,3 +1665,78 @@
   letter-spacing: -0.32px;
   color: #e55225;
 }
+
+/* ================= Banyak dikomentari ================= */
+.kom {
+  padding-bottom: 32px;
+}
+.kom__title {
+  padding: 24px 16px;
+}
+.kom__rail {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  min-height: 294px;
+  padding: 0 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.kom__rail::-webkit-scrollbar {
+  display: none;
+}
+.kom-card {
+  flex: 0 0 231px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.kom-card__img {
+  width: 100%;
+  aspect-ratio: 288 / 161.6;
+  border-radius: 12px;
+  object-fit: cover;
+}
+.kom-card__title {
+  margin-top: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.32px;
+  color: #36383a;
+}
+.kom-card__kanal {
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.3;
+  letter-spacing: -0.12px;
+  color: #6d7077;
+}
+.kom-card__count {
+  display: flex;
+  align-items: center;
+  width: 132px;
+  margin-top: 12px;
+  padding: 4px 8px;
+  border-radius: 8px;
+  background: #f7f7f7;
+  font-size: 12px;
+  line-height: 1.3;
+}
+.kom-card__count img {
+  width: 20px;
+  height: 20px;
+  margin: 2px 3px 2px 0;
+}
+.kom-card__count b {
+  font-weight: 600;
+  letter-spacing: -0.24px;
+  color: #414141;
+}
+.kom-card__count span {
+  width: 60px;
+  text-align: center;
+  letter-spacing: -0.12px;
+  color: #36383a;
+}
