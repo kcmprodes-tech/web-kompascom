@@ -543,13 +543,13 @@
 }
 .ng-card__title {
   margin: 0;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   line-height: 1.3;
-  letter-spacing: -0.28px;
+  letter-spacing: -0.32px;
   color: #2a2a2a;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -734,4 +734,62 @@
   font-weight: 600;
   letter-spacing: -0.32px;
   cursor: pointer;
+}
+
+/* ================= Shared section title ================= */
+.home-h2 {
+  margin: 0;
+  padding: 16px 16px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #36383a;
+  letter-spacing: -0.44px;
+}
+
+/* ================= Gaya Keuangan Gen Z rail ================= */
+.genz {
+  padding: 0 0 24px;
+}
+.genz__rail {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+  padding-right: 16px;
+  background: #f5ebdf;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.genz__rail::-webkit-scrollbar {
+  display: none;
+}
+.genz__panel {
+  flex: 0 0 184px;
+}
+.genz__panel img {
+  display: block;
+  width: 184px;
+  height: 225px;
+  object-fit: cover;
+}
+.genz-card {
+  flex: 0 0 150px;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.genz-card img {
+  width: 150px;
+  aspect-ratio: 160 / 90;
+  border-radius: 8px;
+  object-fit: cover;
+}
+.genz-card p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.28px;
+  color: #2a2a2a;
 }
