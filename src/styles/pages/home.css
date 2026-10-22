@@ -1743,3 +1743,74 @@
   letter-spacing: -0.12px;
   color: #36383a;
 }
+
+/* ================= Berita Foto rail ================= */
+.foto {
+  padding-bottom: 32px;
+  background: #f7f7f7;
+}
+.foto__head {
+  padding: 24px 16px 16px;
+}
+.foto__rail {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 0 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.foto__rail::-webkit-scrollbar {
+  display: none;
+}
+.foto-card {
+  flex: 0 0 231px;
+  display: flex;
+  flex-direction: column;
+}
+.foto-card__media {
+  position: relative;
+  display: block;
+}
+.foto-card__img {
+  width: 231px;
+  height: 154px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+.foto-card__count {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px 4px;
+  border-radius: 30px;
+  background: rgba(18, 18, 18, 0.5);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 15.6px;
+  letter-spacing: 0;
+  color: #ffffff;
+}
+.foto-card__count img {
+  width: 12.83px;
+  height: 11px;
+}
+.foto-card__title {
+  margin-top: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20.8px;
+  letter-spacing: -0.32px;
+  color: #2a2a2a;
+}
+.foto-card__kanal {
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 15.6px;
+  color: #5a5a5a;
+  text-transform: capitalize;
+}
