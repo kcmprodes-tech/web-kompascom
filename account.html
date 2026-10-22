@@ -9,70 +9,237 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <script type="module" src="/src/js/account.js"></script>
   </head>
-  <body>
-    <header class="topbar account-header">
-      <div class="topbar__inner">
-        <a class="brand" href="./index.html" aria-label="Kompas.com">
-          <img class="brand-logo" src="/assets/isolation_mode.png" alt="Kompas.com" />
+  <body class="ac-body" data-state="guest">
+    <main class="ac-screen">
+      <button class="ac-close" type="button" aria-label="Tutup">
+        <svg viewBox="0 0 24 24" class="ac-ic"><path d="M6 6l12 12M18 6L6 18" /></svg>
+      </button>
+
+      <!-- ===== Header: guest ===== -->
+      <header class="ac-head ac-head--guest">
+        <span class="ac-head__avatar" aria-hidden="true">
+          <svg viewBox="0 0 24 24" class="ac-ic"><path d="M12 12a3.6 3.6 0 100-7.2 3.6 3.6 0 000 7.2zM5.5 19.5c0-3.2 2.9-5 6.5-5s6.5 1.8 6.5 5" /></svg>
+        </span>
+        <a class="ac-head__login" href="#">
+          Login
+          <svg viewBox="0 0 24 24" class="ac-chev"><path d="M9 6l6 6-6 6" /></svg>
         </a>
-        <div class="account-header__actions">
-          <button class="header-icon" aria-label="Notifikasi">
-            <svg viewBox="0 0 256 256" aria-hidden="true"><path d="M56 192h144M88 192a40 40 0 0 0 80 0M64 192V104a64 64 0 0 1 128 0v88"/></svg>
-          </button>
-          <a class="account-close" href="./index.html" aria-label="Tutup">
-            <svg viewBox="0 0 256 256" aria-hidden="true"><path d="M72 72l112 112M184 72 72 184"/></svg>
+      </header>
+
+      <!-- ===== Header: logged in ===== -->
+      <header class="ac-head ac-head--user">
+        <span class="ac-avatar" aria-hidden="true">DM</span>
+        <div class="ac-head__id">
+          <strong>Dian meidina</strong>
+          <span>dianmeidina@gmail.com</span>
+        </div>
+        <a class="ac-profil" href="#">
+          Profil
+          <svg viewBox="0 0 24 24" class="ac-chev"><path d="M9 6l6 6-6 6" /></svg>
+        </a>
+      </header>
+
+      <!-- ===== Gabung Membership banner (guest + free) ===== -->
+      <a class="ac-join" href="./membership.html">
+        <div class="ac-join__text">
+          <strong>Gabung Membership KOMPAS.com <i>Plus</i></strong>
+          <p>Nikmati artikel eksklusif, analisis mendalam, dan pengalaman bebas iklan.</p>
+        </div>
+        <svg viewBox="0 0 24 24" class="ac-chev ac-join__chev"><path d="M9 6l6 6-6 6" /></svg>
+      </a>
+
+      <!-- ===== Membership aktif card (member) ===== -->
+      <div class="ac-member" data-expanded="false">
+        <button class="ac-member__summary" type="button">
+          <span class="ac-member__info">
+            <span class="ac-member__label">Membership aktif</span>
+            <strong class="ac-member__title" data-member-title>KOMPAS.com+ MAX Tahunan</strong>
+            <span class="ac-member__sub" data-member-sub>Diperpanjang pada 27 Oktober 2026</span>
+          </span>
+          <svg viewBox="0 0 24 24" class="ac-chev ac-member__chev"><path d="M9 6l6 6-6 6" /></svg>
+        </button>
+
+        <div class="ac-member__drawer">
+          <a class="ac-member__pkg" href="#">
+            <span>
+              <strong>KOMPAS.com+ MAX Tahunan</strong>
+              <span>Bisa diakses sampai 27 Oktober 2026</span>
+            </span>
+            <svg viewBox="0 0 24 24" class="ac-chev"><path d="M9 6l6 6-6 6" /></svg>
           </a>
+          <a class="ac-member__pkg" href="#">
+            <span>
+              <strong>KOMPAS.com+ LITE Bulanan</strong>
+              <span>Aktif kembali 28 Oktober 2026</span>
+            </span>
+            <svg viewBox="0 0 24 24" class="ac-chev"><path d="M9 6l6 6-6 6" /></svg>
+          </a>
+          <button class="ac-member__toggle" type="button">
+            <span data-toggle-label>Tutup</span>
+            <svg viewBox="0 0 24 24" class="ac-chev ac-member__toggle-chev"><path d="M6 15l6-6 6 6" /></svg>
+          </button>
         </div>
       </div>
-    </header>
 
-    <main class="page-shell account-page">
-      <section class="account-login">
-        <div class="account-login__avatar">
-          <svg viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="104" r="36"/><path d="M72 202c14-38 43-54 56-54s42 16 56 54"/></svg>
-        </div>
-        <a href="#">Login</a>
+      <!-- ===== Poin / Voucher / Reward cards ===== -->
+      <div class="ac-cards">
+        <a class="ac-card" href="#">
+          <span class="ac-card__title">
+            <img class="ac-card__logo" src="/assets/account/myvalue.png" alt="" aria-hidden="true" />
+            MyValue Poin
+          </span>
+          <span class="ac-card__row">
+            <strong class="ac-card__val" data-card="poin">Lihat Poin</strong>
+            <svg viewBox="0 0 24 24" class="ac-chev"><path d="M9 6l6 6-6 6" /></svg>
+          </span>
+        </a>
+        <a class="ac-card" href="#">
+          <span class="ac-card__title">Voucher Buat kamu</span>
+          <span class="ac-card__row">
+            <strong class="ac-card__val" data-card="voucher">Lihat voucher</strong>
+            <svg viewBox="0 0 24 24" class="ac-chev"><path d="M9 6l6 6-6 6" /></svg>
+          </span>
+        </a>
+        <a class="ac-card" href="#">
+          <span class="ac-card__title">Paratroopers Reward</span>
+          <span class="ac-card__row">
+            <strong class="ac-card__val" data-card="reward">Lihat reward</strong>
+            <svg viewBox="0 0 24 24" class="ac-chev"><path d="M9 6l6 6-6 6" /></svg>
+          </span>
+        </a>
+      </div>
+
+      <!-- ===== Aktivitas ===== -->
+      <section class="ac-sec">
+        <h2 class="ac-sec__title">Aktivitas</h2>
+        <ul class="ac-list">
+          <li>
+            <a class="ac-row" href="#">
+              <svg viewBox="0 0 24 24" class="ac-ic"><path d="M3.5 12a8.5 8.5 0 10 2.6-6.1M3.5 4.2V8h3.8" /></svg>
+              <span class="ac-row__label">Riwayat</span>
+              <svg viewBox="0 0 24 24" class="ac-chev"><path d="M9 6l6 6-6 6" /></svg>
+            </a>
+          </li>
+          <li>
+            <a class="ac-row" href="#">
+              <svg viewBox="0 0 24 24" class="ac-ic"><path d="M7 4h10v16l-5-3-5 3z" /></svg>
+              <span class="ac-row__label">Konten disimpan</span>
+              <svg viewBox="0 0 24 24" class="ac-chev"><path d="M9 6l6 6-6 6" /></svg>
+            </a>
+          </li>
+          <li>
+            <a class="ac-row" href="#">
+              <svg viewBox="0 0 24 24" class="ac-ic"><path d="M7 10v10H4V10zm0 0l3.6-6.4a1.8 1.8 0 012.4 1.6V9h5.1a1.8 1.8 0 011.8 2.1l-1.1 6.3A2 2 0 0116.8 20H7" /></svg>
+              <span class="ac-row__label">Konten disukai</span>
+              <svg viewBox="0 0 24 24" class="ac-chev"><path d="M9 6l6 6-6 6" /></svg>
+            </a>
+          </li>
+          <li>
+            <a class="ac-row" href="#">
+              <svg viewBox="0 0 24 24" class="ac-ic"><path d="M4 5h16v11H9l-5 4z" /></svg>
+              <span class="ac-row__label">Konten dikomentari</span>
+              <svg viewBox="0 0 24 24" class="ac-chev"><path d="M9 6l6 6-6 6" /></svg>
+            </a>
+          </li>
+        </ul>
       </section>
 
-      <section class="membership-card">
-        <strong>Gabung Membership KOMPAS.com <em>Plus</em></strong>
-        <p>Nikmati artikel eksklusif, analisis mendalam, dan pengalaman bebas iklan.</p>
-        <span></span>
+      <!-- ===== Transaksi ===== -->
+      <section class="ac-sec">
+        <h2 class="ac-sec__title">Transaksi</h2>
+        <ul class="ac-list">
+          <li>
+            <a class="ac-row" href="#">
+              <svg viewBox="0 0 24 24" class="ac-ic"><rect x="3" y="6" width="18" height="12" rx="2" /><path d="M3 10h18" /></svg>
+              <span class="ac-row__label">Riwayat transaksi</span>
+              <svg viewBox="0 0 24 24" class="ac-chev"><path d="M9 6l6 6-6 6" /></svg>
+            </a>
+          </li>
+          <li>
+            <a class="ac-row" href="#">
+              <svg viewBox="0 0 24 24" class="ac-ic"><path d="M4 7h16v3a2 2 0 000 4v3H4v-3a2 2 0 000-4z" /><path d="M14 7v10" stroke-dasharray="2 2" /></svg>
+              <span class="ac-row__label">Tiketmu</span>
+              <svg viewBox="0 0 24 24" class="ac-chev"><path d="M9 6l6 6-6 6" /></svg>
+            </a>
+          </li>
+          <li>
+            <a class="ac-row" href="#">
+              <svg viewBox="0 0 24 24" class="ac-ic"><path d="M6 8h12l-1 12H7zM9 8a3 3 0 016 0" /></svg>
+              <span class="ac-row__label">Daftar pesanan</span>
+              <svg viewBox="0 0 24 24" class="ac-chev"><path d="M9 6l6 6-6 6" /></svg>
+            </a>
+          </li>
+        </ul>
       </section>
 
-      <section class="voucher-grid">
-        <article>
-          <span>Paratroopers Reward</span>
-          <strong>Lihat reward</strong>
-        </article>
-        <article>
-          <span>Voucher Buat kamu</span>
-          <strong>Lihat Voucher</strong>
-        </article>
+      <!-- ===== Pengaturan ===== -->
+      <section class="ac-sec">
+        <h2 class="ac-sec__title">Pengaturan</h2>
+        <ul class="ac-list">
+          <li>
+            <button class="ac-row ac-row--mode" type="button" data-mode-toggle>
+              <svg viewBox="0 0 24 24" class="ac-ic"><circle cx="12" cy="12" r="4" /><path d="M12 2.5v2.2M12 19.3v2.2M4.2 12H2M22 12h-2.2M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M18.9 5.1l-1.6 1.6M6.7 17.3l-1.6 1.6" /></svg>
+              <span class="ac-row__label">Mode tampilan</span>
+              <span class="ac-row__mode" data-mode-label>Terang</span>
+            </button>
+          </li>
+          <li>
+            <a class="ac-row" href="#">
+              <svg viewBox="0 0 24 24" class="ac-ic"><path d="M12 3l1.9 4.8L19 9l-4 2.3L13.5 17 12 12.6 10.5 17 9 11.3 5 9l5.1-1.2z" /></svg>
+              <span class="ac-row__label">Minat</span>
+              <svg viewBox="0 0 24 24" class="ac-chev"><path d="M9 6l6 6-6 6" /></svg>
+            </a>
+          </li>
+          <li>
+            <a class="ac-row" href="#">
+              <svg viewBox="0 0 24 24" class="ac-ic"><path d="M6 9a6 6 0 1112 0c0 4.5 2 5.5 2 5.5H4S6 13.5 6 9zM9.5 19.5a2.5 2.5 0 005 0" /></svg>
+              <span class="ac-row__label">Notifikasi</span>
+              <svg viewBox="0 0 24 24" class="ac-chev"><path d="M9 6l6 6-6 6" /></svg>
+            </a>
+          </li>
+          <li>
+            <a class="ac-row" href="#">
+              <svg viewBox="0 0 24 24" class="ac-ic"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3.5 7l8.5 6 8.5-6" /></svg>
+              <span class="ac-row__label">Newsletter</span>
+              <svg viewBox="0 0 24 24" class="ac-chev"><path d="M9 6l6 6-6 6" /></svg>
+            </a>
+          </li>
+        </ul>
       </section>
 
-      <section class="account-menu">
-        <h2>Aktivitas</h2>
-        <a><span><svg viewBox="0 0 256 256"><path d="M64 80H32V48M34 104A96 96 0 1 1 64 208"/></svg></span>Riwayat</a>
-        <a><span><svg viewBox="0 0 256 256"><path d="M72 40h112v176l-56-32-56 32z"/></svg></span>Konten disimpan</a>
-        <a><span><svg viewBox="0 0 256 256"><path d="M80 112v104M80 112l40-72c10-18 36-9 33 12l-7 44h58c18 0 31 17 27 35l-16 64c-3 13-15 21-28 21H80M40 112h40v104H40z"/></svg></span>Konten disukai</a>
-        <a><span><svg viewBox="0 0 256 256"><path d="M48 56h160v112H92l-44 32zM92 112h.1M128 112h.1M164 112h.1"/></svg></span>Konten dikomentari</a>
-
-        <h2>Transaksi</h2>
-        <a><span><svg viewBox="0 0 256 256"><path d="M32 72h192v112H32zM32 104h192M64 152h48"/></svg></span>Riwayat transaksi</a>
-        <a><span><svg viewBox="0 0 256 256"><path d="M40 80h176v40a24 24 0 0 0 0 48v40H40v-40a24 24 0 0 0 0-48zM128 80v128"/></svg></span>Tiketmu</a>
-
-        <h2>Pengaturan</h2>
-        <a><span><svg viewBox="0 0 256 256"><circle cx="128" cy="128" r="44"/><path d="M128 24v24M128 208v24M24 128h24M208 128h24M53 53l17 17M186 186l17 17M203 53l-17 17M70 186l-17 17"/></svg></span>Mode tampilan <b>Terang</b></a>
-        <a><span><svg viewBox="0 0 256 256"><path d="M128 24l24 72 72 32-72 32-24 72-24-72-72-32 72-32z"/></svg></span>Minat</a>
-        <a><span><svg viewBox="0 0 256 256"><path d="M56 192h144M88 192a40 40 0 0 0 80 0M64 192V104a64 64 0 0 1 128 0v88"/></svg></span>Notifikasi</a>
-        <a><span><svg viewBox="0 0 256 256"><path d="M32 64h192v128H32zM32 72l96 72 96-72"/></svg></span>Newsletter</a>
-
-        <h2>Lainnya</h2>
-        <a><span><svg viewBox="0 0 256 256"><path d="M48 176l-16 48 48-16L208 80l-32-32zM160 64l32 32"/></svg></span>Berikan masukanmu</a>
-        <a><span><svg viewBox="0 0 256 256"><circle cx="128" cy="128" r="96"/><path d="M104 104a24 24 0 1 1 40 18c-12 8-16 14-16 26M128 184h.1"/></svg></span>Bantuan</a>
-        <a><span><svg viewBox="0 0 256 256"><path d="M128 24l80 32v64c0 52-34 90-80 112-46-22-80-60-80-112V56zM96 128h64M112 104h32"/></svg></span>Kebijakan privasi</a>
-        <a><span><svg viewBox="0 0 256 256"><path d="M64 32h128v192H64zM96 80h64M96 120h64M96 160h48"/></svg></span>Ketentuan pengguna</a>
+      <!-- ===== Lainnya ===== -->
+      <section class="ac-sec">
+        <h2 class="ac-sec__title">Lainnya</h2>
+        <ul class="ac-list">
+          <li>
+            <a class="ac-row" href="#">
+              <svg viewBox="0 0 24 24" class="ac-ic"><path d="M4 20h4L19 9l-4-4L4 16zM13.5 6.5l4 4" /></svg>
+              <span class="ac-row__label">Berikan masukanmu</span>
+              <svg viewBox="0 0 24 24" class="ac-chev"><path d="M9 6l6 6-6 6" /></svg>
+            </a>
+          </li>
+          <li>
+            <a class="ac-row" href="#">
+              <svg viewBox="0 0 24 24" class="ac-ic"><circle cx="12" cy="12" r="9" /><path d="M9.6 9.3a2.5 2.5 0 113.4 2.4c-.8.4-1 .9-1 1.8M12 16.8h.01" /></svg>
+              <span class="ac-row__label">Bantuan</span>
+              <svg viewBox="0 0 24 24" class="ac-chev"><path d="M9 6l6 6-6 6" /></svg>
+            </a>
+          </li>
+          <li>
+            <a class="ac-row" href="#">
+              <svg viewBox="0 0 24 24" class="ac-ic"><rect x="5" y="10" width="14" height="10" rx="2" /><path d="M8 10V7a4 4 0 118 0v3" /></svg>
+              <span class="ac-row__label">Kebijakan privasi</span>
+              <svg viewBox="0 0 24 24" class="ac-chev"><path d="M9 6l6 6-6 6" /></svg>
+            </a>
+          </li>
+          <li>
+            <a class="ac-row" href="#">
+              <svg viewBox="0 0 24 24" class="ac-ic"><path d="M7 3h7l4 4v14H7zM14 3v4h4M9.5 12h5M9.5 16h5" /></svg>
+              <span class="ac-row__label">Ketentuan pengguna</span>
+              <svg viewBox="0 0 24 24" class="ac-chev"><path d="M9 6l6 6-6 6" /></svg>
+            </a>
+          </li>
+        </ul>
       </section>
     </main>
   </body>

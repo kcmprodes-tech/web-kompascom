@@ -1,239 +1,439 @@
-/* account page-specific styles. */
+/* Account page — rebuilt to match Figma "WB. KOMPAS.com Improvement".
+   States via [data-state]: guest | free | member1 | memberN.
+   Theme via [data-theme] on .ac-body: light (default) | dark. */
 
+.ac-body {
+  /* light tokens */
+  --s: #ffffff;
+  --t1: #2a2a2a;
+  --t2: #5a5a5a;
+  --t3: #888888;
+  --line: #e7e8e9;
+  --e1: #f7f7f7;
+  --e2: #f0f0f0;
+  --ic: #2f3133;
+  --chev: #bfc1c6;
+  --card-brd: #ededed;
+  --top1: #eef0fe;
+  --top2: #fbf7fb;
+  --member-grad: linear-gradient(118deg, #dee2f8 0%, #eadcf5 52%, #f8e9e8 100%);
+  --pkg-bg: rgba(255, 255, 255, 0.72);
 
-.account-header {
-  position: sticky;
-}
-
-.account-header__actions {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-
-.account-close {
-  display: grid;
-  place-items: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: #2f2f2f;
-  color: #fff;
-}
-
-.account-close svg {
-  width: 20px;
-  height: 20px;
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 18;
-}
-
-.account-page {
-  min-height: calc(100vh - 50px);
-  padding: 24px 20px 40px;
-  background: #fff url("/assets/bg-akun.png") top center / 100% auto no-repeat;
-}
-
-.account-page > section,
-.account-page > aside {
-  border-bottom: 0 !important;
-}
-
-.account-login {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.account-login__avatar {
-  display: grid;
-  place-items: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: var(--paper-elevation-1);
-  color: var(--font-primary);
-}
-
-.account-login__avatar svg {
-  width: 26px;
-  height: 26px;
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 12;
-}
-
-.account-login a {
-  display: inline-flex;
-  align-items: center;
-  color: var(--font-primary);
-  font-size: 22px;
-  font-weight: 700;
+  margin: 0;
+  background: var(--s);
+  color: var(--t1);
+  font-family: "Inter", sans-serif;
   letter-spacing: -0.2px;
 }
 
-.account-login a::after {
+.ac-body[data-theme="dark"] {
+  --s: #121212;
+  --t1: #e0e0e0;
+  --t2: #b7b7b7;
+  --t3: #898989;
+  --line: #2a2a2a;
+  --e1: #1f1f1f;
+  --e2: #262626;
+  --ic: #c8c8c8;
+  --chev: #6b6b6b;
+  --card-brd: #2c2c2c;
+  --top1: #1a1b23;
+  --top2: #121212;
+  --member-grad: linear-gradient(118deg, #23242f 0%, #2a2633 52%, #332b2b 100%);
+  --pkg-bg: rgba(255, 255, 255, 0.05);
+}
+
+/* ---------- Screen ---------- */
+.ac-screen {
+  position: relative;
+  min-height: 100vh;
+  padding: 44px 16px 40px;
+  background: linear-gradient(180deg, var(--top1) 0%, var(--top2) 240px, var(--s) 440px);
+}
+
+.ac-ic,
+.ac-chev {
+  flex: 0 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ac-ic {
+  width: 22px;
+  height: 22px;
+  color: var(--ic);
+}
+
+.ac-chev {
+  width: 20px;
+  height: 20px;
+  color: var(--chev);
+}
+
+.ac-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--e2);
+  color: var(--t1);
+  cursor: pointer;
+}
+
+.ac-close .ac-ic {
+  width: 18px;
+  height: 18px;
+  color: var(--t1);
+}
+
+/* ---------- Header ---------- */
+.ac-head {
+  align-items: center;
+  gap: 12px;
+  margin: 18px 0 20px;
+}
+
+.ac-head--guest {
+  display: flex;
+}
+.ac-head--user {
+  display: none;
+}
+
+.ac-head__avatar {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--e2);
+}
+.ac-head__avatar .ac-ic {
+  width: 24px;
+  height: 24px;
+}
+
+.ac-head__login {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  color: var(--t1);
+  font-size: 22px;
+  font-weight: 700;
+}
+.ac-head__login .ac-chev {
+  width: 22px;
+  height: 22px;
+  color: var(--t1);
+  stroke-width: 2;
+}
+
+.ac-avatar {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(140deg, #35d6c6, #28a6d8);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.ac-head__id {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.ac-head__id strong {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--t1);
+}
+.ac-head__id span {
+  font-size: 13px;
+  color: var(--t2);
+}
+
+.ac-profil {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 7px 10px 7px 14px;
+  border: 1px solid var(--card-brd);
+  border-radius: 999px;
+  background: var(--s);
+  color: var(--t1);
+  font-size: 13px;
+  font-weight: 600;
+}
+.ac-profil .ac-chev {
   width: 16px;
   height: 16px;
-  margin-left: 4px;
-  background: no-repeat center / 16px 16px url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 3L11 8L6 13' stroke='%232A2A2A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  content: "";
+  color: var(--t1);
 }
 
-.membership-card {
-  position: relative;
-  margin-top: 18px;
-  margin-bottom: 16px;
-  padding: 18px 44px 18px 16px;
-  border: 0;
+/* ---------- Gabung Membership banner ---------- */
+.ac-join {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 14px;
   border-radius: 14px;
-  background: linear-gradient(120deg, #6f9cf4, #d57ad8 58%, #ffc082);
+  background: linear-gradient(100deg, #7396e3 0%, #d6baea 52%, #f8b596 100%);
   color: #fff;
-  outline: 0;
-  box-shadow: none;
-  filter: none;
 }
-
-.membership-card strong {
+.ac-join__text strong {
   display: block;
   font-size: 14px;
   font-weight: 700;
-  letter-spacing: -0.2px;
 }
-
-.membership-card em {
+.ac-join__text i {
   font-style: italic;
 }
-
-.membership-card p {
+.ac-join__text p {
   margin: 4px 0 0;
   font-size: 12px;
-  font-weight: 400;
-  line-height: 18px;
+  line-height: 1.4;
+  opacity: 0.92;
+}
+.ac-join__chev {
+  color: rgba(255, 255, 255, 0.9);
 }
 
-.membership-card span {
-  position: absolute;
-  top: 50%;
-  right: 18px;
-  width: 16px;
-  height: 16px;
-  background: no-repeat center / 16px 16px url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 3L11 8L6 13' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  transform: translateY(-50%);
+/* ---------- Membership aktif card ---------- */
+.ac-member {
+  display: none;
+  border-radius: 16px;
+  background: var(--member-grad);
+  overflow: hidden;
 }
 
-.voucher-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  margin-top: 0;
-}
-
-.voucher-grid article {
-  position: relative;
-  padding: 12px;
-  padding-right: 34px;
-  border: 0;
-  border-radius: 14px;
-  background: #fff;
-  outline: 0;
-  box-shadow: none;
-  filter: none;
-}
-
-.voucher-grid article::after {
-  position: absolute;
-  top: 50%;
-  right: 14px;
-  width: 12px;
-  height: 12px;
-  background: no-repeat center / 12px 12px url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.5 2.25L8.25 6L4.5 9.75' stroke='%235A5A5A' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  transform: translateY(-50%);
-  content: "";
-}
-
-.voucher-grid span,
-.voucher-grid strong {
-  display: block;
-  letter-spacing: -0.2px;
-}
-
-.voucher-grid span {
-  color: var(--text-secondary);
-  font-size: 11px;
-}
-
-.voucher-grid strong {
-  margin-top: 4px;
-  color: var(--font-primary);
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.account-menu h2 {
-  margin: 32px 0 16px;
-  color: var(--font-primary);
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: -0.2px;
-}
-
-.account-menu a {
-  position: relative;
+.ac-member__summary {
   display: flex;
   align-items: center;
-  min-height: 48px;
-  border-bottom: 1px solid #e5e7eb;
-  color: var(--font-primary);
+  gap: 10px;
+  width: 100%;
+  padding: 16px;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+}
+.ac-member__info {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.ac-member__label {
+  font-size: 12px;
+  color: var(--t2);
+}
+.ac-member__title {
   font-size: 16px;
-  font-weight: 400;
-  letter-spacing: -0.2px;
+  font-weight: 700;
+  color: var(--t1);
+}
+.ac-member__sub {
+  font-size: 12px;
+  color: var(--t2);
+}
+.ac-member__chev {
+  color: var(--t2);
 }
 
-.account-menu a:last-child {
-  border-bottom: 0;
+.ac-member__drawer {
+  display: none;
+  padding: 0 12px 10px;
 }
-
-.account-menu a:last-of-type {
-  border-bottom: 0 !important;
+.ac-member__pkg {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 14px;
+  margin-top: 8px;
+  border-radius: 12px;
+  background: var(--pkg-bg);
 }
-
-.account-menu a::after {
-  position: absolute;
-  right: 0;
-  width: 14px;
-  height: 14px;
-  background: no-repeat center / 14px 14px url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 14 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.25 2.625L9.625 7L5.25 11.375' stroke='%235A5A5A' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  content: "";
+.ac-member__pkg > span {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
-
-.account-menu span {
-  display: inline-flex;
+.ac-member__pkg strong {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--t1);
+}
+.ac-member__pkg span span {
+  font-size: 12px;
+  color: var(--t2);
+}
+.ac-member__pkg .ac-chev {
+  color: var(--t2);
+}
+.ac-member__toggle {
+  display: flex;
   align-items: center;
   justify-content: center;
-  flex: 0 0 30px;
-  width: 30px;
-  margin-right: 10px;
-  color: var(--text-secondary);
+  gap: 6px;
+  width: 100%;
+  margin-top: 10px;
+  padding: 6px;
+  border: 0;
+  background: transparent;
+  color: var(--t1);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.ac-member__toggle .ac-chev {
+  width: 18px;
+  height: 18px;
+  color: var(--t1);
 }
 
-.account-menu span svg {
-  width: 22px;
-  height: 22px;
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 14;
+/* ---------- Poin / Voucher / Reward cards ---------- */
+.ac-cards {
+  display: flex;
+  gap: 10px;
+  margin: 16px 0 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.ac-cards::-webkit-scrollbar {
+  display: none;
+}
+.ac-card {
+  flex: 0 0 auto;
+  width: 46%;
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 14px;
+  border: 1px solid var(--card-brd);
+  border-radius: 12px;
+  background: var(--s);
+}
+.ac-card__title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--t2);
+}
+.ac-card__logo {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+.ac-card__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+.ac-card__val {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--t1);
 }
 
-.account-menu b {
-  margin-left: auto;
-  margin-right: 28px;
-  font-size: 15px;
+/* ---------- Sections / lists ---------- */
+.ac-sec {
+  margin-top: 26px;
+}
+.ac-sec__title {
+  margin: 0 0 4px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--t1);
+}
+.ac-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ac-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 15px 0;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  color: var(--t1);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.ac-list li:last-child .ac-row {
+  border-bottom: 0;
+}
+.ac-row__label {
+  flex: 1 1 auto;
+  font-size: 16px;
+  color: var(--t1);
+}
+.ac-row__mode {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--t1);
+}
+
+/* ---------- State visibility ---------- */
+.ac-body[data-state="guest"] .ac-head--user {
+  display: none;
+}
+.ac-body:not([data-state="guest"]) .ac-head--guest {
+  display: none;
+}
+.ac-body:not([data-state="guest"]) .ac-head--user {
+  display: flex;
+}
+
+.ac-body[data-state="member1"] .ac-join,
+.ac-body[data-state="memberN"] .ac-join {
+  display: none;
+}
+.ac-body[data-state="member1"] .ac-member,
+.ac-body[data-state="memberN"] .ac-member {
+  display: block;
+}
+
+/* member1: simple card, chevron navigates, no drawer */
+.ac-body[data-state="member1"] .ac-member__chev {
+  transform: none;
+}
+/* memberN: expandable */
+.ac-body[data-state="memberN"] .ac-member[data-expanded="true"] .ac-member__drawer {
+  display: block;
+}
+.ac-body[data-state="memberN"] .ac-member[data-expanded="true"] .ac-member__chev {
+  display: none;
+}
+.ac-body[data-state="memberN"] .ac-member[data-expanded="false"] .ac-member__chev {
+  transform: rotate(90deg);
 }
