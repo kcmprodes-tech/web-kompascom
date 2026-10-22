@@ -55,34 +55,36 @@
   display: grid;
   place-items: center;
   width: 40px;
-  height: 50px;
-  padding: 10px;
+  height: 40px;
+  padding: 0;
   border: 0;
   background: transparent;
   cursor: pointer;
 }
 
+/* all header glyphs share the same 24x24 optical box for a uniform look */
 .hm-act img {
   width: 24px;
   height: 24px;
 }
 
 .hm-act--user {
-  width: auto;
-  padding: 0 8px;
+  width: 40px;
+  padding: 0;
 }
 
 .hm-user-ring {
-  display: flex;
-  align-items: center;
-  padding: 4px;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
   border: 1.3px solid #fff;
-  border-radius: 40px;
+  border-radius: 50%;
 }
 
 .hm-user-ring img {
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
 }
 
 /* ================= Category nav ================= */
