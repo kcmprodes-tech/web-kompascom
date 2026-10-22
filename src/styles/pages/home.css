@@ -1128,6 +1128,17 @@
   cursor: pointer;
 }
 
+/* tighter variant (6930:36705): 24px top, 8px image gap, 2px title→meta */
+.topik--tight .topik__head {
+  padding: 24px 16px 16px;
+}
+.topik--tight .topik__card {
+  gap: 8px;
+}
+.topik--tight .topik__meta {
+  margin-top: -6px;
+}
+
 /* ================= Full-width ad image ================= */
 .ad-full {
   padding-bottom: 24px;
