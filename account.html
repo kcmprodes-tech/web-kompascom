@@ -203,13 +203,6 @@
             <p class="ls__resend">Tidak menerima kode? <button type="button" data-resend disabled>Kirim ulang <span data-resend-timer>(00:30)</span></button></p>
             <button class="ls__primary" type="submit" disabled>Verifikasi</button>
           </form>
-
-          <!-- Step: berhasil -->
-          <div class="ls__step ls__success" data-panel="success" hidden>
-            <span class="ls__check" aria-hidden="true"></span>
-            <strong class="ls__success-title">Berhasil login</strong>
-            <p class="ls__success-sub" data-login-welcome>Selamat datang kembali.</p>
-          </div>
         </div>
 
         <p class="ls__legal" data-login-legal>
@@ -217,6 +210,34 @@
           <a href="https://www.kgmedia.id/legal-privacy-id" target="_blank" rel="noopener">Kebijakan Data Pribadi KG Media</a>.
         </p>
       </section>
+    </div>
+
+    <!-- Login berhasil (Figma 11695:95766) -->
+    <div class="ls-done" data-login-done role="status" aria-live="polite" hidden>
+      <div class="ls-done__box">
+        <div class="ls-ill" aria-hidden="true">
+          <img class="ls-ill__base" src="/assets/account/login/success/base.png" alt="" />
+          <img class="ls-ill__part ls-ill__plant-l" src="/assets/account/login/success/plant-l.png" alt="" />
+          <img class="ls-ill__part ls-ill__plant-r" src="/assets/account/login/success/plant-r.png" alt="" />
+          <img class="ls-ill__part ls-ill__lock" src="/assets/account/login/success/lock.png" alt="" />
+          <img class="ls-ill__part ls-ill__spark-l" src="/assets/account/login/success/spark-l.png" alt="" />
+          <img class="ls-ill__part ls-ill__spark-r" src="/assets/account/login/success/spark-r.png" alt="" />
+          <img class="ls-ill__part ls-ill__star-l" src="/assets/account/login/success/star-l.png" alt="" />
+          <img class="ls-ill__part ls-ill__star-r" src="/assets/account/login/success/star-r.png" alt="" />
+          <img class="ls-ill__part ls-ill__dot-l" src="/assets/account/login/success/dot-l.png" alt="" />
+          <img class="ls-ill__part ls-ill__dot-r" src="/assets/account/login/success/dot-r.png" alt="" />
+          <span class="ls-ill__ring"></span>
+          <svg class="ls-ill__badge" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10.9" fill="#006dcb" stroke="#2a2a2a" stroke-width="1.5" />
+            <path d="M6.6 10.2 10.7 15.1 16.3 7.9" fill="none" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" pathLength="1" />
+          </svg>
+        </div>
+        <div class="ls-done__text">
+          <strong class="ls-done__title">Login Berhasil</strong>
+          <p class="ls-done__sub">Selamat datang kembali! Kamu sudah berhasil masuk ke akun KOMPAS.com.</p>
+        </div>
+        <div class="ls-done__loader"><span class="ls-done__spin" aria-label="Memuat"></span></div>
+      </div>
     </div>
   </body>
 </html>

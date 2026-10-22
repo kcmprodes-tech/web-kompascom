@@ -236,17 +236,24 @@ function showToast(text) {
   }, 2400);
 }
 
+/* "Login Berhasil" screen covers the page while the account loads, then fades out */
+const doneScreen = document.querySelector("[data-login-done]");
+
 async function completeLogin(user) {
   session = user;
   saveSession(user);
-  sheetRoot.querySelector("[data-login-welcome]").textContent = `Selamat datang, ${user.name}.`;
-  goTo("success");
-  await wait(1300);
+  doneScreen.hidden = false;
+  void doneScreen.offsetHeight;
+  doneScreen.classList.add("is-show");
+  await wait(250);
   closeSheet();
   state = "free";
   render();
-  window.scrollTo({ top: 0, behavior: "smooth" });
-  showToast("Berhasil login");
+  window.scrollTo(0, 0);
+  await wait(2800); // let the illustration play through
+  doneScreen.classList.remove("is-show");
+  await wait(250);
+  doneScreen.hidden = true;
 }
 
 function nameFromId(id) {

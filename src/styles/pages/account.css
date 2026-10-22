@@ -473,6 +473,11 @@
   line-height: 1.5;
   color: var(--t1);
 }
+/* caret/value sit 8px in from the divider's end */
+.ac-row > .ac-chev,
+.ac-row__mode {
+  margin-right: 8px;
+}
 .ac-row__mode {
   font-size: 16px;
   font-weight: 600;
@@ -615,7 +620,7 @@ html.ls-lock body {
 .ls__round--back::before {
   transform: rotate(180deg);
 }
-.ls__sheet:not([data-step="options"]):not([data-step="success"]) .ls__round--back {
+.ls__sheet:not([data-step="options"]) .ls__round--back {
   visibility: visible;
 }
 
@@ -650,9 +655,6 @@ html.ls-lock body {
 }
 .ls__lead b {
   font-weight: 600;
-}
-.ls__sheet[data-step="success"] .ls__intro {
-  display: none;
 }
 
 .ls__step {
@@ -769,8 +771,7 @@ html.ls-lock body {
   text-decoration: underline;
   text-underline-offset: 2px;
 }
-.ls__sheet[data-step="otp"] .ls__legal,
-.ls__sheet[data-step="success"] .ls__legal {
+.ls__sheet[data-step="otp"] .ls__legal {
   display: none;
 }
 
@@ -891,43 +892,220 @@ html.ls-lock body {
   cursor: default;
 }
 
-/* success step */
-.ls__success {
+/* ---------- Login berhasil screen (Figma 11695:95766) ---------- */
+.ls-done {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  background: var(--s);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.ls-done[hidden] {
+  display: none;
+}
+.ls-done.is-show {
+  opacity: 1;
+}
+.ls-done__box {
+  position: absolute;
+  left: 50%;
+  top: calc(50% - 68px);
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: 16px;
+  width: 306px;
+  max-width: calc(100% - 40px);
+  transform: translate(-50%, -50%);
+}
+/* Illustration split into layers (base + parts) so each piece can animate.
+   Coordinates are the parts' positions inside the 205×184 Figma frame. */
+.ls-ill {
+  position: relative;
+  width: 205px;
+  height: 184px;
+}
+.ls-ill__base,
+.ls-ill__part,
+.ls-ill__badge,
+.ls-ill__ring {
+  position: absolute;
+  display: block;
+}
+.ls-ill__base {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  animation: ill-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.ls-ill__plant-l { left: 26.67px; top: 128.67px; width: 35.33px; height: 49px; }
+.ls-ill__plant-r { left: 145.33px; top: 129.33px; width: 34.67px; height: 48.33px; }
+.ls-ill__lock { left: 31.33px; top: 67.33px; width: 40.67px; height: 44.67px; }
+.ls-ill__spark-l { left: 20.67px; top: 56px; width: 18.67px; height: 21.33px; }
+.ls-ill__spark-r { left: 144px; top: 38.67px; width: 17.33px; height: 22px; }
+.ls-ill__star-l { left: 44px; top: 40px; width: 12px; height: 11.33px; }
+.ls-ill__star-r { left: 159.33px; top: 94px; width: 12.67px; height: 11.33px; }
+.ls-ill__dot-l { left: 37.33px; top: 114.67px; width: 11.33px; height: 10.67px; }
+.ls-ill__dot-r { left: 150px; top: 113.33px; width: 10.67px; height: 11.33px; }
+.ls-ill__badge { left: 108px; top: 90px; width: 24px; height: 24px; overflow: visible; }
+.ls-ill__ring {
+  left: 108px;
+  top: 90px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #006dcb;
+  opacity: 0;
+}
+
+/* plants grow out of the ground, then sway */
+.ls-ill__plant-l,
+.ls-ill__plant-r {
+  transform-origin: 50% 100%;
+  animation: ill-grow 0.6s 0.15s cubic-bezier(0.34, 1.56, 0.64, 1) both,
+    ill-sway 3.2s 0.8s ease-in-out infinite;
+}
+.ls-ill__plant-r {
+  animation-delay: 0.25s, 1s;
+  animation-direction: normal, reverse;
+}
+/* lock bubble pops from its tail, then the bubble nudges */
+.ls-ill__lock {
+  transform-origin: 85% 95%;
+  animation: ill-pop 0.5s 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both,
+    ill-nudge 2.8s 1.2s ease-in-out infinite;
+}
+/* check badge stamps in, the tick draws, a ring pulses out */
+.ls-ill__badge {
+  transform-origin: 50% 50%;
+  animation: ill-stamp 0.45s 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.ls-ill__badge path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: ill-draw 0.35s 0.95s ease-out forwards;
+}
+.ls-ill__ring {
+  animation: ill-ring 1.8s 1.05s ease-out infinite;
+}
+/* sparkles burst, then flicker; stars twinkle; dots float */
+.ls-ill__spark-l,
+.ls-ill__spark-r {
+  animation: ill-burst 0.4s 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) both,
+    ill-flicker 1.6s 1.4s ease-in-out infinite;
+}
+.ls-ill__spark-l { transform-origin: 100% 100%; }
+.ls-ill__spark-r { transform-origin: 0% 100%; animation-delay: 1s, 1.6s; }
+.ls-ill__star-l,
+.ls-ill__star-r {
+  animation: ill-pop 0.4s 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both,
+    ill-twinkle 2.4s 1.2s ease-in-out infinite;
+}
+.ls-ill__star-r { animation-delay: 0.8s, 1.8s; }
+.ls-ill__dot-l,
+.ls-ill__dot-r {
+  animation: ill-pop 0.4s 0.75s cubic-bezier(0.34, 1.56, 0.64, 1) both,
+    ill-float 2.6s 1.2s ease-in-out infinite;
+}
+.ls-ill__dot-r { animation-delay: 0.85s, 1.5s; }
+
+@keyframes ill-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.94); }
+}
+@keyframes ill-grow {
+  from { transform: scaleY(0); }
+}
+@keyframes ill-pop {
+  from { opacity: 0; transform: scale(0); }
+}
+@keyframes ill-stamp {
+  from { opacity: 0; transform: scale(1.8); }
+}
+@keyframes ill-burst {
+  from { opacity: 0; transform: scale(0.3); }
+}
+@keyframes ill-draw {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes ill-ring {
+  0% { opacity: 0.55; transform: scale(1); }
+  70%, 100% { opacity: 0; transform: scale(1.9); }
+}
+@keyframes ill-sway {
+  0%, 50%, 100% { transform: rotate(0); }
+  25% { transform: rotate(3deg); }
+  75% { transform: rotate(-3deg); }
+}
+@keyframes ill-nudge {
+  0%, 60%, 100% { transform: rotate(0); }
+  68% { transform: rotate(-6deg); }
+  76% { transform: rotate(5deg); }
+  84% { transform: rotate(-2deg); }
+}
+@keyframes ill-flicker {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.82); }
+}
+@keyframes ill-twinkle {
+  0%, 100% { transform: scale(1) rotate(0); }
+  50% { transform: scale(0.7) rotate(36deg); }
+}
+@keyframes ill-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ls-ill *,
+  .ls-ill__badge path {
+    animation: none !important;
+    stroke-dashoffset: 0;
+  }
+}
+
+.ls-done__text {
+  display: flex;
+  flex-direction: column;
   gap: 8px;
-  padding: 8px 0;
+  width: 100%;
   text-align: center;
 }
-.ls__check {
-  display: grid;
-  place-items: center;
-  width: 64px;
-  height: 64px;
-  margin-bottom: 8px;
-  border-radius: 50%;
-  background: var(--ls-ok);
-  animation: ls-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-.ls__check::before {
-  content: "";
-  width: 26px;
-  height: 14px;
-  margin-top: -6px;
-  border: solid #ffffff;
-  border-width: 0 0 3px 3px;
-  transform: rotate(-45deg);
-}
-.ls__success-title {
-  font-size: 18px;
+.ls-done__title {
+  font-size: 20px;
   font-weight: 600;
   line-height: 1.3;
+  letter-spacing: -0.4px;
   color: var(--t1);
 }
-.ls__success-sub {
+.ls-done__sub {
   margin: 0;
   font-size: 14px;
-  line-height: 1.4;
-  color: var(--t2);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.28px;
+  color: var(--t1);
+}
+.ls-done__loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 226px;
+  height: 72px;
+  padding: 12px 36px;
+  box-sizing: border-box;
+}
+.ls-done__spin {
+  width: 36px;
+  height: 36px;
+  background: url("/assets/account/login/spinner-bg.svg") center / contain no-repeat;
+}
+.ls-done__spin::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: url("/assets/account/login/spinner-arc.svg") center / contain no-repeat;
+  animation: ls-spin 0.9s linear infinite;
 }
 
 /* toast after login */
@@ -959,15 +1137,10 @@ html.ls-lock body {
     transform: rotate(360deg);
   }
 }
-@keyframes ls-pop {
-  from {
-    transform: scale(0.4);
-    opacity: 0;
-  }
-}
 @media (prefers-reduced-motion: reduce) {
   .ls__sheet,
-  .ls__backdrop {
+  .ls__backdrop,
+  .ls-done {
     transition: none;
   }
 }
