@@ -16,15 +16,15 @@
       <!-- Header: guest -->
       <header class="ac-head ac-head--guest">
         <span class="ac-head__avatar" aria-hidden="true"><span class="ac-ic ac-ic--user"></span></span>
-        <a class="ac-head__login" href="#">Login<span class="ac-chev"></span></a>
+        <a class="ac-head__login" href="#" data-auth>Login<span class="ac-chev"></span></a>
       </header>
 
       <!-- Header: logged in -->
       <header class="ac-head ac-head--user">
-        <span class="ac-avatar" aria-hidden="true">DM</span>
+        <span class="ac-avatar" aria-hidden="true" data-user-initials>DM</span>
         <div class="ac-head__id">
-          <strong>Dian meidina</strong>
-          <span>dianmeidina@gmail.com</span>
+          <strong data-user-name>Dian meidina</strong>
+          <span data-user-email>dianmeidina@gmail.com</span>
         </div>
         <a class="ac-profil" href="#">Profil<span class="ac-chev"></span></a>
       </header>
@@ -72,7 +72,7 @@
 
       <!-- Poin / Voucher / Reward -->
       <div class="ac-cards">
-        <a class="ac-card" href="#">
+        <a class="ac-card" href="#" data-auth>
           <span class="ac-card__title">
             <img class="ac-card__logo" src="/assets/account/myvalue.png" alt="" aria-hidden="true" />
             MyValue Poin
@@ -82,14 +82,14 @@
             <span class="ac-chev"></span>
           </span>
         </a>
-        <a class="ac-card" href="#">
+        <a class="ac-card" href="#" data-auth>
           <span class="ac-card__title">Voucher Buat kamu</span>
           <span class="ac-card__row">
             <strong class="ac-card__val" data-card="voucher">Lihat voucher</strong>
             <span class="ac-chev"></span>
           </span>
         </a>
-        <a class="ac-card" href="#">
+        <a class="ac-card" href="#" data-auth>
           <span class="ac-card__title">Paratroopers Reward</span>
           <span class="ac-card__row">
             <strong class="ac-card__val" data-card="reward">Lihat reward</strong>
@@ -102,10 +102,10 @@
       <section class="ac-sec">
         <h2 class="ac-sec__title">Aktivitas</h2>
         <ul class="ac-list">
-          <li><a class="ac-row" href="#"><span class="ac-ic ac-ic--riwayat"></span><span class="ac-row__label">Riwayat</span><span class="ac-chev"></span></a></li>
-          <li><a class="ac-row" href="#"><span class="ac-ic ac-ic--bookmark"></span><span class="ac-row__label">Konten disimpan</span><span class="ac-chev"></span></a></li>
-          <li><a class="ac-row" href="#"><span class="ac-ic ac-ic--thumbs-up"></span><span class="ac-row__label">Konten disukai</span><span class="ac-chev"></span></a></li>
-          <li><a class="ac-row" href="#"><span class="ac-ic ac-ic--chat"></span><span class="ac-row__label">Konten dikomentari</span><span class="ac-chev"></span></a></li>
+          <li><a class="ac-row" href="#" data-auth><span class="ac-ic ac-ic--riwayat"></span><span class="ac-row__label">Riwayat</span><span class="ac-chev"></span></a></li>
+          <li><a class="ac-row" href="#" data-auth><span class="ac-ic ac-ic--bookmark"></span><span class="ac-row__label">Konten disimpan</span><span class="ac-chev"></span></a></li>
+          <li><a class="ac-row" href="#" data-auth><span class="ac-ic ac-ic--thumbs-up"></span><span class="ac-row__label">Konten disukai</span><span class="ac-chev"></span></a></li>
+          <li><a class="ac-row" href="#" data-auth><span class="ac-ic ac-ic--chat"></span><span class="ac-row__label">Konten dikomentari</span><span class="ac-chev"></span></a></li>
         </ul>
       </section>
 
@@ -113,9 +113,9 @@
       <section class="ac-sec">
         <h2 class="ac-sec__title">Transaksi</h2>
         <ul class="ac-list">
-          <li><a class="ac-row" href="#"><span class="ac-ic ac-ic--credit-card"></span><span class="ac-row__label">Riwayat transaksi</span><span class="ac-chev"></span></a></li>
-          <li><a class="ac-row" href="#"><span class="ac-ic ac-ic--ticket"></span><span class="ac-row__label">Tiketmu</span><span class="ac-chev"></span></a></li>
-          <li><a class="ac-row" href="#"><span class="ac-ic ac-ic--handbag"></span><span class="ac-row__label">Daftar pesanan</span><span class="ac-chev"></span></a></li>
+          <li><a class="ac-row" href="#" data-auth><span class="ac-ic ac-ic--credit-card"></span><span class="ac-row__label">Riwayat transaksi</span><span class="ac-chev"></span></a></li>
+          <li><a class="ac-row" href="#" data-auth><span class="ac-ic ac-ic--ticket"></span><span class="ac-row__label">Tiketmu</span><span class="ac-chev"></span></a></li>
+          <li><a class="ac-row" href="#" data-auth><span class="ac-ic ac-ic--handbag"></span><span class="ac-row__label">Daftar pesanan</span><span class="ac-chev"></span></a></li>
         </ul>
       </section>
 
@@ -147,5 +147,76 @@
         </ul>
       </section>
     </main>
+
+    <!-- Login bottom sheet (Figma 11695:95575) -->
+    <div class="ls" data-login hidden>
+      <div class="ls__backdrop" data-login-close></div>
+      <section class="ls__sheet" role="dialog" aria-modal="true" aria-labelledby="ls-lead" data-step="options">
+        <div class="ls__bar">
+          <button class="ls__round ls__round--back" type="button" aria-label="Kembali" data-login-back></button>
+          <button class="ls__round ls__round--close" type="button" aria-label="Tutup" data-login-close></button>
+        </div>
+
+        <div class="ls__card">
+          <div class="ls__intro">
+            <img class="ls__logo" src="/assets/account/login/logo-kompas.svg" width="127" height="16" alt="KOMPAS.com" />
+            <p class="ls__lead" id="ls-lead" data-login-lead>Login untuk menyimpan artikel, mendapatkan berita sesuai minat, dan fitur menarik lainnya.</p>
+          </div>
+
+          <!-- Step: pilihan login -->
+          <div class="ls__step" data-panel="options">
+            <button class="ls__btn" type="button" data-provider="google">
+              <span class="ls__btn-ic ls__btn-ic--google"><img src="/assets/account/login/google.svg" alt="" /></span>
+              <span class="ls__btn-label">Login dengan Google</span>
+            </button>
+            <button class="ls__btn" type="button" data-provider="apple">
+              <span class="ls__btn-ic ls__btn-ic--apple"></span>
+              <span class="ls__btn-label">Login dengan Apple ID</span>
+            </button>
+            <p class="ls__or">Atau</p>
+            <button class="ls__btn" type="button" data-goto="email">
+              <span class="ls__btn-ic ls__btn-ic--email"></span>
+              <span class="ls__btn-label">Login dengan Email</span>
+            </button>
+          </div>
+
+          <!-- Step: email / no. HP -->
+          <form class="ls__step" data-panel="email" novalidate hidden>
+            <label class="ls__field">
+              <span class="ls__label">Email atau No. HP</span>
+              <input class="ls__input" type="text" name="id" inputmode="email" autocomplete="username" placeholder="contoh@email.com" data-login-id />
+            </label>
+            <p class="ls__error" data-login-error hidden>Masukkan email atau nomor HP yang valid.</p>
+            <button class="ls__primary" type="submit" disabled>Lanjutkan</button>
+          </form>
+
+          <!-- Step: kode verifikasi -->
+          <form class="ls__step" data-panel="otp" novalidate hidden>
+            <div class="ls__otp" data-otp>
+              <input class="ls__otp-box" type="text" inputmode="numeric" autocomplete="one-time-code" aria-label="Digit 1" />
+              <input class="ls__otp-box" type="text" inputmode="numeric" aria-label="Digit 2" />
+              <input class="ls__otp-box" type="text" inputmode="numeric" aria-label="Digit 3" />
+              <input class="ls__otp-box" type="text" inputmode="numeric" aria-label="Digit 4" />
+              <input class="ls__otp-box" type="text" inputmode="numeric" aria-label="Digit 5" />
+              <input class="ls__otp-box" type="text" inputmode="numeric" aria-label="Digit 6" />
+            </div>
+            <p class="ls__resend">Tidak menerima kode? <button type="button" data-resend disabled>Kirim ulang <span data-resend-timer>(00:30)</span></button></p>
+            <button class="ls__primary" type="submit" disabled>Verifikasi</button>
+          </form>
+
+          <!-- Step: berhasil -->
+          <div class="ls__step ls__success" data-panel="success" hidden>
+            <span class="ls__check" aria-hidden="true"></span>
+            <strong class="ls__success-title">Berhasil login</strong>
+            <p class="ls__success-sub" data-login-welcome>Selamat datang kembali.</p>
+          </div>
+        </div>
+
+        <p class="ls__legal" data-login-legal>
+          Dengan menekan tombol “Login”, kamu menyetujui bahwa data dan informasi KG Media ID milikmu akan digunakan untuk memberikan layanan sesuai
+          <a href="https://www.kgmedia.id/legal-privacy-id" target="_blank" rel="noopener">Kebijakan Data Pribadi KG Media</a>.
+        </p>
+      </section>
+    </div>
   </body>
 </html>
