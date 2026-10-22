@@ -2,6 +2,7 @@
  * Home page entry (new design, rebuilt from Figma). Sections are added
  * top-down; interactive behaviour (carousels, etc.) is wired here as built.
  */
+import "../styles/components/site-header.css";
 import "../styles/pages/home.css";
 
 /* ---------- "Pilih topik" interest picker ---------- */

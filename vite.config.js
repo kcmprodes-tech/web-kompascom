@@ -21,6 +21,7 @@ export default defineConfig({
         karin: resolve(root, "karin-chat.html"),
         laya: resolve(root, "laya-read.html"),
         membership: resolve(root, "membership.html"),
+        myvalue: resolve(root, "myvalue.html"),
         originalIndex: resolve(root, "original-index.html"),
         originalDetail: resolve(root, "original-detail.html"),
         originalReader: resolve(root, "original-reader.html"),

@@ -24,69 +24,6 @@
   text-decoration: none;
 }
 
-/* ================= Header ================= */
-.hm-header {
-  position: sticky;
-  top: 0;
-  z-index: 40;
-  background: #000;
-}
-
-.hm-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 50px;
-  padding: 0 8px 0 16px;
-}
-
-.hm-logo {
-  height: 24px;
-  width: auto;
-}
-
-.hm-actions {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.hm-act {
-  display: grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-}
-
-/* all header glyphs share the same 24x24 optical box for a uniform look */
-.hm-act img {
-  width: 24px;
-  height: 24px;
-}
-
-.hm-act--user {
-  width: 40px;
-  padding: 0;
-}
-
-.hm-user-ring {
-  display: grid;
-  place-items: center;
-  width: 24px;
-  height: 24px;
-  border: 1.3px solid #fff;
-  border-radius: 50%;
-}
-
-.hm-user-ring img {
-  width: 15px;
-  height: 15px;
-}
-
 /* ================= Category nav ================= */
 .hm-nav {
   display: flex;

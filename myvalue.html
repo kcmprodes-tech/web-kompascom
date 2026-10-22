@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyValue Poin - Kompas.com</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script type="module" src="/src/js/myvalue.js"></script>
+  </head>
+  <body class="mv-body">
+    <header class="hm-header">
+      <div class="hm-bar">
+        <a class="hm-brand" href="./index.html" aria-label="Kompas.com">
+          <img class="hm-logo" src="/assets/home/logo-kompas.svg" alt="Kompas.com" />
+        </a>
+        <div class="hm-actions">
+          <button class="hm-act" type="button" aria-label="Belanja">
+            <img src="/assets/home/icons/handbag.svg" alt="" aria-hidden="true" />
+          </button>
+          <a class="hm-act hm-act--kplus" href="./membership.html" aria-label="Kompas+">
+            <img src="/assets/home/icons/kplus.svg" alt="" aria-hidden="true" />
+          </a>
+          <button class="hm-act" type="button" aria-label="Cari">
+            <img src="/assets/home/icons/search.svg" alt="" aria-hidden="true" />
+          </button>
+          <a class="hm-act hm-act--user" href="./account.html" aria-label="Akun">
+            <span class="hm-user-ring"><img src="/assets/home/icons/user.svg" alt="" aria-hidden="true" /></span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- MyValue Poin (Figma 11695:95793) -->
+    <main class="mv">
+      <nav class="mv-crumb" aria-label="Breadcrumb">
+        <a href="./index.html">Home</a>
+        <a href="./account.html">Akun</a>
+        <span aria-current="page">MyValue Poin</span>
+      </nav>
+
+      <img class="mv-logo" src="/assets/myvalue/logo.png" width="125" height="40" alt="MyValue — Kompas Gramedia" />
+
+      <hr class="mv-rule mv-rule--top" />
+
+      <div class="mv-user">
+        <div class="mv-user__id">
+          <span class="mv-user__avatar" data-user-initials>DM</span>
+          <span class="mv-user__text">
+            <strong data-user-name>Dian meidina</strong>
+            <span data-user-email>dianmeidina@gmail.com</span>
+          </span>
+        </div>
+        <div class="mv-user__tier">
+          <img src="/assets/myvalue/tier.png" width="24" height="24" alt="" aria-hidden="true" />
+          <span><small>Tier</small><b>Basic</b></span>
+        </div>
+      </div>
+
+      <section class="mv-points" aria-label="Poin saya">
+        <div class="mv-points__row">
+          <img class="mv-points__icon" src="/assets/myvalue/poin.png" width="41" height="40" alt="" aria-hidden="true" />
+          <div class="mv-points__stat mv-points__stat--main">
+            <small>Poin saya</small>
+            <strong>3.456</strong>
+          </div>
+          <div class="mv-points__badge">
+            <div class="mv-points__stat">
+              <small>Badge</small>
+              <strong>0</strong>
+            </div>
+            <img src="/assets/myvalue/badge.png" width="17" height="16" alt="" aria-hidden="true" />
+          </div>
+        </div>
+        <p class="mv-points__exp"><b>0 Poin</b> akan kedaluwarsa pada <strong>01 Nov 2026</strong></p>
+      </section>
+
+      <aside class="mv-info" data-mv-info>
+        <div class="mv-info__text">
+          <p>Poin MyValue adalah bentuk loyalty reward untuk pelanggan setia Kompas Gramedia Group</p>
+          <a href="https://www.myvalue.id" target="_blank" rel="noopener">Pelajari selengkapnya</a>
+        </div>
+        <button class="mv-info__close" type="button" aria-label="Tutup informasi" data-mv-info-close></button>
+      </aside>
+
+      <hr class="mv-rule mv-rule--mid" />
+
+      <section class="mv-history">
+        <h1 class="mv-history__title">Riwayat Poin</h1>
+        <div class="mv-tabs" role="tablist" aria-label="Filter riwayat poin">
+          <button class="mv-tab" type="button" role="tab" aria-selected="true" data-filter="all">Semua</button>
+          <button class="mv-tab" type="button" role="tab" aria-selected="false" data-filter="earning">Earning</button>
+          <button class="mv-tab" type="button" role="tab" aria-selected="false" data-filter="redeem">Redeem</button>
+          <button class="mv-tab" type="button" role="tab" aria-selected="false" data-filter="cancel-earning">Cancel Earning</button>
+          <button class="mv-tab" type="button" role="tab" aria-selected="false" data-filter="cancel-redeem">Cancel Redeem</button>
+        </div>
+        <div class="mv-list" data-mv-list></div>
+      </section>
+    </main>
+  </body>
+</html>

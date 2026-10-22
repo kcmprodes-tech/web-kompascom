@@ -1,0 +1,413 @@
+/* MyValue Poin — built from Figma "WB. KOMPAS.com Improvement" (node 11695:95793). */
+
+* {
+  box-sizing: border-box;
+}
+
+.mv-body {
+  margin: 0;
+  background: #ffffff;
+  color: #2a2a2a;
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.mv-body a {
+  color: inherit;
+  text-decoration: none;
+}
+.mv-body img {
+  display: block;
+}
+
+/* pink→peach wash behind the top 253px (starts under the 50px header) */
+.mv {
+  padding: 0 16px 40px;
+  background: linear-gradient(180deg, #f3e8f5 0%, #f8efed 50.962%, #ffffff 100%) 0 -50px / 100% 253px no-repeat;
+}
+
+/* ---------- Breadcrumb ---------- */
+.mv-crumb {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding-top: 24px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #2a2a2a;
+}
+.mv-crumb a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.mv-crumb a::after {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background: url("/assets/myvalue/caret.svg") center / contain no-repeat;
+}
+.mv-crumb [aria-current] {
+  color: #888888;
+}
+
+.mv-logo {
+  width: 125px;
+  height: 40px;
+  margin-top: 16px;
+}
+
+.mv-rule {
+  height: 1px;
+  margin: 0;
+  border: 0;
+  background: #e8e8e8;
+}
+.mv-rule--top {
+  margin-top: 8px;
+}
+.mv-rule--mid {
+  margin-top: 27px;
+}
+
+/* ---------- User row ---------- */
+.mv-user {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 27px;
+}
+.mv-user__id {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.mv-user__avatar {
+  flex: 0 0 36px;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #ffffff;
+  border-radius: 999px;
+  background: #00c1d5;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.28px;
+  color: #ffffff;
+}
+.mv-user__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.3;
+}
+.mv-user__text strong {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.32px;
+  color: #2a2a2a;
+}
+.mv-user__text span {
+  font-size: 12px;
+  letter-spacing: -0.24px;
+  color: #5a5a5a;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mv-user__tier {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+}
+.mv-user__tier img {
+  width: 24px;
+  height: 24px;
+}
+.mv-user__tier span {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+.mv-user__tier small {
+  font-size: 12px;
+  letter-spacing: -0.24px;
+  color: #5a5a5a;
+}
+.mv-user__tier b {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.28px;
+  color: #2a2a2a;
+}
+
+/* ---------- Points card ---------- */
+.mv-points {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 12px 20px;
+  border-radius: 16px;
+  background: linear-gradient(101.97deg, #fff8e2 6.6065%, #f3e8f6 97.415%);
+}
+.mv-points__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.mv-points__icon {
+  flex: 0 0 41px;
+  width: 41px;
+  height: 40px;
+}
+.mv-points__stat {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+.mv-points__stat--main {
+  flex: 1 1 auto;
+}
+.mv-points__stat small {
+  font-size: 12px;
+  letter-spacing: -0.24px;
+  color: #5a5a5a;
+}
+.mv-points__stat strong {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.48px;
+  color: #2a2a2a;
+}
+.mv-points__badge {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+}
+.mv-points__badge img {
+  width: 17px;
+  height: 16px;
+}
+.mv-points__exp {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.3;
+  letter-spacing: -0.24px;
+  color: #5a5a5a;
+}
+.mv-points__exp b {
+  font-weight: 700;
+  color: #2a2a2a;
+}
+.mv-points__exp strong {
+  font-weight: 600;
+  color: #2a2a2a;
+}
+
+/* ---------- Info card ---------- */
+.mv-info {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 16px;
+  padding: 12px;
+  border-radius: 16px;
+  background: #f7f7f7;
+}
+.mv-info[hidden] {
+  display: none;
+}
+.mv-info__text {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.mv-info__text p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: -0.28px;
+  color: #2a2a2a;
+}
+.mv-info__text a {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.28px;
+  color: #2a2a2a;
+}
+.mv-info__close {
+  flex: 0 0 44px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid #ffffff;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+}
+.mv-info__close::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-color: #2a2a2a;
+  -webkit-mask: url("/assets/account/icons/close.svg") center / contain no-repeat;
+  mask: url("/assets/account/icons/close.svg") center / contain no-repeat;
+}
+
+/* ---------- Riwayat Poin ---------- */
+.mv-history {
+  margin: 24px -16px 0;
+}
+.mv-history__title {
+  margin: 0;
+  padding: 0 16px;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.4px;
+  color: #2a2a2a;
+}
+.mv-tabs {
+  position: sticky;
+  top: 50px; /* below the sticky header */
+  z-index: 5;
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 0 16px;
+  background: #ffffff;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.mv-tabs::-webkit-scrollbar {
+  display: none;
+}
+.mv-tab {
+  flex: 0 0 auto;
+  height: 36px;
+  padding: 4px 20px;
+  border: 1px solid #e7e7e7;
+  border-radius: 30px;
+  background: #ffffff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  letter-spacing: 0;
+  color: #2a2a2a;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.mv-tab[aria-selected="true"] {
+  border-color: #0f79c6;
+  color: #0f79c6;
+}
+
+.mv-list {
+  padding: 22px 16px 0;
+}
+.mv-month + .mv-month {
+  margin-top: 24px;
+}
+.mv-month__head {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  letter-spacing: -0.2px;
+  color: #2a2a2a;
+}
+.mv-month__head span + span::before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  margin-right: 4px;
+  border-radius: 50%;
+  background: #5a5a5a;
+  vertical-align: 2px;
+}
+.mv-month__items {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.mv-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: #f7f7f7;
+  line-height: 1.3;
+}
+.mv-item__main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.mv-item__store {
+  font-size: 14px;
+  letter-spacing: -0.28px;
+  color: #2a2a2a;
+}
+.mv-item__branch {
+  margin-top: 2px;
+  font-size: 12px;
+  letter-spacing: -0.24px;
+  color: #5a5a5a;
+}
+.mv-item__date {
+  margin-top: 8px;
+  font-size: 12px;
+  letter-spacing: -0.24px;
+  color: #5a5a5a;
+}
+.mv-item__date span {
+  color: #b8b8b8;
+}
+.mv-item__pts {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 14px;
+  letter-spacing: -0.28px;
+  color: #2a2a2a;
+  white-space: nowrap;
+}
+.mv-item__type {
+  font-size: 12px;
+  letter-spacing: -0.24px;
+}
+.mv-item__type--earning,
+.mv-item__type--cancel-redeem {
+  color: #039855;
+}
+.mv-item__type--redeem,
+.mv-item__type--cancel-earning {
+  color: #d92d20;
+}
+
+.mv-empty {
+  margin: 16px 0 0;
+  padding: 32px 0;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #888888;
+}
