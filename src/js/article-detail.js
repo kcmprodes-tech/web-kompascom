@@ -10,6 +10,7 @@ import "../styles/pages/home.css";
 import "../styles/pages/article.css";
 import home from "../data/kompas-home.json";
 import { initHeaderAvatar } from "./site-header.js";
+import { refreshTimes, timeAgo } from "./utils/time.js";
 
 const $ = (sel) => document.querySelector(sel);
 
@@ -106,21 +107,57 @@ function bacaJuga(block) {
   return `<p class="art-baca"><b>Baca juga: </b><a href="${esc(href)}">${esc(block.title)}</a></p>`;
 }
 
+/** Splits the body into up to 3 pages (like kompas.com's ?page=n) and renders
+ *  every unit tagged with its page; inserts keep their global position. */
 function renderBody(blocks) {
+  const total = blocks.filter((b) => b.type === "p").length;
+  const pageCount = total >= 9 ? 3 : total >= 6 ? 2 : 1;
+  const perPage = Math.ceil(total / pageCount);
   const out = [];
   let paragraphs = 0;
   const pending = [...INSERTS];
   for (const block of blocks) {
+    const page = Math.min(pageCount, Math.floor(Math.max(paragraphs - (block.type === "p" ? 0 : 1), 0) / perPage) + 1);
     if (block.type === "baca") {
-      out.push(bacaJuga(block));
+      out.push(unit(bacaJuga(block), page));
       continue;
     }
-    out.push(`<p>${block.html}</p>`);
+    out.push(unit(`<p>${block.html}</p>`, page));
     paragraphs += 1;
-    while (pending.length && pending[0].after === paragraphs) out.push(pending.shift().html);
+    while (pending.length && pending[0].after === paragraphs) out.push(unit(pending.shift().html, page));
   }
   out.push(GOOGLE_SOURCE);
-  return out.join("\n");
+  return { html: out.join("\n"), pageCount };
+}
+
+/** tag the first element of an HTML snippet with data-page */
+function unit(html, page) {
+  return html.replace(/^(\s*<[a-z]+)/i, `$1 data-page="${page}"`);
+}
+
+function initPages(pageCount) {
+  const wrap = $("[data-art-pages]");
+  if (pageCount < 2) return;
+  const list = $("[data-art-pages-list]");
+  const labels = [...Array.from({ length: pageCount }, (_, i) => String(i + 1)), "Show all"];
+  list.innerHTML = labels
+    .map((l, i) => `<button type="button" class="${i ? "" : "is-current"}${l === "Show all" ? " art-pages__all" : ""}" data-p="${l === "Show all" ? "all" : l}">${l}</button>`)
+    .join("");
+  wrap.hidden = false;
+
+  const show = (p) => {
+    document.querySelectorAll("[data-art-body] [data-page]").forEach((el) => {
+      el.hidden = p !== "all" && el.dataset.page !== p;
+    });
+    list.querySelectorAll("button").forEach((b) => b.classList.toggle("is-current", b.dataset.p === p));
+  };
+  list.addEventListener("click", (event) => {
+    const btn = event.target.closest("button");
+    if (!btn) return;
+    show(btn.dataset.p);
+    $("[data-art-body]").scrollIntoView({ block: "start", behavior: "smooth" });
+  });
+  show("1");
 }
 
 /* ---------- Page ---------- */
@@ -177,7 +214,101 @@ function render(article) {
     });
   }
 
-  $("[data-art-body]").innerHTML = renderBody(article.blocks);
+  const body = renderBody(article.blocks);
+  $("[data-art-body]").innerHTML = body.html;
+  initPages(body.pageCount);
+
+  renderTags(article.tags || []);
+  $("[data-art-kanal-more]").textContent = `Lihat ${article.kanal} selengkapnya`;
+
+  renderFeed(article.id);
+}
+
+function renderTags(tags) {
+  const wrap = $("[data-art-tags-wrap]");
+  if (!tags.length) {
+    wrap.hidden = true;
+    return;
+  }
+  $("[data-art-tags]").innerHTML = tags.map((t) => `<a href="#">${esc(t)}</a>`).join("");
+  const list = $("[data-art-tags]");
+  const more = $("[data-art-tags-more]");
+  requestAnimationFrame(() => {
+    if (list.scrollHeight > list.clientHeight + 1) {
+      wrap.classList.add("is-clipped");
+      more.hidden = false;
+    }
+  });
+  more.addEventListener("click", () => {
+    wrap.classList.remove("is-clipped");
+    wrap.classList.add("is-open");
+    more.hidden = true;
+  });
+}
+
+/* ---------- Recommendation feed (other articles from the snapshot) ---------- */
+function renderFeed(currentId) {
+  const A = home.articles;
+  const order = [...new Set([...home.terkini, ...home.indeks, ...home.headline, ...home.sorotan])];
+  const pool = order.filter((id) => A[id] && id !== currentId).map((id) => A[id]);
+  let i = 0;
+  const next = () => pool[i++ % pool.length];
+  const href = (a) => `./article-detail.html?id=${a.id}`;
+
+  const big = next();
+  const bigEl = $("[data-feed-big]");
+  bigEl.href = href(big);
+  bigEl.querySelector("img").src = big.img;
+  bigEl.querySelector(".art-big__title").textContent = big.title;
+  bigEl.querySelector(".art-big__kanal").textContent = big.kanal;
+
+  document.querySelectorAll("[data-feed-row]").forEach((row) => {
+    row.innerHTML = [next(), next()]
+      .map(
+        (a) => `
+        <a class="art-card" href="${href(a)}">
+          <img class="art-card__img" src="${a.img}" alt="" loading="lazy" />
+          <span class="art-card__title">${esc(a.title)}</span>
+          <span class="art-card__foot"><span>${esc(a.kanal)}</span><img src="/assets/article/dots.svg" alt="" aria-hidden="true" /></span>
+        </a>`,
+      )
+      .join("");
+  });
+
+  const popular = [...home.terpopuler.filter((id) => A[id] && id !== currentId).map((id) => A[id])];
+  while (popular.length < 5) popular.push(next());
+  $("[data-feed-pop]").innerHTML = popular
+    .slice(0, 5)
+    .map(
+      (a, n) => `
+      <li>
+        <a class="lcard" href="${href(a)}">
+          <span class="art-rankthumb"><img class="lcard__img" src="${a.img}" alt="" loading="lazy" /><b>${n + 1}</b></span>
+          <span class="lcard__body">
+            <strong class="lcard__title">${esc(a.title)}</strong>
+            <span class="art-pop__foot"><span>${esc(a.kanal)}</span><img src="/assets/article/dots.svg" alt="" aria-hidden="true" /></span>
+          </span>
+        </a>
+      </li>`,
+    )
+    .join("");
+
+  $("[data-feed-terkini]").innerHTML = Array.from({ length: 10 }, next)
+    .map(
+      (a) => `
+      <li>
+        <a class="lcard" href="${href(a)}">
+          <img class="lcard__img" src="${a.img}" alt="" loading="lazy" />
+          <span class="lcard__body">
+            <span class="lcard__kanal">${esc(a.kanal)}</span>
+            <strong class="lcard__title">${esc(a.title)}</strong>
+            <span class="lcard__meta"><span data-time="${a.published}">${timeAgo(a.published)}</span>${a.readTime ? `<span>${esc(a.readTime)}</span>` : ""}</span>
+          </span>
+        </a>
+      </li>`,
+    )
+    .join("");
+  refreshTimes();
 }
 
 /* ---------- Interactions ---------- */
@@ -187,23 +318,19 @@ function initActions() {
     caption.hidden = !caption.hidden;
   });
 
-  const like = $("[data-like]");
-  like.addEventListener("click", () => {
-    const on = like.getAttribute("aria-pressed") !== "true";
-    like.setAttribute("aria-pressed", String(on));
-  });
+  const toggle = (el) => el.setAttribute("aria-pressed", String(el.getAttribute("aria-pressed") !== "true"));
+  document.querySelectorAll("[data-like], [data-save]").forEach((el) => el.addEventListener("click", () => toggle(el)));
 
-  const save = $("[data-save]");
-  save.addEventListener("click", () => save.setAttribute("aria-pressed", String(save.getAttribute("aria-pressed") !== "true")));
-
-  $("[data-share]").addEventListener("click", async () => {
-    try {
-      if (navigator.share) await navigator.share({ title: document.title, url: window.location.href });
-      else await navigator.clipboard.writeText(window.location.href);
-    } catch {
-      /* dismissed */
-    }
-  });
+  document.querySelectorAll("[data-share]").forEach((el) =>
+    el.addEventListener("click", async () => {
+      try {
+        if (navigator.share) await navigator.share({ title: document.title, url: window.location.href });
+        else await navigator.clipboard.writeText(window.location.href);
+      } catch {
+        /* dismissed */
+      }
+    }),
+  );
 
   // Polling: one vote, then reveal the result bars
   document.addEventListener("click", (event) => {
