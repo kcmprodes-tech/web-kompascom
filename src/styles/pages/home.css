@@ -1132,6 +1132,9 @@
 .ad-full {
   padding-bottom: 24px;
 }
+.ad-full--flush {
+  padding-bottom: 0;
+}
 .ad-full img {
   width: 100%;
   height: auto;
