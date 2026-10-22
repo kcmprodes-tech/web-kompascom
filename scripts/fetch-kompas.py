@@ -134,7 +134,9 @@ def parse_article(url):
     title = text(re.search(r"<h1[^>]*>(.*?)</h1>", page, re.S).group(1))
     date = re.search(r'class="read__date">.*?</a>,\s*(.*?)\s*</div>', page, re.S)
     editors = [text(x).rstrip(",") for x in re.findall(r'class="credit-title-nameEditor">(.*?)</div>', page, re.S)]
-    photo = re.search(r'<div[^>]*class="photo"[^>]*>\s*<img[^>]*src="([^"]+)"[^>]*alt="([^"]*)".*?<span class="pb_10 author">(.*?)</span>(.*?)</div>', page, re.S)
+    photo_re = r'<div[^>]*class="photo"[^>]*>\s*<img[^>]*src="([^"]+)"[^>]*alt="([^"]*)".*?<span class="pb_10 author">(.*?)</span>(.*?)</div>'
+    photos = list(re.finditer(photo_re, page, re.S))
+    photo = photos[0] if photos else None
     tags = [text(t) for t in re.findall(r'href="https://www\.kompas\.com/tag/[^"]+">(.*?)</a>', page)]
 
     start = page.index('class="read__content"')
@@ -169,6 +171,10 @@ def parse_article(url):
             "credit": text(photo.group(3)) if photo else "",
             "caption": text(photo.group(4)) if photo else "",
         },
+        "gallery": [
+            {"src": m.group(1), "alt": html.unescape(m.group(2)), "credit": text(m.group(3)), "caption": text(m.group(4))}
+            for m in photos[1:4]
+        ],
         "blocks": blocks,
         "tags": tags,
     }
@@ -206,6 +212,9 @@ def main():
                 continue
             save_image(original_photo(photo_src), IMAGES / f"{ident}.jpg")
             full["photo"]["src"] = f"/assets/kompas/{ident}.jpg"
+            for n, g in enumerate(full["gallery"], 1):
+                save_image(original_photo(g["src"]), IMAGES / f"{ident}-{n}.jpg", 720)
+                g["src"] = f"/assets/kompas/{ident}-{n}.jpg"
             full.update(id=ident, url=url, kanal=kanal_of(url), published=published_of(url),
                         readTime=times.get(ident, ""))
             (ARTICLES / f"{ident}.json").write_text(json.dumps(full, ensure_ascii=False, indent=1))

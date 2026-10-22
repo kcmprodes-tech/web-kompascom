@@ -11,6 +11,20 @@
   "credit": "Dok. Jennete Rent",
   "caption": "Rental Mobil Listrik Jakarta"
  },
+ "gallery": [
+  {
+   "src": "/assets/kompas/120200915-1.jpg",
+   "alt": "Rental Mobil Listrik Jakarta",
+   "credit": "Dok. Jennete Rent",
+   "caption": "Rental Mobil Listrik Jakarta"
+  },
+  {
+   "src": "/assets/kompas/120200915-2.jpg",
+   "alt": "Rental Mobil Listrik Jakarta",
+   "credit": "Dok. Jennete Rent",
+   "caption": "Rental Mobil Listrik Jakarta"
+  }
+ ],
  "blocks": [
   {
    "type": "p",
