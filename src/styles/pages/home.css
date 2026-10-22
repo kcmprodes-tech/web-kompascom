@@ -1358,3 +1358,32 @@
 .rek__title {
   padding: 24px 16px 16px;
 }
+
+/* ================= Selesaikan Bacaanmu ================= */
+.sb {
+  padding-bottom: 32px;
+}
+.sb__head {
+  margin: 0 16px;
+  padding: 20px 0 16px;
+  border-top: 1px solid #e7e8e9;
+}
+.sb__head .sec-link {
+  padding-bottom: 2px;
+}
+.sb__sub {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.32px;
+  color: #5a5a5a;
+}
+.sb .nu-card__title {
+  margin-bottom: -8px; /* title → kanal gap is 4px */
+}
+.sb__kanal {
+  font-size: 12px;
+  line-height: 1.3;
+  letter-spacing: -0.12px;
+  color: #6c6f75;
+}
