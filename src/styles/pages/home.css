@@ -1045,3 +1045,240 @@
 .kol-card--alt .kol-card__author i {
   color: #888;
 }
+
+/* ================= Topik pilihan ================= */
+.topik {
+  padding-bottom: 32px;
+}
+.topik__head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 16px;
+}
+.topik__badge {
+  padding: 4px 12px;
+  border-radius: 50px;
+  background: #e6f1f9;
+  color: #0f79c6;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.24px;
+}
+.topik__title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #36383a;
+  letter-spacing: -0.4px;
+}
+.topik__card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 16px 16px;
+}
+.topik__img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  object-fit: cover;
+}
+.topik__art {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.32px;
+  color: #36383a;
+}
+.topik__meta {
+  display: flex;
+  align-items: center;
+  height: 27px;
+  margin-top: -4px;
+  font-size: 12px;
+  letter-spacing: -0.12px;
+  color: #5a5a5a;
+}
+.topik__meta > span + span::before {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 12px;
+  margin: 0 8px;
+  vertical-align: -1px;
+  background: #b8b8b8;
+}
+.topik__more {
+  padding: 0 16px;
+}
+.topik__more button {
+  width: 100%;
+  height: 44px;
+  border: 0;
+  border-radius: 12px;
+  background: #f0f0f0;
+  color: #2a2a2a;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.32px;
+  cursor: pointer;
+}
+
+/* ================= Full-width ad image ================= */
+.ad-full {
+  padding-bottom: 24px;
+}
+.ad-full img {
+  width: 100%;
+  height: auto;
+}
+
+/* ================= Pilih topik (minat) ================= */
+.minat {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0 16px;
+  padding-bottom: 32px;
+  border-radius: 16px;
+  background: #f7f7f7;
+  overflow: hidden;
+}
+.minat__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 16px;
+  background: linear-gradient(130deg, #fff2fc 7%, #e0e7ff 68%);
+}
+.minat__head p {
+  margin: 0;
+  max-width: 177px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.32px;
+  color: #333;
+}
+.minat__illu {
+  position: relative;
+  flex: 0 0 auto;
+  width: 86px;
+  height: 70px;
+}
+.minat__illu img {
+  position: absolute;
+}
+.minat__illu-card {
+  left: 26px;
+  top: 4px;
+  width: 56px;
+  height: 53px;
+}
+.minat__illu-like {
+  left: 0;
+  top: 22px;
+  width: 47px;
+  height: 47px;
+}
+.minat__illu-spark {
+  left: 72px;
+  top: 0;
+  width: 14px;
+  height: 14px;
+}
+.minat__chips {
+  height: 142px;
+  overflow: hidden;
+  transition: height 260ms ease;
+}
+.minat__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 8px 16px 0;
+}
+.minat__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.minat-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 8px 6px 16px;
+  border: 1px solid #e7e8e9;
+  border-radius: 18px;
+  background: #fff;
+  color: #515358;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: -0.14px;
+  cursor: pointer;
+}
+.minat-chip img {
+  width: 24px;
+  height: 24px;
+  transition: transform 160ms ease;
+}
+.minat-chip[aria-pressed="true"] {
+  border-color: #0f79c6;
+  background: #e6f1f9;
+  color: #0f79c6;
+}
+.minat-chip[aria-pressed="true"] img {
+  transform: rotate(45deg);
+}
+.minat__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 0 0 12px;
+  border: 0;
+  background: transparent;
+  color: #333;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.32px;
+  cursor: pointer;
+}
+.minat__toggle img {
+  width: 18px;
+  height: 18px;
+  transform: rotate(90deg);
+  transition: transform 200ms ease;
+}
+.minat__toggle[aria-expanded="true"] img {
+  transform: rotate(-90deg);
+}
+.minat__save {
+  padding: 0 16px;
+}
+.minat__save button {
+  width: 100%;
+  height: 44px;
+  border: 0;
+  border-radius: 12px;
+  background: #0f79c6;
+  color: #fff;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.32px;
+  cursor: pointer;
+}
+.minat__save button:disabled {
+  background: #e7e7e7;
+  color: #888;
+  cursor: default;
+}
