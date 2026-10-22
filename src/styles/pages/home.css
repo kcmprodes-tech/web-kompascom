@@ -1471,3 +1471,13 @@
 .lmore {
   padding: 24px 0 32px;
 }
+
+/* ================= Tap & Stories (static screenshot in Figma) ================= */
+.taps {
+  display: block;
+}
+.taps img {
+  width: 100%;
+  aspect-ratio: 650 / 454;
+  object-fit: cover;
+}
