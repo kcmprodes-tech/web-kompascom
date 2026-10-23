@@ -86,7 +86,7 @@ function markCurrent() {
     if (i && sec.getBoundingClientRect().top - barH <= window.innerHeight * 0.35) current = i;
   });
   if (window.scrollY < 40) current = 0;
-  links.forEach((a, i) => a.classList.toggle("is-current", i === current));
+  links.forEach((a, i) => (i === current ? a.setAttribute("aria-current", "true") : a.removeAttribute("aria-current")));
 }
 markCurrent();
 window.addEventListener("scroll", () => requestAnimationFrame(markCurrent), { passive: true });

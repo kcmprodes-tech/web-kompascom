@@ -50,11 +50,6 @@
   letter-spacing: 0;
   color: #ffffff;
   white-space: nowrap;
-  opacity: 0.72;
-  transition: opacity 0.2s ease;
-}
-.home-body .kp-bar__nav a.is-current {
-  opacity: 1;
 }
 .kp-bar__user img {
   width: 24px;
@@ -95,9 +90,6 @@
 .kp-btn:active {
   transform: scale(0.97);
 }
-.kp-btn--sm {
-  height: 40px;
-}
 .home-body .kp-btn--dark {
   padding: 8px 24px;
   background: #2a2a2a;
@@ -108,12 +100,12 @@
   color: #36383a;
 }
 .home-body .kp-btn--grey {
-  width: 120px;
+  flex: 0 1 116px;
   background: #edeff1;
   color: #36383a;
 }
 .home-body .kp-btn--soft {
-  width: 120px;
+  flex: 0 1 116px;
   background: #f3f3f4;
   color: #36383a;
 }
@@ -165,7 +157,7 @@
 
 /* ================= +MAX / ONE sections ================= */
 .kp-sec {
-  padding: 48px 0;
+  padding: 72px 0 48px;
   overflow: hidden;
 }
 .kp-sec--max {
@@ -179,7 +171,14 @@
   padding-bottom: 20px;
 }
 .kp-head .kp-ctas {
+  width: 312px;
+  max-width: calc(100% - 32px);
   margin-top: 8px; /* 20px from the copy block */
+}
+.kp-head .kp-btn--dark {
+  flex: 0 0 184px;
+  min-width: 0;
+  padding: 8px 16px;
 }
 .kp-logo--max {
   width: 314.7px;
@@ -205,10 +204,12 @@
   color: #515358;
 }
 .kp-sec--one .kp-tag {
-  width: 310px;
+  width: auto;
+  max-width: calc(100% - 32px);
+  white-space: nowrap;
 }
 .kp-sec--one .kp-head .kp-ctas {
-  margin-top: 31px; /* Figma keeps an empty 23px line above the buttons */
+  margin-top: 10px; /* copy block is a fixed 111px tall, then 20px */
 }
 
 /* device stages */
@@ -229,12 +230,17 @@
 }
 .kp-stage--one {
   height: 497px;
-  perspective: 900px;
 }
-.kp-stage--one .kp-layer {
+/* layered art box: PSD canvas 2000×3073 shown 324px wide */
+.kp-art {
+  position: relative;
   width: 324px;
-  height: 497px;
-  object-fit: contain;
+  max-width: 90%;
+  aspect-ratio: 2000 / 3073;
+}
+.kp-art .kp-layer {
+  position: absolute;
+  height: auto;
 }
 
 /* ================= Hubungi kami ================= */
@@ -304,17 +310,20 @@
 
 /* ================= Motion =================
    --p (0→1) is set on each [data-stage] by kompasplus.js from its scroll
-   position. Every .kp-layer reads its own start offsets, so layered art
-   (e.g. from a PSD) can move each object differently:
+   position. Every .kp-layer reads its own start offsets and its own slice
+   of the progress, so layered art (e.g. from a PSD) moves object by object:
+     --a / --b   where in the stage progress this layer starts / finishes
      --x / --y   start translate     --s0   start scale
      --r         start rotate        --rx   start tilt (rotateX)
      --o0        start opacity */
 [data-stage] .kp-layer {
-  --q: calc(1 - var(--p, 1));
+  /* each layer plays inside its own slice [--a, --b] of the stage progress */
+  --lp: clamp(0, calc((var(--p, 1) - var(--a, 0)) / (var(--b, 1) - var(--a, 0))), 1);
+  --q: calc(1 - var(--lp));
   transform: translate3d(calc(var(--q) * var(--x, 0px)), calc(var(--q) * var(--y, 0px)), 0)
     rotateX(calc(var(--q) * var(--rx, 0deg))) rotate(calc(var(--q) * var(--r, 0deg)))
-    scale(calc(var(--s0, 1) + (1 - var(--s0, 1)) * var(--p, 1)));
-  opacity: calc(var(--o0, 0.15) + (1 - var(--o0, 0.15)) * var(--p, 1));
+    scale(calc(var(--s0, 1) + (1 - var(--s0, 1)) * var(--lp)));
+  opacity: calc(var(--o0, 0.15) + (1 - var(--o0, 0.15)) * var(--lp));
   will-change: transform, opacity;
 }
 
