@@ -1,0 +1,363 @@
+/* KOMPAS.com+ landing — "LP Mobile Belum Login"
+   (Figma koqAm5hdP25cHQABrZ3nla, node 5970:10053), with apple.com-style
+   scroll motion. Footer comes from home.css (.ft). */
+
+.kp-body {
+  background: #ffffff;
+}
+
+/* ================= Sticky membership bar ================= */
+.kp-bar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 34px;
+  height: 48px;
+  padding: 10px 16px;
+  background: #000000;
+}
+.kp-bar__home {
+  display: grid;
+  place-items: center;
+  flex: 0 0 28px;
+  width: 28px;
+  height: 28px;
+}
+.kp-bar__home img {
+  width: 22.81px;
+  height: 24px;
+}
+.kp-bar__nav {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+  margin-left: -10px; /* 24px from the K+ mark */
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.kp-bar__nav::-webkit-scrollbar {
+  display: none;
+}
+.home-body .kp-bar__nav a {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0;
+  color: #ffffff;
+  white-space: nowrap;
+  opacity: 0.72;
+  transition: opacity 0.2s ease;
+}
+.home-body .kp-bar__nav a.is-current {
+  opacity: 1;
+}
+.kp-bar__user img {
+  width: 24px;
+  height: 24px;
+}
+
+/* ================= Shared bits ================= */
+.kp-logo {
+  display: block;
+  height: auto;
+}
+.kp-tag {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.3;
+  letter-spacing: -0.36px;
+  text-align: center;
+  color: #36383a;
+}
+.kp-ctas {
+  display: flex;
+  gap: 12px;
+}
+.kp-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.28px;
+  white-space: nowrap;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+.kp-btn:active {
+  transform: scale(0.97);
+}
+.kp-btn--sm {
+  height: 40px;
+}
+.home-body .kp-btn--dark {
+  padding: 8px 24px;
+  background: #2a2a2a;
+  color: #ffffff;
+}
+.home-body .kp-btn--light {
+  background: #ffffff;
+  color: #36383a;
+}
+.home-body .kp-btn--grey {
+  width: 120px;
+  background: #edeff1;
+  color: #36383a;
+}
+.home-body .kp-btn--soft {
+  width: 120px;
+  background: #f3f3f4;
+  color: #36383a;
+}
+
+/* ================= +LITE hero ================= */
+.kp-hero {
+  position: relative;
+  height: 560px;
+  overflow: hidden;
+  background: #e9e9ea;
+}
+.kp-hero__media {
+  position: absolute;
+  inset: 0;
+}
+.kp-hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.kp-hero__copy {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 312px;
+  max-width: calc(100% - 36px);
+  margin: 0 auto;
+  padding-top: 48px;
+}
+.kp-logo--lite {
+  width: 303.9px;
+}
+.kp-tag--hero {
+  width: 283px;
+  margin-top: 12px;
+  color: #232426;
+}
+.kp-ctas--hero {
+  width: 100%;
+  margin-top: 24px;
+}
+.kp-ctas--hero .kp-btn--dark {
+  flex: 0 0 177px;
+}
+.kp-ctas--hero .kp-btn--light {
+  flex: 1 1 auto;
+}
+
+/* ================= +MAX / ONE sections ================= */
+.kp-sec {
+  padding: 48px 0;
+  overflow: hidden;
+}
+.kp-sec--max {
+  background: #f9f9f9;
+}
+.kp-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 20px;
+}
+.kp-head .kp-ctas {
+  margin-top: 8px; /* 20px from the copy block */
+}
+.kp-logo--max {
+  width: 314.7px;
+}
+.kp-sec--max .kp-tag {
+  width: 276px;
+}
+.kp-one-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.kp-logo--one {
+  width: 234px;
+  height: 54px;
+}
+.kp-one-brand p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.3;
+  letter-spacing: -0.28px;
+  color: #515358;
+}
+.kp-sec--one .kp-tag {
+  width: 310px;
+}
+.kp-sec--one .kp-head .kp-ctas {
+  margin-top: 31px; /* Figma keeps an empty 23px line above the buttons */
+}
+
+/* device stages */
+.kp-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+.kp-stage--max {
+  height: 421px;
+  padding: 0 20px;
+}
+.kp-stage--max .kp-layer {
+  width: 320px;
+  max-width: 100%;
+  height: 470px;
+  object-fit: contain;
+}
+.kp-stage--one {
+  height: 497px;
+  perspective: 900px;
+}
+.kp-stage--one .kp-layer {
+  width: 324px;
+  height: 497px;
+  object-fit: contain;
+}
+
+/* ================= Hubungi kami ================= */
+.kp-contact {
+  padding: 148px 20px 208px; /* 48 section + 100 / 160 inner + 48 */
+}
+.kp-contact__card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 320px;
+  margin: 0 auto;
+  padding: 16px;
+  border: 1px solid #e7e8e9;
+  border-radius: 16px;
+}
+.kp-contact__head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 0;
+  border-radius: 12px;
+  background: #f3f3f4;
+}
+.kp-contact__head strong {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0;
+  color: #36383a;
+}
+.kp-contact__head span {
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: -0.28px;
+  color: #6c6f75;
+}
+.kp-contact__rows {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+.kp-contact__rows a {
+  flex: 0 1 138px;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+.kp-contact__rows small {
+  font-size: 12px;
+  color: #666666;
+}
+.home-body .kp-contact__rows b {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.32px;
+  color: #0f79c6;
+}
+
+/* footer variant: square social tiles (#484848) */
+.ft--square .ft__social a {
+  border-radius: 0;
+  background: #484848;
+}
+
+/* ================= Motion =================
+   --p (0→1) is set on each [data-stage] by kompasplus.js from its scroll
+   position. Every .kp-layer reads its own start offsets, so layered art
+   (e.g. from a PSD) can move each object differently:
+     --x / --y   start translate     --s0   start scale
+     --r         start rotate        --rx   start tilt (rotateX)
+     --o0        start opacity */
+[data-stage] .kp-layer {
+  --q: calc(1 - var(--p, 1));
+  transform: translate3d(calc(var(--q) * var(--x, 0px)), calc(var(--q) * var(--y, 0px)), 0)
+    rotateX(calc(var(--q) * var(--rx, 0deg))) rotate(calc(var(--q) * var(--r, 0deg)))
+    scale(calc(var(--s0, 1) + (1 - var(--s0, 1)) * var(--p, 1)));
+  opacity: calc(var(--o0, 0.15) + (1 - var(--o0, 0.15)) * var(--p, 1));
+  will-change: transform, opacity;
+}
+
+/* hero: zooms out on load, then drifts/zooms gently as you scroll past */
+.kp-hero__media .kp-layer {
+  transform: translate3d(0, calc(var(--h, 0) * 90px), 0) scale(calc(1 + var(--h, 0) * 0.08));
+  opacity: calc(1 - var(--h, 0) * 0.35);
+  animation: kp-hero-in 1.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.kp-hero__copy {
+  transform: translate3d(0, calc(var(--h, 0) * -36px), 0);
+  opacity: calc(1 - var(--h, 0) * 1.4);
+}
+@keyframes kp-hero-in {
+  from {
+    transform: scale(1.14);
+    opacity: 0;
+  }
+}
+
+/* copy fades up when it enters */
+[data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0s),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0s);
+}
+[data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  [data-stage] .kp-layer,
+  .kp-hero__media .kp-layer,
+  .kp-hero__copy {
+    transform: none;
+    opacity: 1;
+    animation: none;
+  }
+}
