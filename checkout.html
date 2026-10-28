@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="id" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pembayaran KOMPAS.com+</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script type="module" src="/src/js/checkout.js"></script>
+  </head>
+  <body class="co-body">
+    <header class="co-bar">
+      <a class="co-bar__back" href="./kompasplus.html" data-co-back aria-label="Kembali">
+        <i class="co-ic" style="--ic:url('/assets/reading/caret-left.svg')" aria-hidden="true"></i>
+      </a>
+      <h1>Pembayaran</h1>
+      <img class="co-bar__kp" src="/assets/kplus/kp-icon.svg" alt="KOMPAS.com+" />
+    </header>
+
+    <main class="co" data-co-step="loading">
+      <!-- 1. need an account first -->
+      <section class="co-card co-login" data-co-panel="login" hidden>
+        <i class="co-ic co-ic--lg" style="--ic:url('/assets/reading/lock-simple.svg')" aria-hidden="true"></i>
+        <h2>Masuk untuk berlangganan</h2>
+        <p>Langganan KOMPAS.com+ terhubung ke akun KG Media kamu, jadi aksesnya ikut ke semua perangkat.</p>
+        <a class="co-btn co-btn--primary" data-co-login href="./account.html">Masuk atau daftar</a>
+      </section>
+
+      <!-- 2. already subscribed -->
+      <section class="co-card co-done" data-co-panel="owned" hidden>
+        <i class="co-ic co-ic--lg co-ic--ok" style="--ic:url('/assets/reading/check-circle-fill.svg')" aria-hidden="true"></i>
+        <h2>Kamu sudah berlangganan</h2>
+        <p data-co-owned-text></p>
+        <a class="co-btn co-btn--primary" data-co-continue href="./index.html">Lanjut membaca</a>
+      </section>
+
+      <!-- 3. choose plan + payment -->
+      <form class="co-form" data-co-panel="form" hidden>
+        <div class="co-ref" data-co-ref hidden>
+          <i class="co-ic" style="--ic:url('/assets/reading/text-aa.svg')" aria-hidden="true"></i>
+          <span><b>Mode Baca</b> langsung aktif setelah pembayaran berhasil.</span>
+        </div>
+
+        <fieldset class="co-group">
+          <legend>Pilih paket</legend>
+          <div class="co-period" role="radiogroup" aria-label="Periode">
+            <label><input type="radio" name="period" value="monthly" checked /><span>Bulanan</span></label>
+            <label><input type="radio" name="period" value="yearly" /><span>Tahunan <em>Hemat 2 bulan</em></span></label>
+          </div>
+          <div class="co-plans" data-co-plans></div>
+        </fieldset>
+
+        <fieldset class="co-group">
+          <legend>Metode pembayaran</legend>
+          <div class="co-methods">
+            <label><input type="radio" name="method" value="gopay" checked /><span>GoPay</span></label>
+            <label><input type="radio" name="method" value="ovo" /><span>OVO</span></label>
+            <label><input type="radio" name="method" value="dana" /><span>DANA</span></label>
+            <label><input type="radio" name="method" value="va" /><span>Virtual Account</span></label>
+            <label><input type="radio" name="method" value="card" /><span>Kartu kredit/debit</span></label>
+          </div>
+        </fieldset>
+
+        <div class="co-summary">
+          <div><span data-co-sum-name></span><b data-co-sum-price></b></div>
+          <p>Diperpanjang otomatis, bisa dibatalkan kapan saja. Harga adalah contoh untuk prototipe.</p>
+        </div>
+        <button class="co-btn co-btn--primary co-pay" type="submit" data-co-pay>Bayar</button>
+      </form>
+
+      <!-- 4. processing -->
+      <section class="co-card co-wait" data-co-panel="processing" hidden>
+        <span class="co-spin" aria-hidden="true"></span>
+        <h2>Memproses pembayaran…</h2>
+        <p>Jangan tutup halaman ini.</p>
+      </section>
+
+      <!-- 5. success -->
+      <section class="co-card co-done" data-co-panel="success" hidden>
+        <i class="co-ic co-ic--lg co-ic--ok" style="--ic:url('/assets/reading/check-circle-fill.svg')" aria-hidden="true"></i>
+        <h2>Pembayaran berhasil</h2>
+        <p data-co-success-text></p>
+        <ul class="co-perks">
+          <li><i class="co-ic" style="--ic:url('/assets/reading/text-aa.svg')" aria-hidden="true"></i>Mode Baca: ukuran, font, dan tema sesuai selera</li>
+          <li><i class="co-ic" style="--ic:url('/assets/reading/check.svg')" aria-hidden="true"></i>Baca tanpa iklan</li>
+        </ul>
+        <a class="co-btn co-btn--primary" data-co-continue href="./index.html">Lanjut membaca</a>
+        <p class="co-auto" data-co-auto hidden></p>
+      </section>
+    </main>
+  </body>
+</html>

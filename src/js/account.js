@@ -12,6 +12,7 @@
 import "../styles/common.css";
 import "../styles/pages/account.css";
 import { readSession, saveSession, clearSession, initials } from "./utils/session.js";
+import { fetchEntitlement, announceEntitlementChange } from "./utils/entitlement.js";
 
 const body = document.body;
 const params = new URLSearchParams(window.location.search);
@@ -22,6 +23,18 @@ const paramState = params.get("state");
 if (paramState === "guest") clearSession();
 let session = readSession();
 let state = STATES.includes(paramState) ? paramState : session ? "free" : "guest";
+
+/** same-origin path to go back to after logging in (e.g. checkout, an article) */
+const returnTo = (() => {
+  const raw = params.get("return");
+  if (!raw) return null;
+  try {
+    const url = new URL(raw, window.location.href);
+    return url.origin === window.location.origin ? url.pathname + url.search + url.hash : null;
+  } catch {
+    return null;
+  }
+})();
 
 const CARD_VALUES = {
   guest: { poin: "Lihat Poin", voucher: "Lihat voucher", reward: "Lihat reward" },
@@ -59,6 +72,22 @@ function render() {
 }
 
 render();
+
+/* ---------- Subscription from the backend (unless a demo ?state is forced) ---------- */
+const PLAN_NAME = { lite: "LITE", max: "MAX", one: "ONE" };
+async function syncSubscription() {
+  if (paramState || !session) return;
+  const ent = await fetchEntitlement();
+  if (ent.status !== "active") return;
+  const until = new Date(ent.expiresAt).toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" });
+  MEMBER_CARD.member1 = {
+    title: `KOMPAS.com+ ${PLAN_NAME[ent.plan]} ${ent.period === "yearly" ? "Tahunan" : "Bulanan"}`,
+    sub: `Diperpanjang pada ${until}`,
+  };
+  state = "member1";
+  render();
+}
+syncSubscription();
 
 /* ---------- Expandable multi-package card ---------- */
 const memberCard = document.querySelector(".ac-member");
@@ -221,10 +250,16 @@ async function completeLogin(user) {
   state = "free";
   render();
   window.scrollTo(0, 0);
+  announceEntitlementChange(); // other tabs re-check access for the new session
   await wait(2800); // let the illustration play through
+  if (returnTo) {
+    window.location.href = returnTo;
+    return;
+  }
   doneScreen.classList.remove("is-show");
   await wait(250);
   doneScreen.hidden = true;
+  syncSubscription();
 }
 
 function nameFromId(id) {
@@ -357,3 +392,9 @@ otpForm.addEventListener("submit", async (event) => {
   clearInterval(resendInterval);
   completeLogin({ name: nameFromId(pendingId), id: pendingId });
 });
+
+/* ---------- Arriving from a flow that needs an account (e.g. checkout) ---------- */
+if (returnTo) {
+  if (session) window.location.replace(returnTo);
+  else if (state === "guest") openSheet();
+}

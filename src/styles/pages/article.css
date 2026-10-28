@@ -986,3 +986,69 @@
   width: 16px;
   height: 16px;
 }
+
+/* ================= Reading Mode (KOMPAS.com+) =================
+   Variables come from reading-mode.js; they are only set while the
+   backend says the reader may use Reading Mode. */
+.art-crumb-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.art {
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+.art.is-reading {
+  background: var(--rm-bg);
+  color: var(--rm-text);
+}
+.art.is-reading .art-title {
+  font-family: var(--rm-font);
+  color: var(--rm-text);
+}
+.art.is-reading .art-crumb,
+.art.is-reading .art-meta__src strong,
+.art.is-reading .art-team__text strong {
+  color: var(--rm-text);
+}
+.art.is-reading .art-meta__src time,
+.art.is-reading .art-team__text span,
+.art.is-reading .art-crumb span,
+.art.is-reading .art-photo__cap {
+  color: var(--rm-muted);
+}
+.art.is-reading .art-body > p {
+  font-family: var(--rm-font);
+  font-size: var(--rm-size);
+  line-height: var(--rm-lh);
+  font-weight: var(--rm-weight);
+  text-align: var(--rm-align);
+  color: var(--rm-text);
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+.art.is-reading .art-body > p b,
+.art.is-reading .art-body > p strong {
+  font-weight: 700;
+}
+/* dark reading theme: soften the light chrome inside the article */
+.art[data-rm-dark="true"] .art-pill,
+.art[data-rm-dark="true"] .art-round,
+.art[data-rm-dark="true"] .art-app,
+.art[data-rm-dark="true"] .rm-entry {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--rm-text);
+}
+.art[data-rm-dark="true"] .art-pill img,
+.art[data-rm-dark="true"] .art-round img:not(.art-round--gift img),
+.art[data-rm-dark="true"] .art-crumb a::after {
+  filter: invert(0.8);
+}
+.art[data-rm-dark="true"] .art-gsrc {
+  border-color: rgba(255, 255, 255, 0.24);
+}
+.art[data-rm-dark="true"] .art-gsrc span {
+  color: var(--rm-text);
+}

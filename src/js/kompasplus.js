@@ -90,3 +90,19 @@ function markCurrent() {
 }
 markCurrent();
 window.addEventListener("scroll", () => requestAnimationFrame(markCurrent), { passive: true });
+
+/* ---------- Coming from a premium feature (e.g. Reading Mode) ---------- */
+const params = new URLSearchParams(window.location.search);
+const back = params.get("return");
+document.querySelectorAll("[data-plan]").forEach((a) => {
+  const url = new URL(a.getAttribute("href"), window.location.href);
+  if (back) url.searchParams.set("return", back);
+  if (params.get("ref")) url.searchParams.set("ref", params.get("ref"));
+  a.href = url.pathname + url.search;
+});
+if (params.get("ref") === "reading-mode") {
+  const note = document.createElement("p");
+  note.className = "kp-ref";
+  note.innerHTML = "<b>Mode Baca</b> termasuk di semua paket KOMPAS.com+. Pilih paket untuk langsung memakainya.";
+  document.querySelector(".kp-bar").after(note);
+}

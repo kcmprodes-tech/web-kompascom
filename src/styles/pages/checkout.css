@@ -1,0 +1,338 @@
+/* KOMPAS.com+ checkout (prototype) — built from KOMPAS.com Design System 3.0
+   tokens. Radio cards are a new pattern composed from base tokens. */
+
+* {
+  box-sizing: border-box;
+}
+.co-body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--kds-background-paper-elevation-1);
+  color: var(--kds-text-primary);
+  font-family: var(--kds-font-family, "Inter", sans-serif);
+  -webkit-font-smoothing: antialiased;
+}
+.co-body a {
+  text-decoration: none;
+}
+
+.co-ic {
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  background-color: currentColor;
+  -webkit-mask: var(--ic) center / contain no-repeat;
+  mask: var(--ic) center / contain no-repeat;
+}
+.co-ic--lg {
+  width: 48px;
+  height: 48px;
+  color: var(--kds-secondary-base);
+}
+.co-ic--ok {
+  color: var(--kds-success-base);
+}
+
+/* ---------- bar ---------- */
+.co-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: var(--kds-spacing-8);
+  height: 56px;
+  padding: 0 var(--kds-spacing-16) 0 var(--kds-spacing-8);
+  background: var(--kds-background-paper-elevation-0);
+  box-shadow: var(--kds-shadow-line);
+}
+.co-bar__back {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  color: var(--kds-text-primary);
+}
+.co-bar h1 {
+  flex: 1 1 auto;
+  margin: 0;
+  font-size: var(--kds-font-size-b1, 18px);
+  font-weight: var(--kds-font-weight-semibold, 600);
+}
+.co-bar__kp {
+  width: 23px;
+  height: 24px;
+  filter: invert(1);
+}
+
+/* ---------- layout ---------- */
+.co {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: var(--kds-spacing-16) var(--kds-spacing-16) var(--kds-spacing-40);
+}
+.co-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--kds-spacing-12);
+  padding: var(--kds-spacing-32) var(--kds-spacing-20);
+  border-radius: var(--kds-radius-xl);
+  background: var(--kds-background-paper-elevation-0);
+  box-shadow: var(--kds-shadow-base);
+  text-align: center;
+}
+.co-card[hidden],
+.co-form[hidden] {
+  display: none;
+}
+.co-card h2 {
+  margin: 0;
+  font-size: var(--kds-font-size-h6, 20px);
+  font-weight: var(--kds-font-weight-semibold, 600);
+  line-height: 1.3;
+}
+.co-card p {
+  margin: 0;
+  font-size: var(--kds-font-size-b3, 14px);
+  line-height: 1.5;
+  color: var(--kds-text-secondary);
+}
+
+/* Button — XLarge / Primary / Solid */
+.co-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 48px;
+  padding: 12px 16px;
+  border: 0;
+  border-radius: var(--kds-radius-lg);
+  font: inherit;
+  font-size: 16px;
+  font-weight: var(--kds-font-weight-semibold, 600);
+  line-height: 20px;
+  cursor: pointer;
+}
+.co-btn--primary {
+  background: var(--kds-primary-base-500);
+  color: var(--kds-base-white);
+}
+.co-btn--primary:hover {
+  background: var(--kds-primary-dark-brand);
+}
+.co-login .co-btn,
+.co-done .co-btn {
+  margin-top: var(--kds-spacing-8);
+}
+
+/* ---------- form ---------- */
+.co-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--kds-spacing-16);
+}
+.co-ref {
+  display: flex;
+  align-items: center;
+  gap: var(--kds-spacing-8);
+  padding: var(--kds-spacing-12) var(--kds-spacing-16);
+  border-radius: var(--kds-radius-lg);
+  background: var(--kds-primary-lightest);
+  color: var(--kds-primary-dark-brand);
+  font-size: var(--kds-font-size-b3, 14px);
+  line-height: 1.4;
+}
+.co-ref[hidden] {
+  display: none;
+}
+.co-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--kds-spacing-12);
+  margin: 0;
+  padding: var(--kds-spacing-16);
+  border: 0;
+  border-radius: var(--kds-radius-xl);
+  background: var(--kds-background-paper-elevation-0);
+  box-shadow: var(--kds-shadow-base);
+}
+.co-group legend {
+  float: left;
+  width: 100%;
+  margin-bottom: var(--kds-spacing-4);
+  padding: 0;
+  font-size: var(--kds-font-size-b2, 16px);
+  font-weight: var(--kds-font-weight-semibold, 600);
+}
+.co-group input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* period: segmented (Tab-like) */
+.co-period {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: var(--kds-spacing-4);
+  border-radius: var(--kds-radius-rounded);
+  background: var(--kds-background-paper-elevation-2);
+}
+.co-period label span {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  border-radius: var(--kds-radius-rounded);
+  font-size: var(--kds-font-size-b3, 14px);
+  font-weight: var(--kds-font-weight-semibold, 600);
+  line-height: 1.2;
+  color: var(--kds-text-secondary);
+  cursor: pointer;
+}
+.co-period em {
+  font-size: var(--kds-font-size-c2, 10px);
+  font-style: normal;
+  color: var(--kds-success-base);
+}
+.co-period input:checked + span {
+  background: var(--kds-background-paper-elevation-0);
+  color: var(--kds-text-primary);
+  box-shadow: var(--kds-shadow-sm);
+}
+
+/* plans + methods: radio cards */
+.co-plans,
+.co-methods {
+  display: flex;
+  flex-direction: column;
+  gap: var(--kds-spacing-8);
+}
+.co-plan,
+.co-methods label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--kds-spacing-12);
+  padding: var(--kds-spacing-12) var(--kds-spacing-16);
+  border: 1px solid var(--kds-stroke-soft);
+  border-radius: var(--kds-radius-lg);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+.co-plan:has(input:checked),
+.co-methods label:has(input:checked) {
+  border-color: var(--kds-primary-base-500);
+  background: var(--kds-primary-lightest);
+}
+.co-plan::before,
+.co-methods label::before {
+  content: "";
+  box-sizing: border-box;
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--kds-stroke-medium);
+  border-radius: 50%;
+}
+.co-plan:has(input:checked)::before,
+.co-methods label:has(input:checked)::before {
+  border: 6px solid var(--kds-primary-base-500);
+}
+.co-plan__body {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.co-plan__body b {
+  font-size: var(--kds-font-size-b3, 14px);
+  font-weight: var(--kds-font-weight-semibold, 600);
+}
+.co-plan__body small {
+  font-size: var(--kds-font-size-c1, 12px);
+  color: var(--kds-text-secondary);
+}
+.co-plan__price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: var(--kds-font-size-b3, 14px);
+  font-weight: var(--kds-font-weight-bold, 700);
+  white-space: nowrap;
+}
+.co-plan__price small {
+  font-size: var(--kds-font-size-c2, 10px);
+  font-weight: 400;
+  color: var(--kds-text-tertiary);
+}
+.co-methods label span {
+  font-size: var(--kds-font-size-b3, 14px);
+  font-weight: var(--kds-font-weight-semibold, 600);
+}
+
+.co-summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--kds-spacing-4);
+  padding: 0 var(--kds-spacing-4);
+}
+.co-summary div {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--kds-spacing-12);
+  font-size: var(--kds-font-size-b2, 16px);
+}
+.co-summary p {
+  margin: 0;
+  font-size: var(--kds-font-size-c1, 12px);
+  line-height: 1.5;
+  color: var(--kds-text-tertiary);
+}
+
+/* processing */
+.co-spin {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--kds-primary-lightest);
+  border-top-color: var(--kds-primary-base-500);
+  border-radius: 50%;
+  animation: co-spin 0.8s linear infinite;
+}
+@keyframes co-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* success */
+.co-perks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--kds-spacing-8);
+  width: 100%;
+  margin: var(--kds-spacing-8) 0 0;
+  padding: var(--kds-spacing-12) var(--kds-spacing-16);
+  border-radius: var(--kds-radius-lg);
+  background: var(--kds-background-paper-elevation-1);
+  list-style: none;
+  text-align: left;
+}
+.co-perks li {
+  display: flex;
+  align-items: center;
+  gap: var(--kds-spacing-8);
+  font-size: var(--kds-font-size-b3, 14px);
+  line-height: 1.4;
+}
+.co-perks .co-ic {
+  color: var(--kds-primary-base-500);
+}
+.co-card .co-auto {
+  font-size: var(--kds-font-size-c1, 12px);
+  color: var(--kds-text-tertiary);
+}

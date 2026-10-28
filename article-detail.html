@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="id">
+<html lang="id" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -67,9 +67,15 @@
 
       <article class="art" data-art>
         <header class="art-head">
-          <nav class="art-crumb" aria-label="Breadcrumb" data-art-crumb>
-            <a href="./index.html">Home</a>
-          </nav>
+          <div class="art-crumb-row">
+            <nav class="art-crumb" aria-label="Breadcrumb" data-art-crumb>
+              <a href="./index.html">Home</a>
+            </nav>
+            <button class="rm-entry" type="button" data-rm-open aria-label="Mode Baca: atur ukuran, font, dan tema">
+              <i class="rm-ic" style="--ic:url('/assets/reading/text-aa.svg')" aria-hidden="true"></i>
+              <span class="rm-mark" aria-hidden="true"><i class="rm-ic" style="--ic:url('/assets/reading/lock-simple.svg')"></i><i class="rm-ic" style="--ic:url('/assets/reading/crown-simple.svg')"></i></span>
+            </button>
+          </div>
           <h1 class="art-title" data-art-title></h1>
           <div class="art-meta">
             <div class="art-meta__src">
@@ -355,5 +361,9 @@
       </div>
       <p class="ft__copy">©2022 PT. Kompas Cyber Media</p>
     </footer>
+    <button class="rm-fab" type="button" data-rm-open data-rm-fab aria-label="Mode Baca: atur ukuran, font, dan tema">
+      <i class="rm-ic" style="--ic:url('/assets/reading/text-aa.svg')" aria-hidden="true"></i>
+      <span class="rm-mark" aria-hidden="true"><i class="rm-ic" style="--ic:url('/assets/reading/lock-simple.svg')"></i><i class="rm-ic" style="--ic:url('/assets/reading/crown-simple.svg')"></i></span>
+    </button>
   </body>
 </html>

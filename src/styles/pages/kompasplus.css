@@ -370,3 +370,18 @@
     animation: none;
   }
 }
+
+/* context strip when the reader arrives from a premium feature */
+.kp-ref {
+  position: sticky;
+  top: 48px;
+  z-index: 49;
+  margin: 0;
+  padding: 10px 16px;
+  background: #f2f7fb;
+  font-size: 14px;
+  line-height: 1.4;
+  letter-spacing: 0;
+  text-align: center;
+  color: #0a5388;
+}

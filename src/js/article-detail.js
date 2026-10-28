@@ -5,11 +5,14 @@
  * inserts from the design (ad slot, KG Now video, half-page ad, polling,
  * MREC ad, "preferred source on Google").
  */
+import "../styles/tokens/kds-tokens.css";
 import "../styles/components/site-header.css";
 import "../styles/pages/home.css";
 import "../styles/pages/article.css";
+import "../styles/components/reading-mode.css";
 import home from "../data/kompas-home.json";
 import { initHeaderAvatar } from "./site-header.js";
+import { initReadingMode } from "./reading-mode.js";
 import { refreshTimes, timeAgo } from "./utils/time.js";
 
 const $ = (sel) => document.querySelector(sel);
@@ -362,3 +365,16 @@ async function load() {
 initHeaderAvatar();
 initActions();
 load();
+
+/* ---------- Reading Mode (KOMPAS.com+) ---------- */
+initReadingMode({
+  article: document.querySelector("[data-art]"),
+  // after checkout the reader lands back here with the panel open
+  returnUrl: () => `${window.location.pathname}${window.location.search}#mode-baca`,
+});
+
+// floating "Aa" shows while the article body is on screen
+const fab = document.querySelector("[data-rm-fab]");
+new IntersectionObserver(([entry]) => fab.classList.toggle("is-visible", entry.isIntersecting), {
+  rootMargin: "0px 0px -40% 0px",
+}).observe(document.querySelector("[data-art-body]"));
