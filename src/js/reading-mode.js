@@ -98,6 +98,7 @@ export function initReadingMode({ article, returnUrl }) {
   root.innerHTML = `
     <div class="rm__backdrop" data-rm-close></div>
     <section class="rm__sheet" role="dialog" aria-modal="true" aria-labelledby="rm-title" tabindex="-1">
+      <button class="rm__grab" type="button" data-rm-grab aria-label="Tutup Mode Baca (geser ke bawah)"></button>
       <header class="rm__head">
         <button class="rm-iconbtn" type="button" data-rm-back aria-label="Kembali" hidden>${icon("caret-left")}</button>
         <h2 class="rm__title" id="rm-title">Mode Baca</h2>
@@ -265,10 +266,38 @@ export function initReadingMode({ article, returnUrl }) {
     }, 280);
   }
 
+  /* ---------- drag the grabber / header down to dismiss ---------- */
+  let dragStart = null;
+  let dragMoved = false;
+  const dragZone = (t) => t.closest("[data-rm-grab]") || (t.closest(".rm__head") && !t.closest("button"));
+  sheet.addEventListener("pointerdown", (e) => {
+    if (!dragZone(e.target)) return;
+    dragStart = e.clientY;
+    dragMoved = false;
+    sheet.classList.add("is-dragging");
+    sheet.setPointerCapture(e.pointerId);
+  });
+  sheet.addEventListener("pointermove", (e) => {
+    if (dragStart === null) return;
+    sheet.style.transform = `translateY(${Math.max(0, e.clientY - dragStart)}px)`;
+  });
+  const endDrag = (e) => {
+    if (dragStart === null) return;
+    const dy = e.clientY - dragStart;
+    dragStart = null;
+    dragMoved = Math.abs(dy) > 5;
+    sheet.classList.remove("is-dragging");
+    sheet.style.transform = "";
+    if (dy > 80) close();
+  };
+  sheet.addEventListener("pointerup", endDrag);
+  sheet.addEventListener("pointercancel", endDrag);
+
   /* ---------- events ---------- */
   root.addEventListener("click", (event) => {
     const t = event.target;
     if (t.closest("[data-rm-close]")) return close();
+    if (t.closest("[data-rm-grab]")) return dragMoved ? (dragMoved = false) : close(); // tap/Enter closes, a drag decides itself
     if (t.closest("[data-rm-back]")) return setView("main");
     if (t.closest("[data-rm-customize]")) return setView("custom");
     const size = t.closest("[data-rm-size]");

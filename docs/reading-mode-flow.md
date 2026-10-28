@@ -96,6 +96,6 @@ Bantuan demo:
 ## Catatan design system
 
 - Semua warna, radius, spacing, dan bayangan memakai token `--kds-*`; panel otomatis ikut **dark** saat tema baca gelap (Tenang) dipilih.
-- Komponen resmi yang dipakai: Bottom sheet (*Floating*), Icon Button, Button (*XLarge Primary Solid*, *Large Secondary Ghost*), Badge, In-Body Alert (toast sukses).
+- Komponen resmi yang dipakai: Bottom sheet (*Sticky* — menempel di bawah layar, bisa digeser ke bawah untuk menutup), Icon Button, Button (*XLarge Primary Solid*, *Large Secondary Ghost*), Badge, In-Body Alert (toast sukses).
 - **Pola baru di luar system**: kontrol tersegmentasi (A/A, rata/tebal), kartu tema, dan radio card checkout — disusun dari token dasar.
 - **Penyimpangan yang disengaja**: design system hanya memakai **Inter**, tetapi fitur ini meminta ganti font. Pilihan **Serif** (font sistem) dan **Hyperlegible** (Atkinson Hyperlegible, dimuat hanya saat dipilih) hanya berlaku untuk **isi artikel** sebagai preferensi pembaca; seluruh UI tetap Inter. Warna latar tema baca (Hangat, Fokus) juga belum ada di token — perlu diputuskan tim desain.
