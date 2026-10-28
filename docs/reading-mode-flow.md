@@ -32,11 +32,10 @@ flowchart TD
 
   H -->|Pelanggan| I[Disimpan + diterapkan ke semua artikel<br/>toast: Mode Baca diterapkan]
   H -->|Bukan pelanggan| J[Diterapkan ke artikel ini saja<br/>sebagai uji coba]
-  J -->|± 3 detik| K[Bottom sheet hitam KOMPAS.com+<br/>manfaat + CTA]
+  J -->|± 3 detik| K[Bottom sheet hitam: Khusus Member<br/>harga + daftar manfaat]
 
   K -->|Tutup / geser ke bawah| L[Artikel kembali ke tampilan awal]
-  K -->|Langganan KOMPAS.com+| M{Sudah login?}
-  K -->|Sudah berlangganan? Masuk<br/>khusus tamu| N[Login ?return=artikel] --> B
+  K -->|Gabung Kompas.com+ MAX| M{Sudah login?}
   M -->|Belum| O[Login ?return=checkout] --> P
   M -->|Sudah| P[Checkout: paket MAX terpilih, periode, metode bayar]
   P --> Q[Pembayaran diproses]
@@ -52,10 +51,10 @@ flowchart TD
 
 | Status dari backend | Artikel | Setelah *Terapkan* | CTA sheet hitam |
 |---|---|---|---|
-| `guest` (belum login) | Normal | Uji coba di artikel ini → sheet hitam | **Langganan KOMPAS.com+** + *Sudah berlangganan? Masuk* |
-| `none` (login, belum langganan) | Normal | Uji coba di artikel ini → sheet hitam | **Langganan KOMPAS.com+** |
+| `guest` (belum login) | Normal | Uji coba di artikel ini → sheet hitam | **Gabung Kompas.com+ MAX** (checkout meminta login) |
+| `none` (login, belum langganan) | Normal | Uji coba di artikel ini → sheet hitam | **Gabung Kompas.com+ MAX** |
 | `active` + `reading_mode` | Gaya Mode Baca diterapkan | Disimpan untuk semua artikel | — |
-| `expired` | Kembali normal (preferensi tetap tersimpan) | Uji coba di artikel ini → sheet hitam | **Perpanjang langganan** |
+| `expired` | Kembali normal (preferensi tetap tersimpan) | Uji coba di artikel ini → sheet hitam | **Perpanjang Kompas.com+ MAX** |
 | sedang dicek | Normal | — | — |
 
 ## Aturan akses
@@ -116,7 +115,7 @@ Bantuan demo:
 
 ## Catatan design system
 
-- Semua warna, radius, spacing, dan bayangan memakai token `--kds-*`. Sheet hitam memakai token dark (`data-theme="dark"`) dengan latar `--kds-base-black`.
+- Semua warna, radius, spacing, dan bayangan memakai token `--kds-*`. Sheet hitam (Figma 11781:34846) memakai latar `--kds-base-black` dengan neutral mode terang (`data-theme="light"`) untuk tag, tombol tutup, dan garis pemisah.
 - Komponen resmi yang dipakai: Bottom sheet (*Sticky* — menempel di bawah layar, bisa digeser ke bawah untuk menutup), Icon Button, Button (*XLarge Primary Solid*), In-Body Alert (toast sukses).
 - **Pola baru di luar system**: kontrol tersegmentasi (rata/tebal), slider ukuran 6 titik, daftar font, dan kartu tema — disusun dari token dasar. Tag *Pratinjau* memakai Blue 10 (`#E1F0FF`) yang belum ada sebagai token semantik.
 - **Penyimpangan yang disengaja**: design system hanya memakai **Inter**, tetapi fitur ini meminta ganti font. Font tambahan hanya berlaku untuk **isi artikel** sebagai preferensi pembaca; seluruh UI tetap Inter. Warna latar tema baca (Hangat, Fokus) juga belum ada di token — perlu diputuskan tim desain.

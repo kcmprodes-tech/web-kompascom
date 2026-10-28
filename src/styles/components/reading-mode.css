@@ -4,7 +4,8 @@
    preview card stays on top and "Terapkan" stays at the bottom while the
    controls scroll. Segmented control, size slider, font list and theme
    tiles are new patterns composed from the base tokens. The offer sheet
-   shown after a trial is the same sheet in dark mode (data-theme="dark"). */
+   shown after a trial (Figma 11781:34846) is black, with light-mode
+   neutrals for its tag, close button and divider. */
 
 html.rm-scroll-lock,
 html.rm-scroll-lock body {
@@ -468,71 +469,124 @@ html.rm-scroll-lock body {
 .rm-cta:active {
   background: var(--kds-primary-dark-brand);
 }
-.rm-login {
-  color: var(--kds-text-secondary);
-  font-size: var(--kds-font-size-b3, 14px);
-  text-decoration: none;
+/* ================= Offer sheet after a trial (Figma 11781:34846) ================= */
+.rm--offer .rm__sheet {
+  display: block;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  padding: var(--kds-spacing-16) 0 calc(48px + env(safe-area-inset-bottom));
+  background: var(--kds-base-black);
+  color: var(--kds-base-white);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
-.rm-login[hidden] {
+.rm--offer .rm__sheet::-webkit-scrollbar {
   display: none;
 }
-.rm-login b {
-  color: var(--kds-primary-base-500);
+.rm-offer__head {
+  justify-content: flex-end;
+  margin: 0 var(--kds-spacing-16) var(--kds-spacing-8);
+  padding: 0;
+  cursor: grab; /* drag down to dismiss */
 }
-
-/* ================= Offer sheet after a trial (dark) ================= */
-.rm-offer__logo {
-  width: 23px;
-  height: 24px;
+.rm-offer__close {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: var(--kds-spacing-12);
+  border: 1px solid var(--kds-neutral-darker, #414141);
+  border-radius: 50px;
+  background: var(--kds-neutral-darkest, #2a2a2a);
+  color: var(--kds-base-white);
+  cursor: pointer;
 }
-.rm-offer__brand {
-  flex: 1 1 auto;
-  font-size: var(--kds-font-size-b2, 16px);
-  font-weight: var(--kds-font-weight-bold, 700);
+.rm-offer__main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--kds-spacing-32);
+  max-width: 312px;
+  margin: 0 auto;
+  padding: 0 0 var(--kds-spacing-32);
+  text-align: center;
 }
-.rm-offer__body {
+.rm-offer__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: var(--kds-spacing-12);
-  padding-bottom: var(--kds-spacing-24);
+}
+.rm-offer__tag {
+  display: grid;
+  place-items: center;
+  width: 142px;
+  height: 26px;
+  border-radius: 60px;
+  background: var(--kds-neutral-darkest, #2a2a2a);
+  font-size: var(--kds-font-size-c1, 12px);
+  font-weight: var(--kds-font-weight-semibold, 600);
+  line-height: 1.1;
+  letter-spacing: -0.24px;
 }
 .rm-offer__title {
-  margin: var(--kds-spacing-8) 0 0;
-  font-size: var(--kds-font-size-h5, 24px);
+  margin: 0;
+  font-size: 22px;
   font-weight: var(--kds-font-weight-semibold, 600);
   line-height: 1.3;
-  letter-spacing: -0.48px;
+  letter-spacing: -0.44px;
 }
 .rm-offer__text {
   margin: 0;
-  color: var(--kds-text-secondary);
-  font-size: var(--kds-font-size-b3, 14px);
-  line-height: 1.5;
+  font-size: 15px;
+  line-height: 1.4;
+  letter-spacing: -0.3px;
 }
-.rm-benefits {
+.rm-offer__action {
   display: flex;
   flex-direction: column;
-  gap: var(--kds-spacing-8);
-  margin: var(--kds-spacing-4) 0 0;
-  padding: 0;
-  list-style: none;
+  align-items: center;
+  gap: var(--kds-spacing-24);
 }
-.rm-benefits li {
+.rm-offer .rm-offer__cta {
+  /* beats `.home-body a { color: inherit }` */
   display: flex;
   align-items: center;
-  gap: var(--kds-spacing-8);
+  justify-content: center;
+  width: 100%;
+  height: 48px;
+  padding: 10px 32px;
+  border-radius: var(--kds-radius-lg);
+  background: var(--kds-base-white);
+  color: var(--kds-text-primary, #2a2a2a);
+  font-size: 16px;
+  font-weight: var(--kds-font-weight-semibold, 600);
+  line-height: 1.3;
+  letter-spacing: -0.16px;
+  text-decoration: none;
+}
+.rm-offer .rm-offer__cta:active {
+  background: var(--kds-neutral-lighter, #e7e7e7);
+}
+.rm-offer__price {
+  margin: 0;
   font-size: var(--kds-font-size-b3, 14px);
-  line-height: 1.5;
+  font-weight: 500;
+  line-height: 1.3;
 }
-.rm-benefits .rm-ic {
-  width: 18px;
-  height: 18px;
-  color: var(--kds-success-base);
+.rm-offer__rule {
+  margin: 0 var(--kds-spacing-20);
+  border: 0;
+  border-top: 1px solid var(--kds-neutral-darkest, #2a2a2a);
 }
-.rm--offer .rm__sheet,
-.rm--offer .rm__ctabar {
-  background: var(--kds-base-black); /* black sheet, KOMPAS.com+ brand */
-}
-.rm--offer .rm__ctabar {
-  border-top-color: var(--kds-stroke-medium);
+.rm-offer__perks {
+  max-width: 310px;
+  margin: 0 auto;
+  padding: var(--kds-spacing-16) 0 0 21px;
+  font-size: var(--kds-font-size-b3, 14px);
+  line-height: 1.8;
+  letter-spacing: -0.2px;
+  list-style: disc;
 }
 
 /* ================= Entry points ================= */

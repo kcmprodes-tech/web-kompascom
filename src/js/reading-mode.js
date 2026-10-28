@@ -191,35 +191,39 @@ export function initReadingMode({ article, returnUrl }) {
     </section>`;
   document.body.append(root);
 
-  /* ---------- markup: dark offer sheet (after a trial) ---------- */
+  /* ---------- markup: dark offer sheet after a trial (Figma 11781:34846) ---------- */
   const offer = document.createElement("div");
   offer.className = "rm rm--offer";
   offer.hidden = true;
-  offer.dataset.theme = "dark";
+  // light-mode neutrals on a black sheet, as in the design (no data-theme="dark")
+  offer.dataset.theme = "light";
   offer.innerHTML = `
     <div class="rm__backdrop" data-rm-offer-close></div>
     <section class="rm__sheet rm-offer" role="dialog" aria-modal="true" aria-labelledby="rm-offer-title" tabindex="-1">
-      <div class="rm__top">
-        <button class="rm__grab" type="button" data-rm-grab aria-label="Tutup (geser ke bawah)"></button>
-        <header class="rm__head">
-          <img class="rm-offer__logo" src="/assets/kplus/kp-icon.svg" alt="KOMPAS.com+" />
-          <span class="rm-offer__brand">KOMPAS.com+</span>
-          <button class="rm-iconbtn" type="button" data-rm-offer-close aria-label="Tutup dan kembali ke tampilan awal">${icon("x")}</button>
-        </header>
+      <header class="rm__head rm-offer__head">
+        <button class="rm-offer__close" type="button" data-rm-offer-close aria-label="Tutup dan kembali ke tampilan awal">${icon("x")}</button>
+      </header>
+      <div class="rm-offer__main">
+        <div class="rm-offer__copy">
+          <span class="rm-offer__tag">Khusus Member</span>
+          <h2 class="rm-offer__title" id="rm-offer-title" data-rm-offer-title>Nyaman dibaca? Terapkan untuk setiap membaca artikel</h2>
+          <p class="rm-offer__text" data-rm-offer-text>Gabung Membership Kompas.com+ MAX untuk menggunakan mode baca di setiap artikel.</p>
+        </div>
+        <div class="rm-offer__action">
+          <a class="rm-offer__cta" data-rm-cta href="#">Gabung Kompas.com+ MAX</a>
+          <p class="rm-offer__price">Rp29.000/bulan atau Rp139.000/tahun</p>
+        </div>
       </div>
-      <div class="rm__body rm-offer__body">
-        <h2 class="rm-offer__title" id="rm-offer-title" data-rm-offer-title>Nyaman dibaca? Simpan untuk semua artikel</h2>
-        <p class="rm-offer__text" data-rm-offer-text>Tampilan ini masih pratinjau. Langganan KOMPAS.com+ untuk memakai Mode Baca di setiap artikel.</p>
-        <ul class="rm-benefits">
-          <li>${icon("check-circle-fill")}Ukuran, font, dan tema baca sesuai selera</li>
-          <li>${icon("check-circle-fill")}Tersimpan otomatis di setiap artikel</li>
-          <li>${icon("check-circle-fill")}Baca tanpa iklan</li>
-        </ul>
-      </div>
-      <div class="rm__ctabar">
-        <a class="rm-cta" data-rm-cta href="#">Langganan KOMPAS.com+</a>
-        <a class="rm-login" data-rm-login href="#">Sudah berlangganan? <b>Masuk</b></a>
-      </div>
+      <hr class="rm-offer__rule" />
+      <ul class="rm-offer__perks">
+        <li>Akses penuh ke read mode</li>
+        <li>Tanpa iklan, load lebih cepat</li>
+        <li>Artikel utuh dalam 1 halaman</li>
+        <li>Akses konten Orisinal tanpa batas</li>
+        <li>Podcast eksklusif MorningBrief</li>
+        <li>Newsletter eksklusif penuh insight</li>
+        <li>Akses game Croz/Word tanpa batas</li>
+      </ul>
     </section>`;
   document.body.append(offer);
 
@@ -242,16 +246,13 @@ export function initReadingMode({ article, returnUrl }) {
     const back = encodeURIComponent(returnUrl());
     const expired = entitlement.status === "expired";
     offer.querySelector("[data-rm-cta]").href = `./checkout.html?plan=max&ref=reading-mode&return=${back}`;
-    offer.querySelector("[data-rm-cta]").textContent = expired ? "Perpanjang langganan" : "Langganan KOMPAS.com+";
+    offer.querySelector("[data-rm-cta]").textContent = expired ? "Perpanjang Kompas.com+ MAX" : "Gabung Kompas.com+ MAX";
     offer.querySelector("[data-rm-offer-title]").textContent = expired
-      ? "Langganan KOMPAS.com+ kamu sudah berakhir"
-      : "Nyaman dibaca? Simpan untuk semua artikel";
+      ? "Membership kamu sudah berakhir"
+      : "Nyaman dibaca? Terapkan untuk setiap membaca artikel";
     offer.querySelector("[data-rm-offer-text]").textContent = expired
-      ? "Perpanjang langganan agar tampilan ini kembali dipakai di setiap artikel."
-      : "Tampilan ini masih pratinjau. Langganan KOMPAS.com+ untuk memakai Mode Baca di setiap artikel.";
-    const login = offer.querySelector("[data-rm-login]");
-    login.href = `./account.html?return=${back}`;
-    login.hidden = entitlement.status !== "guest";
+      ? "Perpanjang Membership Kompas.com+ MAX untuk kembali menggunakan mode baca di setiap artikel."
+      : "Gabung Membership Kompas.com+ MAX untuk menggunakan mode baca di setiap artikel.";
   }
 
   /** article styling for the current state */
@@ -357,7 +358,7 @@ export function initReadingMode({ article, returnUrl }) {
     sheet.addEventListener("pointerup", end);
     sheet.addEventListener("pointercancel", end);
     // tap/Enter on the grabber closes, a drag decides itself
-    sheet.querySelector("[data-rm-grab]").addEventListener("click", () => (moved ? (moved = false) : onDismiss()));
+    sheet.querySelector("[data-rm-grab]")?.addEventListener("click", () => (moved ? (moved = false) : onDismiss()));
   }
   enableDrag(root, close);
   enableDrag(offer, endTrial);
