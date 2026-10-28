@@ -27,11 +27,11 @@ export const FONTS = {
   lora: { label: "Lora", stack: "'Lora', Georgia, serif" },
   merriweather: { label: "Merriweather", stack: "'Merriweather', Georgia, serif" },
   playfair: { label: "Playfair Display", stack: "'Playfair Display', Georgia, serif" },
-  hyperlegible: { label: "Atkinson Hyperlegible", stack: "'Atkinson Hyperlegible', 'Inter', sans-serif" },
-  lexend: { label: "Lexend", stack: "'Lexend', 'Inter', sans-serif" },
+  lato: { label: "Lato", stack: "'Lato', 'Inter', sans-serif" },
+  worksans: { label: "Work Sans", stack: "'Work Sans', 'Inter', sans-serif" },
 };
 const FONT_CSS =
-  "https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Lexend:wght@400;600&family=Lora:wght@400;600;700&family=Merriweather:wght@400;700&family=Playfair+Display:wght@400;600;700&display=swap";
+  "https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Lora:wght@400;600;700&family=Merriweather:wght@400;700&family=Playfair+Display:wght@400;600;700&family=Work+Sans:wght@400;600;700&display=swap";
 
 export const THEMES = {
   asli: { label: "Asli", bg: "#FFFFFF", text: "#2A2A2A", muted: "#5A5A5A", font: "inter", weight: 400, dark: false },

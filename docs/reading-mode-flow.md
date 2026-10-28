@@ -93,8 +93,8 @@ Disarankan: respons `Cache-Control: no-store`, dan setelah webhook pembayaran su
 | Lora | Serif | Font bawaan tema Tenang, Kertas, Hangat |
 | Merriweather | Serif | Dirancang untuk layar |
 | Playfair Display | Serif | Kontras tinggi, cocok untuk ukuran besar |
-| Atkinson Hyperlegible | Sans-serif | Keterbacaan untuk low vision |
-| Lexend | Sans-serif | Mengurangi beban visual saat membaca |
+| Lato | Sans-serif | Hangat dan stabil untuk teks panjang |
+| Work Sans | Sans-serif | Bersih, nyaman di ukuran teks badan |
 
 Font tambahan dimuat dari Google Fonts hanya saat bottom sheet dibuka atau preferensi memakainya.
 
