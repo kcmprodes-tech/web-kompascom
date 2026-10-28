@@ -495,7 +495,7 @@ html.rm-scroll-lock body {
   place-items: center;
   width: 40px;
   height: 40px;
-  padding: var(--kds-spacing-12);
+  padding: 0; /* the 20px icon is centred by the grid */
   border: 1px solid var(--kds-neutral-darker, #414141);
   border-radius: 50px;
   background: var(--kds-neutral-darkest, #2a2a2a);
