@@ -630,6 +630,9 @@ html.rm-scroll-lock body {
   pointer-events: none;
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
+.rm-fab[hidden] {
+  display: none; /* subscribers only */
+}
 .rm-fab.is-visible {
   opacity: 1;
   transform: none;

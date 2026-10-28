@@ -7,7 +7,7 @@ Fitur untuk pelanggan KOMPAS.com+ di halaman artikel: ubah **ukuran teks** (6 ti
 | Tempat | Bentuk | Catatan |
 |---|---|---|
 | Baris reaksi atas artikel | Tombol **Aa** pertama, di sebelah *Add on Google* (Figma 11781:34669) | Baris bisa digeser ke samping |
-| Saat membaca isi artikel | Tombol **Aa** melayang kanan bawah | Muncul hanya selama isi artikel di layar |
+| Saat membaca isi artikel | Tombol **Aa** melayang kanan bawah | Khusus pelanggan; muncul hanya selama isi artikel di layar |
 
 ## Bottom sheet (Figma 11763:34346)
 
@@ -34,7 +34,7 @@ flowchart TD
   H -->|Bukan pelanggan| J[Diterapkan ke artikel ini saja<br/>sebagai uji coba]
   J -->|± 3 detik| K[Bottom sheet hitam: Khusus Member<br/>harga + daftar manfaat]
 
-  K -->|Tutup / geser ke bawah| L[Artikel kembali ke tampilan awal]
+  K -->|Tutup / geser ke bawah| L[Artikel kembali ke tampilan awal<br/>pengaturan Mode Baca kembali ke default]
   K -->|Gabung Kompas.com+ MAX| M{Sudah login?}
   M -->|Belum| O[Login ?return=checkout] --> P
   M -->|Sudah| P[Checkout: paket MAX terpilih, periode, metode bayar]
@@ -56,6 +56,16 @@ flowchart TD
 | `active` + `reading_mode` | Gaya Mode Baca diterapkan | Disimpan untuk semua artikel | — |
 | `expired` | Kembali normal (preferensi tetap tersimpan) | Uji coba di artikel ini → sheet hitam | **Perpanjang Kompas.com+ MAX** |
 | sedang dicek | Normal | — | — |
+
+## Tampilan artikel untuk member (Figma 11781:34935)
+
+Saat entitlement `active`, halaman artikel berubah:
+
+- Logo header menjadi **KOMPAS.com+**, ikon K+ di header disembunyikan.
+- **Tanpa iklan**: iklan atas, slot dalam artikel, half-page, MREC, dan iklan di rekomendasi disembunyikan.
+- **Artikel utuh dalam 1 halaman**: paginasi Halaman 1–3 disembunyikan, semua paragraf tampil.
+- Polling di dalam artikel disembunyikan (mengikuti desain).
+- Tombol **Aa** melayang tersedia.
 
 ## Aturan akses
 

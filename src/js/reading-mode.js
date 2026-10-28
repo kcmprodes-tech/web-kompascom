@@ -325,6 +325,9 @@ export function initReadingMode({ article, returnUrl }) {
   function endTrial() {
     clearTimeout(offerTimer);
     trial = false;
+    // declined: forget the trial, so the sheet opens on the defaults again
+    draft = { ...DEFAULTS };
+    sessionStorage.removeItem(PENDING_KEY);
     paintArticle(); // back to the default article
     hide(offer);
   }

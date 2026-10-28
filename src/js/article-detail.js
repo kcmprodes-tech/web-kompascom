@@ -13,6 +13,7 @@ import "../styles/components/reading-mode.css";
 import home from "../data/kompas-home.json";
 import { initHeaderAvatar } from "./site-header.js";
 import { initReadingMode } from "./reading-mode.js";
+import { watchEntitlement, hasFeature } from "./utils/entitlement.js";
 import { refreshTimes, timeAgo } from "./utils/time.js";
 
 const $ = (sel) => document.querySelector(sel);
@@ -138,17 +139,19 @@ function unit(html, page) {
   return html.replace(/^(\s*<[a-z]+)/i, `$1 data-page="${page}"`);
 }
 
+/** page switcher, kept so members get the whole article on one page */
+const pager = { show: null, member: false };
+
 function initPages(pageCount) {
-  const wrap = $("[data-art-pages]");
   if (pageCount < 2) return;
+  const wrap = $("[data-art-pages]");
   const list = $("[data-art-pages-list]");
   const labels = [...Array.from({ length: pageCount }, (_, i) => String(i + 1)), "Show all"];
   list.innerHTML = labels
     .map((l, i) => `<button type="button" class="${i ? "" : "is-current"}${l === "Show all" ? " art-pages__all" : ""}" data-p="${l === "Show all" ? "all" : l}">${l}</button>`)
     .join("");
-  wrap.hidden = false;
 
-  const show = (p) => {
+  pager.show = (p) => {
     document.querySelectorAll("[data-art-body] [data-page]").forEach((el) => {
       el.hidden = p !== "all" && el.dataset.page !== p;
     });
@@ -157,10 +160,16 @@ function initPages(pageCount) {
   list.addEventListener("click", (event) => {
     const btn = event.target.closest("button");
     if (!btn) return;
-    show(btn.dataset.p);
+    pager.show(btn.dataset.p);
     $("[data-art-body]").scrollIntoView({ block: "start", behavior: "smooth" });
   });
-  show("1");
+  syncPages();
+}
+
+function syncPages() {
+  if (!pager.show) return;
+  $("[data-art-pages]").hidden = pager.member;
+  pager.show(pager.member ? "all" : "1");
 }
 
 /* ---------- Page ---------- */
@@ -373,8 +382,33 @@ initReadingMode({
   returnUrl: () => `${window.location.pathname}${window.location.search}#mode-baca`,
 });
 
-// floating "Aa" shows while the article body is on screen
+/* ---------- KOMPAS.com+ member view (Figma 11781:34935) ----------
+   Active subscribers get the KOMPAS.com+ logo, no ads, no polling and the
+   whole article on one page. The floating "Aa" is for subscribers only. */
+const logo = document.querySelector(".hm-logo");
 const fab = document.querySelector("[data-rm-fab]");
-new IntersectionObserver(([entry]) => fab.classList.toggle("is-visible", entry.isIntersecting), {
-  rootMargin: "0px 0px -40% 0px",
-}).observe(document.querySelector("[data-art-body]"));
+let fabAllowed = false;
+let bodyInView = false;
+const paintFab = () => fab.classList.toggle("is-visible", fabAllowed && bodyInView);
+
+watchEntitlement((ent) => {
+  const member = ent.status === "active";
+  document.documentElement.classList.toggle("is-member", member);
+  logo.src = member ? "/assets/kplus/logo-kompascom-plus.svg" : "/assets/home/logo-kompas.svg";
+  logo.alt = member ? "KOMPAS.com+" : "Kompas.com";
+  logo.classList.toggle("hm-logo--plus", member);
+  pager.member = member;
+  syncPages();
+  fabAllowed = hasFeature(ent, "reading_mode");
+  fab.hidden = !fabAllowed;
+  paintFab();
+});
+
+// floating "Aa" shows while the article body is on screen
+new IntersectionObserver(
+  ([entry]) => {
+    bodyInView = entry.isIntersecting;
+    paintFab();
+  },
+  { rootMargin: "0px 0px -40% 0px" },
+).observe(document.querySelector("[data-art-body]"));
