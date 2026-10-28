@@ -118,10 +118,12 @@ if extra:
 
 # ---- Headline carousel: headline, sponsored headline, headline
 sp = data.get("sponsoredHeadline")
+# three carousel slides: headline, sponsored headline (when kompas.com has one), headline
 slides = [("Headline", "", headline[0])]
 if sp:
     slides.append(("Sponsored Headline", " hl-badge--sponsored", {"title": sp["title"], "img": sp["photo"], "id": None}))
-slides.append(("Headline", "", headline[1]))
+slides += [("Headline", "", a) for a in headline[1 : 4 - len(slides)]]
+hl_used = sum(1 for _, _, a in slides if a.get("id"))
 
 
 def hl(i, m, ind):
@@ -162,7 +164,7 @@ def ng_builder(items):
     return build
 
 
-replace_each(r'<a class="ng-card".*?</a>', ng_builder(headline[2:] + nxt(6)), region=r'<section class="ng">.*?</section>')
+replace_each(r'<a class="ng-card".*?</a>', ng_builder(headline[hl_used:] + nxt(6)), region=r'<section class="ng">.*?</section>')
 replace_each(r'<a class="ng-card".*?</a>', ng_builder(sorotan + nxt(6)), region=r'<section class="sorotan">.*?</section>')
 
 
