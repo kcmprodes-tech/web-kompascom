@@ -190,6 +190,40 @@
   background: #e6f1f9;
 }
 
+/* top reaction row (Figma 11781:34669): scrolls sideways, Mode Baca first */
+.art-react {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 24px 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.art-react::-webkit-scrollbar {
+  display: none;
+}
+.art-react > * {
+  flex: 0 0 auto;
+}
+.art-react .art-round {
+  padding: 0 10px;
+}
+.art-pill--react {
+  gap: 4px;
+  padding: 0 14px 0 12px;
+  font-family: "Roboto", sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: normal;
+  color: #414141;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.art-pill--react img {
+  margin: 0;
+}
+
 /* ================= Photo ================= */
 .art-photo {
   display: flex;
@@ -990,12 +1024,6 @@
 /* ================= Reading Mode (KOMPAS.com+) =================
    Variables come from reading-mode.js; they are only set while the
    backend says the reader may use Reading Mode. */
-.art-crumb-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
 .art {
   transition: background-color 0.25s ease, color 0.25s ease;
 }

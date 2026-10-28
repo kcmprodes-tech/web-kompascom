@@ -6,7 +6,7 @@
     <title>Kompas.com</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <script type="module" src="/src/js/article-detail.js"></script>
   </head>
   <body class="home-body art-body">
@@ -67,15 +67,9 @@
 
       <article class="art" data-art>
         <header class="art-head">
-          <div class="art-crumb-row">
-            <nav class="art-crumb" aria-label="Breadcrumb" data-art-crumb>
-              <a href="./index.html">Home</a>
-            </nav>
-            <button class="rm-entry" type="button" data-rm-open aria-label="Mode Baca: atur ukuran, font, dan tema">
-              <i class="rm-ic" style="--ic:url('/assets/reading/text-aa.svg')" aria-hidden="true"></i>
-              <span class="rm-mark" aria-hidden="true"><i class="rm-ic" style="--ic:url('/assets/reading/lock-simple.svg')"></i><i class="rm-ic" style="--ic:url('/assets/reading/crown-simple.svg')"></i></span>
-            </button>
-          </div>
+          <nav class="art-crumb" aria-label="Breadcrumb" data-art-crumb>
+            <a href="./index.html">Home</a>
+          </nav>
           <h1 class="art-title" data-art-title></h1>
           <div class="art-meta">
             <div class="art-meta__src">
@@ -97,22 +91,29 @@
           </div>
         </header>
 
-        <div class="art-actions">
-          <button class="art-pill" type="button" aria-pressed="false" data-like>
-            <img src="/assets/article/thumbs.svg" alt="" aria-hidden="true" /><span data-like-count>2,2 rb</span>
+        <!-- Reaksi atas (Figma 11781:34669): Mode Baca sits first, next to "Add on Google" -->
+        <div class="art-react" role="toolbar" aria-label="Aksi artikel">
+          <button class="rm-entry" type="button" data-rm-open aria-label="Mode Baca: atur ukuran, font, dan tema">
+            <i class="rm-ic" style="--ic:url('/assets/reading/text-aa-kompas.svg')" aria-hidden="true"></i>
+          </button>
+          <a class="art-pill art-pill--react" href="https://www.google.com/preferences/source?q=kompas.com" target="_blank" rel="noopener">
+            <img src="/assets/article/reaksi/google.svg" alt="" aria-hidden="true" /><span>Add on Google</span>
+          </a>
+          <button class="art-round" type="button" aria-label="Apresiasi spesial">
+            <img src="/assets/article/reaksi/gift.svg" alt="" aria-hidden="true" />
           </button>
           <button class="art-round" type="button" aria-label="Bagikan" data-share>
-            <img src="/assets/article/share.svg" alt="" aria-hidden="true" />
+            <img src="/assets/article/reaksi/share.svg" alt="" aria-hidden="true" />
+          </button>
+          <a class="art-pill art-pill--react" href="#komentar" aria-label="Komentar, 9">
+            <img src="/assets/article/reaksi/comment.svg" alt="" aria-hidden="true" /><span>9</span>
+          </a>
+          <button class="art-pill art-pill--react" type="button" aria-pressed="false" aria-label="Suka, 32" data-like>
+            <img src="/assets/article/reaksi/like.svg" alt="" aria-hidden="true" /><span>32</span>
           </button>
           <button class="art-round" type="button" aria-label="Simpan" aria-pressed="false" data-save>
-            <img src="/assets/article/bookmark.svg" alt="" aria-hidden="true" />
+            <img src="/assets/article/reaksi/bookmark.svg" alt="" aria-hidden="true" />
           </button>
-          <button class="art-round art-round--gift" type="button" aria-label="Apresiasi spesial">
-            <img src="/assets/article/apresiasi.jpg" alt="" aria-hidden="true" />
-          </button>
-          <a class="art-pill" href="#komentar">
-            <img src="/assets/article/chat.svg" alt="" aria-hidden="true" /><span>2,2 rb</span>
-          </a>
         </div>
 
         <figure class="art-photo">
@@ -362,8 +363,7 @@
       <p class="ft__copy">©2022 PT. Kompas Cyber Media</p>
     </footer>
     <button class="rm-fab" type="button" data-rm-open data-rm-fab aria-label="Mode Baca: atur ukuran, font, dan tema">
-      <i class="rm-ic" style="--ic:url('/assets/reading/text-aa.svg')" aria-hidden="true"></i>
-      <span class="rm-mark" aria-hidden="true"><i class="rm-ic" style="--ic:url('/assets/reading/lock-simple.svg')"></i><i class="rm-ic" style="--ic:url('/assets/reading/crown-simple.svg')"></i></span>
+      <i class="rm-ic" style="--ic:url('/assets/reading/text-aa-kompas.svg')" aria-hidden="true"></i>
     </button>
   </body>
 </html>
