@@ -7,6 +7,7 @@ Fitur untuk pelanggan KOMPAS.com+ di halaman artikel: ubah **ukuran teks** (6 ti
 | Tempat | Bentuk | Catatan |
 |---|---|---|
 | Baris reaksi atas artikel | Tombol **Aa** pertama, di sebelah *Add on Google* (Figma 11781:34669) | Baris bisa digeser ke samping |
+| Baris reaksi di akhir artikel | Sama persis dengan baris atas | Di atas teaser komentar |
 | Saat membaca isi artikel | Tombol **Aa** melayang kanan bawah | Khusus pelanggan; muncul hanya selama isi artikel di layar |
 
 ## Bottom sheet (Figma 11763:34346)

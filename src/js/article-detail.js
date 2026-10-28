@@ -3,7 +3,7 @@
  * on the home page (?id=<kompas id>) from the kompas.com snapshot in
  * /data/articles/<id>.json and lays its paragraphs out with the in-article
  * inserts from the design (ad slot, KG Now video, half-page ad, polling,
- * MREC ad, "preferred source on Google").
+ * MREC ad).
  */
 import "../styles/tokens/kds-tokens.css";
 import "../styles/components/site-header.css";
@@ -98,13 +98,6 @@ const INSERTS = [
   },
 ];
 
-const GOOGLE_SOURCE = `
-  <a class="art-gsrc" href="https://www.google.com/preferences/source?q=kompas.com" target="_blank" rel="noopener">
-    <img src="/assets/article/google.svg" alt="" aria-hidden="true" />
-    <span>Add KOMPAS.com as preferred source on Google</span>
-    <i><img src="/assets/article/plus.svg" alt="" aria-hidden="true" /></i>
-  </a>`;
-
 function bacaJuga(block) {
   const known = block.id && home.articles[block.id];
   const href = known ? `./article-detail.html?id=${block.id}` : block.url || "#";
@@ -130,7 +123,6 @@ function renderBody(blocks) {
     paragraphs += 1;
     while (pending.length && pending[0].after === paragraphs) out.push(unit(pending.shift().html, page));
   }
-  out.push(GOOGLE_SOURCE);
   return { html: out.join("\n"), pageCount };
 }
 

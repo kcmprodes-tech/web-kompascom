@@ -136,12 +136,6 @@
 }
 
 /* ================= Action row ================= */
-.art-actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 24px 16px;
-}
 .art-pill,
 .art-round {
   display: flex;
@@ -176,15 +170,6 @@
   width: 20px;
   height: 20px;
 }
-.art-round--gift {
-  overflow: hidden;
-}
-.art-round--gift img {
-  width: 50px;
-  height: 50px;
-  max-width: none;
-  object-fit: cover;
-}
 .art-pill[aria-pressed="true"],
 .art-round[aria-pressed="true"] {
   background: #e6f1f9;
@@ -205,6 +190,9 @@
 }
 .art-react > * {
   flex: 0 0 auto;
+}
+.art-react--end {
+  padding: 16px 16px 24px;
 }
 .art-react .art-round {
   padding: 0 10px;
@@ -580,43 +568,6 @@
   text-decoration: underline;
 }
 
-/* "Add KOMPAS.com as preferred source on Google" */
-.art-gsrc {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 0 19.5px;
-  padding: 8px 16px;
-  border: 1px solid #a0a0a0;
-  border-radius: 12px;
-}
-.art-gsrc > img {
-  flex: 0 0 28px;
-  width: 28px;
-  height: 28px;
-}
-.art-gsrc span {
-  flex: 1 1 auto;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1.3;
-  letter-spacing: -0.28px;
-  color: #2a2a2a;
-}
-.art-gsrc i {
-  flex: 0 0 32px;
-  display: grid;
-  place-items: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 50px;
-  background: #f3f3f3;
-}
-.art-gsrc i img {
-  width: 21px;
-  height: 21px;
-}
-
 /* ================= After the article ================= */
 .art-after {
   padding-bottom: 32px;
@@ -672,16 +623,6 @@
   margin: 0;
   border: 0;
   background: #e7e7e7;
-}
-.art-actions--end {
-  padding: 16px 16px 24px;
-}
-.art-pill--lg {
-  gap: 4px;
-  padding: 8px 12px;
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: -0.12px;
 }
 
 /* comments teaser */
@@ -1070,15 +1011,9 @@
   color: var(--rm-text);
 }
 .art[data-rm-dark="true"] .art-pill img,
-.art[data-rm-dark="true"] .art-round img:not(.art-round--gift img),
+.art[data-rm-dark="true"] .art-round img,
 .art[data-rm-dark="true"] .art-crumb a::after {
   filter: invert(0.8);
-}
-.art[data-rm-dark="true"] .art-gsrc {
-  border-color: rgba(255, 255, 255, 0.24);
-}
-.art[data-rm-dark="true"] .art-gsrc span {
-  color: var(--rm-text);
 }
 
 /* ================= KOMPAS.com+ member view (Figma 11781:34935) =================

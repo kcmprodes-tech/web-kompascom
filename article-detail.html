@@ -137,18 +137,28 @@
           <div class="art-pages__list" data-art-pages-list></div>
         </div>
         <hr class="art-after__rule" />
-        <div class="art-actions art-actions--end">
-          <button class="art-pill art-pill--lg" type="button" aria-pressed="false" data-like>
-            <img src="/assets/article/thumbs.svg" alt="" aria-hidden="true" /><span>2,2 rb</span>
+        <!-- same reaction row as the top of the article -->
+        <div class="art-react art-react--end" role="toolbar" aria-label="Aksi di akhir artikel">
+          <button class="rm-entry" type="button" data-rm-open aria-label="Mode Baca: atur ukuran, font, dan tema">
+            <i class="rm-ic" style="--ic:url('/assets/reading/text-aa-kompas.svg')" aria-hidden="true"></i>
+          </button>
+          <a class="art-pill art-pill--react" href="https://www.google.com/preferences/source?q=kompas.com" target="_blank" rel="noopener">
+            <img src="/assets/article/reaksi/google.svg" alt="" aria-hidden="true" /><span>Add on Google</span>
+          </a>
+          <button class="art-round" type="button" aria-label="Apresiasi spesial">
+            <img src="/assets/article/reaksi/gift.svg" alt="" aria-hidden="true" />
           </button>
           <button class="art-round" type="button" aria-label="Bagikan" data-share>
-            <img src="/assets/article/share.svg" alt="" aria-hidden="true" />
+            <img src="/assets/article/reaksi/share.svg" alt="" aria-hidden="true" />
+          </button>
+          <a class="art-pill art-pill--react" href="#komentar" aria-label="Komentar, 9">
+            <img src="/assets/article/reaksi/comment.svg" alt="" aria-hidden="true" /><span>9</span>
+          </a>
+          <button class="art-pill art-pill--react" type="button" aria-pressed="false" aria-label="Suka, 32" data-like>
+            <img src="/assets/article/reaksi/like.svg" alt="" aria-hidden="true" /><span>32</span>
           </button>
           <button class="art-round" type="button" aria-label="Simpan" aria-pressed="false" data-save>
-            <img src="/assets/article/bookmark.svg" alt="" aria-hidden="true" />
-          </button>
-          <button class="art-round" type="button" aria-label="Apresiasi spesial">
-            <img src="/assets/article/gift-sm.svg" alt="" aria-hidden="true" />
+            <img src="/assets/article/reaksi/bookmark.svg" alt="" aria-hidden="true" />
           </button>
         </div>
 
