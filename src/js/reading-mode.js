@@ -2,14 +2,16 @@
  * Reading Mode (KOMPAS.com+ premium) for the article page.
  *
  * - The bottom sheet (Figma 11763:34346) lets anyone set text size, bold,
- *   justify, font and reading theme on a sticky preview card. Nothing touches
- *   the article until "Terapkan".
- * - Subscribers (entitlement feature "reading_mode"): "Terapkan" saves the
- *   choice and applies it to every article.
- * - Everyone else: "Terapkan" applies it to this article as a short trial.
- *   ~3 seconds later a dark offer sheet slides up. Closing it puts the article
- *   back to default; its CTA goes straight to checkout, and the choice is
- *   applied for good right after a successful purchase.
+ *   justify, font and reading theme on a sticky preview card. Nothing changes
+ *   until "Terapkan".
+ * - "Terapkan" opens the reading view (reader.js, Figma 11754:28318) styled
+ *   with that choice; X in the reading view leaves it again.
+ * - Subscribers (entitlement feature "reading_mode"): the choice is saved and
+ *   the reading view stays on for every article until they leave it.
+ * - Everyone else: the reading view is a short trial. ~3 seconds later a
+ *   dark offer sheet slides up. Closing it goes back to the normal article
+ *   with default settings; its CTA goes straight to checkout, and the choice
+ *   is applied for good right after a successful purchase.
  * - Access always follows `watchEntitlement` (backend-validated), so paying in
  *   another tab, or the subscription lapsing, updates this page live.
  */
@@ -44,7 +46,7 @@ export const THEMES = {
 
 const SIZES = [15, 17, 19, 21, 24, 27]; // 17 = article-body token
 const LINE_HEIGHT = 1.5; // loose token
-const DEFAULTS = { theme: "asli", font: null, size: 1, bold: false, justify: false };
+const DEFAULTS = { theme: "asli", font: null, size: 1, bold: false, justify: false, on: false }; // on: reading view open
 
 const icon = (name) => `<i class="rm-ic" style="--ic:url('/assets/reading/${name}.svg')" aria-hidden="true"></i>`;
 
@@ -98,13 +100,8 @@ function applyVars(el, pref) {
   el.dataset.rmDark = String(THEMES[pref.theme]?.dark || false);
 }
 
-function clearVars(el) {
-  Object.keys(styleFor(DEFAULTS)).forEach((k) => el.style.removeProperty(k));
-  delete el.dataset.rmDark;
-}
-
 /* ------------------------------------------------------------------ */
-export function initReadingMode({ article, returnUrl }) {
+export function initReadingMode({ reader, returnUrl }) {
   let entitlement = { status: "loading" };
   let active = false; // subscriber with reading_mode
   let pref = load(PREF_KEY);
@@ -255,12 +252,12 @@ export function initReadingMode({ article, returnUrl }) {
       : "Gabung Membership Kompas.com+ MAX untuk menggunakan mode baca di setiap artikel.";
   }
 
-  /** article styling for the current state */
-  function paintArticle() {
-    if (active) applyVars(article, pref);
-    else if (trial) applyVars(article, draft);
-    else clearVars(article);
-    article.classList.toggle("is-reading", active || trial);
+  /** reading view for the current state */
+  function paintReader() {
+    const shown = active && pref.on ? pref : trial ? draft : null;
+    if (!shown) return reader.hide();
+    applyVars(reader.root, shown);
+    reader.show({ isMember: active, dark: Boolean(THEMES[shown.theme]?.dark) });
   }
 
   /* ---------- sheet open / close (shared by both sheets) ---------- */
@@ -299,17 +296,17 @@ export function initReadingMode({ article, returnUrl }) {
 
   function applyChoice() {
     if (active) {
-      pref = { ...draft };
+      pref = { ...draft, on: true };
       save(PREF_KEY, pref);
-      paintArticle();
+      paintReader();
       close();
-      toast("<b>Mode Baca diterapkan.</b> Tersimpan untuk semua artikel.");
       return;
     }
-    // trial: show it on this article, then offer the subscription
+    // trial: show the reading view, then offer the subscription
+    draft.on = true;
     save(PENDING_KEY, draft, sessionStorage); // carried over after purchase
     trial = true;
-    paintArticle();
+    paintReader();
     close();
   }
 
@@ -328,8 +325,16 @@ export function initReadingMode({ article, returnUrl }) {
     // declined: forget the trial, so the sheet opens on the defaults again
     draft = { ...DEFAULTS };
     sessionStorage.removeItem(PENDING_KEY);
-    paintArticle(); // back to the default article
+    paintReader(); // back to the normal article
     hide(offer);
+  }
+
+  /** X in the reading view (after its confirmation) */
+  function leaveReader() {
+    if (trial && !active) return endTrial();
+    pref = { ...pref, on: false };
+    save(PREF_KEY, pref);
+    paintReader();
   }
 
   /* ---------- drag the grabber / header down to dismiss ---------- */
@@ -441,7 +446,7 @@ export function initReadingMode({ article, returnUrl }) {
       clearTimeout(offerTimer);
       if (!offer.hidden) hide(offer);
     }
-    paintArticle();
+    paintReader();
     if (!offer.hidden) renderOffer();
     if (active && !was && (window.location.hash === "#mode-baca" || unlockPending)) {
       unlockPending = false;
@@ -458,5 +463,5 @@ export function initReadingMode({ article, returnUrl }) {
     }
   });
 
-  return { open };
+  return { open, leaveReader };
 }

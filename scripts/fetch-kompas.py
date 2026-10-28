@@ -129,6 +129,12 @@ def parse_home(page):
 
 
 # ---------------------------------------------------------------- article page
+def estimate_read_time(blocks):
+    """kompas.com only lists "Waktu baca" for some articles: ~200 words a minute"""
+    words = sum(len(re.sub(r"<[^>]+>", " ", b.get("html", "")).split()) for b in blocks if b.get("type") == "p")
+    return f"Waktu baca {max(1, round(words / 200))} menit"
+
+
 def parse_article(url):
     page = get(url + "?page=all").decode("utf-8", "ignore")
     title = text(re.search(r"<h1[^>]*>(.*?)</h1>", page, re.S).group(1))
@@ -216,7 +222,7 @@ def main():
                 save_image(original_photo(g["src"]), IMAGES / f"{ident}-{n}.jpg", 720)
                 g["src"] = f"/assets/kompas/{ident}-{n}.jpg"
             full.update(id=ident, url=url, kanal=kanal_of(url), published=published_of(url),
-                        readTime=times.get(ident, ""))
+                        readTime=times.get(ident, "") or estimate_read_time(full["blocks"]))
             (ARTICLES / f"{ident}.json").write_text(json.dumps(full, ensure_ascii=False, indent=1))
             articles[ident] = {k: full[k] for k in ("id", "url", "title", "kanal", "published", "readTime")}
             articles[ident]["img"] = full["photo"]["src"]

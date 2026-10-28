@@ -18,6 +18,18 @@ Fitur untuk pelanggan KOMPAS.com+ di halaman artikel: ubah **ukuran teks** (6 ti
 
 Artikel tidak berubah sebelum *Terapkan* ditekan.
 
+## Halaman Mode Baca (Figma 11754:28318)
+
+*Terapkan* membuka halaman baca imersif di atas artikel (`src/js/reader.js`):
+
+- Foto penuh di atas, judul + penulis di atas latar hitam, lalu hanya isi artikel (tanpa iklan dan feed) dengan gaya pilihan pembaca.
+- **Header dan bar bawah** tersembunyi saat scroll ke bawah; **ketuk di mana saja** untuk memunculkannya lagi.
+- **Bar bawah:** *Artikel lainnya* (bottom sheet 20 artikel terkait: kanal yang sama dulu, lalu terbaru), **‹ ›** pindah artikel (juga **geser kiri/kanan** atau tombol panah keyboard), **Aa** pengaturan, **X** keluar.
+- Pindah artikel memakai **transisi membalik halaman buku**; URL ikut berganti (`?id=`).
+- **X** meminta konfirmasi *Tutup Mode Baca?* Setelah keluar, artikel tampil biasa; pengaturan tetap tersimpan.
+- Untuk pelanggan, halaman baca tetap terbuka di setiap artikel sampai ditutup lewat X.
+- **Tutorial geser** muncul sekali, saat member pertama kali masuk halaman baca.
+
 ## Flow
 
 ```mermaid
@@ -31,8 +43,8 @@ flowchart TD
   E --> F[Bottom sheet Mode Baca<br/>pratinjau menempel di atas]
   F --> G[Atur ukuran, font, tema] --> H[Terapkan]
 
-  H -->|Pelanggan| I[Disimpan + diterapkan ke semua artikel<br/>toast: Mode Baca diterapkan]
-  H -->|Bukan pelanggan| J[Diterapkan ke artikel ini saja<br/>sebagai uji coba]
+  H -->|Pelanggan| I[Halaman Mode Baca terbuka<br/>disimpan untuk semua artikel<br/>tutorial geser saat pertama kali]
+  H -->|Bukan pelanggan| J[Halaman Mode Baca<br/>sebagai uji coba]
   J -->|± 3 detik| K[Bottom sheet hitam: Khusus Member<br/>harga + daftar manfaat]
 
   K -->|Tutup / geser ke bawah| L[Artikel kembali ke tampilan awal<br/>pengaturan Mode Baca kembali ke default]
@@ -114,6 +126,7 @@ Font tambahan dimuat dari Google Fonts hanya saat bottom sheet dibuka atau prefe
 | Bagian | File |
 |---|---|
 | Bottom sheet, uji coba, sheet hitam, penerapan gaya | `src/js/reading-mode.js`, `src/styles/components/reading-mode.css` |
+| Halaman Mode Baca, artikel lainnya, balik halaman, tutorial | `src/js/reader.js`, `src/styles/components/reader.css` |
 | Baris reaksi atas | `article-detail.html`, `src/styles/pages/article.css` (`.art-react`) |
 | Entitlement (mock backend, watcher, broadcast) | `src/js/utils/entitlement.js` |
 | Checkout (mock pembayaran) | `checkout.html`, `src/js/checkout.js`, `src/styles/pages/checkout.css` |

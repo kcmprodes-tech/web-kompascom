@@ -10,9 +10,11 @@ import "../styles/components/site-header.css";
 import "../styles/pages/home.css";
 import "../styles/pages/article.css";
 import "../styles/components/reading-mode.css";
+import "../styles/components/reader.css";
 import home from "../data/kompas-home.json";
 import { initHeaderAvatar } from "./site-header.js";
 import { initReadingMode } from "./reading-mode.js";
+import { createReader } from "./reader.js";
 import { watchEntitlement, hasFeature } from "./utils/entitlement.js";
 import { refreshTimes, timeAgo } from "./utils/time.js";
 
@@ -368,9 +370,17 @@ initActions();
 load();
 
 /* ---------- Reading Mode (KOMPAS.com+) ---------- */
-initReadingMode({
-  article: document.querySelector("[data-art]"),
-  // after checkout the reader lands back here with the panel open
+// the reading view and the settings sheet call each other
+let readingMode = null;
+const reader = createReader({
+  articles: home.articles,
+  currentId: () => new URLSearchParams(window.location.search).get("id") || home.headline[0],
+  onSettings: () => readingMode.open(),
+  onExit: () => readingMode.leaveReader(),
+});
+readingMode = initReadingMode({
+  reader,
+  // after checkout the reader lands back here, in the reading view
   returnUrl: () => `${window.location.pathname}${window.location.search}#mode-baca`,
 });
 
