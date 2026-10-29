@@ -1,7 +1,7 @@
 /**
- * KOMPAS.com+ checkout (prototype). Steps: login → plan/period + payment
- * method → processing → success → back to where the reader came from
- * (e.g. the article, with Reading Mode opened via #mode-baca).
+ * KOMPAS.com+ checkout (prototype). Steps: plan/period + payment method →
+ * (login bottom sheet, for a guest who taps Bayar) → processing → success →
+ * back to where the reader came from (e.g. the article in Mode Baca).
  *
  * "Payment" is simulated by mockBackend.activate(), standing in for the
  * payment provider's webhook that activates the subscription server-side.
@@ -12,6 +12,7 @@ import "../styles/tokens/kds-tokens.css";
 import "../styles/pages/checkout.css";
 import { readSession } from "./utils/session.js";
 import { fetchEntitlement, mockBackend, announceEntitlementChange } from "./utils/entitlement.js";
+import { initLoginSheet } from "./components/login-sheet.js";
 
 const params = new URLSearchParams(window.location.search);
 const main = document.querySelector(".co");
@@ -94,10 +95,24 @@ document.querySelector(".co-form").addEventListener("change", (event) => {
 });
 
 /* ---------- pay ---------- */
-document.querySelector(".co-form").addEventListener("submit", async (event) => {
+// a guest picks a plan first, then logs in from the sheet; payment carries on after
+const login = initLoginSheet({
+  async afterSuccess() {
+    const ent = await fetchEntitlement();
+    if (ent.status === "active") showOwned(ent); // this account already has it
+    else pay();
+    return false;
+  },
+});
+
+document.querySelector(".co-form").addEventListener("submit", (event) => {
   event.preventDefault();
+  if (!readSession()) return login.open();
+  pay();
+});
+
+async function pay() {
   const session = readSession();
-  if (!session) return show("login");
   show("processing");
   await mockBackend.activate(session.id, plan, period()); // ≈ payment webhook
   const ent = await fetchEntitlement(); // re-validate instead of trusting the client
@@ -121,21 +136,20 @@ document.querySelector(".co-form").addEventListener("submit", async (event) => {
     };
     tick();
   }
-});
+}
 
-/* ---------- start ---------- */
+function showOwned(ent) {
+  const until = new Date(ent.expiresAt).toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" });
+  $("[data-co-owned-text]").textContent = `${PLANS[ent.plan].name} aktif hingga ${until}. Mode Baca dan semua manfaatnya sudah bisa dipakai.`;
+  show("owned");
+}
+
+/* ---------- start: straight to choosing a plan, even for a guest ---------- */
 (async () => {
-  const session = readSession();
-  if (!session) {
-    $("[data-co-login]").href = `./account.html?return=${encodeURIComponent(window.location.pathname + window.location.search)}`;
-    return show("login");
-  }
-  const ent = await fetchEntitlement();
-  if (ent.status === "active") {
-    const until = new Date(ent.expiresAt).toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" });
-    $("[data-co-owned-text]").textContent = `${PLANS[ent.plan].name} aktif hingga ${until}. Mode Baca dan semua manfaatnya sudah bisa dipakai.`;
-    return show("owned");
-  }
   renderPlans();
+  if (readSession()) {
+    const ent = await fetchEntitlement();
+    if (ent.status === "active") return showOwned(ent);
+  }
   show("form");
 })();

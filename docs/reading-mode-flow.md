@@ -48,10 +48,10 @@ flowchart TD
   J -->|± 3 detik| K[Bottom sheet hitam: Khusus Member<br/>harga + daftar manfaat]
 
   K -->|Tutup / geser ke bawah| L[Artikel kembali ke tampilan awal<br/>pengaturan Mode Baca kembali ke default]
-  K -->|Gabung Kompas.com+ MAX| M{Sudah login?}
-  M -->|Belum| O[Login ?return=checkout] --> P
-  M -->|Sudah| P[Checkout: paket MAX terpilih, periode, metode bayar]
-  P --> Q[Pembayaran diproses]
+  K -->|Gabung Kompas.com+ MAX| P[Checkout: pilih paket<br/>MAX terpilih, periode, metode bayar]
+  P -->|Bayar| M{Sudah login?}
+  M -->|Belum| O[Bottom sheet login di checkout<br/>lalu Login Berhasil] --> Q
+  M -->|Sudah| Q[Pembayaran diproses]
   Q -->|Webhook sukses<br/>backend mengaktifkan langganan| R[Validasi ulang entitlement]
   R --> S[Pembayaran berhasil]
   S -->|otomatis 4 detik / Lanjut membaca| T[Kembali ke artikel]
@@ -64,7 +64,7 @@ flowchart TD
 
 | Status dari backend | Artikel | Setelah *Terapkan* | CTA sheet hitam |
 |---|---|---|---|
-| `guest` (belum login) | Normal | Uji coba di artikel ini → sheet hitam | **Gabung Kompas.com+ MAX** (checkout meminta login) |
+| `guest` (belum login) | Normal | Uji coba di artikel ini → sheet hitam | **Gabung Kompas.com+ MAX** (pilih paket dulu; login lewat bottom sheet saat menekan Bayar) |
 | `none` (login, belum langganan) | Normal | Uji coba di artikel ini → sheet hitam | **Gabung Kompas.com+ MAX** |
 | `active` + `reading_mode` | Gaya Mode Baca diterapkan | Disimpan untuk semua artikel | — |
 | `expired` | Kembali normal (preferensi tetap tersimpan) | Uji coba di artikel ini → sheet hitam | **Perpanjang Kompas.com+ MAX** |
@@ -134,6 +134,7 @@ Font tambahan dimuat dari Google Fonts hanya saat bottom sheet dibuka atau prefe
 | Baris reaksi atas | `article-detail.html`, `src/styles/pages/article.css` (`.art-react`) |
 | Entitlement (mock backend, watcher, broadcast) | `src/js/utils/entitlement.js` |
 | Checkout (mock pembayaran) | `checkout.html`, `src/js/checkout.js`, `src/styles/pages/checkout.css` |
+| Bottom sheet login + Login Berhasil (dipakai Akun dan Checkout) | `src/js/components/login-sheet.js`, `src/styles/components/login-sheet.css` |
 | Token Design System 3.0 | `src/styles/tokens/kds-tokens.css` |
 
 Bantuan demo:

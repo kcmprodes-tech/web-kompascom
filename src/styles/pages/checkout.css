@@ -123,7 +123,6 @@
 .co-btn--primary:hover {
   background: var(--kds-primary-dark-brand);
 }
-.co-login .co-btn,
 .co-done .co-btn {
   margin-top: var(--kds-spacing-8);
 }

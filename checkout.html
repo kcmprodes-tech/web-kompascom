@@ -19,15 +19,7 @@
     </header>
 
     <main class="co" data-co-step="loading">
-      <!-- 1. need an account first -->
-      <section class="co-card co-login" data-co-panel="login" hidden>
-        <i class="co-ic co-ic--lg" style="--ic:url('/assets/reading/lock-simple.svg')" aria-hidden="true"></i>
-        <h2>Masuk untuk berlangganan</h2>
-        <p>Langganan KOMPAS.com+ terhubung ke akun KG Media kamu, jadi aksesnya ikut ke semua perangkat.</p>
-        <a class="co-btn co-btn--primary" data-co-login href="./account.html">Masuk atau daftar</a>
-      </section>
-
-      <!-- 2. already subscribed -->
+      <!-- 1. already subscribed -->
       <section class="co-card co-done" data-co-panel="owned" hidden>
         <i class="co-ic co-ic--lg co-ic--ok" style="--ic:url('/assets/reading/check-circle-fill.svg')" aria-hidden="true"></i>
         <h2>Kamu sudah berlangganan</h2>
@@ -35,7 +27,7 @@
         <a class="co-btn co-btn--primary" data-co-continue href="./index.html">Lanjut membaca</a>
       </section>
 
-      <!-- 3. choose plan + payment -->
+      <!-- 2. choose plan + payment (a guest logs in from the sheet on "Bayar") -->
       <form class="co-form" data-co-panel="form" hidden>
         <div class="co-ref" data-co-ref hidden>
           <i class="co-ic" style="--ic:url('/assets/reading/text-aa.svg')" aria-hidden="true"></i>
@@ -69,14 +61,14 @@
         <button class="co-btn co-btn--primary co-pay" type="submit" data-co-pay>Bayar</button>
       </form>
 
-      <!-- 4. processing -->
+      <!-- 3. processing -->
       <section class="co-card co-wait" data-co-panel="processing" hidden>
         <span class="co-spin" aria-hidden="true"></span>
         <h2>Memproses pembayaran…</h2>
         <p>Jangan tutup halaman ini.</p>
       </section>
 
-      <!-- 5. success -->
+      <!-- 4. success -->
       <section class="co-card co-done" data-co-panel="success" hidden>
         <i class="co-ic co-ic--lg co-ic--ok" style="--ic:url('/assets/reading/check-circle-fill.svg')" aria-hidden="true"></i>
         <h2>Pembayaran berhasil</h2>
