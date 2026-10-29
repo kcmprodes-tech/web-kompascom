@@ -211,6 +211,7 @@ html.rd-open .rm-fab {
 .rd-hero__names {
   display: flex;
   flex-direction: column;
+  gap: 4px;
   min-width: 0;
 }
 .rd-hero__names strong {
