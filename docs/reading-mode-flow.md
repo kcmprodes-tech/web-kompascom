@@ -70,12 +70,16 @@ flowchart TD
 | `expired` | Kembali normal (preferensi tetap tersimpan) | Uji coba di artikel ini → sheet hitam | **Perpanjang Kompas.com+ MAX** |
 | sedang dicek | Normal | — | — |
 
-## Tampilan artikel untuk member (Figma 11781:34935)
+## Tampilan untuk member (Figma 11781:34935)
 
-Saat entitlement `active`, halaman artikel berubah:
+Saat entitlement `active`, di **semua halaman** (home, artikel, MyValue, Karin):
 
-- Logo header menjadi **KOMPAS.com+**, ikon K+ di header disembunyikan.
-- **Tanpa iklan**: iklan atas, slot dalam artikel, half-page, MREC, dan iklan di rekomendasi disembunyikan.
+- Logo header menjadi **KOMPAS.com+**.
+- **Tanpa iklan** (semua elemen `aria-label="Iklan"`, plus iklan di jawaban Karin).
+
+Khusus halaman artikel:
+
+- Ikon K+ di header disembunyikan.
 - **Artikel utuh dalam 1 halaman**: paginasi Halaman 1–3 disembunyikan, semua paragraf tampil.
 - Polling di dalam artikel disembunyikan (mengikuti desain).
 - Tombol **Aa** melayang tersedia.

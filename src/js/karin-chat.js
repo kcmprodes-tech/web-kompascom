@@ -4,6 +4,9 @@
  */
 import "../styles/common.css";
 import "../styles/pages/karin.css";
+import { initMemberView } from "./site-header.js";
+
+initMemberView(); // KOMPAS.com+ members: no ad inside the answer
 
 const karinPage = document.querySelector(".karin-chat-page");
 const karinComposer = document.querySelector(".karin-chat-composer");

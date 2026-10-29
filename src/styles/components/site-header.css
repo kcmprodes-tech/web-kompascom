@@ -20,6 +20,15 @@
   height: 24px;
   width: auto;
 }
+/* KOMPAS.com+ logo for members (Figma 11781:34935: 138 × 16) */
+.hm-logo--plus {
+  height: 16px;
+}
+
+/* KOMPAS.com+ members read without ads (html.is-member from initMemberView) */
+.is-member [aria-label="Iklan"] {
+  display: none;
+}
 
 .hm-actions {
   display: flex;

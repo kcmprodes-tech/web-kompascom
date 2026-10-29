@@ -6,7 +6,7 @@
 import "../styles/components/site-header.css";
 import "../styles/pages/myvalue.css";
 import { readSession, initials } from "./utils/session.js";
-import { initHeaderAvatar } from "./site-header.js";
+import { initHeaderAvatar, initMemberView } from "./site-header.js";
 
 /* ---------- Logged-in user (same session the account page writes) ---------- */
 const session = readSession();
@@ -20,6 +20,7 @@ if (session) {
   document.querySelector("[data-user-initials]").textContent = initials(session.name);
 }
 initHeaderAvatar();
+initMemberView();
 
 /* ---------- Info card ---------- */
 document.querySelector("[data-mv-info-close]")?.addEventListener("click", () => {

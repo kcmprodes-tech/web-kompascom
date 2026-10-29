@@ -884,3 +884,9 @@
   text-align: center;
   transform: none;
 }
+
+/* KOMPAS.com+ members read Karin's answers without the ad (html.is-member) */
+.is-member .karin-answer-ad,
+.is-member .karin-answer-ad-caption {
+  display: none;
+}

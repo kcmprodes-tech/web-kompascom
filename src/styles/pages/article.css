@@ -963,13 +963,9 @@
 }
 
 /* ================= KOMPAS.com+ member view (Figma 11781:34935) =================
-   html.is-member is set from the backend entitlement: no ads, no polling,
-   and no K+ shortcut in the header (they already have it). */
-.is-member [aria-label="Iklan"],
+   Logo and ad-free come from site-header.css; the article page also drops
+   the polling and the K+ shortcut in the header (they already have it). */
 .is-member .art-poll,
 .is-member .hm-act--kplus {
   display: none;
-}
-.hm-logo--plus {
-  height: 16px;
 }

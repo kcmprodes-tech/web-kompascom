@@ -12,10 +12,10 @@ import "../styles/pages/article.css";
 import "../styles/components/reading-mode.css";
 import "../styles/components/reader.css";
 import home from "../data/kompas-home.json";
-import { initHeaderAvatar } from "./site-header.js";
+import { initHeaderAvatar, initMemberView } from "./site-header.js";
 import { initReadingMode } from "./reading-mode.js";
 import { createReader } from "./reader.js";
-import { watchEntitlement, hasFeature } from "./utils/entitlement.js";
+import { hasFeature } from "./utils/entitlement.js";
 import { refreshTimes, timeAgo } from "./utils/time.js";
 
 const $ = (sel) => document.querySelector(sel);
@@ -385,20 +385,14 @@ readingMode = initReadingMode({
 });
 
 /* ---------- KOMPAS.com+ member view (Figma 11781:34935) ----------
-   Active subscribers get the KOMPAS.com+ logo, no ads, no polling and the
-   whole article on one page. The floating "Aa" is for subscribers only. */
-const logo = document.querySelector(".hm-logo");
+   On top of the site-wide perks (logo, no ads): no polling and the whole
+   article on one page. The floating "Aa" is for subscribers only. */
 const fab = document.querySelector("[data-rm-fab]");
 let fabAllowed = false;
 let bodyInView = false;
 const paintFab = () => fab.classList.toggle("is-visible", fabAllowed && bodyInView);
 
-watchEntitlement((ent) => {
-  const member = ent.status === "active";
-  document.documentElement.classList.toggle("is-member", member);
-  logo.src = member ? "/assets/kplus/logo-kompascom-plus.svg" : "/assets/home/logo-kompas.svg";
-  logo.alt = member ? "KOMPAS.com+" : "Kompas.com";
-  logo.classList.toggle("hm-logo--plus", member);
+initMemberView((member, ent) => {
   pager.member = member;
   syncPages();
   fabAllowed = hasFeature(ent, "reading_mode");
