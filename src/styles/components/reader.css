@@ -257,12 +257,24 @@ html.rd-open .rm-fab {
 .rd[data-rm-dark="true"] .rd-paper__rule {
   border-top-color: rgba(255, 255, 255, 0.12);
 }
-/* light chrome inside a dark reading theme */
+/* action buttons (Aa, like, comment, share…) and the comments card sit on
+   the page colour 20 points lighter (--rm-chip, from reading-mode.js);
+   on a white page they keep the usual #F3F3F3 */
+.rd-paper .art-pill,
+.rd-paper .art-round,
+.rd-paper .rm-entry,
+.rd-paper .art-comments {
+  background: var(--rm-chip, #f3f3f3);
+}
+.rd-paper .art-pill[aria-pressed="true"],
+.rd-paper .art-round[aria-pressed="true"] {
+  background: #e6f1f9; /* liked / saved, as on the article page */
+}
+/* light icons and text inside a dark reading theme */
 .rd[data-rm-dark="true"] .rd-paper .art-pill,
 .rd[data-rm-dark="true"] .rd-paper .art-round,
 .rd[data-rm-dark="true"] .rd-paper .rm-entry,
 .rd[data-rm-dark="true"] .rd-paper .art-comments {
-  background: rgba(255, 255, 255, 0.08);
   color: var(--rm-text);
 }
 .rd[data-rm-dark="true"] .rd-paper .art-pill img,

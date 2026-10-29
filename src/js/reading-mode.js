@@ -78,6 +78,30 @@ function loadFonts() {
 /** font key in effect: the reader's pick, otherwise the theme's own */
 const fontOf = (pref) => (FONTS[pref.font] ? pref.font : (THEMES[pref.theme] || THEMES.asli).font);
 
+const CHIP_ON_WHITE = "#F3F3F3"; // neutral-lightest: the usual action-button grey
+
+/** background for the like/comment/share… buttons: the page colour, 20 points
+ *  lighter (HSL). A white page has nothing lighter, so it keeps the usual grey. */
+export function chipColor(bg) {
+  const [r, g, b] = [1, 3, 5].map((i) => parseInt(bg.slice(i, i + 2), 16) / 255);
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  let l = (max + min) / 2;
+  if (l >= 0.99) return CHIP_ON_WHITE;
+  const d = max - min;
+  const s = d === 0 ? 0 : d / (1 - Math.abs(2 * l - 1));
+  let h = 0;
+  if (d) h = max === r ? ((g - b) / d) % 6 : max === g ? (b - r) / d + 2 : (r - g) / d + 4;
+  h *= 60;
+  l = Math.min(1, l + 0.2);
+  // back to RGB
+  const c = (1 - Math.abs(2 * l - 1)) * s;
+  const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
+  const m = l - c / 2;
+  const [r1, g1, b1] = h < 60 ? [c, x, 0] : h < 120 ? [x, c, 0] : h < 180 ? [0, c, x] : h < 240 ? [0, x, c] : h < 300 ? [x, 0, c] : [c, 0, x];
+  return `#${[r1, g1, b1].map((v) => Math.round((v + m) * 255).toString(16).padStart(2, "0")).join("")}`;
+}
+
 /** resolved CSS variables for a preference set */
 function styleFor(pref) {
   const theme = THEMES[pref.theme] || THEMES.asli;
@@ -85,6 +109,7 @@ function styleFor(pref) {
   if (font !== FONTS.inter) loadFonts();
   return {
     "--rm-bg": theme.bg,
+    "--rm-chip": chipColor(theme.bg),
     "--rm-text": theme.text,
     "--rm-muted": theme.muted,
     "--rm-font": font.stack,
