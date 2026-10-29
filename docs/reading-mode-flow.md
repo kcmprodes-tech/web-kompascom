@@ -137,6 +137,8 @@ Font tambahan dimuat dari Google Fonts hanya saat bottom sheet dibuka atau prefe
 | Token Design System 3.0 | `src/styles/tokens/kds-tokens.css` |
 
 Bantuan demo:
+- `index.html?member=1` — home sebagai pelanggan KOMPAS.com+ MAX (login akun demo *Pembaca Plus* bila belum login, lalu aktifkan langganan)
+- `index.html?member=0` — home sebagai non-pelanggan (langganan dihapus, tetap login)
 - `account.html?state=guest` — keluar (kembali jadi tamu)
 - `checkout.html?reset=1` — hapus langganan akun yang sedang login
 - Harga di checkout adalah contoh, bukan harga resmi.

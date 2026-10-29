@@ -6,6 +6,7 @@ import "../styles/components/site-header.css";
 import "../styles/pages/home.css";
 import { initHeaderAvatar, initMemberView } from "./site-header.js";
 import { refreshTimes } from "./utils/time.js";
+import { applyDemoMemberLink } from "./utils/demo-member.js";
 
 /* ---------- "Pilih topik" interest picker ---------- */
 function initMinat() {
@@ -39,6 +40,7 @@ function initMinat() {
   });
 }
 
+applyDemoMemberLink(); // ?member=1 / ?member=0 demo links
 initHeaderAvatar();
 initMemberView();
 refreshTimes(); // article times are snapshot-relative in the HTML
