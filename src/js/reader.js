@@ -289,10 +289,18 @@ export function createReader({ articles, currentId, onSettings, onExit }) {
 
   /* ---------- swipe: the page follows the finger ---------- */
   let drag = null;
+  /** inside something that scrolls sideways itself (the reaction row)? then a
+   *  horizontal swipe belongs to it, not to turning the page */
+  function inSideScroller(el) {
+    for (let n = el; n && n !== stage; n = n.parentElement) {
+      if (n.scrollWidth > n.clientWidth + 1 && /(auto|scroll)/.test(getComputedStyle(n).overflowX)) return true;
+    }
+    return false;
+  }
   stage.addEventListener(
     "touchstart",
     (e) => {
-      if (busy || e.touches.length !== 1) return;
+      if (busy || e.touches.length !== 1 || inSideScroller(e.target)) return;
       const t = e.touches[0];
       drag = { x0: t.clientX, y0: t.clientY, decided: false, samples: [] };
     },
