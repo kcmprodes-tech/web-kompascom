@@ -28,12 +28,11 @@ html.rd-open .rm-fab {
   opacity: 1;
 }
 
-/* ================= Pages + book-page turn ================= */
+/* ================= Pages + paper page-curl (utils/page-curl.js) ================= */
 .rd__stage {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  perspective: 1800px;
 }
 .rd-page {
   position: absolute;
@@ -41,65 +40,37 @@ html.rd-open .rm-fab {
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-width: none;
+  z-index: 0; /* own stacking context: the page underneath never shows through */
   background: var(--rm-bg, #ffffff);
-  transform-origin: left center;
-  backface-visibility: hidden;
+  touch-action: pan-y; /* horizontal swipes turn the page instead */
 }
 .rd-page::-webkit-scrollbar {
   display: none;
 }
-/* next: the current page turns away to the left like a book page */
-.rd-page.is-turning-out {
+/* shadow of the lifted sheet on the page underneath, and the folded-over
+   back of the sheet (the paper colour, shaded by an inline gradient) */
+.rd-curl__shadow,
+.rd-curl__flap {
+  position: absolute;
+  transform-origin: 0 50%;
+  pointer-events: none;
+}
+.rd-curl__shadow {
+  z-index: 1;
+}
+.rd-curl__flapwrap {
+  position: absolute;
+  inset: 0;
   z-index: 2;
-  animation: rd-turn-out 0.7s cubic-bezier(0.45, 0.05, 0.25, 1) forwards;
+  pointer-events: none;
+  filter: drop-shadow(-3px 0 10px rgba(0, 0, 0, 0.28));
 }
-/* previous: the earlier page turns back in over the current one */
-.rd-page.is-turning-in {
-  z-index: 2;
-  animation: rd-turn-in 0.7s cubic-bezier(0.45, 0.05, 0.25, 1) both;
+.rd-curl__flap {
+  background-color: var(--rm-bg, #ffffff);
 }
-/* the page underneath catches the shadow of the turning page */
-.rd-page.is-revealed {
-  animation: rd-lighten 0.7s ease both;
-}
-.rd-page.is-covered {
-  animation: rd-darken 0.7s ease both;
-}
-@keyframes rd-turn-out {
-  from {
-    transform: rotateY(0);
-    filter: brightness(1);
-  }
-  to {
-    transform: rotateY(-115deg);
-    filter: brightness(0.55);
-  }
-}
-@keyframes rd-turn-in {
-  from {
-    transform: rotateY(-115deg);
-    filter: brightness(0.55);
-  }
-  to {
-    transform: rotateY(0);
-    filter: brightness(1);
-  }
-}
-@keyframes rd-lighten {
-  from {
-    filter: brightness(0.7);
-  }
-  to {
-    filter: brightness(1);
-  }
-}
-@keyframes rd-darken {
-  from {
-    filter: brightness(1);
-  }
-  to {
-    filter: brightness(0.7);
-  }
+.rd-curl__shadow[hidden],
+.rd-curl__flapwrap[hidden] {
+  display: none;
 }
 .rd.is-busy .rd-nav button {
   pointer-events: none;

@@ -25,7 +25,7 @@ Artikel tidak berubah sebelum *Terapkan* ditekan.
 - Foto penuh di atas, judul + penulis di atas latar hitam, lalu hanya isi artikel (tanpa iklan dan feed) dengan gaya pilihan pembaca.
 - **Header dan bar bawah** tersembunyi saat scroll ke bawah; **ketuk di mana saja** untuk memunculkannya lagi.
 - **Bar bawah:** *Artikel lainnya* (bottom sheet 20 artikel terkait: kanal yang sama dulu, lalu terbaru), **‹ ›** pindah artikel (juga **geser kiri/kanan** atau tombol panah keyboard), **Aa** pengaturan, **X** keluar.
-- Pindah artikel memakai **transisi membalik halaman buku**; URL ikut berganti (`?id=`).
+- Pindah artikel memakai **lipatan kertas (page curl)**: saat swipe, tepi halaman mengikuti jari, terlipat dengan sisi belakang kertas dan bayangan, halaman berikutnya terlihat di bawahnya. Dilepas sebelum ±30% (dan tanpa sentakan cepat) → batal, halaman menutup kembali. Tombol ‹ › membalik dari sudut kanan bawah. URL ikut berganti (`?id=`); artikel tetangga dimuat lebih dulu.
 - **X** meminta konfirmasi *Tutup Mode Baca?* Setelah keluar, artikel tampil biasa; pengaturan tetap tersimpan.
 - Untuk pelanggan, halaman baca tetap terbuka di setiap artikel sampai ditutup lewat X.
 - **Tutorial geser** muncul sekali, saat member pertama kali masuk halaman baca.

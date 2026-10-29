@@ -14,10 +14,10 @@
  * - Members see a one-time swipe tutorial the first time they get here.
  */
 import { timeAgo } from "./utils/time.js";
+import { createPageCurl } from "./utils/page-curl.js";
 
 const TUTORIAL_KEY = "kompas-reader-tutorial-seen";
 const RELATED_COUNT = 20;
-const TURN_MS = 700;
 
 const icon = (name) => `<i class="rm-ic" style="--ic:url('/assets/reading/${name}.svg')" aria-hidden="true"></i>`;
 const esc = (s) =>
@@ -223,72 +223,170 @@ export function createReader({ articles, currentId, onSettings, onExit }) {
     setChrome(root.classList.contains("is-chrome-hidden"));
   });
 
-  /* ---------- swipe left / right ---------- */
-  let touch = null;
-  stage.addEventListener(
-    "touchstart",
-    (e) => {
-      touch = e.touches.length === 1 ? { x: e.touches[0].clientX, y: e.touches[0].clientY } : null;
-    },
-    { passive: true },
-  );
-  stage.addEventListener("touchend", (e) => {
-    if (!touch) return;
-    const t = e.changedTouches[0];
-    const dx = t.clientX - touch.x;
-    const dy = t.clientY - touch.y;
-    touch = null;
-    if (Math.abs(dx) < 60 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
-    if (dx < 0) next();
-    else prev();
-  });
+  /* ---------- turning pages (paper page-curl, see utils/page-curl.js) ---------- */
+  const curl = createPageCurl(stage);
+  const cache = new Map(); // article id → Promise<article>
+  function loadArticle(id) {
+    if (!cache.has(id)) cache.set(id, fetchArticle(id).catch((err) => (cache.delete(id), Promise.reject(err))));
+    return cache.get(id);
+  }
+  // the neighbours are usually ready before a swipe starts
+  const prefetch = () => [index - 1, index + 1].forEach((i) => queue[i] && loadArticle(queue[i]).catch(() => {}));
 
-  /* ---------- turning pages ---------- */
-  async function turnTo(nextIndex, direction) {
-    if (busy || nextIndex < 0 || nextIndex >= queue.length) return;
-    busy = true;
-    root.classList.add("is-busy");
-    let article;
-    try {
-      article = await fetchArticle(queue[nextIndex]);
-    } catch {
-      busy = false;
-      root.classList.remove("is-busy");
-      return;
-    }
-    const incoming = buildPage(article);
-    const outgoing = page;
+  function setBusy(on) {
+    busy = on;
+    root.classList.toggle("is-busy", on);
+  }
+  function commit(nextIndex, article, el) {
     index = nextIndex;
-    page = incoming;
+    page = el;
     lastTop = 0;
     history.replaceState(null, "", `${window.location.pathname}?id=${encodeURIComponent(article.id)}`);
     document.title = `${article.title} - Kompas.com`;
     renderNav();
     setChrome(true);
     top.classList.remove("is-solid");
+    prefetch();
+  }
+  /** fully turned to the left / flat, for a page edge held at height y */
+  const turned = (y) => ({ x: -curl.size().w, y });
+  const edge = (y) => ({ x: curl.size().w, y });
 
+  /** buttons, keyboard and the article list: an automatic turn */
+  async function turnTo(nextIndex, direction) {
+    if (busy || nextIndex < 0 || nextIndex >= queue.length) return;
+    setBusy(true);
+    let article;
+    try {
+      article = await loadArticle(queue[nextIndex]);
+    } catch {
+      setBusy(false);
+      return;
+    }
+    const incoming = buildPage(article);
+    const outgoing = page;
     if (!outgoing || reducedMotion()) {
       stage.replaceChildren(incoming);
-    } else if (direction === "next") {
-      // the current page turns away to the left, revealing the next one
-      stage.prepend(incoming);
-      incoming.classList.add("is-revealed");
-      outgoing.classList.add("is-turning-out");
-      await new Promise((r) => setTimeout(r, TURN_MS));
-      incoming.classList.remove("is-revealed");
-      outgoing.remove();
     } else {
-      // the previous page turns back in from the left, over the current one
-      stage.append(incoming);
-      outgoing.classList.add("is-covered");
-      incoming.classList.add("is-turning-in");
-      await new Promise((r) => setTimeout(r, TURN_MS));
-      incoming.classList.remove("is-turning-in");
-      outgoing.remove();
+      // lifted near the bottom corner, so the fold runs diagonally
+      const { h } = curl.size();
+      const C = edge(h * 0.86);
+      if (direction === "next") {
+        stage.prepend(incoming); // the next page waits underneath
+        await curl.run(outgoing, C, C, turned(h * 0.7), 680, h * 0.08);
+        outgoing.remove();
+      } else {
+        stage.append(incoming); // the previous page comes back over it
+        curl.paint(incoming, C, turned(h * 0.7));
+        await curl.run(incoming, C, turned(h * 0.7), C, 680, h * 0.08);
+        outgoing.remove();
+      }
+      curl.clear(incoming);
     }
-    busy = false;
-    root.classList.remove("is-busy");
+    commit(nextIndex, article, incoming);
+    setBusy(false);
   }
+
+  /* ---------- swipe: the page follows the finger ---------- */
+  let drag = null;
+  stage.addEventListener(
+    "touchstart",
+    (e) => {
+      if (busy || e.touches.length !== 1) return;
+      const t = e.touches[0];
+      drag = { x0: t.clientX, y0: t.clientY, decided: false, samples: [] };
+    },
+    { passive: true },
+  );
+  stage.addEventListener(
+    "touchmove",
+    (e) => {
+      if (!drag) return;
+      const t = e.touches[0];
+      const dx = t.clientX - drag.x0;
+      const dy = t.clientY - drag.y0;
+      if (!drag.decided) {
+        if (Math.abs(dx) < 10 && Math.abs(dy) < 10) return;
+        if (Math.abs(dx) < Math.abs(dy) * 1.2) {
+          drag = null; // vertical: let the page scroll
+          return;
+        }
+        startDrag(dx < 0 ? "next" : "prev");
+        if (!drag) return;
+      }
+      e.preventDefault();
+      drag.samples.push({ x: t.clientX, t: performance.now() });
+      if (drag.samples.length > 6) drag.samples.shift();
+      drag.P = fingerToEdge(dx, dy);
+      if (drag.ready) curl.paint(drag.sheet, drag.C, drag.P);
+    },
+    { passive: false },
+  );
+  stage.addEventListener("touchend", endDrag);
+  stage.addEventListener("touchcancel", endDrag);
+
+  function startDrag(direction) {
+    const nextIndex = direction === "next" ? index + 1 : index - 1;
+    if (nextIndex < 0 || nextIndex >= queue.length || !page) {
+      drag = null;
+      return;
+    }
+    const d = drag;
+    const { h } = curl.size();
+    // the edge is held at the finger's height, pushed towards the nearer corner
+    const cy = Math.min(h, Math.max(0, d.y0 + (d.y0 - h / 2) * 0.6));
+    Object.assign(d, { decided: true, direction, nextIndex, C: edge(cy), P: direction === "next" ? edge(cy) : turned(cy) });
+    setBusy(true);
+    d.prep = loadArticle(queue[nextIndex]).then((article) => {
+      const el = buildPage(article);
+      if (direction === "next") stage.prepend(el); // waits underneath
+      else stage.append(el); // comes back over the current page
+      Object.assign(d, { article, el, sheet: direction === "next" ? page : el, under: direction === "next" ? el : page, ready: true });
+      curl.paint(d.sheet, d.C, d.P);
+    });
+    d.prep.catch(() => {
+      if (drag === d) drag = null;
+      setBusy(false);
+    });
+  }
+
+  /** finger travel → where the page edge is: twice the travel, like a real sheet */
+  function fingerToEdge(dx, dy) {
+    const { w } = curl.size();
+    const x = drag.direction === "next" ? w + 2 * dx : -w + 2 * dx;
+    return { x: Math.min(w, Math.max(-w, x)), y: drag.C.y + dy * 0.6 };
+  }
+
+  async function endDrag() {
+    const d = drag;
+    drag = null;
+    if (!d?.decided) return;
+    try {
+      await d.prep;
+    } catch {
+      return;
+    }
+    const { w } = curl.size();
+    const s = d.samples;
+    const v = s.length > 1 ? (s[s.length - 1].x - s[0].x) / Math.max(1, s[s.length - 1].t - s[0].t) : 0; // px/ms
+    const turnedPart = d.direction === "next" ? (w - d.P.x) / (2 * w) : (d.P.x + w) / (2 * w);
+    const flick = d.direction === "next" ? v < -0.45 : v > 0.45;
+    const complete = turnedPart > 0.3 || flick;
+    const target =
+      d.direction === "next" ? (complete ? turned(d.P.y) : d.C) : complete ? d.C : turned(d.P.y);
+    const dist = Math.abs(target.x - d.P.x);
+    await curl.run(d.sheet, d.C, d.P, target, Math.max(180, Math.min(460, dist * 0.45)));
+    if (complete) {
+      (d.direction === "next" ? d.sheet : d.under).remove();
+      curl.clear(d.el);
+      commit(d.nextIndex, d.article, d.el);
+    } else {
+      curl.clear(d.sheet);
+      d.el.remove();
+    }
+    setBusy(false);
+  }
+
   const next = () => turnTo(index + 1, "next");
   const prev = () => turnTo(index - 1, "prev");
   function goTo(id) {
