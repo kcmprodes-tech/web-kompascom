@@ -80,7 +80,7 @@ const fontOf = (pref) => (FONTS[pref.font] ? pref.font : (THEMES[pref.theme] || 
 
 const CHIP_ON_WHITE = "#F3F3F3"; // neutral-lightest: the usual action-button grey
 
-/** background for the like/comment/share… buttons: the page colour, 20 points
+/** background for the like/comment/share… buttons: the page colour, 10 points
  *  lighter (HSL). A white page has nothing lighter, so it keeps the usual grey. */
 export function chipColor(bg) {
   const [r, g, b] = [1, 3, 5].map((i) => parseInt(bg.slice(i, i + 2), 16) / 255);
@@ -93,7 +93,7 @@ export function chipColor(bg) {
   let h = 0;
   if (d) h = max === r ? ((g - b) / d) % 6 : max === g ? (b - r) / d + 2 : (r - g) / d + 4;
   h *= 60;
-  l = Math.min(1, l + 0.2);
+  l = Math.min(1, l + 0.1);
   // back to RGB
   const c = (1 - Math.abs(2 * l - 1)) * s;
   const x = c * (1 - Math.abs(((h / 60) % 2) - 1));

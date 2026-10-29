@@ -258,7 +258,7 @@ html.rd-open .rm-fab {
   border-top-color: rgba(255, 255, 255, 0.12);
 }
 /* action buttons (Aa, like, comment, share…) and the comments card sit on
-   the page colour 20 points lighter (--rm-chip, from reading-mode.js);
+   the page colour 10 points lighter (--rm-chip, from reading-mode.js);
    on a white page they keep the usual #F3F3F3 */
 .rd-paper .art-pill,
 .rd-paper .art-round,
