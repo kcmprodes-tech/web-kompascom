@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profil Saya - Kompas.com</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700&display=swap" rel="stylesheet" />
+    <script type="module" src="/src/js/profile.js"></script>
+  </head>
+  <!-- Profil Saya — Akun KG Media ID (Figma 11795:67114) -->
+  <body class="pf-body">
+    <main class="pf">
+      <section class="pf-card pf-top">
+        <header class="pf-head">
+          <a class="pf-back" href="./account.html" aria-label="Kembali ke Akun">
+            <svg viewBox="0 0 256 256" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z" /></svg>
+          </a>
+          <h1>Profil Saya</h1>
+        </header>
+        <span class="pf-avatar" data-pf-initials aria-hidden="true"></span>
+        <p class="pf-name" data-pf-name></p>
+        <p class="pf-kg">Akun KG Media ID</p>
+        <p class="pf-email" data-pf-email></p>
+      </section>
+
+      <nav class="pf-card pf-links" aria-label="Pengaturan akun">
+        <a href="#" data-pf-soon>Ubah Profil</a>
+        <a href="#" data-pf-soon>Ganti Password</a>
+      </nav>
+
+      <dl class="pf-card pf-fields" aria-label="Data diri">
+        <div><dt>Gender</dt><dd>Laki-laki</dd></div>
+        <div><dt>Tanggal Lahir</dt><dd>1 Januari 1990</dd></div>
+        <div><dt>Status Pernikahan</dt></div>
+      </dl>
+
+      <dl class="pf-card pf-fields" aria-label="Kontak">
+        <div><dt>Nomor Handphone</dt><dd>0812 3456 7890</dd></div>
+        <div>
+          <dt>Alamat</dt>
+          <dd>Jl. Palmerah Selatan No. 22–28<br />Gelora, Tanah Abang<br />Kota Jakarta Pusat<br />DKI Jakarta</dd>
+        </div>
+      </dl>
+
+      <dl class="pf-card pf-fields" aria-label="Pendidikan dan pekerjaan">
+        <div class="pf-empty"><dt>Pendidikan Terakhir</dt><dd>Pendidikan Terakhirmu <a href="#" data-pf-soon>Lengkapi data</a></dd></div>
+        <div class="pf-empty"><dt>Pekerjaan</dt><dd>Pekerjaanmu saat ini <a href="#" data-pf-soon>Lengkapi data</a></dd></div>
+      </dl>
+
+      <p class="pf-note">
+        Data dan informasi Akun KG Media ID milikmu akan digunakan untuk memberikan layanan sesuai
+        <a href="https://www.kgmedia.id/legal-privacy-id" target="_blank" rel="noopener">Kebijakan Data Pribadi Akun KG Media ID</a>
+      </p>
+
+      <!-- ⋮ menu -->
+      <button class="pf-more" type="button" aria-label="Menu akun" aria-haspopup="menu" aria-expanded="false" aria-controls="pf-menu" data-pf-more>
+        <i></i><i></i><i></i>
+      </button>
+      <div class="pf-menu" id="pf-menu" role="menu" hidden data-pf-menu>
+        <a href="#" role="menuitem" data-pf-soon>Ubah Profil</a>
+        <a href="#" role="menuitem" data-pf-soon>Ganti Password</a>
+        <a href="#" role="menuitem" data-pf-soon>Hapus Akun</a>
+        <button type="button" role="menuitem" class="pf-menu__logout" data-pf-logout>Logout</button>
+      </div>
+    </main>
+  </body>
+</html>

@@ -140,6 +140,7 @@ Bantuan demo:
 - `index.html?member=1` — home sebagai pelanggan KOMPAS.com+ MAX (login akun demo *Pembaca Plus* bila belum login, lalu aktifkan langganan)
 - `index.html?member=0` — home sebagai non-pelanggan (langganan dihapus, tetap login)
 - `account.html?state=guest` — keluar (kembali jadi tamu)
+- Akun → **Profil** → menu ⋮ → **Logout** — keluar; kalau member, langganan demo ikut dihapus sehingga situs kembali ke tampilan non-member
 - `checkout.html?reset=1` — hapus langganan akun yang sedang login
 - Harga di checkout adalah contoh, bukan harga resmi.
 
