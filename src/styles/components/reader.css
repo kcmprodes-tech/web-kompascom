@@ -169,7 +169,9 @@ html.rd-open .rm-fab {
 }
 .rd-hero__meta span {
   font-size: var(--kds-font-size-c1, 12px);
-  color: var(--kds-background-paper-elevation-2, #f0f0f0);
+  /* light-mode Paper Elevation 2: the hero is always black, so this must not
+     follow a dark reading theme (where the token turns #2A2A2A) */
+  color: #f0f0f0;
 }
 .rd-hero__team {
   display: flex;
