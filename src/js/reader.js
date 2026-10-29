@@ -144,14 +144,15 @@ export function createReader({ articles, currentId, onSettings, onExit }) {
   const endRow = document.querySelector(".art-react--end");
   const comments = document.querySelector(".art-comments");
 
+  // the reading view keeps to the story: no "Baca juga" links, whether they
+  // are their own block or tucked into a paragraph (e.g. after a photo caption)
+  const BACA_JUGA = /\s*Baca juga\s*:\s*(<a\b[^>]*>[\s\S]*?<\/a>)?[^<]*/gi;
   function bodyHtml(blocks) {
     return blocks
-      .map((b) => {
-        if (b.type !== "baca") return `<p>${b.html}</p>`;
-        const known = b.id && articles[b.id];
-        const href = known ? `./article-detail.html?id=${b.id}` : b.url || "#";
-        return `<p class="art-baca"><b>Baca juga: </b><a href="${esc(href)}" ${known ? `data-rd-open="${b.id}"` : ""}>${esc(b.title)}</a></p>`;
-      })
+      .filter((b) => b.type === "p")
+      .map((b) => b.html.replace(BACA_JUGA, ""))
+      .filter((html) => html.replace(/<[^>]+>/g, "").trim())
+      .map((html) => `<p>${html}</p>`)
       .join("");
   }
 
@@ -213,11 +214,6 @@ export function createReader({ articles, currentId, onSettings, onExit }) {
   }
   stage.addEventListener("click", (event) => {
     const t = event.target;
-    if (t.closest("[data-rd-open]")) {
-      event.preventDefault();
-      goTo(t.closest("[data-rd-open]").dataset.rdOpen);
-      return;
-    }
     const toggle = t.closest("[data-like], [data-save]");
     if (toggle) {
       toggle.setAttribute("aria-pressed", String(toggle.getAttribute("aria-pressed") !== "true"));
