@@ -211,6 +211,12 @@
 .art-pill--react img {
   margin: 0;
 }
+/* "Add on Google" label: Inter Medium 12px (the counters stay Roboto 10px) */
+.art-pill--google {
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  letter-spacing: -0.24px;
+}
 
 /* ================= Photo ================= */
 .art-photo {
