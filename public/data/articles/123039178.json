@@ -135,5 +135,15 @@
  "url": "https://regional.kompas.com/read/2026/10/28/123039178/abu-vulkanik-gunung-anak-krakatau-sampai-ke-pulau-sebesi-tapi-pos",
  "kanal": "Regional",
  "published": "2026-10-28T12:30:00+07:00",
- "readTime": "Waktu baca 3 menit"
+ "readTime": "Waktu baca 3 menit",
+ "summary": {
+  "penting": "Abu vulkanik yang sampai ke permukiman warga pulau menimbulkan kekhawatiran, sementara data resmi mencatat tidak ada erupsi. Perbedaan ini menegaskan pentingnya verifikasi data dan kepatuhan pada informasi resmi, terlebih status gunung masih Siaga.",
+  "poin": [
+   "Abu vulkanik Gunung Anak Krakatau mencapai permukiman warga Pulau Sebesi, Lampung Selatan, sekitar pukul 14.00 WIB pada Senin (26/10/2026).",
+   "Pos pengamatan di Lampung Selatan menyatakan sejak 22 Oktober 2026 tidak ada letusan, hanya hembusan, berdasarkan data pos Pasauran, Banten.",
+   "Pengamatan visual terkendala karena abu menutupi panel surya sehingga CCTV tidak berfungsi baik, meski instrumen seismik masih beroperasi.",
+   "Penyebab abu mencapai Pulau Sebesi dan kejadian dalam video yang beredar masih perlu verifikasi petugas.",
+   "Gunung berstatus Level III atau Siaga, dan warga dilarang mendekat dalam radius lima kilometer."
+  ]
+ }
 }

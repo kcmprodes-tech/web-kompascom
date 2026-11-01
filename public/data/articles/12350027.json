@@ -178,5 +178,15 @@
  "url": "https://tekno.kompas.com/read/2026/10/22/12350027/baru-download-whatsapp-di-android-ada-aplikasi-palsu-segera-cek",
  "kanal": "Tekno",
  "published": "2026-10-22T12:35:00+07:00",
- "readTime": "Waktu baca 5 menit"
+ "readTime": "Waktu baca 5 menit",
+ "summary": {
+  "penting": "Aplikasi tiruan di toko resmi bisa menyasar siapa saja yang baru memasang WhatsApp di Android, dan berisiko pada keamanan serta privasi data. Pengguna perlu tahu cara membedakan aplikasi asli dari palsu sebelum mengunduh.",
+  "poin": [
+   "Aplikasi WhatsApp palsu muncul di Google Play Store, bahkan sempat tampil sebagai iklan di atas aplikasi resmi, dan telah diunduh lebih dari 500.000 kali.",
+   "Aplikasi itu diunggah pengembang bernama Agment Assets Sallu, yang dilaporkan tidak punya aplikasi lain di Play Store.",
+   "Pantauan KompasTekno pada Senin (19/10/2026) menunjukkan aplikasi tersebut sudah tidak ditemukan, tetapi belum ada konfirmasi resmi dari Google.",
+   "WhatsApp menyatakan tidak mendukung aplikasi tidak resmi karena tidak dapat memastikan keamanan maupun perlindungan privasinya.",
+   "Pengguna disarankan memeriksa nama pengembang (WhatsApp LLC), jumlah unduhan, nama aplikasi, ulasan, dan deskripsi, atau mengunduh lewat whatsapp.com."
+  ]
+ }
 }

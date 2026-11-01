@@ -122,5 +122,15 @@
  "url": "https://otomotif.kompas.com/read/2026/10/22/112200615/tes-performa-changan-deepal-s05-bev",
  "kanal": "Otomotif",
  "published": "2026-10-22T11:22:00+07:00",
- "readTime": "Waktu baca 2 menit"
+ "readTime": "Waktu baca 2 menit",
+ "summary": {
+  "penting": "Uji akselerasi independen membantu calon pembeli SUV listrik menilai performa nyata mobil, bukan sekadar klaim spesifikasi. Hasil ini relevan bagi konsumen Indonesia yang mempertimbangkan mobil listrik murni di segmen SUV.",
+  "poin": [
+   "Tim Kompas.com menguji Changan Deepal S05 BEV memakai perangkat Racelogic dengan bobot pengemudi dan penumpang sekitar 124 kg.",
+   "Akselerasi 0-100 kpj dicatat 6,5 detik pada mode Comfort, dan waktu yang sama pada mode Sport.",
+   "Pada 0-60 kpj, mode Sport mencatat 3,2 detik, 0,1 detik lebih cepat daripada mode Comfort.",
+   "Motor listrik menghasilkan tenaga maksimum 200 kW (sekitar 268 TK) dan torsi 290 Nm yang disalurkan ke roda belakang.",
+   "Mobil ini memakai baterai berkapasitas 56,12 kWh."
+  ]
+ }
 }

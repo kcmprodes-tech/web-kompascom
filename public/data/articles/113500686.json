@@ -134,5 +134,15 @@
  "url": "https://lestari.kompas.com/read/2026/10/28/113500686/peneliti-soroti-tantangan-untuk-kelestarian-dan-pasokan-kayu-global",
  "kanal": "Regional",
  "published": "2026-10-28T11:35:00+07:00",
- "readTime": "Waktu baca 4 menit"
+ "readTime": "Waktu baca 4 menit",
+ "summary": {
+  "penting": "Permintaan kayu dunia diperkirakan melonjak, sementara hutan sudah tertekan deforestasi dan perubahan iklim. Studi ini mendorong kayu diperlakukan sebagai isu keamanan global seperti pangan, energi, dan air, yang berkaitan dengan kelestarian hutan dan ekonomi.",
+  "poin": [
+   "Studi Centre for Global Wood Security mendefinisikan keamanan kayu global dan mengidentifikasi 20 tantangan terbesar abad ke-21.",
+   "Publikasi di jurnal Trends Open ini ditulis 41 ahli dari 23 lembaga di 12 negara, dengan penulis utama Dr. Christopher Bousfield.",
+   "Permintaan kayu dunia diperkirakan naik 50 hingga 200 persen pada 2050, sementara produksi kayu menghasilkan sekitar 1,5 triliun dolar AS per tahun.",
+   "Tantangan dibagi dalam lima tema, antara lain perubahan penggunaan lahan, perubahan iklim, tata kelola, teknologi pemantauan, dan ekonomi sirkular.",
+   "Solusi yang disebut meliputi daur ulang kayu, produk lebih tahan lama, optimalisasi hutan tanaman industri, dan penginderaan jarak jauh untuk melacak kayu ilegal."
+  ]
+ }
 }

@@ -196,5 +196,15 @@
  "url": "https://tekno.kompas.com/read/2026/10/22/12050097/adopsi-agen-ai-mulai-masif-trendai-dan-nvidia-perkuat-sistem-keamanan",
  "kanal": "Tekno",
  "published": "2026-10-22T12:05:00+07:00",
- "readTime": "Waktu baca 5 menit"
+ "readTime": "Waktu baca 5 menit",
+ "summary": {
+  "penting": "Perusahaan, termasuk di Indonesia, mulai menjalankan agen AI yang bisa bertindak di sistem produksi tanpa persetujuan manusia di tiap langkah. Hal ini membuka risiko penyalahgunaan akses dan data, sehingga perlindungan khusus menjadi kebutuhan.",
+  "poin": [
+   "Laporan Google Cloud \"AI Agent Trends 2026\": 52 persen eksekutif di organisasi pengguna generative AI mengatakan sudah mengadopsi agen AI dalam produksi.",
+   "TrendAI, unit keamanan siber Trend Micro, mengumumkan dukungan bagi Nvidia Agent Safety Platform untuk menjalankan agen AI otonom secara aman.",
+   "Agen AI dapat menyimpan kredensial, mengingat konteks lintas sesi, dan menjalankan tindakan tanpa persetujuan manusia di setiap langkah.",
+   "Ancaman yang diantisipasi mencakup prompt injection dan jailbreak, dengan TrendAI Vision One memeriksa prompt dan respons AI serta menyamarkan data sensitif.",
+   "TrendAI Vision One memiliki local instance di Indonesia untuk mendukung kebutuhan data residency perusahaan dalam negeri."
+  ]
+ }
 }

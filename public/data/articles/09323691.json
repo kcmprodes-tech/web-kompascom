@@ -94,5 +94,15 @@
  "url": "https://nasional.kompas.com/read/2026/10/22/09323691/dari-rp-196-miliar-bgn-telah-kembalikan-rp-160-miliar-ke-kas-negara",
  "kanal": "News",
  "published": "2026-10-22T09:32:00+07:00",
- "readTime": "Waktu baca 2 menit"
+ "readTime": "Waktu baca 2 menit",
+ "summary": {
+  "penting": "Temuan BPK atas laporan keuangan BGN 2025 menyangkut pengelolaan dana program gizi yang bersumber dari uang negara. Pengembalian dana ke kas negara menunjukkan tindak lanjut atas temuan tersebut, sekaligus menjadi sorotan bagi publik terkait tata kelola anggaran dan pengawasan program.",
+  "poin": [
+   "BGN telah mengembalikan Rp 160,37 miliar ke kas negara, sekitar 81,75 persen dari total temuan BPK senilai Rp 196,17 miliar, per 21 Oktober 2026.",
+   "Temuan berasal dari pemeriksaan BPK atas Laporan Keuangan BGN 2025, terkait rekening virtual account ganda dan ketidakpatuhan pertanggungjawaban anggaran.",
+   "Dari 79 SPPG dalam laporan BPK, 75 terbukti memiliki rekening VA ganda dengan saldo Rp 78,39 miliar yang disetorkan ke kas negara.",
+   "Empat rekening lainnya tidak terindikasi ganda dan masih dipakai operasional; akses user maker dan approval pada rekening terkait dinonaktifkan.",
+   "BGN menyatakan akan memperkuat sistem pengendalian intern dan tata kelola keuangan agar kejadian serupa tidak terulang."
+  ]
+ }
 }

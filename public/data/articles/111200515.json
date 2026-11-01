@@ -155,5 +155,15 @@
  "url": "https://otomotif.kompas.com/read/2026/10/22/111200515/3-pilar-utama-hemat-bbm-motor--beban-kondisi-gaya-berkendara",
  "kanal": "Otomotif",
  "published": "2026-10-22T11:12:00+07:00",
- "readTime": "Waktu baca 3 menit"
+ "readTime": "Waktu baca 3 menit",
+ "summary": {
+  "penting": "Kelangkaan dan kenaikan harga BBM membuat pengendara motor perlu menekan pengeluaran harian. Tips dari praktisi servis ini membantu pemilik motor menghemat bahan bakar sekaligus menjaga performa dan usia pakai mesin.",
+  "poin": [
+   "Victor Assani dari Suzuki Indomobil Sales menyebut tiga pilar hemat BBM motor: beban, kondisi kendaraan, dan gaya berkendara.",
+   "Hindari beban berlebihan dari pengendara, penumpang, maupun muatan karena membuat konsumsi bahan bakar lebih boros.",
+   "Rawat motor secara teratur, seperti menjaga tekanan ban ideal serta filter udara bersih atau diganti bila tidak layak.",
+   "Pada motor manual jaga RPM ideal dan manfaatkan engine brake; pada matik CVT putar gas perlahan saat mulai berjalan.",
+   "Berkendara konstan 30-60 km/jam dan matikan mesin saat berhenti sekitar 30 detik atau lebih."
+  ]
+ }
 }

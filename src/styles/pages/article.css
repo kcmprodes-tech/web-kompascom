@@ -975,3 +975,122 @@
 .is-member .hm-act--kplus {
   display: none;
 }
+
+/* ================= AI summary (Figma 11760:31452, "KARIN Section") =================
+   Between the rule and the end reaction row, 20px from both. */
+.ais {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 16px 0;
+  padding: 0 16px 24px;
+  overflow: hidden;
+  border: 1px solid #f7f7f7;
+  border-radius: 16px;
+  background: linear-gradient(142deg, #e9edfe 0%, #f5f3fd 63.8%, #fcf7fb 98.6%, #ffffff 116%);
+  font-family: "Inter", sans-serif;
+  color: #2a2a2a;
+}
+.ais + .art-react--end {
+  padding-top: 20px;
+}
+.ais__title {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+  padding: 24px 0 12px;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.4px;
+}
+.ais__spark {
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  padding: 3px 2.3px 2.46px 2px; /* the glyph's inset inside its 24px frame */
+}
+.ais__text {
+  display: -webkit-box;
+  margin: 0 0 20px;
+  overflow: hidden;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+}
+.ais__more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 44px;
+  padding: 8px 16px;
+  border: 1px solid #6a7bd2;
+  border-radius: 8px;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+.ais__more span {
+  background: linear-gradient(76.5deg, #6a7bd2 2.8%, #9c68ca 43.4%, #d47db2 75.2%, #fea787 94.4%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: -0.32px;
+}
+.ais__more:focus-visible {
+  outline: 2px solid #6a7bd2;
+  outline-offset: 2px;
+}
+
+/* full summary sheet (built on the Reading Mode sheet) */
+.ais-sheet__title {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.ais-sheet .ais-sheet__body {
+  gap: 20px;
+  padding-bottom: calc(24px + env(safe-area-inset-bottom));
+  overflow-y: auto;
+}
+.ais-sheet__why {
+  padding: 16px;
+  border-radius: 16px;
+  background: linear-gradient(142deg, #e9edfe 0%, #f5f3fd 63.8%, #fcf7fb 98.6%, #ffffff 116%);
+}
+.ais-sheet h3 {
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.32px;
+}
+.ais-sheet__why p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.ais-sheet__points ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0 0 0 20px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.ais-sheet__points li::marker {
+  color: #9c68ca;
+}
+.ais-sheet__note {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--kds-text-tertiary, #888888);
+}

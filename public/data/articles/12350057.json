@@ -126,5 +126,15 @@
  "url": "https://tekno.kompas.com/read/2026/10/28/12350057/demi-ai-microsoft-tawarkan-60.000-karyawan-pensiun-dini-sukarela",
  "kanal": "Tekno",
  "published": "2026-10-28T12:35:00+07:00",
- "readTime": "Waktu baca 2 menit"
+ "readTime": "Waktu baca 2 menit",
+ "summary": {
+  "penting": "Langkah Microsoft mencerminkan bagaimana ekspansi AI mengubah struktur tenaga kerja perusahaan teknologi global. Bagi pekerja sektor teknologi, termasuk di India dan negara lain yang terdampak, kebijakan ini menjadi sinyal pergeseran kebutuhan keterampilan.",
+  "poin": [
+   "Microsoft menawarkan program Voluntary Exit Offer kepada sekitar 60.000 karyawan di Amerika Serikat, Kanada, India, dan Inggris dengan imbalan pesangon.",
+   "Angka itu setara sekitar 27 persen dari total 223.000 pegawai per akhir Juni 2026, dan program bersifat sukarela sehingga jumlah yang keluar belum pasti.",
+   "Karyawan memutuskan pada awal Desember 2026, dan yang menerima akan meninggalkan perusahaan pada 31 Desember 2026.",
+   "Divisi yang terdampak antara lain Xbox, Windows, Copilot, dan Keuangan, sedangkan sejumlah tim pemasaran, penjualan, dan rekayasa tidak termasuk.",
+   "Microsoft memperkirakan belanja modal kuartal September melampaui 50 miliar dollar AS, naik dari 34,9 miliar dollar AS setahun sebelumnya, untuk infrastruktur AI."
+  ]
+ }
 }

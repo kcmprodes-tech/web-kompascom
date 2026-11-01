@@ -96,5 +96,14 @@
  "url": "https://otomotif.kompas.com/read/2026/10/28/121200715/cuci-kolong-mobil-listrik-aman-atau-bisa-merusak-baterai-ini-kata-ahli",
  "kanal": "Otomotif",
  "published": "2026-10-28T12:12:00+07:00",
- "readTime": "Waktu baca 1 menit"
+ "readTime": "Waktu baca 1 menit",
+ "summary": {
+  "penting": "Mobil listrik makin banyak dipakai, dan banyak pemilik ragu apakah mencuci bagian kolong bisa merusak baterai. Penjelasan ahli ini membantu pemilik merawat kendaraan dengan benar dan menghindari kerusakan komponen bertegangan tinggi akibat cara cuci yang keliru.",
+  "poin": [
+   "Mahaendra Gofar dari EVSafe menyatakan kolong mobil listrik aman dicuci dan bahkan disarankan dibersihkan dari sisa tanah dan kotoran jalanan.",
+   "Pabrikan merancang baterai kedap air dengan standar IP67 atau IP68, ditambah pelat pelindung baja atau aluminium (skid plate) di bagian bawah.",
+   "Saat mencuci di tempat jet wash, kunci utamanya adalah menjaga jarak semprotan air bertekanan tinggi.",
+   "Operator tidak boleh menembak celah pelat atau kabel oranye high voltage dari jarak terlalu dekat agar seal karet gasket baterai dan kabel tidak rusak."
+  ]
+ }
 }

@@ -202,5 +202,15 @@
  "url": "https://tekno.kompas.com/read/2026/10/22/10030037/celah-yang-ancam-jutaan-situs-terungkap-php-foundation-buka-bukaan-proses",
  "kanal": "Tekno",
  "published": "2026-10-22T10:03:00+07:00",
- "readTime": "Waktu baca 5 menit"
+ "readTime": "Waktu baca 5 menit",
+ "summary": {
+  "penting": "PHP digunakan oleh sekitar 69,3 persen situs web yang bahasa server-nya diketahui, termasuk WordPress. Dua celah kritis yang memungkinkan peretas menjalankan kode tanpa login berisiko bagi banyak situs, sehingga pengelola server perlu segera memperbarui PHP.",
+  "poin": [
+   "PHP Foundation merilis tambalan untuk dua celah kritis, CVE-2026-109618 dan CVE-2026-109619, lewat PHP 8.5.12, 8.4.27, 8.3.36, dan 8.2.35.",
+   "Celah itu memungkinkan eksekusi kode jarak jauh (RCE) tanpa login, dan serangan telah didemonstrasikan pada Apache dengan mod_php.",
+   "Tambalan dirilis Rabu (21/10/2026), sehari lebih cepat dari jadwal, setelah ID CVE bocor di internet dengan skor keparahan keliru 10,0 padahal 9,2.",
+   "PHP Foundation mengakui perbaikan tertunda sejak audit 2024 akibat proses keputusan tim keamanan dan kurangnya sumber daya.",
+   "Versi 7.4 hingga 8.1 hanya mendapat backport minimal, sedangkan versi 5.4 hingga 7.3 tidak lagi didukung."
+  ]
+ }
 }

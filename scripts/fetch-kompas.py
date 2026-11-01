@@ -223,7 +223,12 @@ def main():
                 g["src"] = f"/assets/kompas/{ident}-{n}.jpg"
             full.update(id=ident, url=url, kanal=kanal_of(url), published=published_of(url),
                         readTime=times.get(ident, "") or estimate_read_time(full["blocks"]))
-            (ARTICLES / f"{ident}.json").write_text(json.dumps(full, ensure_ascii=False, indent=1))
+            out = ARTICLES / f"{ident}.json"
+            if out.exists():  # keep the AI summary written for an earlier snapshot
+                summary = json.loads(out.read_text()).get("summary")
+                if summary:
+                    full["summary"] = summary
+            out.write_text(json.dumps(full, ensure_ascii=False, indent=1))
             articles[ident] = {k: full[k] for k in ("id", "url", "title", "kanal", "published", "readTime")}
             articles[ident]["img"] = full["photo"]["src"]
             print("ok", ident, full["title"][:60])

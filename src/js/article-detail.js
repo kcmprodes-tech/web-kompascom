@@ -15,6 +15,7 @@ import home from "../data/kompas-home.json";
 import { initHeaderAvatar, initMemberView } from "./site-header.js";
 import { initReadingMode } from "./reading-mode.js";
 import { createReader } from "./reader.js";
+import { renderAiSummary } from "./components/ai-summary.js";
 import { hasFeature } from "./utils/entitlement.js";
 import { refreshTimes, timeAgo } from "./utils/time.js";
 
@@ -224,6 +225,7 @@ function render(article) {
   $("[data-art-body]").innerHTML = body.html;
   initPages(body.pageCount);
 
+  renderAiSummary($(".art-after__rule"), article.summary);
   renderTags(article.tags || []);
   $("[data-art-kanal-more]").textContent = `Lihat ${article.kanal} selengkapnya`;
 
