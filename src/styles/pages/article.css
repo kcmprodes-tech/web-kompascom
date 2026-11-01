@@ -1017,24 +1017,39 @@
   font-size: 16px;
   line-height: 1.5;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
-  line-clamp: 4;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
 }
 .ais__more {
+  --ais-grad: linear-gradient(76.5deg, #6a7bd2 2.8%, #9c68ca 43.4%, #d47db2 75.2%, #fea787 94.4%);
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 44px;
   padding: 8px 16px;
-  border: 1px solid #6a7bd2;
+  border: 0;
   border-radius: 8px;
   background: transparent;
   font: inherit;
   cursor: pointer;
 }
+/* 1px gradient border that keeps the card gradient showing through */
+.ais__more::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: var(--ais-grad);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  pointer-events: none;
+}
 .ais__more span {
-  background: linear-gradient(76.5deg, #6a7bd2 2.8%, #9c68ca 43.4%, #d47db2 75.2%, #fea787 94.4%);
+  background: var(--ais-grad);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
