@@ -355,7 +355,11 @@
 }
 .rp-page.is-expanded .rp-page__text p {
   max-height: 50dvh;
-  overflow-y: auto;
+  overflow-y: auto; /* long captions still scroll, without a visible bar */
+  scrollbar-width: none;
+}
+.rp-page__text p::-webkit-scrollbar {
+  display: none;
 }
 .rp-rail {
   display: flex;
