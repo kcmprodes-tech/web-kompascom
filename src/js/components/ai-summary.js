@@ -8,8 +8,8 @@
  * article without one simply gets no card.
  *
  * Policy articles (fuel prices, UMR, taxes…) can carry `impact` instead:
- * "Apa dampaknya buatmu?" with three short paragraphs on the card, and an
- * infographic plus a personal calculator in the sheet.
+ * "Apa dampaknya buatmu?" — the card shows the first three lines; the sheet
+ * holds the three paragraphs, an infographic and a personal calculator.
  */
 const esc = (s) =>
   String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
@@ -131,11 +131,7 @@ export function renderAiSummary(anchor, summary, impact) {
   card.setAttribute("aria-labelledby", "ais-title");
   card.innerHTML = `
     <h2 class="ais__title" id="ais-title">${SPARKLE}${esc(title)}</h2>
-    ${
-      impact
-        ? `<div class="ais__paras">${impact.paras.map((p) => `<p>${esc(p)}</p>`).join("")}</div>`
-        : `<p class="ais__text">${esc(summary.penting)}</p>`
-    }
+    <p class="ais__text">${esc(impact ? impact.paras.join(" ") : summary.penting)}</p>
     <button class="ais__more" type="button" aria-haspopup="dialog"><span>Selengkapnya</span></button>`;
   anchor.after(card);
 
@@ -157,7 +153,8 @@ export function renderAiSummary(anchor, summary, impact) {
       <div class="rm__body ais-sheet__body">
         ${
           impact
-            ? `${impact.infographic ? infographic(impact.infographic) : ""}
+            ? `<section class="ais-sheet__why">${impact.paras.map((p) => `<p>${esc(p)}</p>`).join("")}</section>
+               ${impact.infographic ? infographic(impact.infographic) : ""}
                ${impact.calculator ? calculator(impact.calculator) : ""}`
             : `<section class="ais-sheet__why">
                  <h3>Mengapa ini penting?</h3>

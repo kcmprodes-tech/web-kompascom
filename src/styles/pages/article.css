@@ -1110,17 +1110,9 @@
   color: var(--kds-text-tertiary, #888888);
 }
 
-/* "Apa dampaknya buatmu?" — policy articles: three short paragraphs */
-.ais__paras {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin: 0 0 20px;
-}
-.ais__paras p {
-  margin: 0;
-  font-size: 16px;
-  line-height: 1.5;
+/* "Apa dampaknya buatmu?" paragraphs in the sheet */
+.ais-sheet__why p + p {
+  margin-top: 12px;
 }
 
 /* infographic: price per litre, before → now */
