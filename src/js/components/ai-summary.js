@@ -18,8 +18,16 @@ const rp = (n) => `Rp ${Math.round(n).toLocaleString("id-ID")}`;
 const SPARKLE = `<img class="ais__spark" src="/assets/article/sparkle-ai.svg" alt="" aria-hidden="true" />`;
 const CLOSE = `<i class="rm-ic" style="--ic:url('/assets/reading/x.svg')" aria-hidden="true"></i>`;
 
-/* ---------- infographic: price per litre, before → now ---------- */
+/* ---------- infographic: an image from the newsroom, or price bars ---------- */
 function infographic(info) {
+  if (info.image) {
+    return `
+      <figure class="aig aig--image">
+        <a href="${esc(info.image)}" target="_blank" rel="noopener" aria-label="Buka infografis ukuran penuh">
+          <img src="${esc(info.image)}" width="${info.width}" height="${info.height}" alt="${esc(info.alt)}" loading="lazy" />
+        </a>
+      </figure>`;
+  }
   const max = Math.max(...info.items.map((i) => Math.max(i.before || 0, i.after)));
   const bar = (value, kind, label) =>
     `<span class="aig__bar aig__bar--${kind}" style="--w:${((value / max) * 100).toFixed(1)}%" title="${esc(label)}: ${rp(value)}">

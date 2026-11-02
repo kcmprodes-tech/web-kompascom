@@ -1344,3 +1344,15 @@
   font-weight: 600;
   color: #2a2a2a;
 }
+.aig--image {
+  flex: 0 0 auto; /* overflow: hidden would let the sheet's flex column squash it */
+  padding: 0;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 0 0 1px #e7e7e7;
+}
+.aig--image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}

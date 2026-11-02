@@ -112,25 +112,10 @@
    "Harga BBM non-subsidi di SPBU swasta juga ikut disesuaikan, jadi cek harga di SPBU langgananmu. Hitung tambahan biaya bensinmu per bulan lewat kalkulator di dalam."
   ],
   "infographic": {
-   "title": "Harga BBM per liter",
-   "note": "Pertamax naik mulai 10 Juni 2026, BBM subsidi tidak berubah.",
-   "items": [
-    {
-     "label": "Pertamax",
-     "before": 12300,
-     "after": 16250
-    },
-    {
-     "label": "Pertalite",
-     "after": 10000
-    },
-    {
-     "label": "Biosolar",
-     "after": 6800
-    }
-   ],
-   "why": "Alasannya: harga BBM non-subsidi mengikuti harga minyak dunia, yang menguat imbas konflik di Timur Tengah.",
-   "source": "Sumber: Kementerian ESDM dan Pertamina, via Kompas.com"
+   "image": "/assets/article/infografis-154112026.webp",
+   "width": 1122,
+   "height": 1402,
+   "alt": "Infografis kenaikan harga Pertamax: dari Rp 12.300 menjadi Rp 16.250 per liter mulai 10 Juni 2026, naik Rp 3.950. Alasannya Pertamax BBM non-subsidi yang mengikuti harga pasar, harga minyak global menguat, dan konflik di Timur Tengah. Pertalite tetap Rp 10.000 dan Biosolar tetap Rp 6.800 per liter. Pemerintah mengkaji langkah menjaga daya beli. Sumber: Kompas.com, 12 Juni 2026."
   },
   "calculator": {
    "type": "fuel",
