@@ -1,0 +1,724 @@
+/* Short Trending — Rolls rail + player, ported from the KOMPAS.com iOS app
+   (app-kompas: ShortVideoCard, RollsPreview, RollsPlayerView). Sizes and
+   spacing follow the SwiftUI source; icons are Phosphor, as in the app. */
+
+/* icons are Phosphor SVGs used as masks so they take the text colour */
+.rl-ic {
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  background-color: currentColor;
+  -webkit-mask: var(--ic) center / contain no-repeat;
+  mask: var(--ic) center / contain no-repeat;
+}
+.rl-ic--14 {
+  width: 14px;
+  height: 14px;
+}
+.rl-ic--16 {
+  width: 16px;
+  height: 16px;
+}
+.rl-ic--18 {
+  width: 18px;
+  height: 18px;
+}
+.rl-ic--22 {
+  width: 22px;
+  height: 22px;
+}
+.rl-ic--26 {
+  width: 26px;
+  height: 26px;
+}
+
+/* ================= Section on the article page ================= */
+.shorts {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 32px 0;
+  font-family: var(--kds-font-family, "Inter", sans-serif);
+}
+.shorts__head {
+  margin: 0;
+  padding: 0 16px;
+}
+.shorts .shorts__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #2a2a2a;
+  font: inherit;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.44px;
+  cursor: pointer;
+}
+.shorts__link .rl-ic {
+  width: 20px;
+  height: 20px;
+}
+.shorts__rail {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 0 16px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scroll-padding-left: 16px;
+  scrollbar-width: none;
+}
+.shorts__rail::-webkit-scrollbar {
+  display: none;
+}
+
+/* thumbnail that moves (muted clip), no text and no play icon — like Reels/Shorts */
+.rl-card {
+  position: relative;
+  flex: none;
+  width: 220px;
+  height: 391px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 16px;
+  background: #e7e7e7;
+  scroll-snap-align: start;
+  cursor: pointer;
+}
+.rl-card__thumb,
+.rl-card__clip {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+.rl-card__clip {
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+.rl-card.is-playing .rl-card__clip {
+  opacity: 1;
+}
+.rl-card:focus-visible,
+.shorts__link:focus-visible {
+  outline: 2px solid var(--kds-primary-base-500, #0f79c6);
+  outline-offset: 2px;
+}
+
+/* ================= Player ================= */
+.rp {
+  position: fixed;
+  inset: 0;
+  z-index: 90; /* above the site header */
+  display: flex;
+  justify-content: center;
+  background: #000000;
+  color: #ffffff;
+  font-family: var(--kds-font-family, "Inter", sans-serif);
+  visibility: hidden;
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), visibility 0s linear 0.3s;
+}
+.rp[hidden] {
+  display: none;
+}
+.rp.is-open {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.rp button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.rp button:focus-visible {
+  outline: 2px solid #4e9eff;
+  outline-offset: 2px;
+}
+/* wider screens: a 9:16 column in the middle, black on both sides */
+.rp__col {
+  position: relative;
+  width: min(100%, calc(100dvh * 9 / 16));
+  height: 100%;
+  overflow: hidden;
+}
+.rp__pager {
+  height: 100%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
+}
+.rp__pager::-webkit-scrollbar {
+  display: none;
+}
+.rp__pager.is-locked {
+  overflow: hidden;
+}
+
+.rp__back {
+  position: absolute;
+  top: calc(env(safe-area-inset-top) + 6px);
+  left: 8px;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.4));
+  transition: opacity 0.2s;
+}
+.rp.is-comments .rp__back {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---------- one page ---------- */
+.rp-page {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  background: #000000;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+.rp-media {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 0;
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), clip-path 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+  clip-path: inset(0 0 0 0 round 0);
+}
+.rp-media__blur {
+  position: absolute;
+  inset: -40px;
+  width: calc(100% + 80px);
+  height: calc(100% + 80px);
+  object-fit: cover;
+  filter: blur(28px) brightness(0.55);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+.rp-page.is-ready .rp-media__blur {
+  opacity: 1;
+}
+.rp-media__video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--vid-h, 100%);
+  object-fit: contain;
+  -webkit-mask-image: linear-gradient(#000 0, #000 var(--fade-a, 100%), rgba(0, 0, 0, 0.55) var(--fade-b, 100%), transparent 100%);
+  mask-image: linear-gradient(#000 0, #000 var(--fade-a, 100%), rgba(0, 0, 0, 0.55) var(--fade-b, 100%), transparent 100%);
+}
+.rp-page.is-cover .rp-media__video {
+  height: 100%;
+  object-fit: cover;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+/* loading ring: until the first frame is ready, and while buffering */
+.rp-media__spin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
+  border: 3px solid rgba(255, 255, 255, 0.25);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: rp-spin 0.9s linear infinite;
+  transition: opacity 0.2s;
+}
+.rp-page.is-ready:not(.is-buffering) .rp-media__spin {
+  opacity: 0;
+  animation: none;
+}
+@keyframes rp-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rp-page__grad {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 320px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.55));
+  pointer-events: none;
+}
+.rp-page__tap,
+.rp-page__dim {
+  position: absolute;
+  inset: 0;
+}
+.rp-page__dim {
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.rp-page.is-expanded .rp-page__dim {
+  opacity: 1;
+  pointer-events: auto;
+}
+.rp-page__paused {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  margin: -36px 0 0 -36px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.2s, transform 0.28s cubic-bezier(0.3, 1.5, 0.6, 1);
+  pointer-events: none;
+}
+.rp-page.is-paused .rp-page__paused {
+  opacity: 1;
+  transform: none;
+}
+
+/* text bottom-left + action rail right, 24 + 2 + 32 above the bottom */
+.rp-page__bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(58px + env(safe-area-inset-bottom));
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  pointer-events: none;
+  transition: opacity 0.18s ease-out;
+}
+.rp-page__text {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  width: 328px;
+  max-width: calc(100% - 82px);
+  padding-left: 24px;
+  text-shadow: 0 4px 7px rgba(0, 0, 0, 0.25);
+  pointer-events: auto;
+  cursor: pointer;
+}
+.rp-page__text h3 {
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: -0.48px;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+.rp-page__text p {
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: -0.42px;
+  color: rgba(255, 255, 255, 0.92);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.rp-page.is-expanded .rp-page__text h3,
+.rp-page.is-expanded .rp-page__text p {
+  display: block;
+}
+.rp-page.is-expanded .rp-page__text p {
+  max-height: 50dvh;
+  overflow-y: auto;
+}
+.rp-rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 66px;
+  margin-right: 16px;
+  pointer-events: auto;
+}
+.rp-rail button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  line-height: 15px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+}
+.rp-rail button.is-on .rl-ic {
+  color: #4e9eff;
+}
+.rp-rail .rp-rail__more {
+  display: grid;
+  place-items: center;
+  width: 41px;
+  height: 43px;
+}
+.rp-rail .rp-rail__mute {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-top: 12px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  filter: none;
+}
+
+/* progress: a 2px line 24px from the bottom; touching it shows a knob and the times */
+.rp-scrub {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: calc(2px + env(safe-area-inset-bottom));
+  height: 44px;
+  touch-action: none;
+  cursor: pointer;
+}
+.rp-scrub__track {
+  position: absolute;
+  top: 21px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  border-radius: 99px;
+  background: rgba(194, 194, 194, 0.5);
+  transition: height 0.2s, top 0.2s;
+}
+.rp-scrub__track b {
+  display: block;
+  width: calc(var(--prog, 0) * 100%);
+  height: 100%;
+  border-radius: 99px;
+  background: #ffffff;
+}
+.rp-scrub__track i {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--prog, 0) * 100%);
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: scale(0.4);
+  transition: opacity 0.2s, transform 0.2s;
+}
+.rp-scrub__times {
+  position: absolute;
+  top: -6px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.rp-page.is-scrubbing .rp-scrub__track {
+  top: 20px;
+  height: 4px;
+}
+.rp-page.is-scrubbing .rp-scrub__track i {
+  opacity: 1;
+  transform: none;
+}
+.rp-page.is-scrubbing .rp-scrub__times {
+  opacity: 1;
+}
+.rp-page.is-scrubbing .rp-page__bottom {
+  opacity: 0;
+}
+
+/* ---------- comments: video shrinks to 180 wide at the top, panel slides up ---------- */
+.rp-page.is-small .rp-media {
+  clip-path: inset(0 0 var(--cm-clip, 0) 0 round var(--cm-radius, 0));
+}
+.rp.is-comments .rp-page.is-small .rp-media {
+  transform: translateY(var(--cm-top, 8px)) scale(var(--cm-scale, 0.5));
+}
+.rp.is-comments .rp-page.is-small :is(.rp-page__grad, .rp-page__bottom, .rp-scrub, .rp-page__paused) {
+  opacity: 0;
+  pointer-events: none;
+}
+.rp-page__grad,
+.rp-scrub {
+  transition: opacity 0.3s;
+}
+.rp__catch {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  display: none;
+}
+.rp.is-comments .rp__catch {
+  display: block;
+}
+.rp-cm {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 7;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: calc(100% - var(--cm-panel-top, 344px));
+  min-height: 300px;
+  border-radius: 20px 20px 0 0;
+  background: #ffffff;
+  box-shadow: 0 -6px 10px rgba(0, 0, 0, 0.12);
+  color: #2a2a2a;
+  transform: translateY(100%);
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.rp.is-comments .rp-cm {
+  transform: none;
+}
+.rp-cm .rp-cm__grab {
+  align-self: center;
+  width: 32px;
+  height: 4px;
+  margin-top: 12px;
+  border-radius: 99px;
+  background: #e9e9e9;
+}
+.rp-cm__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 0 16px 12px;
+  border-bottom: 1px solid #ececec;
+  color: #5a5a5a;
+}
+.rp-cm__head div {
+  flex: 1;
+}
+.rp-cm__head h2 {
+  margin: 0 0 4px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  color: #2b3947;
+}
+.rp-cm__head p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  letter-spacing: -0.24px;
+  color: #5c6b7a;
+}
+.rp-cm__list {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 0;
+  padding: 4px 16px 16px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.rp-cm__input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px calc(12px + env(safe-area-inset-bottom));
+  background: rgba(255, 255, 255, 0.9);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
+.rp-cm__me {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #a278d5;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+}
+.rp-cm__field {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 16px;
+  border-radius: 12px;
+  background: #f2f4f6;
+  color: #5a5a5a;
+  font-size: 14px;
+}
+.rp-cm__field span {
+  flex: 1;
+  color: #888888;
+}
+
+.rp-c {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.rp-c__av {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: var(--av);
+  height: var(--av);
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+}
+.rp-c[style*="24px"] .rp-c__av {
+  font-size: 12px;
+}
+.rp-c__main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.rp-c__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #888888;
+}
+.rp-c__meta b {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  color: #2a2a2a;
+}
+.rp-c__meta .rl-ic {
+  margin-left: auto;
+}
+.rp-c__main > p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+  color: #5a5a5a;
+}
+.rp-c__sticker {
+  font-size: 56px;
+  line-height: 1.1;
+}
+.rp-c__acts {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 2px;
+  font-size: 14px;
+  color: #5a5a5a;
+}
+.rp-c__acts > span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.rp-c__acts .rl-ic {
+  width: 20px;
+  height: 20px;
+}
+.rp-c__acts b {
+  font-weight: 600;
+  color: #2a2a2a;
+}
+.rp-c__replies {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+.rp-c__replylist {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.rp-c__replies.is-hidden .rp-c__replylist {
+  display: none;
+}
+.rp .rp-c__toggle {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2a2a2a;
+}
+.rp-c__toggle .rl-ic {
+  transform: rotate(180deg);
+  transition: transform 0.2s;
+}
+.rp-c__replies.is-hidden .rp-c__toggle .rl-ic {
+  transform: rotate(-90deg);
+}
+
+.rp__toast {
+  position: absolute;
+  left: 50%;
+  bottom: calc(120px + env(safe-area-inset-bottom));
+  z-index: 8;
+  max-width: calc(100% - 32px);
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: rgba(42, 42, 42, 0.95);
+  font-size: 14px;
+  opacity: 0;
+  transform: translate(-50%, 8px);
+  transition: opacity 0.2s, transform 0.2s;
+  pointer-events: none;
+}
+.rp__toast.is-show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rp,
+  .rp-media,
+  .rp-cm {
+    transition: none;
+  }
+}

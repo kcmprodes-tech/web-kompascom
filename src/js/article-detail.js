@@ -11,11 +11,13 @@ import "../styles/pages/home.css";
 import "../styles/pages/article.css";
 import "../styles/components/reading-mode.css";
 import "../styles/components/reader.css";
+import "../styles/components/shorts.css";
 import home from "../data/kompas-home.json";
 import { initHeaderAvatar, initMemberView } from "./site-header.js";
 import { initReadingMode } from "./reading-mode.js";
 import { createReader } from "./reader.js";
 import { renderAiSummary } from "./components/ai-summary.js";
+import { initShorts } from "./components/shorts.js";
 import { hasFeature } from "./utils/entitlement.js";
 import { refreshTimes, timeAgo } from "./utils/time.js";
 
@@ -370,6 +372,9 @@ async function load() {
 initHeaderAvatar();
 initActions();
 load();
+
+/* ---------- Short Trending (Rolls) ---------- */
+initShorts($("[data-shorts]"));
 
 /* ---------- Reading Mode (KOMPAS.com+) ---------- */
 // the reading view and the settings sheet call each other

@@ -11,6 +11,15 @@ export default defineConfig({
   server: {
     host: true,
     port: process.env.PORT ? Number(process.env.PORT) : undefined,
+    // Rolls HLS streams have no CORS headers; hls.js reads them same-origin
+    // (vercel.json has the matching rewrite for production)
+    proxy: {
+      "/kgnow": {
+        target: "https://video.kgnow.com",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/kgnow/, ""),
+      },
+    },
   },
   build: {
     rollupOptions: {
