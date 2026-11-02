@@ -116,8 +116,16 @@
 
 /* ================= Player ================= */
 .rp {
+  /* Full screen edge to edge: with viewport-fit=cover (set while open) the
+     player runs under the status bar and Safari's toolbar, so the video shows
+     there instead of black bars. --rp-bottom keeps the controls above the
+     toolbar (100lvh − 100dvh) or the home indicator, whichever is taller. */
+  --rp-bottom: env(safe-area-inset-bottom, 0px);
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
   z-index: 90; /* above the site header */
   display: flex;
   justify-content: center;
@@ -131,6 +139,12 @@
 }
 .rp[hidden] {
   display: none;
+}
+@supports (height: 100lvh) {
+  .rp {
+    --rp-bottom: max(env(safe-area-inset-bottom, 0px), calc(100lvh - 100dvh));
+    height: 100lvh;
+  }
 }
 .rp.is-open {
   visibility: visible;
@@ -309,7 +323,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: calc(58px + env(safe-area-inset-bottom));
+  bottom: calc(58px + var(--rp-bottom));
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -404,7 +418,7 @@
   position: absolute;
   left: 16px;
   right: 16px;
-  bottom: calc(2px + env(safe-area-inset-bottom));
+  bottom: calc(2px + var(--rp-bottom));
   height: 44px;
   touch-action: none;
   cursor: pointer;
@@ -474,7 +488,7 @@
   clip-path: inset(0 0 var(--cm-clip, 0) 0 round var(--cm-radius, 0));
 }
 .rp.is-comments .rp-page.is-small .rp-media {
-  transform: translateY(var(--cm-top, 8px)) scale(var(--cm-scale, 0.5));
+  transform: translateY(calc(env(safe-area-inset-top, 0px) + var(--cm-top, 8px))) scale(var(--cm-scale, 0.5));
 }
 .rp.is-comments .rp-page.is-small :is(.rp-page__grad, .rp-page__bottom, .rp-scrub, .rp-page__paused) {
   opacity: 0;
@@ -502,7 +516,7 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  height: calc(100% - var(--cm-panel-top, 344px));
+  height: calc(100% - var(--cm-panel-top, 344px) - env(safe-area-inset-top, 0px));
   min-height: 300px;
   border-radius: 20px 20px 0 0;
   background: #ffffff;
@@ -561,7 +575,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 16px calc(12px + env(safe-area-inset-bottom));
+  padding: 8px 16px calc(12px + var(--rp-bottom));
   background: rgba(255, 255, 255, 0.9);
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
@@ -702,7 +716,7 @@
 .rp__toast {
   position: absolute;
   left: 50%;
-  bottom: calc(120px + env(safe-area-inset-bottom));
+  bottom: calc(120px + var(--rp-bottom));
   z-index: 8;
   max-width: calc(100% - 32px);
   padding: 12px 16px;

@@ -332,6 +332,13 @@ function createPlayer(items, { onOpen, onClose }) {
   );
 
   /* ---------- open / close ---------- */
+  // Edge to edge only while the player is open, so the article's own header
+  // never slides under the status bar.
+  const viewport = document.querySelector('meta[name="viewport"]');
+  const baseViewport = viewport?.content || "";
+  const setCover = (on) => {
+    if (viewport) viewport.content = on ? `${baseViewport}, viewport-fit=cover` : baseViewport;
+  };
   let lastFocus = null;
   let raf = 0;
   function open(i, fromEl) {
@@ -342,6 +349,7 @@ function createPlayer(items, { onOpen, onClose }) {
       const r = fromEl.getBoundingClientRect();
       root.style.transformOrigin = `${r.left + r.width / 2}px ${r.top + r.height / 2}px`;
     } else root.style.transformOrigin = "50% 50%";
+    setCover(true);
     root.hidden = false;
     document.documentElement.classList.add("rm-scroll-lock");
     pages.forEach(layoutVideo);
@@ -367,7 +375,9 @@ function createPlayer(items, { onOpen, onClose }) {
     });
     document.documentElement.classList.remove("rm-scroll-lock");
     setTimeout(() => {
-      if (!state.open) root.hidden = true;
+      if (state.open) return;
+      root.hidden = true;
+      setCover(false);
     }, 300);
     onClose();
     lastFocus?.focus?.({ preventScroll: true });
