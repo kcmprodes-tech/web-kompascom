@@ -103,5 +103,40 @@
    "Harga BBM subsidi tidak naik: Pertalite tetap Rp 10.000 per liter dan Biosolar tetap Rp 6.800 per liter.",
    "Pemerintah sedang mengkaji langkah menjaga daya beli, dan penyesuaian harga non-subsidi juga berlaku di SPBU badan usaha swasta."
   ]
+ },
+ "impact": {
+  "title": "Apa dampaknya buatmu?",
+  "paras": [
+   "Kalau kendaraanmu minum Pertamax, setiap liter kini Rp 3.950 lebih mahal: dari Rp 12.300 menjadi Rp 16.250 sejak 10 Juni 2026. Mengisi 30 liter sebulan berarti tambahan sekitar Rp 118.500.",
+   "Pengguna Pertalite dan Biosolar belum terdampak langsung. Pemerintah menahan harga Pertalite di Rp 10.000 dan Biosolar di Rp 6.800 per liter untuk menjaga daya beli.",
+   "Harga BBM non-subsidi di SPBU swasta juga ikut disesuaikan, jadi cek harga di SPBU langgananmu. Hitung tambahan biaya bensinmu per bulan lewat kalkulator di dalam."
+  ],
+  "infographic": {
+   "title": "Harga BBM per liter",
+   "note": "Pertamax naik mulai 10 Juni 2026, BBM subsidi tidak berubah.",
+   "items": [
+    {
+     "label": "Pertamax",
+     "before": 12300,
+     "after": 16250
+    },
+    {
+     "label": "Pertalite",
+     "after": 10000
+    },
+    {
+     "label": "Biosolar",
+     "after": 6800
+    }
+   ],
+   "why": "Alasannya: harga BBM non-subsidi mengikuti harga minyak dunia, yang menguat imbas konflik di Timur Tengah.",
+   "source": "Sumber: Kementerian ESDM dan Pertamina, via Kompas.com"
+  },
+  "calculator": {
+   "type": "fuel",
+   "fuel": "Pertamax",
+   "before": 12300,
+   "after": 16250
+  }
  }
 }

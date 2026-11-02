@@ -225,7 +225,7 @@ function render(article) {
   $("[data-art-body]").innerHTML = body.html;
   initPages(body.pageCount);
 
-  renderAiSummary($(".art-after__rule"), article.summary);
+  renderAiSummary($(".art-after__rule"), article.summary, article.impact);
   renderTags(article.tags || []);
   $("[data-art-kanal-more]").textContent = `Lihat ${article.kanal} selengkapnya`;
 
