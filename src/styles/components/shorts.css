@@ -189,7 +189,7 @@
 .rp__back {
   position: absolute;
   top: calc(env(safe-area-inset-top) + 6px);
-  left: 8px;
+  left: 10px; /* arrow 20px from the edge */
   z-index: 5;
   display: grid;
   place-items: center;
@@ -335,8 +335,8 @@
   flex-direction: column;
   gap: 7px;
   width: 328px;
-  max-width: calc(100% - 82px);
-  padding-left: 24px;
+  max-width: calc(100% - 96px);
+  padding-left: 20px;
   text-shadow: 0 4px 7px rgba(0, 0, 0, 0.25);
   pointer-events: auto;
   cursor: pointer;
@@ -380,8 +380,8 @@
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  width: 66px;
-  margin-right: 16px;
+  min-width: 44px; /* hugs its widest label, so the icons sit 20px from the edge */
+  margin-right: 20px;
   pointer-events: auto;
 }
 .rp-rail button {
@@ -416,8 +416,8 @@
 /* progress: a 2px line 24px from the bottom; touching it shows a knob and the times */
 .rp-scrub {
   position: absolute;
-  left: 16px;
-  right: 16px;
+  left: 20px;
+  right: 20px;
   bottom: calc(2px + var(--rp-bottom));
   height: 44px;
   touch-action: none;
