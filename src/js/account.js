@@ -37,11 +37,13 @@ const returnTo = (() => {
   }
 })();
 
+// Not linked to MyValue yet (guest, free) the first card asks to link the
+// account instead of showing points (see .ac-card--connect).
 const CARD_VALUES = {
-  guest: { poin: "Lihat Poin", voucher: "Lihat voucher", reward: "Lihat reward" },
-  free: { poin: "0 Poin", voucher: "0", reward: "Lihat reward" },
-  member1: { poin: "242 Poin", voucher: "2 Voucher", reward: "Lihat reward" },
-  memberN: { poin: "242 Poin", voucher: "2 Voucher", reward: "Lihat reward" },
+  guest: { voucher: "Lihat voucher", reward: "Lihat reward" },
+  free: { voucher: "Lihat voucher", reward: "Lihat reward" },
+  member1: { poin: "242 Poin", voucher: "2 Voucher", reward: "Rp25.000" },
+  memberN: { poin: "242 Poin", voucher: "2 Voucher", reward: "Rp25.000" },
 };
 
 const MEMBER_CARD = {

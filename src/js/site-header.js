@@ -1,13 +1,15 @@
 /**
- * Black site header: once the reader is logged in, the account icon turns
- * into their profile avatar (gradient circle with initials, as on the
- * account page). For KOMPAS.com+ members the logo becomes KOMPAS.com+ and
+ * Black site header — store, K+, profile, hamburger menu. Once the reader is
+ * logged in, the account icon turns into their profile avatar (cyan circle
+ * with initials, as on the account page). For KOMPAS.com+ members the logo becomes KOMPAS.com+ and
  * ads go away (html.is-member, see site-header.css).
  */
 import { readSession, initials } from "./utils/session.js";
 import { watchEntitlement } from "./utils/entitlement.js";
+import { initNavPanel } from "./components/navpanel.js";
 
 export function initHeaderAvatar() {
+  initNavPanel(); // the hamburger menu lives in the same header
   const session = readSession();
   const link = document.querySelector(".hm-act--user");
   const ring = link?.querySelector(".hm-user-ring");

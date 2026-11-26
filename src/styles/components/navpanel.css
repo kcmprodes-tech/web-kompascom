@@ -1,0 +1,295 @@
+/* Menu panel behind the header hamburger (src/js/components/navpanel.js).
+   Values follow the navpanel in the design repo's home-v2 (dark, 375 wide):
+   panel #272727, rows #3a3a3a, section titles 16 bold, kanal links 14 light
+   uppercase in two columns. */
+
+/* ---------- hamburger in the header, red close button while open ---------- */
+.hm-burger {
+  position: relative;
+  display: block;
+  width: 22px;
+  height: 18px;
+}
+.hm-burger::before,
+.hm-burger::after,
+.hm-burger i {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: #fff;
+  transition: transform 0.2s, opacity 0.2s, top 0.2s;
+}
+.hm-burger::before {
+  top: 1px;
+}
+.hm-burger i {
+  top: 8px;
+}
+.hm-burger::after {
+  top: 15px;
+}
+.np-open .hm-act--menu .hm-burger {
+  width: 25px;
+  height: 24px;
+  border-radius: 4px;
+  background: #ff0000;
+}
+.np-open .hm-act--menu .hm-burger i {
+  opacity: 0;
+}
+.np-open .hm-act--menu .hm-burger::before,
+.np-open .hm-act--menu .hm-burger::after {
+  top: 11px;
+  left: 5px;
+  right: 5px;
+}
+.np-open .hm-act--menu .hm-burger::before {
+  transform: rotate(45deg);
+}
+.np-open .hm-act--menu .hm-burger::after {
+  transform: rotate(-45deg);
+}
+
+html.np-open,
+html.np-open body {
+  overflow: hidden;
+}
+/* the kanal row under the bar (home) is in the menu's "Jelajahi Kanal" */
+.np-open .hm-nav {
+  display: none;
+}
+/* the header stays on top while the menu is open, even where it scrolls away */
+.np-open .hm-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  transform: none;
+}
+
+/* ---------- panel ---------- */
+.np {
+  position: fixed;
+  inset: var(--np-top, 50px) 0 0; /* under the black header, which stays on top */
+  z-index: 39;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-bottom: calc(40px + env(safe-area-inset-bottom));
+  background: #272727;
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.np[hidden] {
+  display: none;
+}
+.np a {
+  color: inherit;
+  text-decoration: none;
+}
+.np-ic {
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  background-color: currentColor;
+  -webkit-mask: var(--ic) center / contain no-repeat;
+  mask: var(--ic) center / contain no-repeat;
+}
+
+.np-search {
+  margin: 0;
+  padding: 16px;
+  background: #000;
+}
+.np-search input {
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid #6c6f75;
+  border-radius: 8px;
+  background: #434343;
+  color: #fff;
+  font: inherit;
+  font-size: 16px;
+  letter-spacing: -0.32px;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.np-search input::placeholder {
+  color: #b7b7b7;
+}
+.np-search input:focus {
+  border-color: #9aa0a6;
+}
+
+.np-sec__title {
+  margin: 0;
+  padding: 20px 15px 13px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20.8px;
+}
+.np-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 60px;
+  margin: 2px 0;
+  padding: 0 15px;
+  background: #3a3a3a;
+  color: #ccc;
+  font-size: 16px;
+  line-height: 20.8px;
+}
+.np-row__label {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+.np-row__chev {
+  width: 20px;
+  height: 20px;
+  color: #fff;
+}
+.np-row > .np-ic:first-child {
+  color: #fff;
+}
+.np-avatar {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 25px;
+  height: 25px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  background: #00c1d5;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+}
+.np-tier {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #1a73e8;
+  color: #fff;
+}
+.np-tier .np-ic {
+  width: 14px;
+  height: 14px;
+}
+.np-kplus {
+  width: 24px;
+  height: 24px;
+}
+.np-badge {
+  padding: 2px 4px;
+  border-radius: 3px;
+  background: #ff0000;
+  color: #fff;
+  font-size: 8px;
+  line-height: 1.2;
+  letter-spacing: 0.8px;
+}
+.np-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ff0000;
+}
+
+.np-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 10px 0 20px;
+  background: #3a3a3a;
+}
+.np-grid ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.np-grid li a {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 0 6px 15px;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 18.2px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.np-new {
+  padding: 1px 3px;
+  border-radius: 3px;
+  background: #ff0000;
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.4px;
+}
+.np-vik {
+  grid-column: 1 / -1;
+  padding: 10px 15px 0;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.np-foot {
+  padding: 24px 15px 0;
+}
+.np-foot__title {
+  margin: 0 0 10px;
+  font-size: 16px;
+  line-height: 20.8px;
+}
+.np-social {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.np-social a {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+}
+.np-social .np-ic {
+  width: 18px;
+  height: 18px;
+}
+.np-apps {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.np-apps img {
+  display: block;
+  height: 36px;
+  width: auto;
+}
+.np-copy {
+  margin: 0;
+  font-size: 12px;
+  line-height: 15.6px;
+}
+.np-row:focus-visible,
+.np a:focus-visible {
+  outline: 2px solid #4e9eff;
+  outline-offset: -2px;
+}

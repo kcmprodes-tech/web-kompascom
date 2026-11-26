@@ -198,12 +198,13 @@
   flex: 0 0 auto;
   display: grid;
   place-items: center;
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
+  border: 1px solid #fff;
   border-radius: 50%;
-  background: linear-gradient(140deg, #35d6c6, #28a6d8);
+  background: #00c1d5; /* avatar colour shared with the header (design repo --homeV2-avatar-init) */
   color: #fff;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
   letter-spacing: 0;
 }
@@ -401,7 +402,7 @@
   width: 154px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 2px;
   padding: 12px;
   border: 1px solid var(--card-brd);
   border-radius: 16px;
@@ -430,6 +431,42 @@
   font-weight: 600;
   color: var(--t1);
   white-space: nowrap;
+}
+/* the card chevrons are the bold caret (1.5px stroke) */
+.ac-chev--bold {
+  -webkit-mask-image: url("/assets/account/icons/caret-right-bold.svg");
+  mask-image: url("/assets/account/icons/caret-right-bold.svg");
+}
+/* MyValue not linked: name 16 semibold, grey note, chevron bottom right */
+.ac-card--connect {
+  position: relative;
+  width: 239px;
+  gap: 2px;
+  padding-right: 32px;
+}
+.ac-card__name {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--t1);
+}
+.ac-card__note {
+  font-size: 12px;
+  line-height: 1.3;
+  color: var(--t2);
+  white-space: nowrap;
+}
+.ac-card--connect > .ac-chev {
+  position: absolute;
+  right: 10px;
+  bottom: 13px;
+}
+.ac-body:is([data-state="guest"], [data-state="free"]) .ac-card--poin,
+.ac-body:is([data-state="member1"], [data-state="memberN"]) .ac-card--connect {
+  display: none;
 }
 
 /* ---------- Sections / lists ---------- */

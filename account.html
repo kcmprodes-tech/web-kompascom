@@ -72,28 +72,38 @@
 
       <!-- Poin / Voucher / Reward -->
       <div class="ac-cards">
-        <a class="ac-card" href="./myvalue.html" data-auth>
+        <!-- MyValue not linked yet (guest / logged in, not linked) — Figma 11561:19100 -->
+        <a class="ac-card ac-card--connect" href="./myvalue.html" data-auth>
+          <span class="ac-card__name">
+            <img class="ac-card__logo" src="/assets/account/myvalue.png" alt="" aria-hidden="true" />
+            MyValue
+          </span>
+          <span class="ac-card__note">Hubungkan akun untuk melihat poin</span>
+          <span class="ac-chev ac-chev--bold"></span>
+        </a>
+        <!-- MyValue linked (members): points -->
+        <a class="ac-card ac-card--poin" href="./myvalue.html" data-auth>
           <span class="ac-card__title">
             <img class="ac-card__logo" src="/assets/account/myvalue.png" alt="" aria-hidden="true" />
             MyValue Poin
           </span>
           <span class="ac-card__row">
-            <strong class="ac-card__val" data-card="poin">Lihat Poin</strong>
-            <span class="ac-chev"></span>
+            <strong class="ac-card__val" data-card="poin">242 Poin</strong>
+            <span class="ac-chev ac-chev--bold"></span>
           </span>
         </a>
         <a class="ac-card" href="#" data-auth>
           <span class="ac-card__title">Voucher Buat kamu</span>
           <span class="ac-card__row">
             <strong class="ac-card__val" data-card="voucher">Lihat voucher</strong>
-            <span class="ac-chev"></span>
+            <span class="ac-chev ac-chev--bold"></span>
           </span>
         </a>
         <a class="ac-card" href="#" data-auth>
           <span class="ac-card__title">Paratroopers Reward</span>
           <span class="ac-card__row">
             <strong class="ac-card__val" data-card="reward">Lihat reward</strong>
-            <span class="ac-chev"></span>
+            <span class="ac-chev ac-chev--bold"></span>
           </span>
         </a>
       </div>
