@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register MyValue - Kompas.com</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script type="module" src="/src/js/myvalue-flow.js"></script>
+  </head>
+  <body class="mvf-body" data-page="register">
+    <header class="hm-header">
+      <div class="hm-bar">
+        <a class="hm-brand" href="./index.html" aria-label="Kompas.com">
+          <img class="hm-logo" src="/assets/home/logo-kompas.svg" alt="Kompas.com" />
+        </a>
+        <div class="hm-actions">
+          <!-- order as the design repo header (Figma 11997:54598): store, K+, profile/avatar, menu -->
+          <a class="hm-act" href="https://store.kompas.com" target="_blank" rel="noopener" aria-label="Store">
+            <img src="/assets/home/icons/handbag.svg" alt="" aria-hidden="true" />
+          </a>
+          <a class="hm-act hm-act--kplus" href="./kompasplus.html" aria-label="Kompas+">
+            <img src="/assets/home/icons/kplus.svg" alt="" aria-hidden="true" />
+          </a>
+          <a class="hm-act hm-act--user" href="./account.html" aria-label="Akun">
+            <span class="hm-user-ring"><img src="/assets/home/icons/user.svg" alt="" aria-hidden="true" /></span>
+          </a>
+          <button class="hm-act hm-act--menu" type="button" aria-label="Jelajahi" aria-expanded="false" aria-controls="navpanel" data-navpanel-toggle>
+            <span class="hm-burger" aria-hidden="true"><i></i></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- MyValue register (Figma 11997:55334, a screenshot of the MyValue site in Figma). Register / Google / Facebook → myvalue-berhasil.html. -->
+    <form class="mvf-auth" action="./myvalue-berhasil.html" method="get">
+      <span class="mvf-logo mvf-logo--auth"><img src="/assets/myvalue/flow/logo-myvalue.png" alt="MyValue Kompas Gramedia" /></span>
+      <h1 class="mvf-auth__title">Register</h1>
+      <input class="mvf-auth__input" type="text" placeholder="E-Mail / Phone Number" aria-label="E-Mail / Phone Number" autocomplete="username" data-auth-input />
+
+      <p class="mvf-auth__or">or register with</p>
+      <div class="mvf-auth__social">
+        <a class="mvf-auth__social-btn" href="./myvalue-berhasil.html" aria-label="Register dengan Google">
+          <img src="/assets/myvalue/flow/google.svg" alt="" />
+        </a>
+        <a class="mvf-auth__social-btn mvf-auth__social-btn--facebook" href="./myvalue-berhasil.html" aria-label="Register dengan Facebook">
+          <span class="mvf-auth__fb" aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div class="mvf-auth__bottom">
+        <p>Already have MyValue account? <a href="./myvalue-login.html">Login</a></p>
+        <button class="mvf-auth__submit" type="submit" disabled data-auth-submit>Register</button>
+        <p class="mvf-auth__legal"><a href="#">Terms and Conditions</a> • <a href="#">Privacy Policy</a></p>
+      </div>
+    </form>
+  </body>
+</html>

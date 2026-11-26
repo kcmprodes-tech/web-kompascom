@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hubungkan akun MyValue - Kompas.com</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script type="module" src="/src/js/myvalue-flow.js"></script>
+  </head>
+  <body class="mvf-body" data-page="connect">
+    <header class="hm-header">
+      <div class="hm-bar">
+        <a class="hm-brand" href="./index.html" aria-label="Kompas.com">
+          <img class="hm-logo" src="/assets/home/logo-kompas.svg" alt="Kompas.com" />
+        </a>
+        <div class="hm-actions">
+          <!-- order as the design repo header (Figma 11997:54598): store, K+, profile/avatar, menu -->
+          <a class="hm-act" href="https://store.kompas.com" target="_blank" rel="noopener" aria-label="Store">
+            <img src="/assets/home/icons/handbag.svg" alt="" aria-hidden="true" />
+          </a>
+          <a class="hm-act hm-act--kplus" href="./kompasplus.html" aria-label="Kompas+">
+            <img src="/assets/home/icons/kplus.svg" alt="" aria-hidden="true" />
+          </a>
+          <a class="hm-act hm-act--user" href="./account.html" aria-label="Akun">
+            <span class="hm-user-ring"><img src="/assets/home/icons/user.svg" alt="" aria-hidden="true" /></span>
+          </a>
+          <button class="hm-act hm-act--menu" type="button" aria-label="Jelajahi" aria-expanded="false" aria-controls="navpanel" data-navpanel-toggle>
+            <span class="hm-burger" aria-hidden="true"><i></i></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- "Hubungkan akun MyValue" (Figma 11997:55187, section Myvalue 12004:56964). From the account page's MyValue card: logged in → here; guests log in through the MyValue sheet first. -->
+    <main class="mvf-step">
+      <!-- illustration from Figma; animated: rises in, floats, pulse rings on the link icon -->
+      <div class="mvf-ill mvf-ill--connect" aria-hidden="true">
+        <div class="mvf-ill__float">
+          <div class="mvf-ill__box">
+            <img class="mvf-ill__img" src="/assets/myvalue/flow/hubungkan.webp" width="280" height="224" alt="" />
+          </div>
+          <span class="mvf-ill__pulse"></span>
+          <span class="mvf-ill__pulse mvf-ill__pulse--late"></span>
+        </div>
+      </div>
+
+      <div class="mvf-step__body">
+        <div class="mvf-step__group">
+          <div class="mvf-step__text">
+            <h1 class="mvf-step__title mvf-step__title--lh32">Hubungkan akun MyValue</h1>
+            <p>Kamu dapat melihat dan memakai poinmu langsung dari halaman Akun KOMPAS.com.</p>
+          </div>
+          <ul class="mvf-step__list">
+            <li><span class="mvf-check" aria-hidden="true"></span>Lihat jumlah poin dan tier MyValue</li>
+            <li><span class="mvf-check" aria-hidden="true"></span>Tukar poin dengan voucher dan promo</li>
+            <li><span class="mvf-check" aria-hidden="true"></span>Gunakan poin sebagai alat pembayaran di KOMPAS.com</li>
+          </ul>
+        </div>
+
+        <div class="mvf-step__group">
+          <a class="mvf-btn" href="./myvalue-login.html">Hubungkan akun</a>
+          <p class="mvf-step__alt">Belum punya akun? <a href="./myvalue-register.html">Daftar MyValue</a></p>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

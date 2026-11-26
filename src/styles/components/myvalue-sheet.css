@@ -1,0 +1,210 @@
+/* MyValue login bottom sheet (Figma 12004:56896) — src/js/components/myvalue-sheet.js.
+   Values from the design repo's .myvalueSheet (sass/global/home-v2/_myvalue.scss). */
+
+:root {
+  --mvs-sheet: #f3f3f3; /* neutral-25 */
+  --mvs-card: #ffffff; /* elevation-0 */
+  --mvs-round-brd: #f0f0f0; /* elevation-2 */
+  --mvs-close: #414141; /* neutral-700 */
+  --mvs-brd: #e7e7e7; /* stroke-50 */
+  --mvs-t8: #2a2a2a;
+  --mvs-t6: #5a5a5a;
+}
+.ac-body[data-theme="dark"] {
+  --mvs-sheet: #171717;
+  --mvs-card: #1a1a1a;
+  --mvs-round-brd: #2a2a2a;
+  --mvs-close: #b7b7b7;
+  --mvs-brd: #1e1e1e;
+  --mvs-t8: #e0e0e0;
+  --mvs-t6: #b7b7b7;
+}
+
+html.mvs-lock,
+html.mvs-lock body {
+  overflow: hidden;
+}
+
+.mvs {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  font-family: "Inter", sans-serif;
+  letter-spacing: normal;
+}
+.mvs[hidden] {
+  display: none;
+}
+.mvs__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.mvs.is-open .mvs__backdrop {
+  opacity: 1;
+}
+
+.mvs__sheet {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  max-height: calc(100dvh - 24px);
+  overflow-y: auto;
+  padding: 16px 16px calc(40px + env(safe-area-inset-bottom));
+  border-radius: 24px 24px 0 0;
+  background: var(--mvs-sheet);
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  overscroll-behavior: contain;
+}
+.mvs.is-open .mvs__sheet {
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mvs__backdrop,
+  .mvs__sheet {
+    transition: none;
+  }
+}
+
+.mvs__top {
+  display: flex;
+  padding-bottom: 12px;
+}
+.mvs__close {
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  border: 1px solid var(--mvs-round-brd);
+  border-radius: 50px;
+  background: var(--mvs-card);
+  color: var(--mvs-close);
+  cursor: pointer;
+}
+.mvs__close::before {
+  content: "";
+  width: 24px;
+  height: 24px;
+  background: currentColor;
+  -webkit-mask: url("/assets/navpanel/x.svg") center / contain no-repeat;
+  mask: url("/assets/navpanel/x.svg") center / contain no-repeat;
+}
+
+.mvs__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  padding: 32px 16px;
+  border-radius: 16px;
+  background: var(--mvs-card);
+}
+.mvs__head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+.mvs__head img {
+  display: block;
+  width: 95.29px;
+  height: 12px;
+}
+.ac-body[data-theme="dark"] .mvs__head img {
+  filter: invert(1) hue-rotate(180deg);
+}
+.mvs__title {
+  max-width: 312px;
+  margin: 0;
+  color: var(--mvs-t6);
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.mvs__form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 288px;
+}
+.mvs__btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  height: 44px;
+  padding: 8px 18px;
+  border: 1px solid var(--mvs-brd);
+  border-radius: 12px;
+  background: none;
+  color: var(--mvs-t8);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  cursor: pointer;
+}
+.mvs__btn > span:last-child {
+  flex: 1 0 0;
+  text-align: center;
+}
+.mvs__google {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50px;
+  background: #fff;
+}
+.mvs__google img {
+  display: block;
+  width: 15.68px;
+  height: 16px;
+}
+.mvs__email {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  background: currentColor;
+  -webkit-mask: url("/assets/account/login/email.svg") center / contain no-repeat;
+  mask: url("/assets/account/login/email.svg") center / contain no-repeat;
+}
+.mvs__or {
+  color: var(--mvs-t6);
+  font-size: 14px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.mvs__note {
+  width: 100%;
+  max-width: 288px;
+  margin: 0 auto;
+  padding-top: 40px;
+  color: var(--mvs-t6);
+  font-size: 10px;
+  line-height: 1.4;
+  text-align: center;
+}
+.mvs__note a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.mvs__close:focus-visible,
+.mvs__btn:focus-visible {
+  outline: 2px solid #0f79c6;
+  outline-offset: 2px;
+}

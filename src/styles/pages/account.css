@@ -456,8 +456,8 @@
   color: var(--t2);
   white-space: nowrap;
 }
-.ac-body:is([data-state="guest"], [data-state="free"]) .ac-card--poin,
-.ac-body:is([data-state="member1"], [data-state="memberN"]) .ac-card--connect {
+.ac-body:not([data-myvalue="linked"]) .ac-card--poin,
+.ac-body[data-myvalue="linked"] .ac-card--connect {
   display: none;
 }
 

@@ -72,8 +72,9 @@
 
       <!-- Poin / Voucher / Reward -->
       <div class="ac-cards">
-        <!-- MyValue not linked yet (guest / logged in, not linked) — Figma 11561:19100 -->
-        <a class="ac-card ac-card--connect" href="./myvalue.html" data-auth>
+        <!-- MyValue not linked yet — Figma 11561:19100. Guests get the MyValue login
+             sheet first (Figma 12004:56896), logged-in readers go straight to linking. -->
+        <a class="ac-card ac-card--connect" href="./myvalue-connect.html" data-myvalue-connect aria-haspopup="dialog">
           <span class="ac-card__name">
             <img class="ac-card__logo" src="/assets/account/myvalue.png" alt="" aria-hidden="true" />
             MyValue
@@ -83,8 +84,8 @@
             <span class="ac-chev ac-chev--bold"></span>
           </span>
         </a>
-        <!-- MyValue linked (members): points -->
-        <a class="ac-card ac-card--poin" href="./myvalue.html" data-auth>
+        <!-- MyValue linked: points -->
+        <a class="ac-card ac-card--poin" href="./myvalue.html">
           <span class="ac-card__title">
             <img class="ac-card__logo" src="/assets/account/myvalue.png" alt="" aria-hidden="true" />
             MyValue Poin

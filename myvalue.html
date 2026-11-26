@@ -33,7 +33,7 @@
       </div>
     </header>
 
-    <!-- MyValue Poin (Figma 11695:95793) -->
+    <!-- MyValue Poin (Figma 11999:55551, design repo partial myvalue_poin) -->
     <main class="mv">
       <nav class="mv-crumb" aria-label="Breadcrumb">
         <a href="./index.html">Home</a>
@@ -41,63 +41,83 @@
         <span aria-current="page">MyValue Poin</span>
       </nav>
 
-      <img class="mv-logo" src="/assets/myvalue/logo.png" width="125" height="40" alt="MyValue — Kompas Gramedia" />
-
-      <hr class="mv-rule mv-rule--top" />
+      <div class="mv-brand">
+        <span class="mv-logo"><img src="/assets/myvalue/flow/logo-myvalue.png" alt="MyValue Poin — Kompas Gramedia" /></span>
+      </div>
 
       <div class="mv-user">
-        <div class="mv-user__id">
-          <span class="mv-user__avatar" data-user-initials>DM</span>
-          <span class="mv-user__text">
-            <strong data-user-name>Dian meidina</strong>
-            <span data-user-email>dianmeidina@gmail.com</span>
-          </span>
+        <span class="mv-user__avatar" aria-hidden="true" data-user-initials>DM</span>
+        <div class="mv-user__text">
+          <p class="mv-user__name"><span data-user-name>Dian meidina</span> <span class="mv-user__status">Terhubung</span></p>
+          <p class="mv-user__email" data-user-email>dianmeidina@gmail.com</p>
         </div>
-        <div class="mv-user__tier">
-          <img src="/assets/myvalue/tier.png" width="24" height="24" alt="" aria-hidden="true" />
-          <span><small>Tier</small><b>Basic</b></span>
+        <!-- three-dot menu: "Berhenti menghubungkan akun" -->
+        <details class="mv-more" data-mv-more>
+          <summary class="mv-more__btn" aria-label="Opsi akun MyValue"></summary>
+          <div class="mv-more__menu">
+            <button class="mv-more__item" type="button" data-mv-disconnect-open>Berhenti menghubungkan akun</button>
+          </div>
+        </details>
+      </div>
+
+      <section class="mv-card" aria-label="Poin saya">
+        <div class="mv-card__row">
+          <span class="mv-card__ico"><img src="/assets/myvalue/flow/poin.png" alt="" /></span>
+          <div class="mv-card__main">
+            <p class="mv-label">Poin saya</p>
+            <p class="mv-card__val">3.456</p>
+          </div>
+          <div>
+            <p class="mv-label">Badge</p>
+            <p class="mv-card__val">0</p>
+          </div>
+        </div>
+        <button class="mv-card__exp" type="button">
+          <span><b>0 Poin</b> akan kedaluwarsa pada <strong>01 Nov 2026</strong></span>
+          <span class="mv-card__exp-caret" aria-hidden="true"></span>
+        </button>
+      </section>
+
+      <div class="mv-stats">
+        <div class="mv-stat">
+          <span class="mv-stat__ico mv-stat__ico--tier"><img src="/assets/myvalue/flow/tier-basic.png" alt="" /></span>
+          <div>
+            <p class="mv-label">Tier</p>
+            <p class="mv-stat__val">Basic</p>
+          </div>
+        </div>
+        <div class="mv-stat">
+          <span class="mv-stat__ico mv-stat__ico--badge"><img src="/assets/myvalue/flow/badge.png" alt="" /></span>
+          <div>
+            <p class="mv-label">Badge</p>
+            <p class="mv-stat__val mv-stat__val--sm">0</p>
+          </div>
         </div>
       </div>
 
-      <section class="mv-points" aria-label="Poin saya">
-        <div class="mv-points__row">
-          <img class="mv-points__icon" src="/assets/myvalue/poin.png" width="41" height="40" alt="" aria-hidden="true" />
-          <div class="mv-points__stat mv-points__stat--main">
-            <small>Poin saya</small>
-            <strong>3.456</strong>
-          </div>
-          <div class="mv-points__badge">
-            <div class="mv-points__stat">
-              <small>Badge</small>
-              <strong>0</strong>
-            </div>
-            <img src="/assets/myvalue/badge.png" width="17" height="16" alt="" aria-hidden="true" />
-          </div>
-        </div>
-        <p class="mv-points__exp"><b>0 Poin</b> akan kedaluwarsa pada <strong>01 Nov 2026</strong></p>
-      </section>
-
-      <aside class="mv-info" data-mv-info>
-        <div class="mv-info__text">
-          <p>Poin MyValue adalah bentuk loyalty reward untuk pelanggan setia Kompas Gramedia Group</p>
-          <a href="https://www.myvalue.id" target="_blank" rel="noopener">Pelajari selengkapnya</a>
-        </div>
-        <button class="mv-info__close" type="button" aria-label="Tutup informasi" data-mv-info-close></button>
-      </aside>
-
-      <hr class="mv-rule mv-rule--mid" />
-
       <section class="mv-history">
         <h1 class="mv-history__title">Riwayat Poin</h1>
-        <div class="mv-tabs" role="tablist" aria-label="Filter riwayat poin">
-          <button class="mv-tab" type="button" role="tab" aria-selected="true" data-filter="all">Semua</button>
-          <button class="mv-tab" type="button" role="tab" aria-selected="false" data-filter="earning">Earning</button>
-          <button class="mv-tab" type="button" role="tab" aria-selected="false" data-filter="redeem">Redeem</button>
-          <button class="mv-tab" type="button" role="tab" aria-selected="false" data-filter="cancel-earning">Cancel Earning</button>
-          <button class="mv-tab" type="button" role="tab" aria-selected="false" data-filter="cancel-redeem">Cancel Redeem</button>
-        </div>
         <div class="mv-list" data-mv-list></div>
       </section>
+
+      <a class="mv-all" href="https://www.myvalue.id" target="_blank" rel="noopener">
+        Lihat semua di MyValue
+        <span class="mv-all__ico" aria-hidden="true"></span>
+      </a>
     </main>
+
+    <!-- confirm "Berhenti menghubungkan akun" -->
+    <dialog class="mv-dialog" aria-labelledby="mv-disconnect-title" data-mv-disconnect>
+      <div class="mv-dialog__inner">
+        <div class="mv-dialog__text">
+          <h2 id="mv-disconnect-title">Yakin untuk stop hubungkan akun MyValue?</h2>
+          <p>Poin dan informasi akun MyValue tidak lagi tampil di Kompas.com. Poinmu tetap aman di akun MyValue dan bisa dihubungkan kembali kapanpun.</p>
+        </div>
+        <div class="mv-dialog__actions">
+          <button class="mv-dialog__btn mv-dialog__btn--cancel" type="button" data-mv-disconnect-cancel>Batal</button>
+          <button class="mv-dialog__btn mv-dialog__btn--danger" type="button" data-mv-disconnect-confirm>Ya, Lanjutkan</button>
+        </div>
+      </div>
+    </dialog>
   </body>
 </html>

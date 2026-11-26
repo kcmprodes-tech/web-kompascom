@@ -1,0 +1,390 @@
+/* MyValue linking flow — Figma "WB. KOMPAS.com Improvement", section Myvalue (12004:56964).
+   Ported from the design repo (dummy-kompascom-design, sass/global/home-v2/_myvalue.scss):
+     .mvf-step  "Hubungkan akun MyValue" / "berhasil terhubung"  11997:55187 · 11997:55425
+     .mvf-auth  MyValue Login / Register (the MyValue site; a screenshot in Figma)
+   Markup: myvalue-connect / -login / -register / -berhasil.html. */
+
+* {
+  box-sizing: border-box;
+}
+
+.mvf-body {
+  --mvf-t8: #2a2a2a;
+  --mvf-t6: #5a5a5a;
+  --mvf-t4: #888888;
+  --mvf-primary: #0f79c6;
+  --mvf-success: #039855;
+  --mvf-stroke: #e7e7e7;
+  --mvf-stroke-200: #b8b8b8;
+  --mvf-neutral-700: #414141;
+  --mvf-brand: #7b3595; /* MyValue site: Login / Register button */
+  --mvf-facebook: #3578e5;
+  margin: 0;
+  background: #ffffff;
+  color: var(--mvf-t8);
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.mvf-body :where(p, h1, ul) {
+  margin: 0;
+  padding: 0;
+}
+.mvf-body a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ---------- Steps: Hubungkan / Berhasil ---------- */
+.mvf-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  min-height: calc(100vh - 50px); /* white to the bottom of the screen (header 50px) */
+  padding: 42px 20px 40px;
+  font-size: 14px;
+  letter-spacing: -0.2px;
+}
+/* "berhasil terhubung": content starts 101px under the header (Figma 11997:55425) */
+.mvf-step--done {
+  padding-top: 101px;
+}
+.mvf-step__body,
+.mvf-step__group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.mvf-step__body {
+  gap: 24px;
+}
+.mvf-step__group {
+  gap: 16px;
+}
+.mvf-step__text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  /* 1px wider: Inter renders ±0.2px wider than Figma, without this
+     "langsung dari halaman Akun KOMPAS.com." wraps differently */
+  margin-inline: -0.5px;
+  text-align: center;
+}
+.mvf-step__title {
+  color: var(--mvf-t8);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 26px;
+  letter-spacing: -0.2px;
+}
+.mvf-step__title--lh32 {
+  line-height: 32px;
+}
+.mvf-step__text p {
+  color: var(--mvf-t6);
+  font-size: 16px;
+  line-height: 24px;
+}
+.mvf-step__list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--mvf-t6);
+  font-size: 14px;
+  line-height: 21px;
+  list-style: none;
+}
+.mvf-step__list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.mvf-step__list li:last-child {
+  align-items: flex-start;
+}
+.mvf-check {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  background: var(--mvf-primary);
+  -webkit-mask: url("/assets/myvalue/flow/check-circle-fill.svg") center / contain no-repeat;
+  mask: url("/assets/myvalue/flow/check-circle-fill.svg") center / contain no-repeat;
+}
+
+.mvf-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 44px;
+  padding: 0 16px;
+  border-radius: 12px;
+  background: var(--mvf-primary);
+  color: #ffffff !important;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: -0.32px;
+}
+.mvf-step__alt {
+  padding: 10px 0;
+  color: var(--mvf-t6);
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+}
+.mvf-step__alt a {
+  color: var(--mvf-primary) !important;
+  font-weight: 600;
+}
+
+/* ---------- Illustration: the whole Figma image moves, plus pulse rings on its focus point ---------- */
+.mvf-ill {
+  position: relative;
+  flex-shrink: 0;
+  width: 280px;
+  height: 210px;
+  animation: mvfIllIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.mvf-ill__float {
+  position: absolute;
+  inset: 0;
+  animation: mvfIllFloat 3.2s ease-in-out 0.6s infinite;
+}
+/* hubungkan: image 280x224, cropped at the bottom (Figma: h 106.7%) */
+.mvf-ill__box {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.mvf-ill__img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
+}
+.mvf-ill__pulse {
+  position: absolute;
+  top: var(--pulse-y);
+  left: var(--pulse-x);
+  width: var(--pulse-size);
+  height: var(--pulse-size);
+  margin: calc(var(--pulse-size) / -2) 0 0 calc(var(--pulse-size) / -2);
+  border: 2px solid var(--pulse-color);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  animation: mvfIllPulse 2s ease-out 0.8s infinite;
+}
+.mvf-ill__pulse--late {
+  animation-delay: 1.8s;
+}
+/* link icon in the middle */
+.mvf-ill--connect {
+  --pulse-x: 49.9%;
+  --pulse-y: 56.1%;
+  --pulse-size: 29px;
+  --pulse-color: var(--mvf-primary);
+}
+/* green check: pops in */
+.mvf-ill--done {
+  height: 224px;
+  --pulse-x: 51.1%;
+  --pulse-y: 52.1%;
+  --pulse-size: 55px;
+  --pulse-color: var(--mvf-success);
+  animation-name: mvfIllPop;
+  animation-duration: 0.7s;
+}
+.mvf-ill--done .mvf-ill__img {
+  height: 100%;
+  object-fit: cover;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mvf-ill,
+  .mvf-ill__float,
+  .mvf-ill__pulse {
+    animation: none;
+  }
+}
+
+@keyframes mvfIllIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes mvfIllPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes mvfIllFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+@keyframes mvfIllPulse {
+  0% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2.2);
+  }
+}
+
+/* ---------- MyValue logo (a 125x40 crop of a Figma screenshot, kept as is) ---------- */
+.mvf-logo {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  width: var(--mvf-logo-w, 125px);
+  aspect-ratio: 125 / 40;
+}
+.mvf-logo img {
+  position: absolute;
+  top: -25.27%;
+  left: -11.2%;
+  width: 127.2%;
+  height: 140.53%;
+  max-width: none;
+}
+.mvf-logo--auth {
+  --mvf-logo-w: 168px;
+}
+
+/* ---------- MyValue Login / Register ---------- */
+.mvf-auth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: calc(100vh - 50px);
+  padding: 28px 26px 16px;
+  color: var(--mvf-t8);
+  font-size: 14px;
+  text-align: center;
+}
+.mvf-auth__title {
+  margin-top: 30px;
+  color: var(--mvf-neutral-700);
+  font-size: 20px;
+  font-weight: 700;
+}
+.mvf-auth__input {
+  width: 100%;
+  height: 55px;
+  margin-top: 18px;
+  padding: 0 16px;
+  border: 1px solid var(--mvf-stroke-200);
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--mvf-t8);
+  font: inherit;
+  font-size: 16px;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.mvf-auth__input::placeholder {
+  color: var(--mvf-t4);
+}
+.mvf-auth__input:focus {
+  border-color: var(--mvf-brand);
+  outline: none;
+}
+.mvf-auth__or {
+  margin-top: 38px;
+}
+.mvf-auth__social {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+.mvf-auth__social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 36px;
+  border: 1px solid var(--mvf-stroke);
+  border-radius: 18px;
+  background: #ffffff;
+}
+.mvf-auth__social-btn img {
+  width: 19.6px;
+  height: 20px;
+}
+.mvf-auth__social-btn--facebook {
+  border-color: var(--mvf-facebook);
+  background: var(--mvf-facebook);
+  color: #ffffff;
+}
+.mvf-auth__fb {
+  width: 20px;
+  height: 20px;
+  background: #ffffff;
+  -webkit-mask: url("/assets/myvalue/flow/facebook-logo-fill.svg") center / contain no-repeat;
+  mask: url("/assets/myvalue/flow/facebook-logo-fill.svg") center / contain no-repeat;
+}
+.mvf-auth__bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  margin-top: auto;
+  padding-top: 32px;
+}
+.mvf-auth__bottom a {
+  color: var(--mvf-brand) !important;
+  text-decoration: underline !important;
+}
+.mvf-auth__submit {
+  width: 100%;
+  height: 36px;
+  border: 0;
+  border-radius: 18px;
+  background: var(--mvf-brand);
+  color: #ffffff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.mvf-auth__submit:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.mvf-auth__legal {
+  margin-top: 8px;
+  font-size: 12px;
+}
+
+.mvf-btn:focus-visible,
+.mvf-step__alt a:focus-visible,
+.mvf-auth__social-btn:focus-visible,
+.mvf-auth__submit:focus-visible {
+  outline: 2px solid var(--mvf-primary);
+  outline-offset: 2px;
+}

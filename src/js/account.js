@@ -14,6 +14,8 @@ import "../styles/pages/account.css";
 import { readSession, clearSession, initials } from "./utils/session.js";
 import { fetchEntitlement } from "./utils/entitlement.js";
 import { initLoginSheet } from "./components/login-sheet.js";
+import { initMyValueSheet } from "./components/myvalue-sheet.js";
+import { isMyValueLinked, setMyValueLinked } from "./utils/myvalue.js";
 
 const body = document.body;
 const params = new URLSearchParams(window.location.search);
@@ -37,11 +39,11 @@ const returnTo = (() => {
   }
 })();
 
-// Not linked to MyValue yet (guest, free) the first card asks to link the
-// account instead of showing points (see .ac-card--connect).
+// Not linked to MyValue yet, the first card asks to link the account instead
+// of showing points (see .ac-card--connect and utils/myvalue.js).
 const CARD_VALUES = {
   guest: { voucher: "Lihat voucher", reward: "Lihat reward" },
-  free: { voucher: "Lihat voucher", reward: "Lihat reward" },
+  free: { poin: "3.456 Poin", voucher: "Lihat voucher", reward: "Lihat reward" },
   member1: { poin: "242 Poin", voucher: "2 Voucher", reward: "Rp25.000" },
   memberN: { poin: "242 Poin", voucher: "2 Voucher", reward: "Rp25.000" },
 };
@@ -53,18 +55,20 @@ const MEMBER_CARD = {
 
 function render() {
   body.dataset.state = state;
+  const member = state === "member1" || state === "memberN";
+  body.dataset.myvalue = state !== "guest" && isMyValueLinked({ member }) ? "linked" : "unlinked";
 
   for (const [key, text] of Object.entries(CARD_VALUES[state])) {
     const el = document.querySelector(`[data-card="${key}"]`);
     if (el) el.textContent = text;
   }
 
-  const member = MEMBER_CARD[state];
-  if (member) {
+  const plan = MEMBER_CARD[state];
+  if (plan) {
     const title = document.querySelector("[data-member-title]");
     const sub = document.querySelector("[data-member-sub]");
-    if (title) title.textContent = member.title;
-    if (sub) sub.textContent = member.sub;
+    if (title) title.textContent = plan.title;
+    if (sub) sub.textContent = plan.sub;
   }
 
   if (session) {
@@ -171,6 +175,17 @@ const login = initLoginSheet({
     return false;
   },
 });
+
+/* ---------- MyValue card: guests log in through the MyValue sheet first ---------- */
+const myValueSheet = initMyValueSheet({ next: "./myvalue-connect.html" });
+document.querySelector("[data-myvalue-connect]")?.addEventListener("click", (event) => {
+  if (state !== "guest") return; // logged in: straight to "Hubungkan akun MyValue"
+  event.preventDefault();
+  myValueSheet.open();
+});
+
+// members start linked without a saved flag; keep that for the MyValue Poin page
+document.querySelector(".ac-card--poin")?.addEventListener("click", () => setMyValueLinked(true));
 
 /* Guests are asked to log in before using gated entries */
 document.addEventListener("click", (event) => {
